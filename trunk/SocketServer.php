@@ -14,7 +14,7 @@ class SocketServer
 	*@param int $port 端口
 	*@param int $backlog 最大连接数
 	*/
-	public function __construct($host = '127.0.0.1',$port = '9090', $backlog = 10)
+	public function __construct($host = '127.0.0.1',$port = '8080', $backlog = 10)
 	{
 		$this->socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP) or die('socket创建失败');
 		socket_bind($this->socket,$host,$port);
