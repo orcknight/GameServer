@@ -1,0 +1,129 @@
+<script type="text/html" id="tpl-tasks">
+	{{each items as item index}}
+		<a href="__APP__/Home/Task/detail?task_id={{item.id}}">
+		    <li class="index-task-item">
+		        <span class="item_left_part task-cate-{{item.category_id}}">{{item.category}}</span>
+		        <div class="item_center_part">
+		            <h3>{{item.title}}</h3>
+		            <p>
+		                <span class="iconf iconf-clock"></span>截止于{{item.end_time}}
+		                <span class="line_left_vertical">&nbsp;剩余{{item.number}}次</span>
+		            </p>
+		        </div>
+		        <div class="item_right_part">
+		            {{item.price}}元/次
+		        </div>
+		    </li>
+		</a>
+	{{/each}}
+</script>
+
+<script type="text/html" id="tpl-mine">
+	{{each items as item index}}
+		<a href="__APP__/Home/Task/detail?task_id={{item.task_id}}">
+		    <li class="mine-task-item">
+		        <span class="item_left_part task-cate-{{item.category_id}}">{{item.category}}</span>
+		        <div class="item_center_part">
+		            <h3>{{item.title}}</h3>
+		            <p>
+		                <span class="iconf iconf-clock"></span>截止于{{item.end_time}}
+		                <span class="line_left_vertical">&nbsp;剩余{{item.number}}次</span>
+		            </p>
+		        </div>
+		        <div class="item_right_part">
+					{{if item.outdate}}
+						<span class="status-out">已过期</span>
+					{{else}}
+						{{if item.u_status == APPLY_USTATUS_APPLIED()}}
+							<span class="status-on">进行中</span>
+						{{else if item.u_status == APPLY_USTATUS_PASSED()}}
+							<span class="status-ok">已通过</span>
+						{{else if item.u_status == APPLY_UNSTATUS_UNPASSED()}}
+							<span class="status-fail">未通过</span>
+						{{else if item.u_status == APPLY_USTATUS_UNFINISHED()}}
+							<span class="status-fail">未完成</span>
+						{{else if item.u_status == APPLY_USTATUS_FINISHED()}}
+							<span class="status-check">审核中</span>
+						{{/if}}
+					{{/if}}
+		        </div>
+		    </li>
+		</a>
+	{{/each}}
+</script>
+
+<script type="text/html" id="tpl-wallet">
+	{{each items as item index}}
+		<a href="">
+		    <li class="wallet-task-item">
+		        <span class="item_left_part task-cate-{{item.category_id}}">{{item.category}}</span>
+		        <div class="item_center_part">
+		            <h3>{{item.title}}</h3>
+		            <p>
+		                <span class="iconf iconf-clock"></span>{{item.create_time}}&nbsp;&nbsp;
+		            </p>
+		        </div>
+		        <div class="item_right_part">
+		        	{{if item.type == TYPE_DECREASE()}}
+		            	-{{item.money}}元
+		            {{else if item.type == TYPE_INCREASE()}}
+		            	+{{item.money}}元
+		        	{{/if}}
+		        </div>
+		    </li>
+		</a>
+	{{/each}}
+</script>
+
+<script type="text/html" id="tpl-task">
+	<div class="detail-title">
+	    <section>
+	        <p>{{title}}</p>
+	        <div class="wind">
+	            <span>{{price}}</span><b>元</b>
+	        </div>
+	    </section>
+	    <p>任务剩余{{number}}次&nbsp;&nbsp;<span>&nbsp;&nbsp;{{end_time}}截止</span></p>
+	</div>
+	<div>
+	    <div class="detail-clamp">
+	        <p>审核时间：<span>{{review_time}}小时内</span></p>
+	        {{if type == TYPE_UNLIMITED()}}
+		        <p>任务限制：<span>不限次数</span></p>
+		    {{else if type == TYPE_ONCE()}}
+		    	<p>任务限制：<span>每人一次</span></p>
+	    	{{else if type == TYPE_DAILY()}}
+	    		<p>任务限制：<span>每天一次</span></p>
+	    	{{/if}}
+	    </div>
+	    <div class="detail-body">
+	        <h3>任务简介：</h3>
+	        <div class="wrap-detail-summary"></div>
+	    </div>
+	</div>
+</script>
+
+<script type="text/html" id="tpl-task-button">
+	{{if nologin == 1}}
+		<a class="btn-gain">领取任务</a>
+	{{else}}
+		{{if is_applied == 1}}
+			{{if u_status == APPLY_USTATUS_APPLIED()}}
+				<a class="btn-continue">继续任务<span>(任务时间剩余<span class="countdown"></span>)</span></a>
+			{{else if u_status == APPLY_USTATUS_PASSED()}}
+				<a class="btn-banned">审核已通过</a>
+			{{else if u_status == APPLY_UNSTATUS_UNPASSED()}}
+				<a class="btn-banned">审核未通过</a>
+			{{else if u_status == APPLY_USTATUS_UNFINISHED()}}
+				<a class="btn-banned">任务已超时</a>
+			{{else if u_status == APPLY_USTATUS_FINISHED()}}
+				<a class="btn-banned">审核中</a>
+			{{/if}}
+		{{else if outdate}}
+			<a class="btn-banned">任务已过期</a>
+		{{else}}	
+			<a class="btn-gain">领取任务</a>
+		{{/if}}
+	{{/if}}
+</script>
+

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>     
+        <title>萝卜兼职</title>    
+        <include file="Common/header"/>
+    </head>
+    <body>
+        <div class="page-group">
+            <div class="page" id="myWallet">
+                <!--头部-->
+                <header class="bar bar-nav">
+                    <a class="button button-link button-nav pull-left external" href="__APP__/Company/User/bizCenter">
+                        <span class="icon icon-left"></span>
+                        返回
+                    </a>
+                    <h1 class="title">我的钱包</h1>
+                </header>
+                <div class="content wrapMyWallet" id="wrapMyWallet">
+                    <div class="bg_orange wrapGrossAmount text-center padd_20">
+                        <h1 id="totalMoney" class="fc_white">&nbsp;<span></span>&nbsp;</h1>    
+                        <h5 class="fc_white">总金额(RMB)</h5>
+                    </div>
+                    <div class="pos_rela wrap" style="display:none">
+                        <div class="row no-gutter">
+                            <div class="col-50 text-center pos_rela line_r padd_10" id="">
+                                <span class="">万元收益(元)</span>
+                                <h5 class="fc_orange">0.7786</h5>
+                            </div>
+                            <div class="col-50 text-center padd_10" id="">
+                                <span class="">累计收益(元)</span>
+                                <h5 class="fc_orange">0.7786</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-block">
+                        <ul class="marg_bottom_10">
+                            <a id="setPwd" href="javascript:;">
+                                <li class="item-content item-link">
+                                    <div class="item-inner">
+                                        <div class="f16 item-title">
+                                            设置支付密码
+                                        </div>
+                                    </div>
+                                </li>
+                            </a>
+                            <a href="__APP__/Company/Wallet/myWallet_reSetPwd">
+                                <li class="item-content item-link">
+                                    <div class="item-inner">
+                                        <div class="f16 item-title">
+                                            找回支付密码
+                                        </div>
+                                    </div>
+                                </li>
+                            </a>
+                            <a href="__APP__/Company/Wallet/biz_incomeDetail" data-no-cache="true">
+                                <li class="item-content item-link">
+                                    <div class="item-inner">
+                                        <div class="f16 item-title">
+                                            收支明细
+                                        </div>
+                                    </div>
+                                </li>
+                            </a>
+                        </ul>    
+                    </div>
+                    
+                    <div class="content-block">
+                        <div class="row">
+                            <div class="col-100">
+                                <a id="" href="__APP__/Company/Wallet/recharge" class="button button-big button_orange">充值</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <include file="Common/tpl/tpl-wallet" />
+        <include file="Common/tpl/tpl-jobDetail" />
+        <include file="Common/footer" />
+        <script type="text/javascript" src='__PUBLIC__/source/debug/scripts/company-wallet-bundle.js' charset='utf-8'></script> 
+    </body>
+</html>

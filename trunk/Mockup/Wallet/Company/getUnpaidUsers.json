@@ -1,0 +1,14 @@
+{
+"code":1,
+"msg":"成功",
+"data":
+{
+"currPage":1,
+"pageSize":10,
+"total":10,
+"data":[
+    {"userid":3, "username":"测试3", "phone":"18369171890", "schoolname":"山东大学", "headimageurl":"http://luobojianzhi-image.oss-cn-qingdao.aliyuncs.com/57b3c00f8a791.jpg" },
+    {"userid":4, "username":"测试4", "phone":"18369171891", "schoolname":"北京大学", "headimageurl":"http://luobojianzhi-image.oss-cn-qingdao.aliyuncs.com/57b3c00f8a791.jpg"}
+    ]
+}
+}

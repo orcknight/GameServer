@@ -1,0 +1,94 @@
+<script id="job-detail-tpl" type="text/html">
+    <div class="wrapJobDetail">
+        <section class="marg_bottom_10">
+            <div class="line_b pos_rela">
+                <p class="fc_orange line_h1">{{title}}</p>  
+                <p class="f12 fc_lightGray line_h2">
+                    <i class="iconf iconf-clock f12"></i><span class="marg_left_10 marg_right_10">{{createtime}}</span>
+                    <i class="iconf iconf-eyes f12"></i><span class="marg_left_10">{{hot}}</span>
+                </p> 
+          </div>
+          <div class="f14">
+              <p class="row no-gutter line_h2">
+                  <span class="col-25 fc_lightGray">发布机构：</span>
+                  <span class="col-75 tx_ellips">{{company}}</span>
+              </p>
+              <p class="row no-gutter line_h1">
+                  <span class="col-25 fc_lightGray">招聘人数：</span>
+                  <span class="col-75 tx_ellips">{{number}}人</span>
+              </p>
+              <p class="row no-gutter line_b pos_rela line_h2">
+                 <span class="col-25 fc_lightGray">工资待遇：</span>
+                 <span class="col-75 tx_ellips">{{income}}{{incomeunit}}</span>
+              </p>
+              <p class="row no-gutter line_b pos_rela line_h2">
+                 <span class="col-25 fc_lightGray">结算方式：</span>
+                 <span class="col-75 tx_ellips">{{paytype}}</span>
+              </p>  
+              <p class="row no-gutter line_b pos_rela line_h2">
+                <span class="col-25 fc_lightGray">兼职类型：</span>
+                <span class="col-75 tx_ellips detail_jobType">
+                    {{each attributes as value index}}
+                        {{if value == 1}}
+                            <img src="__PUBLIC__/images/danbao.png" alt="担保">
+                        {{else if value == 2}}
+                            <img src="__PUBLIC__/images/hongbao.png" alt="红包">
+                        {{else if value == 3}}
+                            <img src="__PUBLIC__/images/shuangxin.png" alt="双薪">
+                        {{/if}}
+                    {{/each}}
+                    {{if attributes[0] == undefined}}
+                        普通
+                    {{/if}}
+                </span>
+              </p>  
+              <p class="row no-gutter line_b pos_rela line_h22">
+                  <span class="col-25 fc_lightGray">工作地点：</span>
+                  <span class="col-75">{{address}}</span>
+                  <a href="__CONTROLLER__/map.html?address={{address}}" style="display:none">
+                      <span class="col-33 tx_ellips f12 fc_lightGray" style="margin-top: .15rem; float: right; text-align: right;">点击查看地图&nbsp;&nbsp;></span>
+                  </a>
+              </p>
+              <p class="fc_orange line_h2">
+                  <i class="iconf iconf-notice f14"></i><span class="iconf f12 marg_left_10">凡是收费的兼职信息，请谨慎选择！</span>
+              </p>
+          </div>
+      </section> 
+      <section class="marg_bottom_10">
+          <div class="f14">
+              <p class="row no-gutter pos_rela line_h2 line_b">
+                  <span class="col-25 fc_lightGray">工作日期：</span>
+                  <span class="col-75 tx_ellips">{{begintime}} ~ {{endtime}}</span>
+              </p>
+              <p class="row no-gutter line_h2">
+                <span class="col-25 fc_lightGray">上班时段：</span>
+                <span class="col-75 tx_ellips">{{beginhour}} ~ {{endhour}}</span>
+              </p>
+          </div>
+      </section> 
+      <section class="marg_bottom_10">
+          <div class="line_b pos_rela fc_orange line_h1 padd_bottom_10">
+            <i class="iconf iconf-edit"></i><span class="iconf marg_left_10">职位描述</span>
+          </div>
+          <div class="f12 fc_lightGray marg_top_10">
+            {{intro}}
+          </div>
+      </section> 
+      <section class="marg_bottom_10">
+          <div class="f14">
+              <p class="row no-gutter line_b pos_rela line_h2">
+                  <span class="col-25 fc_lightGray">报名截止：</span>
+                  <span class="col-75 tx_ellips">{{deadline}}</span>
+              </p>
+              <p class="job-connect row no-gutter line_b pos_rela line_h2">
+                  <span class="col-25 fc_lightGray">联系人：</span>
+                  <span class="col-75 tx_ellips">{{linkman}}</span>
+              </p>
+              <p class="job-connect row no-gutter line_h2">
+                  <span class="col-25 fc_lightGray">联系电话：</span>
+                  <span class="col-75 tx_ellips">{{phone}}</span>
+              </p>
+          </div>
+      </section> 
+  </div>
+</script>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <title>萝卜兼职</title>
+        
+        <include file="Common/header"/>
+        <include file="Common/tpl/tpl-userIncomeDetail" />
+    </head>
+    <body>
+        <div class="page-group">
+            <div class="page page-current" style="display: block;" id="withDrawCashStatus">
+            <!--头部-->
+            <header class="bar bar-nav">
+            <a class="button button-link button-nav pull-left external" href="__APP__/Home/Wallet/myWallet">
+                <span class="icon icon-left"></span>
+               返回
+            </a>
+                <h1 class="title">申请成功</h1>
+            </header>
+            <div class="content wrapPerfectInfo" id="wrapUserBaseInfo">
+                <div class="content-block pos_rela line_b text-center" style="margin-bottom: 0;">
+                    <div class="text-center fc_orange pos_iZFB">
+                        <i class="iconf iconf-statusOk statusIcon"></i>
+                        <br/>申请成功
+                    </div> 
+                </div>
+                <div class="zfbInfo pos_rela line_b f12 text-center">
+                    您已成功申请提现,请耐心等待. 
+                </div>
+                <div class="content-block">
+                    <div class="row">
+                        <div class="col-100">
+                            <a id="gotoWallet" href="#" class="button button-big button_orange">确定</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tip_info text-center" style="display: none;"></div>
+        </div>   
+        </div>
+        
+
+    <include file="Common/footer"/> 
+    </body>
+</html>
+
+<script>
+
+$(function () {   
+    $(document).on("pageInit", "#withDrawCashStatus", function(e, id, page) {
+        //点击确定按钮
+        $("#gotoWallet").unbind('click').bind('click',function () {
+            window.location.href = APP_PATH+"/Home/Wallet/myWallet.html";
+            // $.router.load(APP_PATH + '/Home/Wallet/myWallet.html', true);
+        });
+    });
+    // $.init();
+});
+</script>
+<script type="text/javascript" src='__PUBLIC__/source/debug/constVal/constVal.js' charset='utf-8'></script>
+<script type="text/javascript" src='__PUBLIC__/source/debug/scripts/home-wallet-myWallet.js?t=1482373334544' charset='utf-8'></script>

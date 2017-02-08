@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>萝卜兼职</title>
+
+        <include file="Common/header"/>
+    </head>
+    <body>
+        <div class="page" style="display: block;">
+            <!--头部-->
+            <header class="bar bar-nav">
+            <a class="button button-link button-nav pull-left" href="#settings" data-panel="#">
+                <span class="icon icon-left"></span>
+               返回
+            </a>
+                <h1 class="title">修改密码</h1>
+            </header>
+            <div class="content">
+                <!-- <div>
+                    <img src="/Public/images/bg_sign.jpg" alt="头部背景图片" class="img-responsive">
+                </div>  -->  
+                <form action="__MODULE__/Mobile/doNewReg" method="post" id="form-reg">
+                    <div class="content-block f14 wrapRegCont">
+                        <!-- <div class="row no-gutter line_b">
+                            <div class="col-25 text-left">
+                                手机号
+                            </div>
+                            <div class="col-75 line_l">
+                                <input  id="phone" class="form-control gttv" type="text" name="phone" placeholder="请输入11位手机号码" />
+                            </div>
+                        </div> -->
+                        <!-- <div class="row no-gutter line_b">
+                            <div class="col-25 text-left">
+                                验证码
+                            </div>
+                            <div class="col-40 line_l">
+                                <input  id="phonecaptcha" class="form-control gttv" type="text" name="captcha" placeholder="请输入6位验证码" />
+                            </div>
+                            <div class="col-33 f_right">
+                                <button class="btn btn-block gtbtn btn_send repeat_send bg-gray" type="button" id="getCaptcha" disabled="disabled" style="color:#fff;">
+                                    获取验证码
+                                </button>
+                            </div>
+                        </div> -->
+                        <div class="row no-gutter line_b" style="display: none;">
+                            <div class="col-25 text-left">
+                                图形验证码
+                            </div>
+                            <div class="col-40 line_l">
+                                <input class="form-control gttv" type="text" name="verifyCode" placeholder="请输入6位验证码" />
+                            </div>
+                            <div class="col-33 f_right text-right tuCode">
+                                <img src="__CONTROLLER__/getThinkCode"  border="1" style="cursor: pointer;" title="看不清？点击更换另一个验证码。"/>
+                            </div>
+                        </div>
+                        <div class="row no-gutter line_b">
+                            <div class="col-25 text-left">
+                                旧密码
+                            </div>
+                            <div class="col-75 line_l">
+                                <input id="m_oldPwd" class="form-control gttv" type="password" name="password" placeholder="请输入您的旧密码" />
+                            </div>
+                        </div>
+                        <div class="row no-gutter line_b">
+                            <div class="col-25 text-left">
+                                新密码
+                            </div>
+                            <div class="col-75 line_l">
+                                <input id="m_newPwd" class="form-control gttv" type="password" name="password" placeholder="请输入6-16位非纯数字新密码" />
+                            </div>
+                        </div>
+                        <div class="row no-gutter line_b">
+                            <div class="col-25 text-left">
+                                确认密码
+                            </div>
+                            <div class="col-75 line_l">
+                                <input id="m_aginNewPwd" class="form-control gttv" type="password" name="password" placeholder="请再次输入6-16位非纯数字新密码" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="content-block">
+                    <div class="row">
+                        <div class="col-100">
+                            <a id="m_btnResetPwd" href="#" class="button button-big button_orange bg_reg">修改密码</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tip_info text-center" style="display: none;"></div>
+        </div>
+
+    <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+
+    </body>
+</html>
+
+<script>
+
+    var time=60;
+    var intervalId;
+
+    $(document).ready(function () {
+        
+        //点击获取验证码的验证
+        $("#phone").bind("input propertychange", function () {
+
+            var tel = $("#phone").val(); //获取手机号
+            var telReg = !!tel.match(/^(0|86|17951)?(13[0-9]|15[012356789]|17[0-9]|18[0-9]|14[57])[0-9]{8}$/);
+            var wait = 60;
+
+            if (telReg) {
+
+                $('.repeat_send').removeClass('bg-gray');
+                $(".btn_send").removeAttr("disabled");
+
+                $('.repeat_send').unbind('click').click(function () {
+
+                    var verifyCode = $("input[name='verifyCode']").val();
+
+                    function time() {
+
+                        $('.btn_send').addClass('count');
+                        $('.btn_send').html(wait+ '秒后重发');
+
+                        if (wait == 0) {
+
+                            $('.btn_send').html('获取验证码');
+                            wait = 60;
+                            $('.btn_send').addClass('repeat_send');
+                            
+                            $('.btn_send').removeClass('bg-gray');
+                            $(".btn_send").removeAttr("disabled");
+                            return;
+
+                        } else {
+
+                            $('.btn_send').removeClass('repeat_send');
+                            wait--;
+                            $('.btn_send').addClass('bg-gray');
+                            $(".btn_send").attr("disabled","disabled");
+                            
+                            setTimeout(function () {
+                                time()
+                            }, 1000);
+
+                        }
+                    }
+
+                    time();
+
+                    $.ajax({
+                        type: 'POST',
+                        dataType: 'json',
+                        url: MOD_PATH + '/Tools/getCaptcha', 
+                        data: {
+                            "phone": tel,
+                            "verifyCode" : verifyCode,
+                            "type": 1    
+
+                        },
+                        success: function (data) {
+                            if (data.code == 0) {
+                                wait = 10;
+                                $('.btn_send').addClass('repeat_send');
+                                $(".btn_send").removeAttr("disabled");
+                                return;
+                            }else {
+                                $.toast(data.msg, 1000, "toast_orange");                           
+                            }
+                        },
+                        error: function () {
+                            $.toast("萝卜们太热情，服务器表示鸭梨很大！", 1000, "toast_orange");
+                        }
+                    });
+
+                });
+                
+            } else {
+
+                $('.repeat_send').addClass('bg-gray');
+                $(".btn_send").attr("disabled","disabled");
+                $('.repeat_send').unbind('click').click(function () {
+                    $.toast("请输入正确格式的号码", 1000, "toast_orange");
+                    return;
+                });
+
+            };
+        });
+
+        //点击重置密码按钮的验证
+        $("#btnResetPwd").unbind('click').bind('click',function () {
+
+            var smsCode = $("#phonecaptcha").val();
+            var newPwdTx = $("#newPwd").val();
+            var tel = $("#phone").val(); //获取手机号
+
+            var telReg = !!tel.match(/^(0|86|17951)?(13[0-9]|15[0-9]|17[0-9]|18[0-9]|14[57])[0-9]{8}$/);
+            if (!telReg) {
+                $.toast("请输入正确格式的号码", 1000, "toast_orange");   
+                return false;    
+            }
+
+            var regNum = /^\d+$/;
+            if ($("#phonecaptcha").val().length !=6 || !regNum.test($("#phonecaptcha").val())) { //验证6位纯数字
+                $.toast("请输入6位数字验证码", 1000, "toast_orange");                 
+                return false;
+            }    
+
+            // check password
+            // var reg=/^[\w]{6,16}$/; 
+            var reg=/^(([a-z]+[0-9]+)|([0-9]+[a-z]+))[a-z0-9]*$/i;
+            if(!reg.test($("#newPwd").val())){ //验证为6-16位数字加字母组合
+                $.toast("密码必须为8位的数字字母组合", 1000, "toast_orange");  
+                return false;
+
+            }                   
+
+            if (!$(".btn_send").hasClass('count')) {
+                $.toast("请获取验证码", 1000, "toast_orange");
+                return false;
+            }
+
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: MOD_PATH+'/user/resetPwd',
+                data: {
+                    "phone": tel,
+                    "captcha": smsCode,
+                    "password": newPwdTx
+                },
+                success: function (data) {
+                    if (data.code == 1) { //重置密码成功,跳转页面
+                        $.toast("重置密码成功!", 1000, "toast_orange");
+                        window.location.href = "/index.php";
+                    } else { //验证码的验证放在服务器端返回
+                        $("#phonecaptcha").val('');
+                         $.toast(data.msg, 1000, "toast_orange");
+                    }
+                },
+                error: function () {
+                    $.toast("萝卜们太热情，服务器表示鸭梨很大！", 1000, "toast_orange");
+                }
+
+            });
+
+        });
+
+    });
+
+</script>

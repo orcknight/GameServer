@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>萝卜兼职-我要理财</title>
+        <include file="Common/header"/>
+    </head>
+    <style>
+        .bg_img{
+            width: 100%;
+            float: left;
+        }
+        .w_form{
+            padding: 0.75rem;
+            background:url(/Public/images/walletAd_4.jpg) repeat-y;
+            object-fit: cover;
+            float: left;
+        }
+        .w_form .form{
+            background-color: #7AB3FF;
+            border-radius: 0.25rem;
+        }
+        .w_form .form img{
+            width: 60%;
+            margin: 1rem;
+            margin-left: 20%;
+            float: left;
+        }
+        .clear{
+            display: block;
+            content: '';
+            height: 0px;
+            clear: both;
+        }
+        .w_form .f_input input{
+            width: 100%;
+            text-indent: 1em;
+            height: 1.8rem;
+            line-height: 1.8rem;
+            border-radius: 0.25rem;
+            border-style: none;
+        }
+        .w_form .f_input_2,.w_form .f_input{
+            width: 80%;
+            height: 1.8rem;
+            line-height: 1.8rem;
+            margin: 0.25rem 0;
+            border-radius: 0.25rem;
+            margin-left: 10%;
+        }
+        #getCaptcha{
+            width: 5rem;
+            background-color: #FFE240;
+            color: #444;
+            height: 1.8rem;
+            line-height: 1.8rem;
+            float: right;
+            text-align: center;
+            border-top-right-radius: 0.25rem;
+            border-bottom-right-radius: 0.25rem;
+        }
+        #captcha{
+            width: calc(100% - 5rem);
+            text-indent: 1em;
+            height: 1.8rem;
+            line-height: 1.8rem;
+            float: left;
+            border-top-left-radius: 0.25rem;
+            border-bottom-left-radius: 0.25rem;
+            border-top-right-radius: 0rem;
+            border-bottom-right-radius: 0rem;
+            border-style: none;
+        }
+        .signUpDiv{
+            padding: 0.75rem;
+        }
+        #signUp{
+            padding: 0.5rem;
+            width: 40%;
+            margin-left: 30%;
+            text-align: center;
+            background-color: #FFE240;
+            color: #444;
+            border-radius: 0.25rem;
+            font-size: 0.9rem;
+        }
+        .modal{
+            position: fixed;
+        }
+    </style>
+    <body>
+        <img src="/Public/images/walletAd_1.png" alt="" class="bg_img">
+        <div class="w_form">
+            <div class="form">
+                <img src="/Public/images/walletAd_2.png" alt="">
+                <div class="clear"></div>
+                <div class="f_input"><input id="phone" type="number" placeholder="手机号"></div>
+                <div class="f_input_2"><input id="captcha" type="number" placeholder="验证码"><div id="getCaptcha">获取验证码</div></div>
+                <div class="f_input"><input id="password" type="password" placeholder="设置登录密码"></div>
+                <div class="signUpDiv">
+                    <div id="signUp">提交</div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <include file="Common/footer"/>
+    <script>
+        'use strict';
+        var time=60;
+        var intervalId;
+        var phoneReg = /^0?1[3|4|5|8|7][0-9]\d{8}$/;
+        function getCaptcha() {
+            if($("#getCaptcha").hasClass('disabled')){
+                return;
+            }
+            var phone = $("#phone").val().trim();
+            // 验证手机号
+            if (!phoneReg.test(phone)) {
+                $.toast("手机号码格式不正确啦!", 1000, "toast_orange");
+                return;
+            } 
+            // 获取手机验证码
+            $.ajax({
+                type: 'POST',
+                url: MOD_PATH + '/Tools/getCaptcha', 
+                data: { phone : phone},
+                dataType: 'json',
+                timeout: 3000,
+                success: function(data){
+                    if(!data.code) {
+                        $.toast(data.msg);
+                        return false;
+                    } else {
+                        $("#getCaptcha").attr("disabled", "disabled").addClass('disabled');
+                        $("#getCaptcha").css({"background": "gray","color": "#fff"}); 
+                        intervalId = setInterval(refreshGetCaptcha, 1000); 
+                    }
+                },
+                error: function(xhr, type){
+                    server_error();
+                    location.reload();   
+                }
+            });
+        }
+        function refreshGetCaptcha() {
+            var btnCaptcha = $("#getCaptcha");
+            btnCaptcha.html(time+ '秒后重发');
+            time--;
+            if(time < 0) {
+                clearInterval(intervalId);
+                btnCaptcha.removeAttr("disabled", "disabled").removeClass('disabled');
+                btnCaptcha.css({"background": "#FFE240","color": "#444"});
+                btnCaptcha.html("获取验证码");
+                time = 60;
+            }
+        }
+        // 获取验证码
+        $('#getCaptcha').on('click', '', function (event) {
+            event.preventDefault();
+            getCaptcha();
+        });
+        // 点击注册
+        $('#signUp').on('click', '', function (event) {
+            event.preventDefault();
+            var phone = $("#phone").val().trim();
+            if (!phoneReg.test(phone)) {
+                $.toast("手机号码格式不正确啦!");
+                return false;
+            } 
+            var reg = /^\d+$/;
+            var phoneCaptcha = $("#captcha").val().trim();
+            if (phoneCaptcha.length != 6 || !reg.test(phoneCaptcha)) {
+                $.toast("请输入6位数字验证码");                 
+                return false;
+            }
+            var text = $("#password").val();
+            if(!isPasswprd(text)){
+                $.toast("密码必须为6位及以上数字字母组合", 1000, "toast_orange");  
+                return false;
+            }
+            // 服务器端验证
+            var params={
+                phone: phone,
+                captcha: phoneCaptcha,
+                password: text
+            };
+            $.ajax({
+                type: 'POST',
+                url: MOD_PATH+'/User/signUp', 
+                data: params,
+                dataType: 'json',
+                timeout: 3000,
+                success: function(data){
+                    if(data.code==0){
+                        $.toast("(^_^)" + data.msg);
+                    }
+                    if(data.code==1){
+                        $.toast("(^_^) 恭喜您注册成功啦！");
+                        setTimeout(function(){
+                            location.href = APP_PATH + '/Home/Wallet/myWallet';
+                        },1000);
+                    }
+                },
+                error: function(xhr, type){
+                    server_error();
+                    location.reload();
+                }
+            });
+        });
+    </script>
+</html>
+

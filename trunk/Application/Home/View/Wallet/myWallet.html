@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        <title>萝卜兼职</title>  
+        <include file="Common/header"/>
+        <include file="Common/tpl/tpl-userIncomeDetail" />
+    </head>
+    <body>
+        <div class="page-group">
+            <div class="page page-current myWallet" id="myWallet">
+                <header class="bar bar-nav">
+                    <a class="button button-link button-nav pull-left" external href="__APP__/Home/User/userCenter">
+                        <span class="icon icon-left"></span>
+                        返回
+                    </a>
+                    <h1 class="title">我的钱包</h1>
+                </header>
+                <div class="content wrapMyWallet" id="wrapMyWallet">
+                    <div class="bg_orange wrapGrossAmount text-center gapafter">
+                        <h1 class="fc_white nmalfw f34" id="totalMoney">&nbsp;<span></span>&nbsp;</h1>    
+                        <h5 class="fc_white nmalfw f11">我的总资产(元)</h5>
+                    </div>
+                    <div class="pos_rela wrap gapafter">
+                        <div class="row no-gutter">
+                            <div class="col-50 text-center pos_rela line_r_orange h_72 padd_10" id="income">
+                                <h5 class="fc_orange f26 nmalfw marg_bottom_-10">*</h5>
+                                <span class="f11 fgray">昨日收益(元)</span>
+                            </div>
+                            <div class="col-50 text-center h_72 padd_10" id="rate">
+                                <h5 class="fc_orange f26 nmalfw marg_bottom_-10">*</h5>
+                                <span class="f11 fgray">7日年化</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-block">
+                        <ul class="marg_bottom_10 gapafter">
+                            <a href="__APP__/Home/Wallet/bindZFB" data-no-cache="true">
+                                <li class="item-content">
+                                    <div class="item-inner">
+                                        <div class="f16 item-title">
+                                            <span class="iconf iconf-payZFB fc_orange marg_right_13"></span>
+                                            绑定支付宝
+                                        </div>
+                                        <span class="icon icon-right pull-right fc_orange"></span>
+                                    </div>
+                                </li>
+                            </a>
+                            <a id="findPwd" href="javascript:void(0);"  data-no-cache="true">
+                                <li class="item-content">
+                                    <div class="item-inner">
+                                        <div class="f16 item-title">
+                                            <span class="iconf iconf-pwd fc_green marg_right_13"></span>
+                                            找回支付密码
+                                        </div>
+                                        <span class="icon icon-right pull-right fc_orange"></span>
+                                    </div>
+                                </li>
+                            </a>
+                            <a href="__APP__/Home/Wallet/userIncomeDetail"  data-no-cache="true">
+                                <li class="item-content">
+                                    <div class="item-inner">
+                                        <div class="f16 item-title">
+                                            <span class="iconf iconf-cart fc_lightred marg_right_13"></span>
+                                            收支明细
+                                        </div>
+                                        <span class="icon icon-right pull-right fc_orange"></span>
+                                    </div>
+                                </li>
+                            </a>
+                        </ul>    
+                    </div>
+                    <div class="list-block gapafter" id="chiefblock" style="display:none;">
+                        <ul class="marg_bottom_10">
+                            <a href="__APP__/Home/Wallet/chiefIncome" data-no-cache="true">
+                                <li class="item-content">
+                                    <div class="item-inner">
+                                        <div class="f16 item-title">
+                                            <span class="iconf iconf-moneybag fc_red marg_right_13"></span>
+                                            头领收益
+                                        </div>
+                                        <span class="icon icon-right pull-right fc_orange"></span>
+                                    </div>
+                                </li>
+                            </a>
+                        </ul>    
+                    </div>
+                    <div class="content-block marg_top_53 marg_bottom_53">
+                        <div class="frow">
+                            <a id="withDraw" href="javascript:void(0);" class="button f15">提现</a>
+                            <a id="recharge" href="javascript:void(0);" class="button f15">充值</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <include file="Common/tpl/tpl-userCenter" />
+        <include file="Common/footer"/>
+        <script type="text/javascript" src='__PUBLIC__/source/debug/constVal/constVal.js' charset='utf-8'></script>
+        <script type="text/javascript" src='__PUBLIC__/source/debug/scripts/home-wallet-myWallet.js?t=1482373334544' charset='utf-8'></script>
+    </body>
+</html>

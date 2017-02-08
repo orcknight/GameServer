@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>萝卜兼职</title>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <link rel="shortcut icon" href="__PUBLIC__/images/favicon.ico">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+        <include file="Common/header"/>
+
+        <!-- 模板-轮播图 -->
+        <script id="banner-list-tpl" type="text/html">
+            <div class="swiper-wrapper">
+                {{each banners as banner i}}
+                    <div class="swiper-slide">
+                        {{if banner.linkurl == '' }} 
+                        <a href="javascript:void(0)">
+                            <img src="{{#banner.image}}" alt="{{#banner.id}}">
+                        </a>
+                        {{else}} 
+                        <a href="{{banner.linkurl}}">
+                            <img src="{{#banner.image}}" alt="{{#banner.id}}">
+                        </a>
+                        {{/if}}
+                    </div>
+                {{/each}}
+            </div>
+            <div class="swiper-pagination"></div>
+        </script>        
+        <!-- 模板-工作列表 -->
+        <script id="job-list-tpl" type="text/html">
+            {{each jobs as job i}}
+                <li class="jobLi" iIndex="jobLi{{i}}">
+                    <a href="__APP__/Home/Job/detail/id/{{#job.id}}">
+                    <!--<a href="__APP__/Home/Index/detail/id/{{#job.id}}">-->
+                        <span class="iType cateId{{#job.cateid%12}}">{{#job.category}}</span>
+                        <div class="row no-gutter">
+                            <div class="col-80 tx_ellips">
+                                {{#job.title}}
+                            </div>
+                            <div class="col-20 text-center">
+                                <div class="bg_status bgGreen">
+                                    <i class="i_triangle"></i>
+                                    {{if job.status == 3 }} 报名中 
+                                    {{else if job.type == 4}} 红包
+                                    {{else if job.type == 5}} 双薪
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-gutter">
+                            <div class="col-66 fc_lightGray">
+                                <p class="f12 pos_rela">
+                                    <span class="iconf iconf-location"></span>
+                                    <span class="marg_left_10 tx_ellips pos_ab">{{#job.ctiy}}{{#job.region}}</span>
+                                </p>
+                                <p class="f12 pos_rela">
+                                    <span class="iconf iconf-clock"></span>
+                                    <span class="marg_left_10 pos_ab">{{#job.createtime | dateFormat:'yyyy-MM-dd'}}</span>
+                                </p>
+                            </div>
+                            <div class="col-33 text-right">
+                                <strong class="f12">{{#job.income}}</strong>
+                                <small class="fc_lightGray">{{#job.incomeUnit}}</small>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            {{/each}}
+        </script>
+        <!-- 模板-工作详情 -->
+        <script id="job-detail-tpl" type="text/html">
+            <div class="wrapJobDetail">
+                <section class="marg_bottom_10">
+                    <div class="line_b pos_rela">
+                        <p class="fc_orange line_h1">{{title}}</p>  
+                        <p class="f12 fc_lightGray line_h2">
+                            <i class="iconf iconf-clock f12"></i><span class="marg_left_10 marg_right_10">{{createtime}}</span>
+                            <i class="iconf iconf-eyes f12"></i><span class="marg_left_10">{{hot}}</span>
+                        </p> 
+                    </div>
+                    <div class="f14">
+                        <p class="row no-gutter line_h2">
+                            <span class="col-25 fc_lightGray">发布机构：</span>
+                            <span class="col-75 tx_ellips">{{companyname}}</span>
+                        </p>
+                        <p class="row no-gutter line_h1">
+                            <span class="col-25 fc_lightGray">招聘人数：</span>
+                            <span class="col-75 tx_ellips">{{number}}人</span>
+                        </p>
+                        <p class="row no-gutter line_b pos_rela line_h2">
+                            <span class="col-25 fc_lightGray">工资待遇：</span>
+                            <span class="col-75 tx_ellips">{{income}}{{incomeUnit}}</span>
+                        </p>
+                        <p class="row no-gutter line_b pos_rela line_h2">
+                            <span class="col-25 fc_lightGray">结算方式：</span>
+                            <span class="col-75 tx_ellips">{{paytype}}</span>
+                        </p>                        
+                        <p class="row no-gutter line_b pos_rela line_h22">
+                            <span class="col-25 fc_lightGray">工作地点：</span>
+                            <span class="col-40 tx_ellips">{{address}}</span>
+                            <a href="../map.html?address={{address}}">
+                                <span class="col-33 tx_ellips f12 fc_lightGray" style="margin-top: .15rem; float: right; text-align: right;">点击查看地图&nbsp;&nbsp;></span>
+                            </a>
+                        </p>
+                        <p class="fc_orange line_h2">
+                            <i class="iconf iconf-notice f14"></i><span class="iconf f12 marg_left_10">凡是收费的兼职信息，请谨慎选择！</span>
+                        </p>
+                    </div>
+                </section> 
+                <section class="marg_bottom_10">
+                    <div class="f14">
+                        <p class="row no-gutter pos_rela line_h2">
+                            <span class="col-25 fc_lightGray">工作日期：</span>
+                            <span class="col-75 tx_ellips">{{workdate}}</span>
+                        </p>
+                        <!-- <p class="row no-gutter line_h2">
+                            <span class="col-25 fc_lightGray">上班时段：</span>
+                            <span class="col-75 tx_ellips">{{worktime}}</span>
+                        </p> -->
+                    </div>
+                </section> 
+                <section class="marg_bottom_10">
+                    <div class="line_b pos_rela fc_orange line_h1 padd_bottom_10">
+                      <i class="iconf iconf-edit"></i><span class="iconf marg_left_10">职位描述</span>
+                    </div>
+                    <div class="f12 fc_lightGray marg_top_10">
+                      {{intro}}
+                    </div>
+                </section> 
+                <section class="marg_bottom_10">
+                    <div class="f14">
+                        <p class="row no-gutter line_b pos_rela line_h2">
+                            <span class="col-25 fc_lightGray">报名截止：</span>
+                            <span class="col-75 tx_ellips">{{endTime}}</span>
+                        </p>
+                        <p class="job-connect row no-gutter line_b pos_rela line_h2">
+                            <span class="col-25 fc_lightGray">联系人：</span>
+                            <span class="col-75 tx_ellips">{{linkman}}</span>
+                        </p>
+                        <p class="job-connect row no-gutter line_h2">
+                            <span class="col-25 fc_lightGray">联系电话：</span>
+                            <span class="col-75 tx_ellips">{{phone}}</span>
+                        </p>
+                        <p class="job-connect-info fc_orange line_h2">
+                            <i class="iconf iconf-notice f14"></i><span class="iconf f12 marg_left_10">联系人、手机号发送申请后可以查看！</span>
+                        </p>
+                    </div>
+                </section> 
+            </div>
+        </script>
+
+        <script id="province-list-tpl" type="text/html">
+            <ul>
+                {{each provinces as province i}}
+                    <li class="padd-20 pos_rela">
+                        <h3 class="pos_rela fc_orange">{{#province.name}}</h3>
+                        <ul class="bor_top">
+                        {{each province.data as city }}
+                            <a href="__APP__/Home/Index/index/cId/{{city.id}}" class="external"><li class="padd-20 pos_rela fc_lightGray">{{#city.name}}</li></a>
+                        {{/each}}
+                        </ul>
+                    </li>
+                {{/each}}
+            </ul>
+        </script>
+        <script type="text/javascript">
+            var path = location.pathname;
+            var cId  = path.slice(path.lastIndexOf('/')+1);
+    
+            if(isNaN(cId) || !cId) cId = 1;
+            console.log("cId", cId);
+
+            // 跳转到职位分类页面
+            function redirectURL(type) {
+                location.href = "__APP__/home/job/categories/cId/"+cId+"/type/"+type; 
+            }
+        </script>
+    </head>
+    <body>
+        <div class="page-group">
+            <div class="page page-current" id="index">
+                <header class="bar bar-nav">
+                    <a class="button button-link button-nav pull-left" href="__APP__/home/Gp/cities">
+                        <span class="iconf iconf-location pos_i"></span><span class="location-info"></span>
+                    </a>
+                    <h1 class='title'>萝卜兼职</h1>
+                    <a class="button button-link button-nav pull-right" id='user-center-btn'>
+                        <span class="iconf iconf-user02"></span>
+                    </a>
+                </header>
+                <div class="content infinite-scroll infinite-scroll-bottom bg_white" id="indexScroll" data-distance="10">
+
+                    <!-- 轮播图 -->
+                    <div class="swiper-container swiper-container-horizontal" data-space-between="0">
+                    </div>
+
+                    <!-- 筛选条件，主标签 -->
+                    <div class="tabGroup pos_rela">
+                        <div class="row no-gutter">
+                            <div class="col-50 text-center pos_rela line_r" id="job_all">
+                                <a class="f_left text-right" style="width: 55%;" onclick="redirectURL(1)" external>热门兼职</a>
+                                <span class="i_jobHot f_left marg_left_20"></span>
+                            </div>
+                            <div class="col-50 text-center" id="job_new">
+                                <a class="f_left text-right" style="width: 55%;" onclick="redirectURL(0)" external>最新兼职</a>
+                                <span class="i_jobNew  f_left marg_left_20"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="list-block">
+                        <ul class="jobList list-container"></ul>
+                        <!-- 加载提示符 -->
+                        <div class="infinite-scroll-preloader">
+                            <div class="preloader"></div>
+                        </div>
+                    </div>
+                     <!-- 底部版权信息 -->
+                    <footer class="text-center padd_20">
+                        <p class="fc_orange f16">萝卜兼职网</p>
+                        <p class="fc_orange f10">www.luobojianzhi.com</p>
+                        <p class="f10">最靠谱的大学生兼职平台</p>
+                    </footer>                   
+                </div>
+            </div>
+            <div class="panel-overlay"></div>
+        </div>
+
+        <script type='text/javascript' src='__PUBLIC__/scripts/libs/template-helper.js' charset='utf-8'></script>
+        <script type='text/javascript' src='__PUBLIC__/scripts/swiper.min.js' charset='utf-8'></script>
+        <script type='text/javascript' src='__PUBLIC__/scripts/main.js' charset='utf-8'></script>
+
+        <script>
+            $(function () {
+
+                $(document).on("pageInit", "#index", function(e, pageId, $page) {
+
+	                // 跳转用户中心
+	                $('#user-center-btn').on('click', function (e){
+	                    $.ajax({
+	                        type: 'POST',
+	                        url: APP_PATH+ '/Home/User/isLogin',
+	                        dataType: 'json',
+	                        timeout: 3000,
+	                        success:function(res){
+	                            if(res.code==1){
+	                                location.href = APP_PATH + '/Home/User/userCenter/cId/'+cId;
+	                            }else{
+	                                $.toast("(^_^) 请先登录", 500);   
+	                                setTimeout(function(){
+	                                    location.href=APP_PATH +'/Home/Index/signIn/cId/'+cId;
+	                                }, 500);
+	                            }
+	                        },
+	                        error:function(){
+	                            $.toast("萝卜们太热情，服务器表示鸭梨很大！", 1000);
+	                        }
+	                    });
+	                });
+
+                    // 加载城市信息
+                    $.ajax({
+                        type: 'POST',
+                        url: APP_PATH+'/Home/Gp/getNameByCId',
+                        data: { "cId": cId },
+                        dataType: 'json',
+                        timeout: 3000,
+                        context: $('.location-info'),
+                        success: function(data){
+                            this.html(data.data.name);
+                        },
+                        error: function(xhr, type){
+                            console.log("xhr", xhr);
+                        }
+                    }); 
+
+                    // 加载轮播图
+                    $.ajax({
+                        type: 'GET',
+                        url: APP_PATH+'/Home/sys/bannerList',
+                        data: { "cId": cId},
+                        dataType: 'json',
+                        timeout: 3000,
+                        context: $('.swiper-container'),
+                        success: function(data){
+
+                            if(data.code) {
+                                var data = {
+                                    "banners": data.data
+                                };
+                                console.log(data);
+
+                                var html = template('banner-list-tpl', data);
+                                this.html(html);
+
+                                var bannerLgt = data.length;
+                                $(".swiper-container").swiper({
+                                    pagination: (bannerLgt<= 1)?'':'.swiper-pagination',
+                                    paginationClickable: true,
+                                    spaceBetween: 0,
+                                    centeredSlides: true,
+                                    loop: (bannerLgt<= 1)?false:true,
+                                    autoplay: 3000,
+                                    autoplayDisableOnInteraction: false
+                                });
+                            } else {
+                                $('.wrap_banner').hide();
+                            }
+                        },
+                        error: function(xhr, type){
+                            $('.wrap_banner').hide();
+                            console.log("xhr", xhr);
+                        }
+                    });  
+
+                    /* 加载职位信息 */
+                    // 每页数据量
+                    var pageSize = 10;
+                    // 当前页码
+                    var currPage = 1;
+                    // 加载flag
+                    var loading = false;
+                    // 最大加载数
+                    var maxItems = 100;
+
+                    var type = 0; // 0:时间 1:热度
+                    var subType = {"regionId":0, "cateId":0, "timeId":0};
+
+                    function addItems() {
+                        $.ajax({
+                            type: 'POST',
+                            url: APP_PATH + '/Home/Job/jobs',
+                            cache: false,
+                            data: { "cId": cId, 
+                                "currPage": currPage, 
+                                "pageSize": pageSize, 
+                                "type": type, 
+                                "subType": subType
+                            },
+                            dataType: 'json',
+                            timeout: 3000,
+                            context: $('.jobList'),
+                            success: function(data){
+
+                                console.log("data", data);
+
+                                if(data.code) {
+
+                                    maxItems = data.data.total;
+
+                                    var data = { "jobs": data.data.data };
+
+                                    var html = template('job-list-tpl', data);
+                                    this.append(html);
+
+                                    // 每次追加完DOM，就隐藏掉loading
+                                    $('.infinite-scroll-preloader').hide();
+
+                                    // 重置加载flag
+                                    loading = false;
+                                    // 页数+1
+                                    currPage ++;
+
+                                } else {
+                                    $.toast("(^_^) 暂无匹配的兼职信息！", 1000);
+                                    $.detachInfiniteScroll($('.infinite-scroll'));
+                                    $('.infinite-scroll-preloader').hide();
+                                }
+                            },
+                            error: function(xhr, type){
+
+                                $.toast("萝卜们太热情，服务器表示鸭梨很大！", 500);
+                                $.detachInfiniteScroll($('.infinite-scroll'));
+                                $('.infinite-scroll-preloader').hide();
+
+                                console.log("xhr", xhr);
+                            }
+                        });
+                    }
+
+                    // 注册'infinite'事件处理函数
+                    $(document).on('infinite', '.infinite-scroll-bottom', function() {
+                        $('.infinite-scroll-preloader').show();
+                        // 如果正在加载，则退出
+                        if (loading) return;
+
+                        // 设置flag
+                        loading = true;
+
+                        // 延迟100s的加载过程
+                        setTimeout(function() {
+
+                            if (currPage * pageSize > maxItems) {
+
+                                // 加载完毕，则注销无限加载事件，以防不必要的加载
+                                $.detachInfiniteScroll($('.infinite-scroll'));
+
+                                // $('.infinite-scroll-preloader').html("<span class='f14'>(^_^) 木有兼职信息啦！</span>");
+                                $.toast("(^_^) 木有兼职信息啦！", 1000, "toast_orange");
+                                // setTimeout(function() {
+                                    $('.infinite-scroll-preloader').hide();
+                                // }, 500);
+
+                                return;
+                            }
+                            
+                            // 添加新条目
+                            addItems(currPage, pageSize);
+
+                            //容器发生改变,如果是js滚动，需要刷新滚动
+                            $.refreshScroller();
+                        }, 500);
+                    });      
+
+                    // 加载首页职位信息
+                    addItems();   
+                });
+
+                // 绑定工作详情页
+                $(document).on("pageInit", "#jobDetail", function(e, id, page) {
+
+                    var path = location.pathname;
+                    var jobId  = path.slice(path.lastIndexOf('/')+1);
+
+                    function loadDetail(jobId){
+
+                        $.ajax({
+                            type: 'POST',
+                            url:APP_PATH+ '/Home/Job/getJobDetails',
+                            data: {"id": jobId},
+                            dataType: 'json',
+                            timeout: 3000,
+                            context: $('#jobDetailScroll'),
+
+                            success: function(res){
+                                if(res.code=='0'){
+                                    $.toast("(+﹏+) 找不到这个职位了", 1000, "toast_orange");
+                                    return;
+                                } else {
+                                    var job= res.data;
+                                    console.log("job", job);
+                                    console.log("session", res.session);
+
+                                    var html = template("job-detail-tpl", job);
+                                    this.html(html);
+
+                                    $(".job-connect").hide();
+                                    $(".job-connect-info").hide();
+
+                                    if(job.applied) {
+                                        $(".job-connect").show();
+                                    } else {
+                                        $(".job-connect-info").show();
+                                    }
+
+                                    if(job.collected) {
+                                        $(".job-icon-star").addClass('iconf-fav02');
+                                    }
+
+                                    $('#btnApply').click(applyJob);
+                                    $('#btnFav').click(toggleCollect);
+                                    if(job.applied){
+                                      $('#btnTel').click(function(){location.href='tel:'+job.phone;});
+                                    }else{
+                                      $('#btnTel').click(function(){
+                                        $.toast("(+﹏+) 亲，申请后才可以查看", 1000, "toast_orange");
+                                      });
+                                    }    
+                                }
+                        },
+                        error: function(xhr, type){
+                          console.log(xhr);
+                          console.log(type);
+                          $.toast("(+﹏+) 萝卜们太热情，服务器表示鸭梨很大！", 1000, "toast_orange");
+                        }
+                      });
+                    }
+
+                    function applyJob(){
+                        $.ajax({
+                            type: 'get',
+                            url:APP_PATH+ '/Home/Apply/job',
+                            data: {"id": jobId},
+                            dataType: 'json',
+                            timeout: 3000,
+                            success: function(res){
+
+                              if(res.code=='1'){
+                                $.toast("O(^_^)O 申请职位成功！", 1000, "toast_orange");
+                                setTimeout(function(){
+                                    $(".job-connect").show();
+                                    $(".job-connect-info").hide();
+                                },1000)
+                              }else if(res.msg=='unauthorized'){
+                                $.toast("(+﹏+) 您还没有登录", 1000, "toast_orange");
+                                setTimeout(function(){
+                                  location.href=APP_PATH+"/home/index/signIn";
+                                },1000);
+                              }else {
+                                $.toast(res.msg,1000,"toast_orange")
+                              }
+                              
+                            },
+                            error: function(xhr, type){
+                              console.log(xhr);
+                              console.log(type);
+                              $.toast("(+﹏+) 萝卜们太热情，服务器表示鸭梨很大！", 1000, "toast_orange");
+                            }
+                        });
+                    }
+
+                    function collectJob(icon){
+                        $.ajax({
+                            type: 'get',
+                            url:APP_PATH + '/Home/collect/collectJob',
+                            data: {"id": jobId},
+                            dataType: 'json',
+                            timeout: 3000,
+                            success:function(res){
+                              if (res.code == 1){
+                                icon.removeClass('iconf-fav ');
+                                icon.addClass('iconf-fav02');
+                              }else if(res.msg=='unauthorized'){
+                                $.toast("(+﹏+) 您还没有登录", 1000, "toast_orange");
+                                setTimeout(function(){
+                                  location.href=APP_PATH+"/home/index/signIn";
+                                },1000);
+                              } else{
+                                $.toast("(+﹏+)" + res.msg, 1000, "toast_orange");
+                              }
+                            },
+                            error:function(res){
+                              $.toast("(+﹏+) 萝卜们太热情，服务器表示鸭梨很大！", 1000, "toast_orange");
+                            }
+                        });
+                    }
+
+                    function decollectJob(icon){
+                        $.ajax({
+                            type: 'get',
+                            url:APP_PATH + '/Home/collect/cancelCollect',
+                            data: {"id": jobId},
+                            dataType: 'json',
+                            timeout: 3000,
+                            success:function(res){
+                              if (res.code == 1){
+                                icon.removeClass('iconf-fav02 ');
+                                icon.addClass('iconf-fav');
+                              } else if(res.msg=='unauthorized'){
+                                $.toast("(+﹏+) 您还没有登录", 1000, "toast_orange");
+                                setTimeout(function(){
+                                  location.href=APP_PATH+"/home/index/signIn";
+                                },1000);      
+                              } else{
+                                $.toast("(+﹏+)" + res.msg, 1000, "toast_orange");
+                              }
+                            },
+                            error:function(res){
+                              $.toast("(+﹏+) 萝卜们太热情，服务器表示鸭梨很大！", 1000, "toast_orange");
+                            }
+                        });
+                    }    
+
+                    function toggleCollect(){
+                        var icon = $(this).children().eq(0);
+                        if (icon.hasClass('iconf-fav02')){
+                            decollectJob(icon);
+                        } else{
+                        collectJob(icon);
+                        }
+                    }    
+
+                    loadDetail(jobId);
+
+                });
+
+              $(document).on("pageInit", "#chooseProvince", function(e, pageId, $page) {
+
+                        $.ajax({
+
+                            type: 'POST',
+                            url: APP_PATH+'/Home/Gp/cityList',
+
+                            data: { "pId": '1' },
+                            dataType: 'json',
+                            timeout: 3000,
+
+                            context: $('#wrapTabCity'),
+
+                            success: function(data){
+
+                                if(data.code) {
+
+                                    var data = {
+                                        provinces: data.data
+                                    };
+
+                                    console.log(data);
+
+                                    var html = template('province-list-tpl', data);
+                                    this.html(html);
+
+                                } else {
+
+                                    this.append("非常抱歉，暂无城市数据！");
+
+                                }
+                            },
+                            error: function(xhr, type){
+
+                                this.append("非常抱歉，服务器开小差了！");
+                                console.log("xhr", xhr);
+                                console.log("type", type);
+                            }
+                        });
+
+                    });
+                $.init();
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,996 @@
+[ 2017-01-09T14:33:31+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.013000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.011000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.013001s ]
+DEBUG: [ Jiechengkeji ] [ 14:33:31 ] [ initializing ]BaseController
+NOTIC: [8] Undefined offset: 1 E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\BaseController.class.php 第 133 行.
+DEBUG: [ Jiechengkeji ] [ 14:33:31 ] [ data ]{"data":"{\"\":null}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/Index\/index"}
+DEBUG: [ Jiechengkeji ] [ 14:33:31 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"":null}', 'local-wechat.luobojianzhi.com', '/index.php/Home/Index/index')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"":null}', 'local-wechat.luobojianzhi.com', '/index.php/Home/Index/index') [ RunTime:0.0060s ]
+DEBUG: [ Jiechengkeji ] [ 14:33:31 ] [ initialized ]BaseController
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.097005s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.097005s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.006001s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.007001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.019001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.020001s ]
+
+[ 2017-01-09T14:33:31+08:00 ] 127.0.0.1 /index.php/Home/sys/bannerList?cId=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+DEBUG: [ Jiechengkeji ] [ 14:33:31 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:33:31 ] [ data ]{"data":"{\"cId\":\"1\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/Sys\/bannerList"}
+DEBUG: [ Jiechengkeji ] [ 14:33:31 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"cId":"1"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/Sys/bannerList')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"cId":"1"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/Sys/bannerList') [ RunTime:0.0120s ]
+DEBUG: [ Jiechengkeji ] [ 14:33:31 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:33:31 ] [ execute ]bannerList()
+DEBUG: [ Jiechengkeji ] [ 14:33:31 ] [ cId ]1
+DEBUG: [ Jiechengkeji ] [ 14:33:31 ] [ type ]1
+SQL: select * from sys_banner where cId in (1 ,0) and type=1 and status=1 order by weight desc [ RunTime:0.0130s ]
+DEBUG: [ Jiechengkeji ] [ 14:33:31 ] [ result ][{"id":"25","image":"http:\/\/luobojianzhi-image.oss-cn-qingdao.aliyuncs.com\/018c30df-513c-49d0-b78c-58b6af1c6f8c","localimage":"getFile\/banner\/018c30df-513c-49d0-b78c-58b6af1c6f8c.jpg","linkurl":"www.baidulcom","type":"1","cid":"0","weight":"400","status":"1","platform":"luobojianzhi.com","createtime":"2016-07-14 15:26:18","updatetime":"2016-07-14 15:26:18"},{"id":"24","image":"http:\/\/luobojianzhi-image.oss-cn-qingdao.aliyuncs.com\/6d75888f-79cb-4001-bffc-01275da896e2","localimage":"getFile\/banner\/6d75888f-79cb-4001-bffc-01275da896e2.jpg","linkurl":"www.baidu.com","type":"1","cid":"0","weight":"300","status":"1","platform":"luobojianzhi.com","createtime":"2016-07-14 15:23:22","updatetime":"2016-07-14 15:23:22"},{"id":"23","image":"http:\/\/luobojianzhi-image.oss-cn-qingdao.aliyuncs.com\/9517670b-1739-4936-9e5d-a690c1af024f","localimage":"getFile\/banner\/9517670b-1739-4936-9e5d-a690c1af024f.jpeg","linkurl":"www.baidu.com","type":"1","cid":"1","weight":"200","status":"1","platform":"luobojianzhi.com","createtime":"2016-07-14 15:11:43","updatetime":"2016-07-14 15:22:40"},{"id":"19","image":"http:\/\/luobojianzhi-image.oss-cn-qingdao.aliyuncs.com\/f549dc9c-67db-44bd-b28c-190d793f2384","localimage":"getFile\/banner\/f549dc9c-67db-44bd-b28c-190d793f2384.png","linkurl":"www.163.com","type":"1","cid":"1","weight":"99","status":"1","platform":"luobojianzhi.com","createtime":"2016-07-14 14:31:20","updatetime":"2016-07-14 15:22:36"},{"id":"27","image":"http:\/\/luobojianzhi-image.oss-cn-qingdao.aliyuncs.com\/fe9f0fd9-e8d2-470d-a4ef-1b462b85dbcf","localimage":"getFile\/banner\/fe9f0fd9-e8d2-470d-a4ef-1b462b85dbcf.jpeg","linkurl":"www.baidu.com","type":"1","cid":"0","weight":"20","status":"1","platform":"luobojianzhi.com","createtime":"2016-07-14 15:30:27","updatetime":"2016-07-14 15:31:37"},{"id":"28","image":"http:\/\/luobojianzhi-image.oss-cn-qingdao.aliyuncs.com\/dca55f28-6477-47a1-a6d2-a7cdbbfd79b3","localimage":"getFile\/banner\/dca55f28-6477-47a1-a6d2-a7cdbbfd79b3.jpeg","linkurl":"www.baidu.com","type":"1","cid":"0","weight":"10","status":"1","platform":"luobojianzhi.com","createtime":"2016-07-14 15:32:39","updatetime":"2016-07-14 15:32:39"},{"id":"4","image":"http:\/\/luobojianzhi-image.oss-cn-qingdao.aliyuncs.com\/03f4b26b-0bde-433b-850c-24804e961178","localimage":"getFile\/banner\/03f4b26b-0bde-433b-850c-24804e961178.jpg","linkurl":"www.luobojianzhi.com","type":"1","cid":"1","weight":"2","status":"1","platform":null,"createtime":"2016-04-19 15:29:41","updatetime":"2016-07-14 15:22:33"},{"id":"29","image":"http:\/\/luobojianzhi-image.oss-cn-qingdao.aliyuncs.com\/8785d6db-af3b-48c9-9cca-b9364869b0ea","localimage":"getFile\/banner\/8785d6db-af3b-48c9-9cca-b9364869b0ea.jpeg","linkurl":"","type":"1","cid":"0","weight":"2","status":"1","platform":"luobojianzhi.com","createtime":"2016-07-14 15:37:15","updatetime":"2016-07-14 15:37:15"},{"id":"30","image":"http:\/\/luobojianzhi-image.oss-cn-qingdao.aliyuncs.com\/20607bb3-8c90-4b1d-9591-61a26e6b888b","localimage":"getFile\/banner\/20607bb3-8c90-4b1d-9591-61a26e6b888b.jpeg","linkurl":"#","type":"1","cid":"0","weight":"2","status":"1","platform":"luobojianzhi.com","createtime":"2016-07-14 15:37:55","updatetime":"2016-07-14 15:37:55"},{"id":"31","image":"http:\/\/luobojianzhi-image.oss-cn-qingdao.aliyuncs.com\/173c60cc-643e-406b-ad3e-e93e2843f138","localimage":"getFile\/banner\/173c60cc-643e-406b-ad3e-e93e2843f138.jpeg","linkurl":"","type":"1","cid":"0","weight":"2","status":"1","platform":"luobojianzhi.com","createtime":"2016-07-14 15:38:28","updatetime":"2016-07-14 15:40:01"},{"id":"35","image":"http:\/\/luobojianzhi-image.oss-cn-qingdao.aliyuncs.com\/c482111e-9d89-419e-904c-8b942396aff8","localimage":"getFile\/banner\/c482111e-9d89-419e-904c-8b942396aff8.jpg","linkurl":"asdfdsa","type":"1","cid":"0","weight":"1","status":"1","platform":"luobojianzhi.com","createtime":"2016-07-15 14:48:50","updatetime":"2016-11-02 16:16:46"},{"id":"3","image":"http:\/\/luobojianzhi-image.oss-cn-qingdao.aliyuncs.com\/08eed9d6-de3d-4c3b-913a-a604f8c0b217","localimage":"getFile\/banner\/08eed9d6-de3d-4c3b-913a-a604f8c0b217.jpg","linkurl":"www.luobojianzhi.com","type":"1","cid":"1","weight":"0","status":"1","platform":null,"createtime":"2016-04-19 15:28:38","updatetime":"2016-07-14 15:22:31"},{"id":"26","image":"http:\/\/luobojianzhi-image.oss-cn-qingdao.aliyuncs.com\/52aaa030-dcc4-4091-a570-7fcc175d9c01","localimage":"getFile\/banner\/52aaa030-dcc4-4091-a570-7fcc175d9c01.jpg","linkurl":"www.baidu.com","type":"1","cid":"0","weight":"0","status":"1","platform":"luobojianzhi.com","createtime":"2016-07-14 15:26:59","updatetime":"2016-07-14 15:26:59"}]
+DEBUG: [ Jiechengkeji ] [ 14:33:31 ] [ extSql ]select * from sys_banner where cId in (1 ,0) and type=1 and status=1 order by weight desc
+
+[ 2017-01-09T14:33:32+08:00 ] 127.0.0.1 /index.php/Home/Job/jobs?t=1483943611811&_=1483943611836
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+DEBUG: [ Jiechengkeji ] [ 14:33:31 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:33:31 ] [ data ]{"data":"{\"cId\":\"1\",\"currPage\":\"1\",\"pageSize\":\"10\",\"type\":\"8\",\"subType\":{\"regionId\":\"0\",\"pCateId\":\"0\",\"timeId\":\"0\"},\"statuses\":\"1\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/Job\/jobs"}
+DEBUG: [ Jiechengkeji ] [ 14:33:31 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"cId":"1","currPage":"1","pageSize":"10","type":"8","subType":{"regionId":"0","pCateId":"0","timeId":"0"},"statuses":"1"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/Job/jobs')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"cId":"1","currPage":"1","pageSize":"10","type":"8","subType":{"regionId":"0","pCateId":"0","timeId":"0"},"statuses":"1"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/Job/jobs') [ RunTime:0.0120s ]
+DEBUG: [ Jiechengkeji ] [ 14:33:32 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:33:32 ] [ execute ]getJobsList()
+DEBUG: [ Jiechengkeji ] [ 14:33:32 ] [ cId ]1
+DEBUG: [ Jiechengkeji ] [ 14:33:32 ] [ type ]8
+DEBUG: [ Jiechengkeji ] [ 14:33:32 ] [ queryPrms ]{"regionId":"0","pCateId":"0","timeId":"0"}
+DEBUG: [ Jiechengkeji ] [ 14:33:32 ] [ statuses ]1
+DEBUG: [ Jiechengkeji ] [ 14:33:32 ] [ regionId ]0
+DEBUG: [ Jiechengkeji ] [ 14:33:32 ] [ timeId ]0
+DEBUG: [ Jiechengkeji ] [ 14:33:32 ] [ pCateId ]0
+DEBUG: [ Jiechengkeji ] [ 14:33:32 ] [ keyword ]
+DEBUG: [ Jiechengkeji ] [ 14:33:32 ] [ currPage ]1
+DEBUG: [ Jiechengkeji ] [ 14:33:32 ] [ pageSize ]10
+DEBUG: [ Jiechengkeji ] [ 14:33:32 ] [ lng ]null
+DEBUG: [ Jiechengkeji ] [ 14:33:32 ] [ lat ]null
+DEBUG: [ Jiechengkeji ] [ 14:33:32 ] [ totalSQL ]SELECT count(*) AS count FROM `job` AS j 
+        LEFT JOIN job_attribute ja ON j.id = ja.job_id
+        LEFT JOIN job_pos jp ON j.id = jp.id
+        WHERE cityId = 1 AND j.superType = 0 AND j.status = '1'  ORDER BY j.weight desc,j.createtime  DESC 
+SQL: SELECT count(*) AS count FROM `job` AS j 
+        LEFT JOIN job_attribute ja ON j.id = ja.job_id
+        LEFT JOIN job_pos jp ON j.id = jp.id
+        WHERE cityId = 1 AND j.superType = 0 AND j.status = '1'  ORDER BY j.weight desc,j.createtime  DESC  [ RunTime:0.0180s ]
+DEBUG: [ Jiechengkeji ] [ 14:33:32 ] [ total ]10
+DEBUG: [ Jiechengkeji ] [ 14:33:32 ] [ extSql ]SELECT ca.name AS category, j.superType, j.hot, j.pCateId,j.id, j.phone,j.weight, j.status, j.type, j.income, j.title,j.payType, j.incomeUnit, j.source, j.intro, j.createTime, j.updateTime, j.beginTime, j.endTime,j.beginHour,j.endHour, p.name AS province, c.name AS city, r.name AS region, co.companyName AS company 
+		FROM job j 
+        LEFT JOIN gp_province p ON j.provinceId = p.id 
+        LEFT JOIN gp_city c ON j.cityId=c.id 
+        LEFT JOIN gp_region r ON j.regionId = r.id 
+        LEFT JOIN company co ON j.companyId = co.id 
+        LEFT JOIN job_category ca ON j.pCateId = ca.id
+        LEFT JOIN job_attribute ja ON j.id = ja.job_id
+        LEFT JOIN job_pos jp ON j.id = jp.id
+        WHERE j.cityId = 1 AND j.superType = 0 AND j.status = '1'  ORDER BY weight DESC, if(ja.attr_id =1 ,0,1), if(j.payType =1 and ja.attr_id = 1,0,1), createtime DESC LIMIT 0,10
+SQL: SELECT ca.name AS category, j.superType, j.hot, j.pCateId,j.id, j.phone,j.weight, j.status, j.type, j.income, j.title,j.payType, j.incomeUnit, j.source, j.intro, j.createTime, j.updateTime, j.beginTime, j.endTime,j.beginHour,j.endHour, p.name AS province, c.name AS city, r.name AS region, co.companyName AS company 
+		FROM job j 
+        LEFT JOIN gp_province p ON j.provinceId = p.id 
+        LEFT JOIN gp_city c ON j.cityId=c.id 
+        LEFT JOIN gp_region r ON j.regionId = r.id 
+        LEFT JOIN company co ON j.companyId = co.id 
+        LEFT JOIN job_category ca ON j.pCateId = ca.id
+        LEFT JOIN job_attribute ja ON j.id = ja.job_id
+        LEFT JOIN job_pos jp ON j.id = jp.id
+        WHERE j.cityId = 1 AND j.superType = 0 AND j.status = '1'  ORDER BY weight DESC, if(ja.attr_id =1 ,0,1), if(j.payType =1 and ja.attr_id = 1,0,1), createtime DESC LIMIT 0,10 [ RunTime:0.0290s ]
+DEBUG: [ Jiechengkeji ] [ 14:33:32 ] [ result ][{"category":"\u5176\u4ed6","supertype":"0","hot":"400","pcateid":"9","id":"18809","phone":"13356311346","weight":"0","status":"1","type":"1","income":"100","title":"\u4e0a\u7ebf\u524d\u6d4b\u8bd5","paytype":"3","incomeunit":"2","source":"wechat.luobojianzhi.com","intro":"\u6d4b\u8bd5","createtime":"2016-10-20 15:58:01","updatetime":"2017-01-05 11:04:30","begintime":"2016-10-20 00:00:00","endtime":"2017-10-20 00:00:00","beginhour":"08: 00","endhour":"17: 00","province":"\u5c71\u4e1c\u7701","city":"\u5a01\u6d77\u5e02","region":"\u9ad8\u533a","company":"\u9006\u98ce\u5feb\u9012\u516c\u53f8"},{"category":"\u5b9e\u4e60\u751f","supertype":"0","hot":"224","pcateid":"12","id":"18802","phone":"13356311346","weight":"0","status":"1","type":"1","income":"111","title":"\u53d1\u653e\u5de5\u8d44\u6d4b\u8bd5","paytype":"1","incomeunit":"2","source":"wechat.luobojianzhi.com","intro":"111","createtime":"2016-09-22 17:17:48","updatetime":"2017-01-04 15:52:39","begintime":"2016-09-22 00:00:00","endtime":"2017-09-15 00:00:00","beginhour":"08: 00","endhour":"17: 00","province":"\u5c71\u4e1c\u7701","city":"\u5a01\u6d77\u5e02","region":"\u9ad8\u533a","company":"\u9006\u98ce\u5feb\u9012\u516c\u53f8"},{"category":"\u670d\u52a1\u5458","supertype":"0","hot":"747","pcateid":"3","id":"15017","phone":"18663105743","weight":"0","status":"1","type":"1","income":"10","title":"\u65e5\u5f0f\u9910\u5385\u957f\u671f\u62db\u6536\u517c\u804c\u670d\u52a1\u5458","paytype":"2","incomeunit":"0","source":"","intro":" \u6211\u662f\u5bb6\u897f\u9910&amp;\u65e5\u9910\u7ed3\u5408\u7684\u521b\u4f5c\u6599\u7406\u3002\u5de5\u4f5c\u73af\u5883\u6574\u6d01\u8212\u9002\u3002\u73b0\u957f\u671f\u62db\u6536\u517c\u804c\u4eba\u5458\uff0c\u51fa\u5de5\u8d44\u5916\u6708\u5e95\u6709\u5956\u91d1\u3002\u6709\u610f\u8005\u8bf7\u79ef\u6781\u6765\u7535\u8be2\u95ee\u3002\u8c22\u8c22\uff01","createtime":"2016-05-15 00:00:00","updatetime":"2016-12-22 15:13:06","begintime":"2016-05-01 00:00:00","endtime":"2017-12-31 00:00:00","beginhour":null,"endhour":null,"province":"\u5c71\u4e1c\u7701","city":"\u5a01\u6d77\u5e02","region":"\u9ad8\u533a","company":"\u6392\u5c71\u5012\u6d77\u6599\u7406 "},{"category":"\u5bb6\u6559","supertype":"0","hot":"47","pcateid":"8","id":"17474","phone":"13361177386","weight":"0","status":"1","type":"1","income":"1600","title":"\u4e2d\u5c0f\u5b66\u6587\u5316\u8bfe\u8f85\u5bfc\u8001\u5e08","paytype":"3","incomeunit":"4","source":"","intro":"\u804c\u4f4d\u4e00\uff1a\u62db\u8058\u4e2d\u5c0f\u5b66\u6587\u5316\u8bfe\u8f85\u5bfc\u8001\u5e08\uff0c\u8d1f\u8d23\u6559\u6388\u5b69\u5b50\u8bfe\u7a0b\u77e5\u8bc6\uff0c\u5236\u5b9a\u5b66\u751f\u590d\u4e60\u8ba1\u5212\uff0c\u4f18\u79c0\u7684\u5b8c\u6210\u73ed\u4e3b\u4efb\u7684\u5e26\u73ed\u804c\u8d23\uff0c\u8981\u6c42\u8bda\u5b9e\u5b88\u4fe1\uff0c\u5177\u6709\u826f\u597d\u7684\u8bed\u8a00\u6c9f\u901a\u80fd\u529b\uff0c\u4e00\u7ecf\u5f55\u7528\u53ef\u957f\u671f\u517c\u804c\uff0c\u5468\u4e00\u81f3\u5468\u4e94\u6bcf\u5929\u4e0b\u5348\u5de5\u4f5c\u56db\u5c0f\u65f6\uff08\uff09\uff0c\u5468\u516d\u767d\u5929\u4e0a\u73ed\u3002\u7b2c\u4e00\u4e2a\u6708\u5de5\u8d441400\uff0c\u5982\u679c\u5de5\u4f5c\u5408\u683c\uff0c\u7b2c\u4e8c\u3001\u4e09\u4e2a\u67081500\u5143\uff0c\u7b2c\u56db\u4e2a\u6708\u5f00\u59cb\u5347\u4e3a1600\u5143\u3002\n\u804c\u4f4d\u4e8c\uff1a\u62db\u8058\u6691\u5047\u5e26\u73ed\u8001\u5e08\uff0c\u5177\u4f53\u5de5\u4f5c\u65f6\u95f4\u4e03\u6708\u521d\u81f3\u516b\u6708\u4e2d\u65ec\u5de6\u53f3\uff0c\u5de5\u8d443000\u5143\u5de6\u53f3\u3002","createtime":"2016-05-12 00:00:00","updatetime":"2016-12-08 09:39:56","begintime":"2016-05-16 00:00:00","endtime":"2017-12-30 00:00:00","beginhour":null,"endhour":null,"province":"\u5c71\u4e1c\u7701","city":"\u5a01\u6d77\u5e02","region":"\u73af\u7fe0\u533a","company":"\u5b66\u5fd7\u6559\u80b2\u8fde\u9501\u57f9\u8bad\u673a\u6784 "},{"category":"\u5b9e\u4e60\u751f","supertype":"0","hot":"49","pcateid":"12","id":"17382","phone":"13863194633","weight":"0","status":"1","type":"1","income":"8","title":"\u8f6f\u4ef6\u5f00\u53d1","paytype":"3","incomeunit":"0","source":"","intro":"\u7535\u5546\u62db\u5546\u4e1a\u52a1\u62d3\u5c55\uff0c\u8bbe\u8ba1\u5ba3\u4f20\u63a8\u5e7f","createtime":"2016-05-09 00:00:00","updatetime":"2016-12-12 15:01:19","begintime":"2016-05-09 00:00:00","endtime":"2017-05-09 00:00:00","beginhour":null,"endhour":null,"province":"\u5c71\u4e1c\u7701","city":"\u5a01\u6d77\u5e02","region":"\u73af\u7fe0\u533a","company":"\u5a01\u6d77\u4e2d\u827a\u96c5\u82d1\u827a\u672f\u54c1\u6709\u9650\u516c\u53f8 "},{"category":"\u5b9e\u4e60\u751f","supertype":"0","hot":"96","pcateid":"12","id":"16750","phone":"13563198745","weight":"0","status":"1","type":"1","income":"1000","title":"\u4e5d\u4e5d\u624b\u673a\u7f51\u62db\u8058\u6821\u56ed\u4ee3\u7406","paytype":"3","incomeunit":"4","source":"","intro":"\u5c97\u4f4d\u804c\u8d23\uff1a \n1.\t\u5b66\u4e60\u5e76\u5229\u7528\u516c\u53f8\u65b0\u5a92\u4f53\u6280\u672f\u53ca\u5e73\u53f0\u4f18\u52bf \n2.\t\u5728\u5404\u79cd\u7ebf\u4e0a\u7ebf\u4e0b\u6e20\u9053\u4e0a\u7684\u4fe1\u606f\u53d1\u5e03\u3002 \n3.\t\u5728\u6821\u56ed\u5185\u63d0\u4f9b\u76f8\u5173\u7684\u652f\u6301\uff1b \n4.\t\u4e86\u89e3\u548c\u53d1\u6398\u6821\u56ed\u9700\u6c42\uff0c\u534f\u52a9\u6536\u96c6\u7528\u6237\u9700\u6c42\u4fe1\u606f\uff0c\u5e76\u6839\u636e\u9700\u6c42\u63d0\u51fa\u4ea7\u54c1\u6216\u8425\u9500\u65b9\u9762\u7684\u76f8\u5173\u5efa\u8bae\u3002 \n5.\t\u534f\u52a9\u6821\u56ed\u5185\u7684\u6d3b\u52a8\u6267\u884c\uff0c\u6216\u72ec\u7acb\u5f00\u53d1\u5404\u79cd\u5f62\u5f0f\u7684\u5728\u6821\u5408\u4f5c\u4f19\u4f34\u5173\u7cfb\u3002 ","createtime":"2016-04-08 00:00:00","updatetime":"2016-12-26 15:43:34","begintime":"2016-04-01 00:00:00","endtime":"2017-03-31 00:00:00","beginhour":null,"endhour":null,"province":"\u5c71\u4e1c\u7701","city":"\u5a01\u6d77\u5e02","region":"\u9ad8\u533a","company":"\u5a01\u6d77\u65e2\u7ef6\u6c38\u660c\u7f51\u7edc\u79d1\u6280\u6709\u9650\u516c\u53f8 "},{"category":"\u5176\u4ed6","supertype":"0","hot":"102","pcateid":"9","id":"16086","phone":"15666091750","weight":"0","status":"1","type":"1","income":"60","title":"\u8bda\u8058\u5c71\u5927\u54c8\u5de5\u5927\u6821\u56ed\u4ee3\u7406","paytype":"4","incomeunit":"2","source":"","intro":"\u6309\u4e1a\u7ee9\u63d0\u6210\uff0c\u6bcf\u535560\u5143--180\u5143\u4e0d\u7b49\uff0c\u591a\u52b3\u591a\u5f97\uff0c\u8be6\u60c5\u8bf7\u81f4\u7535\uff01","createtime":"2016-03-16 00:00:00","updatetime":"2016-11-18 11:07:03","begintime":"2016-03-16 00:00:00","endtime":"2017-03-16 00:00:00","beginhour":null,"endhour":null,"province":"\u5c71\u4e1c\u7701","city":"\u5a01\u6d77\u5e02","region":"\u9ad8\u533a","company":"\u5a01\u6d77\u4e50\u6d3b\u6587\u5316\u827a\u672f\u7b56\u5212\u6709\u9650\u516c\u53f8 "},{"category":"\u5176\u4ed6","supertype":"0","hot":"119","pcateid":"9","id":"15532","phone":"13061141113","weight":"0","status":"1","type":"1","income":"30","title":"\u8bbe\u8ba1\u7f8e\u5de5","paytype":"3","incomeunit":"2","source":"","intro":"1\u3001\u8d1f\u8d23\u516c\u53f8\u7f51\u7ad9\u7684\u7ef4\u62a4\u3001\u66f4\u65b0\uff1b\n2\u3001\u8d1f\u8d23\u516c\u53f8\u7684\u7f51\u7ad9\u5e7f\u544a\u8fdb\u884c\u8bbe\u8ba1\u3001\u7f16\u8f91\u3001\u7f8e\u5316\u7b49\u5de5\u4f5c\uff1b\n3\u3001\u5bf9\u516c\u53f8\u7684\u5ba3\u4f20\u4ea7\u54c1\u8fdb\u884c\u7f8e\u5de5\u8bbe\u8ba1\uff1b\n4\u3001\u8d1f\u8d23\u4e0e\u5f00\u53d1\u4eba\u5458\u914d\u5408\u5b8c\u6210\u6240\u8f96\u7f51\u7ad9\u7b49\u524d\u53f0\u9875\u9762\u8bbe\u8ba1\u548c\u7f16\u8f91\uff1b\u914d\u5408\u516c\u53f8\u76f8\u5173\u4fc3\u9500\u6d77\u62a5 \u8bbe\u8ba1\u3001\u5305\u88c5\u753b\u518c\u8bbe\u8ba1\uff0c\u7f51\u7ad9\u5efa\u8bbe\u7b49\u8bbe\u8ba1\u5de5\u4f5c\u3002\n5\u3001\u5177\u6709\u6df1\u539a\u7684\u7f8e\u672f\u529f\u5e95\u53ca\u826f\u597d\u7684\u521b\u610f\u6784\u601d\u80fd\u529b\uff0c\u5f88\u597d\u628a\u63e1\u89c6\u89c9\u8272\u5f69\u4e0e\u7f51\u7ad9\u5e03\u5c40\uff0c\u601d\u60f3\u654f\u9510\u6d3b\u8dc3\uff0c\u5177\u6709\u4e30\u5bcc\u7684\u89c6\u89c9\u521b\u4f5c\u7ecf\u9a8c\u548c\u72ec\u5230\u7684\u5ba1\u7f8e\u4fee\u517b\uff1b\n\u517c\u804c\u4ee5\u5927\u4e09\uff0c\u5927\u56db\u5728\u6821\u751f\u4e3a\u4e3b\uff0c\u5e94\u5c4a\u6bd5\u4e1a\u751f\u5168\u804c\u5f85\u9047\u9762\u8bae\n\u798f\u5229\u5f85\u9047\uff1a\u6bcf\u592930\u5143\u7684\u996d\u8865+\u5916\u51fa\u4ea4\u901a\u8865\u52a9+\u6708\u5de5\u4f5c\u7ee9\u6548\u5956\n\u5c97\u4f4d\u53d1\u5c55\u65b9\u5411:\u901a\u8fc7\u534a\u5e74\u81f3\u4e00\u5e74\u7684\u534f\u540c\u5408\u4f5c\uff0c\u6839\u636e\u516c\u53f8\u53d1\u5c55\u9700\u6c42\u53ca\u804c\u4e1a\u613f\u666f\uff0c\u53ef\u4ee5\u5347\u4e3a\u516c\u53f8\u6838\u5fc3\u56e2\u961f\u4e2d\u7684\u4e00\u5458\uff0c\u8d1f\u8d23\u8bbe\u8ba1\u90e8\u7684\u5de5\u4f5c\uff0c\u540c\u65f6\u516c\u53f8\u613f\u610f\u62ff\u51fa5%\u201410%\u7684\u671f\u6743\uff0c\u4f5c\u4e3a\u5408\u4f5c\u4eba\u8eab\u4efd\u53c2\u4e0e\u5230\u516c\u53f8\u7684\u7ba1\u7406\u4e2d\uff0c\u4e00\u5e74\u540e\uff0c\u6839\u636e\u8868\u73b0\u4eab\u6709\u516c\u53f85%\u201410%\u7684\u80a1\u4efd\u3002\n","createtime":"2016-02-22 00:00:00","updatetime":"2017-01-04 15:52:46","begintime":"2016-03-01 00:00:00","endtime":"2017-03-01 00:00:00","beginhour":null,"endhour":null,"province":"\u5c71\u4e1c\u7701","city":"\u5a01\u6d77\u5e02","region":"\u9ad8\u533a","company":"\u5a01\u6d77\u9759\u6e90\u6587\u5316\u4f20\u64ad\u6709\u9650\u516c\u53f8 "},{"category":"\u5176\u4ed6","supertype":"0","hot":"98","pcateid":"9","id":"15530","phone":"13061141113","weight":"0","status":"1","type":"1","income":"30","title":"\u7b56\u5212\u5ba3\u4f20","paytype":"3","incomeunit":"2","source":"","intro":"1\u3001\u5bf9\u4e92\u8054\u7f51\u3001\u5fae\u4fe1\u7b49\u65b0\u5a92\u4f53\u6bd4\u8f83\u719f\u6089\uff1b\n2\u3001\u7231\u597d\u5199\u4f5c\uff0c\u6709\u8fc7\u5ba3\u4f20\u62a5\u9053\u7684\u7ecf\u9a8c\uff1b\n3\u3001\u62e5\u6709\u5f6a\u608d\u7684\u6267\u884c\u529b\uff0c\u6c9f\u901a\u80fd\u529b\u5f3a\u3001\u5584\u4e8e\u534f\u8c03\u8d44\u6e90\uff1b\n4\u3001\u80fd\u5bf9\u56fe\u7247\u8fdb\u884c\u7b80\u5355\u7684\u540e\u671f\u7f16\u8f91\uff1b\n5\u3001\u70ed\u7231\u8fd0\u52a8\uff0c\u8bdd\u9898\u3001\u4e13\u9898\u7b56\u5212\u3001\u7ebf\u4e0a\u6d3b\u52a8\u7b49\u5236\u4f5c\u53ca\u8fd0\u8425\u3002\n\u517c\u804c\u4ee5\u5927\u4e09\uff0c\u5927\u56db\u5728\u6821\u751f\u4e3a\u4e3b\uff0c\u5e94\u5c4a\u6bd5\u4e1a\u751f\u5168\u804c\u5f85\u9047\u9762\u8bae\n\u798f\u5229\u5f85\u9047\uff1a\u6bcf\u592930\u5143\u7684\u996d\u8865+\u5916\u51fa\u4ea4\u901a\u8865\u52a9+\u6708\u5de5\u4f5c\u7ee9\u6548\u5956\n\u5c97\u4f4d\u53d1\u5c55\u65b9\u5411:\u901a\u8fc7\u534a\u5e74\u81f3\u4e00\u5e74\u7684\u534f\u540c\u5408\u4f5c\uff0c\u6839\u636e\u516c\u53f8\u53d1\u5c55\u9700\u6c42\u53ca\u804c\u4e1a\u613f\u666f\uff0c\u53ef\u4ee5\u5347\u4e3a\u516c\u53f8\u6838\u5fc3\u56e2\u961f\u4e2d\u7684\u4e00\u5458\uff0c\u8d1f\u8d23\u7b56\u5212\u90e8\u6216\u8005\u7f16\u8f91\u90e8\u7684\u5de5\u4f5c\uff0c\u540c\u65f6\u516c\u53f8\u613f\u610f\u62ff\u51fa5%\u201410%\u7684\u671f\u6743\uff0c\u4f5c\u4e3a\u5408\u4f5c\u4eba\u8eab\u4efd\u53c2\u4e0e\u5230\u516c\u53f8\u7684\u7ba1\u7406\u4e2d\uff0c\u4e00\u5e74\u540e\uff0c\u6839\u636e\u8868\u73b0\u4eab\u6709\u516c\u53f85%\u201410%\u7684\u80a1\u4efd\u3002\n","createtime":"2016-02-22 00:00:00","updatetime":"2016-12-22 15:12:25","begintime":"2016-03-01 00:00:00","endtime":"2017-03-01 00:00:00","beginhour":null,"endhour":null,"province":"\u5c71\u4e1c\u7701","city":"\u5a01\u6d77\u5e02","region":"\u9ad8\u533a","company":"\u5a01\u6d77\u9759\u6e90\u6587\u5316\u4f20\u64ad\u6709\u9650\u516c\u53f8 "},{"category":"\u5176\u4ed6","supertype":"0","hot":"92","pcateid":"9","id":"15531","phone":"13061141113","weight":"0","status":"1","type":"1","income":"30","title":"\u7f51\u7edc\u63a8\u5e7f\u8fd0\u8425","paytype":"3","incomeunit":"2","source":"","intro":"1\u3001\u6709\u7f51\u7edc\u63a8\u5e7f\u5de5\u4f5c\u7ecf\u9a8c\u6216B2C\u7535\u5b50\u5546\u52a1\u7f51\u7ad9\u63a8\u5e7f\u8425\u9500\u6216\u5e7f\u544a\u516c\u53f8\u7ebf\u4e0a\u5a92\u4ecb\u5de5\u4f5c\u7ecf\u9a8c\uff1b\n2\u3001\u719f\u6089QQ\u7fa4\u3001\u5fae\u4fe1\u3001\u5fae\u535a\u7b49\u793e\u4ea4\u5a92\u4f53\u7684\u5e94\u7528\uff0c\u5584\u4e8e\u6316\u6398\u3001\u6574\u5408\u5a92\u4ecb\u8d44\u6e90\uff0c\u77e5\u9053\u5982\u4f55\u79ef\u805a\u76ee\u6807\u7c89\u4e1d\u5e76\u548c\u7c89\u4e1d\u4e92\u52a8\uff1b\n3\u3001\u5bf9\u4e92\u8054\u7f51\u4e8b\u7269\u53ca\u7f51\u7edc\u8425\u9500\u4e8b\u4ef6\u9ad8\u5ea6\u654f\u611f\uff0c\u719f\u6089\u4e92\u8054\u7f51\u8bed\u8a00\uff0c\u80fd\u591f\u7ed3\u5408\u70ed\u95e8\u8bdd\u9898\u5f00\u5c55\u5e02\u573a\u63a8\u5e7f\u6d3b\u52a8\uff1b\n4\u3001\u5f00\u53d1\u5e76\u7ef4\u62a4\u516c\u53f8\u4e0e\u5176\u4ed6\u5408\u4f5c\u7f51\u7ad9\u3001\u7535\u89c6\u53f0\u3001\u7535\u53f0\u3001\u62a5\u7eb8\u7b49\u5a92\u4f53\u7684\u5408\u4f5c\uff1b\n5\u3001\u8d1f\u8d23\u516c\u53f8\u7f51\u7ad9\u7684\u94fe\u63a5\u3001\u5e7f\u544a\u4ea4\u6362\u3001\u7f51\u7ad9\u5c42\u9762\u7684\u5408\u4f5c\u63a8\u5e7f\u5de5\u4f5c\uff1b\n6\u3001\u5de5\u4f5c\u8ba4\u771f\u52a1\u5b9e\u3001\u4e25\u8c28\u3001\u5f3a\u70c8\u7684\u8d23\u4efb\u5fc3\uff0c\u7075\u6d3b\u7684\u521b\u610f\u7b56\u7565\uff0c\u5177\u6709\u8f83\u5f3a\u7684\u8425\u9500\u8ba1\u5212\u6267\u884c\u80fd\u529b\u3002\n\u517c\u804c\u4ee5\u5927\u4e09\uff0c\u5927\u56db\u5728\u6821\u751f\u4e3a\u4e3b\uff0c\u5e94\u5c4a\u6bd5\u4e1a\u751f\u5168\u804c\u5f85\u9047\u9762\u8bae\n\u798f\u5229\u5f85\u9047\uff1a\u6bcf\u592930\u5143\u7684\u996d\u8865+\u5916\u51fa\u4ea4\u901a\u8865\u52a9+\u6708\u5de5\u4f5c\u7ee9\u6548\u5956\n\u5c97\u4f4d\u53d1\u5c55\u65b9\u5411:\u901a\u8fc7\u534a\u5e74\u81f3\u4e00\u5e74\u7684\u534f\u540c\u5408\u4f5c\uff0c\u6839\u636e\u516c\u53f8\u53d1\u5c55\u9700\u6c42\u53ca\u804c\u4e1a\u613f\u666f\uff0c\u53ef\u4ee5\u5347\u4e3a\u516c\u53f8\u6838\u5fc3\u56e2\u961f\u4e2d\u7684\u4e00\u5458\uff0c\u8d1f\u8d23\u63a8\u5e7f\u8fd0\u8425\u90e8\u7684\u5de5\u4f5c\uff0c\u540c\u65f6\u516c\u53f8\u613f\u610f\u62ff\u51fa5%\u201410%\u7684\u671f\u6743\uff0c\u4f5c\u4e3a\u5408\u4f5c\u4eba\u8eab\u4efd\u53c2\u4e0e\u5230\u516c\u53f8\u7684\u7ba1\u7406\u4e2d\uff0c\u4e00\u5e74\u540e\uff0c\u6839\u636e\u8868\u73b0\u4eab\u6709\u516c\u53f85%\u201410%\u7684\u80a1\u4efd\u3002\n","createtime":"2016-02-22 00:00:00","updatetime":"2016-12-26 15:37:30","begintime":"2016-03-01 00:00:00","endtime":"2017-03-01 00:00:00","beginhour":null,"endhour":null,"province":"\u5c71\u4e1c\u7701","city":"\u5a01\u6d77\u5e02","region":"\u9ad8\u533a","company":"\u5a01\u6d77\u9759\u6e90\u6587\u5316\u4f20\u64ad\u6709\u9650\u516c\u53f8 "}]
+DEBUG: [ Jiechengkeji ] [ 14:33:32 ] [ execute ]associateAttributes()
+DEBUG: [ Jiechengkeji ] [ 14:33:32 ] [ querySql ] select * from job_attribute where job_id in (18809,18802,15017,17474,17382,16750,16086,15532,15530,15531)
+SQL:  select * from job_attribute where job_id in (18809,18802,15017,17474,17382,16750,16086,15532,15530,15531) [ RunTime:0.0120s ]
+
+[ 2017-01-09T14:35:48+08:00 ] 127.0.0.1 /index.php/Home/User/signUp
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 14:35:47 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:35:47 ] [ data ]{"data":"{\"phone\":\"18369171890\",\"password\":\"aq123456\",\"inviteCode\":\"0006\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/signUp"}
+DEBUG: [ Jiechengkeji ] [ 14:35:47 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","inviteCode":"0006"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/signUp')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","inviteCode":"0006"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/signUp') [ RunTime:0.0090s ]
+DEBUG: [ Jiechengkeji ] [ 14:35:47 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:35:47 ] [ execute ]doSignUp()
+DEBUG: [ Jiechengkeji ] [ 14:35:47 ] [ phone ]18369171890
+DEBUG: [ Jiechengkeji ] [ 14:35:47 ] [ password ]aq123456
+DEBUG: [ Jiechengkeji ] [ 14:35:47 ] [ captcha ]
+DEBUG: [ Jiechengkeji ] [ 14:35:47 ] [ inviteCode ]0006
+DEBUG: [ Jiechengkeji ] [ 14:35:47 ] [ md5(password) ]ec878b54e20a467b7f1c8e46f14d21c4
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 300 行.
+DEBUG: [ Jiechengkeji ] [ 14:35:47 ] [ args ]{"username":"\u5c0f\u841d\u535c","phone":"18369171890","password":"ec878b54e20a467b7f1c8e46f14d21c4","openid":-1,"status":1,"inviteCode":"0006"}
+DEBUG: [ Jiechengkeji ] [ 14:35:47 ] [ execute ]signUp()
+DEBUG: [ Jiechengkeji ] [ 14:35:47 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 14:35:47 ] [ querySql ]SELECT * FROM user WHERE  1=1 AND phone='18369171890' ORDER BY
+        id DESC
+SQL: SELECT * FROM user WHERE  1=1 AND phone='18369171890' ORDER BY
+        id DESC [ RunTime:0.2130s ]
+DEBUG: [ Jiechengkeji ] [ 14:35:47 ] [ execute ]add()
+DEBUG: [ Jiechengkeji ] [ 14:35:47 ] [ sql ]INSERT INTO user (chiefUserId, adminId, isNewUser, phone, password, openid, status, inviteCode) 
+        VALUES('0', '0', '0', '18369171890', 'ec878b54e20a467b7f1c8e46f14d21c4', '-1', '1', '0006')
+SQL: INSERT INTO user (chiefUserId, adminId, isNewUser, phone, password, openid, status, inviteCode) 
+        VALUES('0', '0', '0', '18369171890', 'ec878b54e20a467b7f1c8e46f14d21c4', '-1', '1', '0006') [ RunTime:0.0120s ]
+DEBUG: [ Jiechengkeji ] [ 14:35:47 ] [ res ]266383
+DEBUG: [ Jiechengkeji ] [ 14:35:47 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0050s ]
+DEBUG: [ Jiechengkeji ] [ 14:35:47 ] [ result ][{"id":"266383"}]
+DEBUG: [ Jiechengkeji ] [ 14:35:47 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 14:35:47 ] [ querySql ]SELECT * FROM user WHERE  1=1 AND id='266383' ORDER BY
+        id DESC
+SQL: SELECT * FROM user WHERE  1=1 AND id='266383' ORDER BY
+        id DESC [ RunTime:0.0070s ]
+DEBUG: [ Jiechengkeji ] [ 14:35:47 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 14:35:47 ] [ querySql ]SELECT * FROM wallet WHERE  1=1  AND userId='266383'  ORDER BY
+        id DESC
+SQL: SELECT * FROM wallet WHERE  1=1  AND userId='266383'  ORDER BY
+        id DESC [ RunTime:0.1220s ]
+DEBUG: [ Jiechengkeji ] [ 14:35:48 ] [ excute ]add()
+DEBUG: [ Jiechengkeji ] [ 14:35:48 ] [ sql ]INSERT INTO wallet(userId, companyId, adminId, money, gains, income, status) 
+        VALUES('266383', '0', '0', '0', '0', '0', '1')
+SQL: INSERT INTO wallet(userId, companyId, adminId, money, gains, income, status) 
+        VALUES('266383', '0', '0', '0', '0', '0', '1') [ RunTime:0.0050s ]
+DEBUG: [ Jiechengkeji ] [ 14:35:48 ] [ result ]72075
+DEBUG: [ Jiechengkeji ] [ 14:35:48 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0060s ]
+DEBUG: [ Jiechengkeji ] [ 14:35:48 ] [ result ][{"id":"72075"}]
+NOTIC: [8] Undefined variable: openid E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Service\UserService.class.php 第 73 行.
+DEBUG: [ Jiechengkeji ] [ 14:35:48 ] [ querySql ]SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0006'
+SQL: SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0006' [ RunTime:0.0060s ]
+DEBUG: [ Jiechengkeji ] [ 14:35:48 ] [ result ][{"chiefid":"1462"}]
+DEBUG: [ Jiechengkeji ] [ 14:35:48 ] [ executeSql ]UPDATE ac_chief_fans SET bind='1' WHERE 
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : UPDATE ac_chief_fans SET bind='1' WHERE 
+
+[ 2017-01-09T14:37:11+08:00 ] 127.0.0.1 /index.php/Home/User/signUp
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 14:37:10 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:37:10 ] [ data ]{"data":"{\"phone\":\"18369171890\",\"password\":\"aq123456\",\"inviteCode\":\"0006\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/signUp"}
+DEBUG: [ Jiechengkeji ] [ 14:37:10 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","inviteCode":"0006"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/signUp')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","inviteCode":"0006"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/signUp') [ RunTime:0.0120s ]
+DEBUG: [ Jiechengkeji ] [ 14:37:10 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:37:10 ] [ execute ]doSignUp()
+DEBUG: [ Jiechengkeji ] [ 14:37:10 ] [ phone ]18369171890
+DEBUG: [ Jiechengkeji ] [ 14:37:10 ] [ password ]aq123456
+DEBUG: [ Jiechengkeji ] [ 14:37:10 ] [ captcha ]
+DEBUG: [ Jiechengkeji ] [ 14:37:10 ] [ inviteCode ]0006
+DEBUG: [ Jiechengkeji ] [ 14:37:10 ] [ md5(password) ]ec878b54e20a467b7f1c8e46f14d21c4
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 300 行.
+DEBUG: [ Jiechengkeji ] [ 14:37:10 ] [ args ]{"username":"\u5c0f\u841d\u535c","phone":"18369171890","password":"ec878b54e20a467b7f1c8e46f14d21c4","openid":-1,"status":1,"inviteCode":"0006"}
+DEBUG: [ Jiechengkeji ] [ 14:37:10 ] [ execute ]signUp()
+DEBUG: [ Jiechengkeji ] [ 14:37:10 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 14:37:10 ] [ querySql ]SELECT * FROM user WHERE  1=1 AND phone='18369171890' ORDER BY
+        id DESC
+SQL: SELECT * FROM user WHERE  1=1 AND phone='18369171890' ORDER BY
+        id DESC [ RunTime:0.2090s ]
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ execute ]add()
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ sql ]INSERT INTO user (chiefUserId, adminId, isNewUser, phone, password, openid, status, inviteCode) 
+        VALUES('0', '0', '0', '18369171890', 'ec878b54e20a467b7f1c8e46f14d21c4', '-1', '1', '0006')
+SQL: INSERT INTO user (chiefUserId, adminId, isNewUser, phone, password, openid, status, inviteCode) 
+        VALUES('0', '0', '0', '18369171890', 'ec878b54e20a467b7f1c8e46f14d21c4', '-1', '1', '0006') [ RunTime:0.0120s ]
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ res ]266384
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0110s ]
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ result ][{"id":"266384"}]
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ querySql ]SELECT * FROM user WHERE  1=1 AND id='266384' ORDER BY
+        id DESC
+SQL: SELECT * FROM user WHERE  1=1 AND id='266384' ORDER BY
+        id DESC [ RunTime:0.0130s ]
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ querySql ]SELECT * FROM wallet WHERE  1=1  AND userId='266384'  ORDER BY
+        id DESC
+SQL: SELECT * FROM wallet WHERE  1=1  AND userId='266384'  ORDER BY
+        id DESC [ RunTime:0.1450s ]
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ excute ]add()
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ sql ]INSERT INTO wallet(userId, companyId, adminId, money, gains, income, status) 
+        VALUES('266384', '0', '0', '0', '0', '0', '1')
+SQL: INSERT INTO wallet(userId, companyId, adminId, money, gains, income, status) 
+        VALUES('266384', '0', '0', '0', '0', '0', '1') [ RunTime:0.0120s ]
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ result ]72076
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0120s ]
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ result ][{"id":"72076"}]
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ querySql ]SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0006'
+SQL: SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0006' [ RunTime:0.0120s ]
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ result ][{"chiefid":"1462"}]
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ executeSql ]UPDATE ac_chief_fans SET bind='1' WHERE openid='-1'
+SQL: UPDATE ac_chief_fans SET bind='1' WHERE openid='-1' [ RunTime:0.0120s ]
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ result ]0
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ executeSql ]UPDATE ac_chief SET register=register+1 WHERE id=1462
+SQL: UPDATE ac_chief SET register=register+1 WHERE id=1462 [ RunTime:0.0120s ]
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ result ]1
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ querySql ]SELECT * FROM ac_chief WHERE  1=1 AND id='1462' ORDER BY
+        id DESC
+SQL: SELECT * FROM ac_chief WHERE  1=1 AND id='1462' ORDER BY
+        id DESC [ RunTime:0.0130s ]
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ querySql ]SELECT * FROM ac_chief WHERE  1=1 AND id='1462' ORDER BY
+        id DESC
+SQL: SELECT * FROM ac_chief WHERE  1=1 AND id='1462' ORDER BY
+        id DESC [ RunTime:0.0130s ]
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ querySql ]SELECT * FROM user WHERE  1=1 AND id='259910' ORDER BY
+        id DESC
+SQL: SELECT * FROM user WHERE  1=1 AND id='259910' ORDER BY
+        id DESC [ RunTime:0.0140s ]
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ execute ]update()
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ executeSql ]UPDATE user SET chiefUserId='259910', adminId='0', isNewUser='0' WHERE id=266384
+SQL: UPDATE user SET chiefUserId='259910', adminId='0', isNewUser='0' WHERE id=266384 [ RunTime:0.0150s ]
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ result ]1
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ querySql ]SELECT * FROM wallet WHERE  1=1  AND userId='259910'  ORDER BY
+        id DESC
+SQL: SELECT * FROM wallet WHERE  1=1  AND userId='259910'  ORDER BY
+        id DESC [ RunTime:0.1290s ]
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ execute ]add()
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ sql ]INSERT INTO wallet_order(fromWalletId, toWalletId, money, type,
+        orderType, businessId, orderId, remitter, remitterName, payee, payeeName, status, remark)VALUES(
+        '72076', '6964', '40', '1', '101', '0', '',
+        '', '', '', '', '2', '推广收益')
+SQL: INSERT INTO wallet_order(fromWalletId, toWalletId, money, type,
+        orderType, businessId, orderId, remitter, remitterName, payee, payeeName, status, remark)VALUES(
+        '72076', '6964', '40', '1', '101', '0', '',
+        '', '', '', '', '2', '推广收益') [ RunTime:0.0120s ]
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ result ]1212
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0110s ]
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ result ][{"id":"1212"}]
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ execute ]DAO-update()
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ setSql ]money=money+40, 
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ executeSql ]UPDATE wallet SET money=money+40 WHERE id=6964
+SQL: UPDATE wallet SET money=money+40 WHERE id=6964 [ RunTime:0.0110s ]
+DEBUG: [ Jiechengkeji ] [ 14:37:11 ] [ result ]1
+
+[ 2017-01-09T14:39:29+08:00 ] 127.0.0.1 /index.php/Home/User/signUp
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+DEBUG: [ Jiechengkeji ] [ 14:39:28 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:39:28 ] [ data ]{"data":"{\"phone\":\"18369171890\",\"password\":\"aq123456\",\"inviteCode\":\"0007\",\"userId\":\"266384\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/signUp"}
+DEBUG: [ Jiechengkeji ] [ 14:39:28 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","inviteCode":"0007","userId":"266384"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/signUp')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","inviteCode":"0007","userId":"266384"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/signUp') [ RunTime:0.0070s ]
+DEBUG: [ Jiechengkeji ] [ 14:39:28 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:39:28 ] [ execute ]doSignUp()
+DEBUG: [ Jiechengkeji ] [ 14:39:28 ] [ phone ]18369171890
+DEBUG: [ Jiechengkeji ] [ 14:39:28 ] [ password ]aq123456
+DEBUG: [ Jiechengkeji ] [ 14:39:28 ] [ captcha ]
+DEBUG: [ Jiechengkeji ] [ 14:39:28 ] [ inviteCode ]0007
+DEBUG: [ Jiechengkeji ] [ 14:39:28 ] [ md5(password) ]ec878b54e20a467b7f1c8e46f14d21c4
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 300 行.
+DEBUG: [ Jiechengkeji ] [ 14:39:28 ] [ args ]{"username":"\u5c0f\u841d\u535c","phone":"18369171890","password":"ec878b54e20a467b7f1c8e46f14d21c4","openid":-1,"status":1,"inviteCode":"0007"}
+DEBUG: [ Jiechengkeji ] [ 14:39:28 ] [ execute ]signUp()
+DEBUG: [ Jiechengkeji ] [ 14:39:28 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 14:39:28 ] [ querySql ]SELECT * FROM user WHERE  1=1 AND phone='18369171890' ORDER BY
+        id DESC
+SQL: SELECT * FROM user WHERE  1=1 AND phone='18369171890' ORDER BY
+        id DESC [ RunTime:0.2460s ]
+DEBUG: [ Jiechengkeji ] [ 14:39:28 ] [ execute ]add()
+DEBUG: [ Jiechengkeji ] [ 14:39:28 ] [ sql ]INSERT INTO user (chiefUserId, adminId, isNewUser, phone, password, openid, status, inviteCode) 
+        VALUES('0', '0', '0', '18369171890', 'ec878b54e20a467b7f1c8e46f14d21c4', '-1', '1', '0007')
+SQL: INSERT INTO user (chiefUserId, adminId, isNewUser, phone, password, openid, status, inviteCode) 
+        VALUES('0', '0', '0', '18369171890', 'ec878b54e20a467b7f1c8e46f14d21c4', '-1', '1', '0007') [ RunTime:0.0060s ]
+DEBUG: [ Jiechengkeji ] [ 14:39:28 ] [ res ]266385
+DEBUG: [ Jiechengkeji ] [ 14:39:28 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 14:39:28 ] [ result ][{"id":"266385"}]
+DEBUG: [ Jiechengkeji ] [ 14:39:28 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 14:39:28 ] [ querySql ]SELECT * FROM user WHERE  1=1 AND id='266385' ORDER BY
+        id DESC
+SQL: SELECT * FROM user WHERE  1=1 AND id='266385' ORDER BY
+        id DESC [ RunTime:0.0070s ]
+DEBUG: [ Jiechengkeji ] [ 14:39:28 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 14:39:28 ] [ querySql ]SELECT * FROM wallet WHERE  1=1  AND userId='266385'  ORDER BY
+        id DESC
+SQL: SELECT * FROM wallet WHERE  1=1  AND userId='266385'  ORDER BY
+        id DESC [ RunTime:0.1300s ]
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ excute ]add()
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ sql ]INSERT INTO wallet(userId, companyId, adminId, money, gains, income, status) 
+        VALUES('266385', '0', '0', '0', '0', '0', '1')
+SQL: INSERT INTO wallet(userId, companyId, adminId, money, gains, income, status) 
+        VALUES('266385', '0', '0', '0', '0', '0', '1') [ RunTime:0.0060s ]
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ result ]72077
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0060s ]
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ result ][{"id":"72077"}]
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ querySql ]SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0007'
+SQL: SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0007' [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ result ][{"chiefid":"1583"}]
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ executeSql ]UPDATE ac_chief_fans SET bind='1' WHERE openid='-1'
+SQL: UPDATE ac_chief_fans SET bind='1' WHERE openid='-1' [ RunTime:0.0070s ]
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ result ]0
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ executeSql ]UPDATE ac_chief SET register=register+1 WHERE id=1583
+SQL: UPDATE ac_chief SET register=register+1 WHERE id=1583 [ RunTime:0.0140s ]
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ result ]1
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ querySql ]SELECT * FROM ac_chief WHERE  1=1 AND id='1583' ORDER BY
+        id DESC
+SQL: SELECT * FROM ac_chief WHERE  1=1 AND id='1583' ORDER BY
+        id DESC [ RunTime:0.0070s ]
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ querySql ]SELECT * FROM ac_chief WHERE  1=1 AND id='1583' ORDER BY
+        id DESC
+SQL: SELECT * FROM ac_chief WHERE  1=1 AND id='1583' ORDER BY
+        id DESC [ RunTime:0.0070s ]
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ querySql ]SELECT * FROM user WHERE  1=1 AND id='265868' ORDER BY
+        id DESC
+SQL: SELECT * FROM user WHERE  1=1 AND id='265868' ORDER BY
+        id DESC [ RunTime:0.0070s ]
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ execute ]update()
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ executeSql ]UPDATE user SET chiefUserId='265868', adminId='10', isNewUser='0' WHERE id=266385
+SQL: UPDATE user SET chiefUserId='265868', adminId='10', isNewUser='0' WHERE id=266385 [ RunTime:0.0060s ]
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ result ]1
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ querySql ]SELECT * FROM wallet WHERE  1=1  AND userId='265868'  ORDER BY
+        id DESC
+SQL: SELECT * FROM wallet WHERE  1=1  AND userId='265868'  ORDER BY
+        id DESC [ RunTime:0.1390s ]
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ execute ]add()
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ sql ]INSERT INTO wallet_order(fromWalletId, toWalletId, money, type,
+        orderType, businessId, orderId, remitter, remitterName, payee, payeeName, status, remark)VALUES(
+        '72077', '71822', '40', '1', '101', '0', '',
+        '', '', '', '', '2', '推广收益')
+SQL: INSERT INTO wallet_order(fromWalletId, toWalletId, money, type,
+        orderType, businessId, orderId, remitter, remitterName, payee, payeeName, status, remark)VALUES(
+        '72077', '71822', '40', '1', '101', '0', '',
+        '', '', '', '', '2', '推广收益') [ RunTime:0.0060s ]
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ result ]1213
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0060s ]
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ result ][{"id":"1213"}]
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ execute ]DAO-update()
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ setSql ]money=money+40, 
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ executeSql ]UPDATE wallet SET money=money+40 WHERE id=71822
+SQL: UPDATE wallet SET money=money+40 WHERE id=71822 [ RunTime:0.0050s ]
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ result ]1
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ querySql ]SELECT * FROM wallet WHERE  1=1  AND adminId='10'  ORDER BY
+        id DESC
+SQL: SELECT * FROM wallet WHERE  1=1  AND adminId='10'  ORDER BY
+        id DESC [ RunTime:0.1490s ]
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ execute ]add()
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ sql ]INSERT INTO wallet_order(fromWalletId, toWalletId, money, type,
+        orderType, businessId, orderId, remitter, remitterName, payee, payeeName, status, remark)VALUES(
+        '72077', '129', '20', '1', '101', '0', '',
+        '', '', '', '', '2', '推广收益')
+SQL: INSERT INTO wallet_order(fromWalletId, toWalletId, money, type,
+        orderType, businessId, orderId, remitter, remitterName, payee, payeeName, status, remark)VALUES(
+        '72077', '129', '20', '1', '101', '0', '',
+        '', '', '', '', '2', '推广收益') [ RunTime:0.0060s ]
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ result ]1214
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0060s ]
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ result ][{"id":"1214"}]
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ execute ]DAO-update()
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ setSql ]money=money+20, 
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ executeSql ]UPDATE wallet SET money=money+20 WHERE id=129
+SQL: UPDATE wallet SET money=money+20 WHERE id=129 [ RunTime:0.0060s ]
+DEBUG: [ Jiechengkeji ] [ 14:39:29 ] [ result ]1
+
+[ 2017-01-09T15:08:55+08:00 ] 127.0.0.1 /index.php/Home/User/signUp
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ data ]{"data":"{\"phone\":\"18369171890\",\"password\":\"aq123456\",\"inviteCode\":\"0007\",\"userId\":\"266385\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/signUp"}
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","inviteCode":"0007","userId":"266385"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/signUp')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","inviteCode":"0007","userId":"266385"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/signUp') [ RunTime:0.0150s ]
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ execute ]doSignUp()
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ phone ]18369171890
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ password ]aq123456
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ captcha ]
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ inviteCode ]0007
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ md5(password) ]ec878b54e20a467b7f1c8e46f14d21c4
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 300 行.
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ args ]{"username":"\u5c0f\u841d\u535c","phone":"18369171890","password":"ec878b54e20a467b7f1c8e46f14d21c4","openid":-1,"status":1,"inviteCode":"0007"}
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ execute ]signUp()
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ querySql ]SELECT * FROM user WHERE  1=1 AND phone='18369171890' ORDER BY
+        id DESC
+SQL: SELECT * FROM user WHERE  1=1 AND phone='18369171890' ORDER BY
+        id DESC [ RunTime:0.2210s ]
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ execute ]add()
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ sql ]INSERT INTO user (chiefUserId, adminId, isNewUser, phone, password, openid, status, inviteCode) 
+        VALUES('0', '0', '0', '18369171890', 'ec878b54e20a467b7f1c8e46f14d21c4', '-1', '1', '0007')
+SQL: INSERT INTO user (chiefUserId, adminId, isNewUser, phone, password, openid, status, inviteCode) 
+        VALUES('0', '0', '0', '18369171890', 'ec878b54e20a467b7f1c8e46f14d21c4', '-1', '1', '0007') [ RunTime:0.0140s ]
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ res ]266386
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0150s ]
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ result ][{"id":"266386"}]
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ querySql ]SELECT * FROM user WHERE  1=1 AND id='266386' ORDER BY
+        id DESC
+SQL: SELECT * FROM user WHERE  1=1 AND id='266386' ORDER BY
+        id DESC [ RunTime:0.0170s ]
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ querySql ]SELECT * FROM wallet WHERE  1=1  AND userId='266386'  ORDER BY
+        id DESC
+SQL: SELECT * FROM wallet WHERE  1=1  AND userId='266386'  ORDER BY
+        id DESC [ RunTime:0.1350s ]
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ excute ]add()
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ sql ]INSERT INTO wallet(userId, companyId, adminId, money, gains, income, status) 
+        VALUES('266386', '0', '0', '0', '0', '0', '1')
+SQL: INSERT INTO wallet(userId, companyId, adminId, money, gains, income, status) 
+        VALUES('266386', '0', '0', '0', '0', '0', '1') [ RunTime:0.0140s ]
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ result ]72078
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0160s ]
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ result ][{"id":"72078"}]
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ querySql ]SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0007'
+SQL: SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0007' [ RunTime:0.0140s ]
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ result ][{"chiefid":"1583"}]
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ executeSql ]UPDATE ac_chief_fans SET bind='1' WHERE openid='-1'
+SQL: UPDATE ac_chief_fans SET bind='1' WHERE openid='-1' [ RunTime:0.0150s ]
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ result ]0
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ executeSql ]UPDATE ac_chief SET register=register+1 WHERE id=1583
+SQL: UPDATE ac_chief SET register=register+1 WHERE id=1583 [ RunTime:0.0160s ]
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ result ]1
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ querySql ]SELECT * FROM ac_chief WHERE  1=1 AND id='1583' ORDER BY
+        id DESC
+SQL: SELECT * FROM ac_chief WHERE  1=1 AND id='1583' ORDER BY
+        id DESC [ RunTime:0.0150s ]
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ querySql ]SELECT * FROM ac_chief WHERE  1=1 AND id='1583' ORDER BY
+        id DESC
+SQL: SELECT * FROM ac_chief WHERE  1=1 AND id='1583' ORDER BY
+        id DESC [ RunTime:0.0150s ]
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ querySql ]SELECT * FROM user WHERE  1=1 AND id='265868' ORDER BY
+        id DESC
+SQL: SELECT * FROM user WHERE  1=1 AND id='265868' ORDER BY
+        id DESC [ RunTime:0.0160s ]
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ execute ]update()
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ executeSql ]UPDATE user SET chiefUserId='265868', adminId='10', isNewUser='0' WHERE id=266386
+SQL: UPDATE user SET chiefUserId='265868', adminId='10', isNewUser='0' WHERE id=266386 [ RunTime:0.0150s ]
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ result ]1
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 15:08:54 ] [ querySql ]SELECT * FROM wallet WHERE  1=1  AND userId='265868'  ORDER BY
+        id DESC
+SQL: SELECT * FROM wallet WHERE  1=1  AND userId='265868'  ORDER BY
+        id DESC [ RunTime:0.1340s ]
+DEBUG: [ Jiechengkeji ] [ 15:08:55 ] [ execute ]add()
+DEBUG: [ Jiechengkeji ] [ 15:08:55 ] [ sql ]INSERT INTO wallet_order(fromWalletId, toWalletId, money, type,
+        orderType, businessId, orderId, remitter, remitterName, payee, payeeName, status, remark)VALUES(
+        '72078', '71822', '40', '1', '101', '0', '',
+        '', '', '', '', '2', '推广收益')
+SQL: INSERT INTO wallet_order(fromWalletId, toWalletId, money, type,
+        orderType, businessId, orderId, remitter, remitterName, payee, payeeName, status, remark)VALUES(
+        '72078', '71822', '40', '1', '101', '0', '',
+        '', '', '', '', '2', '推广收益') [ RunTime:0.0150s ]
+DEBUG: [ Jiechengkeji ] [ 15:08:55 ] [ result ]1215
+DEBUG: [ Jiechengkeji ] [ 15:08:55 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0140s ]
+DEBUG: [ Jiechengkeji ] [ 15:08:55 ] [ result ][{"id":"1215"}]
+DEBUG: [ Jiechengkeji ] [ 15:08:55 ] [ execute ]DAO-update()
+DEBUG: [ Jiechengkeji ] [ 15:08:55 ] [ setSql ]money=money+40, 
+DEBUG: [ Jiechengkeji ] [ 15:08:55 ] [ executeSql ]UPDATE wallet SET money=money+40 WHERE id=71822
+SQL: UPDATE wallet SET money=money+40 WHERE id=71822 [ RunTime:0.0150s ]
+DEBUG: [ Jiechengkeji ] [ 15:08:55 ] [ result ]1
+DEBUG: [ Jiechengkeji ] [ 15:08:55 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 15:08:55 ] [ querySql ]SELECT * FROM wallet WHERE  1=1  AND adminId='10'  ORDER BY
+        id DESC
+SQL: SELECT * FROM wallet WHERE  1=1  AND adminId='10'  ORDER BY
+        id DESC [ RunTime:0.1320s ]
+DEBUG: [ Jiechengkeji ] [ 15:08:55 ] [ execute ]add()
+DEBUG: [ Jiechengkeji ] [ 15:08:55 ] [ sql ]INSERT INTO wallet_order(fromWalletId, toWalletId, money, type,
+        orderType, businessId, orderId, remitter, remitterName, payee, payeeName, status, remark)VALUES(
+        '72078', '129', '20', '1', '101', '0', '',
+        '', '', '', '', '2', '推广收益')
+SQL: INSERT INTO wallet_order(fromWalletId, toWalletId, money, type,
+        orderType, businessId, orderId, remitter, remitterName, payee, payeeName, status, remark)VALUES(
+        '72078', '129', '20', '1', '101', '0', '',
+        '', '', '', '', '2', '推广收益') [ RunTime:0.0150s ]
+DEBUG: [ Jiechengkeji ] [ 15:08:55 ] [ result ]1216
+DEBUG: [ Jiechengkeji ] [ 15:08:55 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0140s ]
+DEBUG: [ Jiechengkeji ] [ 15:08:55 ] [ result ][{"id":"1216"}]
+DEBUG: [ Jiechengkeji ] [ 15:08:55 ] [ execute ]DAO-update()
+DEBUG: [ Jiechengkeji ] [ 15:08:55 ] [ setSql ]money=money+20, 
+DEBUG: [ Jiechengkeji ] [ 15:08:55 ] [ executeSql ]UPDATE wallet SET money=money+20 WHERE id=129
+SQL: UPDATE wallet SET money=money+20 WHERE id=129 [ RunTime:0.0150s ]
+DEBUG: [ Jiechengkeji ] [ 15:08:55 ] [ result ]1
+
+[ 2017-01-09T15:09:47+08:00 ] 127.0.0.1 /index.php/Home/User/signUp
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+DEBUG: [ Jiechengkeji ] [ 15:09:46 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 15:09:46 ] [ data ]{"data":"{\"phone\":\"18369171890\",\"password\":\"aq123456\",\"inviteCode\":\"0007\",\"userId\":\"266386\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/signUp"}
+DEBUG: [ Jiechengkeji ] [ 15:09:46 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","inviteCode":"0007","userId":"266386"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/signUp')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","inviteCode":"0007","userId":"266386"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/signUp') [ RunTime:0.0100s ]
+DEBUG: [ Jiechengkeji ] [ 15:09:46 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 15:09:46 ] [ execute ]doSignUp()
+DEBUG: [ Jiechengkeji ] [ 15:09:46 ] [ phone ]18369171890
+DEBUG: [ Jiechengkeji ] [ 15:09:46 ] [ password ]aq123456
+DEBUG: [ Jiechengkeji ] [ 15:09:46 ] [ captcha ]
+DEBUG: [ Jiechengkeji ] [ 15:09:46 ] [ inviteCode ]0007
+DEBUG: [ Jiechengkeji ] [ 15:09:46 ] [ md5(password) ]ec878b54e20a467b7f1c8e46f14d21c4
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 300 行.
+DEBUG: [ Jiechengkeji ] [ 15:09:46 ] [ args ]{"username":"\u5c0f\u841d\u535c","phone":"18369171890","password":"ec878b54e20a467b7f1c8e46f14d21c4","openid":-1,"status":1,"inviteCode":"0007"}
+DEBUG: [ Jiechengkeji ] [ 15:09:46 ] [ execute ]signUp()
+DEBUG: [ Jiechengkeji ] [ 15:09:46 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 15:09:46 ] [ querySql ]SELECT * FROM user WHERE  1=1 AND phone='18369171890' ORDER BY
+        id DESC
+SQL: SELECT * FROM user WHERE  1=1 AND phone='18369171890' ORDER BY
+        id DESC [ RunTime:0.2040s ]
+DEBUG: [ Jiechengkeji ] [ 15:09:47 ] [ execute ]add()
+DEBUG: [ Jiechengkeji ] [ 15:09:47 ] [ sql ]INSERT INTO user (chiefUserId, adminId, isNewUser, phone, password, openid, status, inviteCode) 
+        VALUES('0', '0', '0', '18369171890', 'ec878b54e20a467b7f1c8e46f14d21c4', '-1', '1', '0007')
+SQL: INSERT INTO user (chiefUserId, adminId, isNewUser, phone, password, openid, status, inviteCode) 
+        VALUES('0', '0', '0', '18369171890', 'ec878b54e20a467b7f1c8e46f14d21c4', '-1', '1', '0007') [ RunTime:0.0100s ]
+DEBUG: [ Jiechengkeji ] [ 15:09:47 ] [ res ]266387
+DEBUG: [ Jiechengkeji ] [ 15:09:47 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 15:09:47 ] [ result ][{"id":"266387"}]
+DEBUG: [ Jiechengkeji ] [ 15:09:47 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 15:09:47 ] [ querySql ]SELECT * FROM user WHERE  1=1 AND id='266387' ORDER BY
+        id DESC
+SQL: SELECT * FROM user WHERE  1=1 AND id='266387' ORDER BY
+        id DESC [ RunTime:0.0100s ]
+DEBUG: [ Jiechengkeji ] [ 15:09:47 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 15:09:47 ] [ querySql ]SELECT * FROM wallet WHERE  1=1  AND userId='266387'  ORDER BY
+        id DESC
+SQL: SELECT * FROM wallet WHERE  1=1  AND userId='266387'  ORDER BY
+        id DESC [ RunTime:0.1310s ]
+DEBUG: [ Jiechengkeji ] [ 15:09:47 ] [ excute ]add()
+DEBUG: [ Jiechengkeji ] [ 15:09:47 ] [ sql ]INSERT INTO wallet(userId, companyId, adminId, money, gains, income, status) 
+        VALUES('266387', '0', '0', '0', '0', '0', '1')
+SQL: INSERT INTO wallet(userId, companyId, adminId, money, gains, income, status) 
+        VALUES('266387', '0', '0', '0', '0', '0', '1') [ RunTime:0.0090s ]
+DEBUG: [ Jiechengkeji ] [ 15:09:47 ] [ result ]72079
+DEBUG: [ Jiechengkeji ] [ 15:09:47 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 15:09:47 ] [ result ][{"id":"72079"}]
+
+[ 2017-01-09T15:10:08+08:00 ] 127.0.0.1 /index.php/Home/User/signUp
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 15:10:07 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 15:10:07 ] [ data ]{"data":"{\"phone\":\"18369171890\",\"password\":\"aq123456\",\"inviteCode\":\"0007\",\"userId\":\"266386\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/signUp"}
+DEBUG: [ Jiechengkeji ] [ 15:10:07 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","inviteCode":"0007","userId":"266386"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/signUp')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","inviteCode":"0007","userId":"266386"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/signUp') [ RunTime:0.0130s ]
+DEBUG: [ Jiechengkeji ] [ 15:10:07 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 15:10:07 ] [ execute ]doSignUp()
+DEBUG: [ Jiechengkeji ] [ 15:10:07 ] [ phone ]18369171890
+DEBUG: [ Jiechengkeji ] [ 15:10:07 ] [ password ]aq123456
+DEBUG: [ Jiechengkeji ] [ 15:10:07 ] [ captcha ]
+DEBUG: [ Jiechengkeji ] [ 15:10:07 ] [ inviteCode ]0007
+DEBUG: [ Jiechengkeji ] [ 15:10:07 ] [ md5(password) ]ec878b54e20a467b7f1c8e46f14d21c4
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 300 行.
+DEBUG: [ Jiechengkeji ] [ 15:10:07 ] [ args ]{"username":"\u5c0f\u841d\u535c","phone":"18369171890","password":"ec878b54e20a467b7f1c8e46f14d21c4","openid":-1,"status":1,"inviteCode":"0007"}
+DEBUG: [ Jiechengkeji ] [ 15:10:07 ] [ execute ]signUp()
+DEBUG: [ Jiechengkeji ] [ 15:10:07 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 15:10:07 ] [ querySql ]SELECT * FROM user WHERE  1=1 AND phone='18369171890' ORDER BY
+        id DESC
+SQL: SELECT * FROM user WHERE  1=1 AND phone='18369171890' ORDER BY
+        id DESC [ RunTime:0.2130s ]
+DEBUG: [ Jiechengkeji ] [ 15:10:08 ] [ execute ]add()
+DEBUG: [ Jiechengkeji ] [ 15:10:08 ] [ sql ]INSERT INTO user (chiefUserId, adminId, isNewUser, phone, password, openid, status, inviteCode) 
+        VALUES('0', '0', '0', '18369171890', 'ec878b54e20a467b7f1c8e46f14d21c4', '-1', '1', '0007')
+SQL: INSERT INTO user (chiefUserId, adminId, isNewUser, phone, password, openid, status, inviteCode) 
+        VALUES('0', '0', '0', '18369171890', 'ec878b54e20a467b7f1c8e46f14d21c4', '-1', '1', '0007') [ RunTime:0.0090s ]
+DEBUG: [ Jiechengkeji ] [ 15:10:08 ] [ res ]266388
+DEBUG: [ Jiechengkeji ] [ 15:10:08 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0090s ]
+DEBUG: [ Jiechengkeji ] [ 15:10:08 ] [ result ][{"id":"266388"}]
+DEBUG: [ Jiechengkeji ] [ 15:10:08 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 15:10:08 ] [ querySql ]SELECT * FROM user WHERE  1=1 AND id='266388' ORDER BY
+        id DESC
+SQL: SELECT * FROM user WHERE  1=1 AND id='266388' ORDER BY
+        id DESC [ RunTime:0.0110s ]
+DEBUG: [ Jiechengkeji ] [ 15:10:08 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 15:10:08 ] [ querySql ]SELECT * FROM wallet WHERE  1=1  AND userId='266388'  ORDER BY
+        id DESC
+SQL: SELECT * FROM wallet WHERE  1=1  AND userId='266388'  ORDER BY
+        id DESC [ RunTime:0.1240s ]
+DEBUG: [ Jiechengkeji ] [ 15:10:08 ] [ excute ]add()
+DEBUG: [ Jiechengkeji ] [ 15:10:08 ] [ sql ]INSERT INTO wallet(userId, companyId, adminId, money, gains, income, status) 
+        VALUES('266388', '0', '0', '0', '0', '0', '1')
+SQL: INSERT INTO wallet(userId, companyId, adminId, money, gains, income, status) 
+        VALUES('266388', '0', '0', '0', '0', '0', '1') [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 15:10:08 ] [ result ]72080
+DEBUG: [ Jiechengkeji ] [ 15:10:08 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 15:10:08 ] [ result ][{"id":"72080"}]
+
+[ 2017-01-09T15:36:30+08:00 ] 127.0.0.1 /index.php/Home/User/signUp
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 15:36:28 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 15:36:28 ] [ data ]{"data":"{\"phone\":\"18369171890\",\"password\":\"aq123456\",\"inviteCode\":\"0007\",\"userId\":\"266386\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/signUp"}
+DEBUG: [ Jiechengkeji ] [ 15:36:28 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","inviteCode":"0007","userId":"266386"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/signUp')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","inviteCode":"0007","userId":"266386"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/signUp') [ RunTime:0.0100s ]
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ execute ]doSignUp()
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ phone ]18369171890
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ password ]aq123456
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ captcha ]
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ inviteCode ]0007
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ md5(password) ]ec878b54e20a467b7f1c8e46f14d21c4
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 300 行.
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ args ]{"username":"\u5c0f\u841d\u535c","phone":"18369171890","password":"ec878b54e20a467b7f1c8e46f14d21c4","openid":-1,"status":1,"inviteCode":"0007"}
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ execute ]signUp()
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ querySql ]SELECT * FROM user WHERE  1=1 AND phone='18369171890' ORDER BY
+        id DESC
+SQL: SELECT * FROM user WHERE  1=1 AND phone='18369171890' ORDER BY
+        id DESC [ RunTime:0.2290s ]
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ execute ]add()
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ sql ]INSERT INTO user (chiefUserId, adminId, isNewUser, phone, password, openid, status, inviteCode) 
+        VALUES('0', '0', '0', '18369171890', 'ec878b54e20a467b7f1c8e46f14d21c4', '-1', '1', '0007')
+SQL: INSERT INTO user (chiefUserId, adminId, isNewUser, phone, password, openid, status, inviteCode) 
+        VALUES('0', '0', '0', '18369171890', 'ec878b54e20a467b7f1c8e46f14d21c4', '-1', '1', '0007') [ RunTime:0.0160s ]
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ res ]266389
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0160s ]
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ result ][{"id":"266389"}]
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ querySql ]SELECT * FROM user WHERE  1=1 AND id='266389' ORDER BY
+        id DESC
+SQL: SELECT * FROM user WHERE  1=1 AND id='266389' ORDER BY
+        id DESC [ RunTime:0.0140s ]
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ querySql ]SELECT * FROM wallet WHERE  1=1  AND userId='266389'  ORDER BY
+        id DESC
+SQL: SELECT * FROM wallet WHERE  1=1  AND userId='266389'  ORDER BY
+        id DESC [ RunTime:0.1380s ]
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ excute ]add()
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ sql ]INSERT INTO wallet(userId, companyId, adminId, money, gains, income, status) 
+        VALUES('266389', '0', '0', '0', '0', '0', '1')
+SQL: INSERT INTO wallet(userId, companyId, adminId, money, gains, income, status) 
+        VALUES('266389', '0', '0', '0', '0', '0', '1') [ RunTime:0.0210s ]
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ result ]72081
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ result ][{"id":"72081"}]
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ querySql ]SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0007'
+SQL: SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0007' [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ result ][{"chiefid":"1583"}]
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ executeSql ]UPDATE ac_chief_fans SET bind='1' WHERE openid='-1'
+SQL: UPDATE ac_chief_fans SET bind='1' WHERE openid='-1' [ RunTime:0.0100s ]
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ result ]0
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ executeSql ]UPDATE ac_chief SET register=register+1 WHERE id=1583
+SQL: UPDATE ac_chief SET register=register+1 WHERE id=1583 [ RunTime:0.0090s ]
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ result ]1
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ querySql ]SELECT * FROM ac_chief WHERE  1=1 AND id='1583' ORDER BY
+        id DESC
+SQL: SELECT * FROM ac_chief WHERE  1=1 AND id='1583' ORDER BY
+        id DESC [ RunTime:0.0120s ]
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ querySql ]SELECT * FROM ac_chief WHERE  1=1 AND id='1583' ORDER BY
+        id DESC
+SQL: SELECT * FROM ac_chief WHERE  1=1 AND id='1583' ORDER BY
+        id DESC [ RunTime:0.0100s ]
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ querySql ]SELECT * FROM user WHERE  1=1 AND id='265868' ORDER BY
+        id DESC
+SQL: SELECT * FROM user WHERE  1=1 AND id='265868' ORDER BY
+        id DESC [ RunTime:0.0100s ]
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ execute ]update()
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ executeSql ]UPDATE user SET chiefUserId='265868', adminId='10', isNewUser='0' WHERE id=266389
+SQL: UPDATE user SET chiefUserId='265868', adminId='10', isNewUser='0' WHERE id=266389 [ RunTime:0.0090s ]
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ result ]1
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ querySql ]SELECT * FROM wallet WHERE  1=1  AND userId='265868'  ORDER BY
+        id DESC
+SQL: SELECT * FROM wallet WHERE  1=1  AND userId='265868'  ORDER BY
+        id DESC [ RunTime:0.1300s ]
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ execute ]add()
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ sql ]INSERT INTO wallet_order(fromWalletId, toWalletId, money, type,
+        orderType, businessId, orderId, remitter, remitterName, payee, payeeName, status, remark)VALUES(
+        '72081', '71822', '40', '1', '101', '0', '',
+        '', '', '', '', '2', '推广收益')
+SQL: INSERT INTO wallet_order(fromWalletId, toWalletId, money, type,
+        orderType, businessId, orderId, remitter, remitterName, payee, payeeName, status, remark)VALUES(
+        '72081', '71822', '40', '1', '101', '0', '',
+        '', '', '', '', '2', '推广收益') [ RunTime:0.0120s ]
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ result ]1217
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0100s ]
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ result ][{"id":"1217"}]
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ execute ]DAO-update()
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ setSql ]money=money+40, 
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ executeSql ]UPDATE wallet SET money=money+40 WHERE id=71822
+SQL: UPDATE wallet SET money=money+40 WHERE id=71822 [ RunTime:0.0120s ]
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ result ]1
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 15:36:29 ] [ querySql ]SELECT * FROM wallet WHERE  1=1  AND adminId='10'  ORDER BY
+        id DESC
+SQL: SELECT * FROM wallet WHERE  1=1  AND adminId='10'  ORDER BY
+        id DESC [ RunTime:0.1310s ]
+DEBUG: [ Jiechengkeji ] [ 15:36:30 ] [ execute ]add()
+DEBUG: [ Jiechengkeji ] [ 15:36:30 ] [ sql ]INSERT INTO wallet_order(fromWalletId, toWalletId, money, type,
+        orderType, businessId, orderId, remitter, remitterName, payee, payeeName, status, remark)VALUES(
+        '72081', '129', '20', '1', '101', '0', '',
+        '', '', '', '', '2', '推广收益')
+SQL: INSERT INTO wallet_order(fromWalletId, toWalletId, money, type,
+        orderType, businessId, orderId, remitter, remitterName, payee, payeeName, status, remark)VALUES(
+        '72081', '129', '20', '1', '101', '0', '',
+        '', '', '', '', '2', '推广收益') [ RunTime:0.0110s ]
+DEBUG: [ Jiechengkeji ] [ 15:36:30 ] [ result ]1218
+DEBUG: [ Jiechengkeji ] [ 15:36:30 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 15:36:30 ] [ result ][{"id":"1218"}]
+DEBUG: [ Jiechengkeji ] [ 15:36:30 ] [ execute ]DAO-update()
+DEBUG: [ Jiechengkeji ] [ 15:36:30 ] [ setSql ]money=money+20, 
+DEBUG: [ Jiechengkeji ] [ 15:36:30 ] [ executeSql ]UPDATE wallet SET money=money+20 WHERE id=129
+SQL: UPDATE wallet SET money=money+20 WHERE id=129 [ RunTime:0.0100s ]
+DEBUG: [ Jiechengkeji ] [ 15:36:30 ] [ result ]1
+
+[ 2017-01-09T16:53:47+08:00 ] 127.0.0.1 /index.php/Home/User/signUp
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ data ]{"data":"{\"phone\":\"18369171890\",\"password\":\"aq123456\",\"inviteCode\":\"0007\",\"userId\":\"266389\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/signUp"}
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","inviteCode":"0007","userId":"266389"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/signUp')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","inviteCode":"0007","userId":"266389"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/signUp') [ RunTime:0.0060s ]
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ execute ]doSignUp()
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ phone ]18369171890
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ password ]aq123456
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ captcha ]
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ inviteCode ]0007
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ md5(password) ]ec878b54e20a467b7f1c8e46f14d21c4
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 300 行.
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ args ]{"username":"\u5c0f\u841d\u535c","phone":"18369171890","password":"ec878b54e20a467b7f1c8e46f14d21c4","openid":-1,"status":1,"inviteCode":"0007"}
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ execute ]signUp()
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ querySql ]SELECT * FROM user WHERE  1=1 AND phone='18369171890' ORDER BY
+        id DESC
+SQL: SELECT * FROM user WHERE  1=1 AND phone='18369171890' ORDER BY
+        id DESC [ RunTime:0.2000s ]
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ execute ]add()
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ sql ]INSERT INTO user (chiefUserId, adminId, isNewUser, phone, password, openid, status, inviteCode) 
+        VALUES('0', '0', '0', '18369171890', 'ec878b54e20a467b7f1c8e46f14d21c4', '-1', '1', '0007')
+SQL: INSERT INTO user (chiefUserId, adminId, isNewUser, phone, password, openid, status, inviteCode) 
+        VALUES('0', '0', '0', '18369171890', 'ec878b54e20a467b7f1c8e46f14d21c4', '-1', '1', '0007') [ RunTime:0.0060s ]
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ res ]266390
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0060s ]
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ result ][{"id":"266390"}]
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ querySql ]SELECT * FROM user WHERE  1=1 AND id='266390' ORDER BY
+        id DESC
+SQL: SELECT * FROM user WHERE  1=1 AND id='266390' ORDER BY
+        id DESC [ RunTime:0.0060s ]
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ querySql ]SELECT * FROM wallet WHERE  1=1  AND userId='266390'  ORDER BY
+        id DESC
+SQL: SELECT * FROM wallet WHERE  1=1  AND userId='266390'  ORDER BY
+        id DESC [ RunTime:0.1300s ]
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ excute ]add()
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ sql ]INSERT INTO wallet(userId, companyId, adminId, money, gains, income, status) 
+        VALUES('266390', '0', '0', '0', '0', '0', '1')
+SQL: INSERT INTO wallet(userId, companyId, adminId, money, gains, income, status) 
+        VALUES('266390', '0', '0', '0', '0', '0', '1') [ RunTime:0.0050s ]
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ result ]72082
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0050s ]
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ result ][{"id":"72082"}]
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ querySql ]SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0007'
+SQL: SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0007' [ RunTime:0.0060s ]
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ result ][{"chiefid":"1583"}]
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ querySql ]SELECT * FROM ac_chief_fans WHERE  1=1 AND openid='-1' AND bind='0' ORDER BY
+        id DESC
+SQL: SELECT * FROM ac_chief_fans WHERE  1=1 AND openid='-1' AND bind='0' ORDER BY
+        id DESC [ RunTime:0.0050s ]
+NOTIC: [8] Undefined index: chiefid E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Dao\ChiefFansDao.class.php 第 24 行.
+DEBUG: [ Jiechengkeji ] [ 16:53:47 ] [ execSql ]UPDATE ac_chief_fans SET chiefId = , bind = 1 WHERE openid = '-1'
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ' bind = 1 WHERE openid = '-1'' at line 1
+ [ SQL语句 ] : UPDATE ac_chief_fans SET chiefId = , bind = 1 WHERE openid = '-1'
+
+[ 2017-01-09T16:54:33+08:00 ] 127.0.0.1 /index.php/Home/User/signUp
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ data ]{"data":"{\"phone\":\"18369171890\",\"password\":\"aq123456\",\"inviteCode\":\"0007\",\"userId\":\"266389\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/signUp"}
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","inviteCode":"0007","userId":"266389"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/signUp')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","inviteCode":"0007","userId":"266389"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/signUp') [ RunTime:0.0060s ]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ execute ]doSignUp()
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ phone ]18369171890
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ password ]aq123456
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ captcha ]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ inviteCode ]0007
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ md5(password) ]ec878b54e20a467b7f1c8e46f14d21c4
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 300 行.
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ args ]{"username":"\u5c0f\u841d\u535c","phone":"18369171890","password":"ec878b54e20a467b7f1c8e46f14d21c4","openid":-1,"status":1,"inviteCode":"0007"}
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ execute ]signUp()
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ querySql ]SELECT * FROM user WHERE  1=1 AND phone='18369171890' ORDER BY
+        id DESC
+SQL: SELECT * FROM user WHERE  1=1 AND phone='18369171890' ORDER BY
+        id DESC [ RunTime:0.2080s ]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ execute ]add()
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ sql ]INSERT INTO user (chiefUserId, adminId, isNewUser, phone, password, openid, status, inviteCode) 
+        VALUES('0', '0', '0', '18369171890', 'ec878b54e20a467b7f1c8e46f14d21c4', '-1', '1', '0007')
+SQL: INSERT INTO user (chiefUserId, adminId, isNewUser, phone, password, openid, status, inviteCode) 
+        VALUES('0', '0', '0', '18369171890', 'ec878b54e20a467b7f1c8e46f14d21c4', '-1', '1', '0007') [ RunTime:0.0060s ]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ res ]266391
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0050s ]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ result ][{"id":"266391"}]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ querySql ]SELECT * FROM user WHERE  1=1 AND id='266391' ORDER BY
+        id DESC
+SQL: SELECT * FROM user WHERE  1=1 AND id='266391' ORDER BY
+        id DESC [ RunTime:0.0070s ]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ querySql ]SELECT * FROM wallet WHERE  1=1  AND userId='266391'  ORDER BY
+        id DESC
+SQL: SELECT * FROM wallet WHERE  1=1  AND userId='266391'  ORDER BY
+        id DESC [ RunTime:0.1250s ]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ excute ]add()
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ sql ]INSERT INTO wallet(userId, companyId, adminId, money, gains, income, status) 
+        VALUES('266391', '0', '0', '0', '0', '0', '1')
+SQL: INSERT INTO wallet(userId, companyId, adminId, money, gains, income, status) 
+        VALUES('266391', '0', '0', '0', '0', '0', '1') [ RunTime:0.0060s ]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ result ]72083
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0060s ]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ result ][{"id":"72083"}]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ querySql ]SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0007'
+SQL: SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0007' [ RunTime:0.0050s ]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ result ][{"chiefid":"1583"}]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ querySql ]SELECT * FROM ac_chief_fans WHERE  1=1 AND openid='-1' AND bind='0' ORDER BY
+        id DESC
+SQL: SELECT * FROM ac_chief_fans WHERE  1=1 AND openid='-1' AND bind='0' ORDER BY
+        id DESC [ RunTime:0.0060s ]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ execSql ]UPDATE ac_chief_fans SET chiefId = 1583, bind = 1 WHERE openid = '-1'
+SQL: UPDATE ac_chief_fans SET chiefId = 1583, bind = 1 WHERE openid = '-1' [ RunTime:0.0060s ]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ execSql ]UPDATE ac_chief SET register=register+1 WHERE id = '1583'
+SQL: UPDATE ac_chief SET register=register+1 WHERE id = '1583' [ RunTime:0.0050s ]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ result ]1
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ querySql ]SELECT * FROM ac_chief WHERE  1=1 AND id='1583' ORDER BY
+        id DESC
+SQL: SELECT * FROM ac_chief WHERE  1=1 AND id='1583' ORDER BY
+        id DESC [ RunTime:0.0070s ]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ querySql ]SELECT * FROM ac_chief WHERE  1=1 AND id='1583' ORDER BY
+        id DESC
+SQL: SELECT * FROM ac_chief WHERE  1=1 AND id='1583' ORDER BY
+        id DESC [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ querySql ]SELECT * FROM user WHERE  1=1 AND id='265868' ORDER BY
+        id DESC
+SQL: SELECT * FROM user WHERE  1=1 AND id='265868' ORDER BY
+        id DESC [ RunTime:0.0070s ]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ execute ]update()
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ executeSql ]UPDATE user SET chiefUserId='265868', adminId='10', isNewUser='0' WHERE id=266391
+SQL: UPDATE user SET chiefUserId='265868', adminId='10', isNewUser='0' WHERE id=266391 [ RunTime:0.0070s ]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ result ]1
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ querySql ]SELECT * FROM wallet WHERE  1=1  AND userId='265868'  ORDER BY
+        id DESC
+SQL: SELECT * FROM wallet WHERE  1=1  AND userId='265868'  ORDER BY
+        id DESC [ RunTime:0.1250s ]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ execute ]add()
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ sql ]INSERT INTO wallet_order(fromWalletId, toWalletId, money, type,
+        orderType, businessId, orderId, remitter, remitterName, payee, payeeName, status, remark)VALUES(
+        '72083', '71822', '40', '1', '101', '0', '',
+        '', '', '', '', '2', '推广收益')
+SQL: INSERT INTO wallet_order(fromWalletId, toWalletId, money, type,
+        orderType, businessId, orderId, remitter, remitterName, payee, payeeName, status, remark)VALUES(
+        '72083', '71822', '40', '1', '101', '0', '',
+        '', '', '', '', '2', '推广收益') [ RunTime:0.0060s ]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ result ]1219
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0060s ]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ result ][{"id":"1219"}]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ execute ]DAO-update()
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ setSql ]money=money+40, 
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ executeSql ]UPDATE wallet SET money=money+40 WHERE id=71822
+SQL: UPDATE wallet SET money=money+40 WHERE id=71822 [ RunTime:0.0060s ]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ result ]1
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ querySql ]SELECT * FROM wallet WHERE  1=1  AND adminId='10'  ORDER BY
+        id DESC
+SQL: SELECT * FROM wallet WHERE  1=1  AND adminId='10'  ORDER BY
+        id DESC [ RunTime:0.1400s ]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ execute ]add()
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ sql ]INSERT INTO wallet_order(fromWalletId, toWalletId, money, type,
+        orderType, businessId, orderId, remitter, remitterName, payee, payeeName, status, remark)VALUES(
+        '72083', '129', '20', '1', '101', '0', '',
+        '', '', '', '', '2', '推广收益')
+SQL: INSERT INTO wallet_order(fromWalletId, toWalletId, money, type,
+        orderType, businessId, orderId, remitter, remitterName, payee, payeeName, status, remark)VALUES(
+        '72083', '129', '20', '1', '101', '0', '',
+        '', '', '', '', '2', '推广收益') [ RunTime:0.0050s ]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ result ]1220
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0050s ]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ result ][{"id":"1220"}]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ execute ]DAO-update()
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ setSql ]money=money+20, 
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ executeSql ]UPDATE wallet SET money=money+20 WHERE id=129
+SQL: UPDATE wallet SET money=money+20 WHERE id=129 [ RunTime:0.0060s ]
+DEBUG: [ Jiechengkeji ] [ 16:54:33 ] [ result ]1
+
+[ 2017-01-09T16:56:02+08:00 ] 127.0.0.1 /index.php/Home/User/signUp
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 16:56:02 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 16:56:02 ] [ data ]{"data":"{\"phone\":\"18369171890\",\"password\":\"aq123456\",\"inviteCode\":\"0007\",\"userId\":\"266391\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/signUp"}
+DEBUG: [ Jiechengkeji ] [ 16:56:02 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","inviteCode":"0007","userId":"266391"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/signUp')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","inviteCode":"0007","userId":"266391"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/signUp') [ RunTime:0.0070s ]
+DEBUG: [ Jiechengkeji ] [ 16:56:02 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 16:56:02 ] [ execute ]doSignUp()
+DEBUG: [ Jiechengkeji ] [ 16:56:02 ] [ phone ]18369171890
+DEBUG: [ Jiechengkeji ] [ 16:56:02 ] [ password ]aq123456
+DEBUG: [ Jiechengkeji ] [ 16:56:02 ] [ captcha ]
+DEBUG: [ Jiechengkeji ] [ 16:56:02 ] [ inviteCode ]0007
+DEBUG: [ Jiechengkeji ] [ 16:56:02 ] [ md5(password) ]ec878b54e20a467b7f1c8e46f14d21c4
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 300 行.
+DEBUG: [ Jiechengkeji ] [ 16:56:02 ] [ args ]{"username":"\u5c0f\u841d\u535c","phone":"18369171890","password":"ec878b54e20a467b7f1c8e46f14d21c4","openid":-1,"status":1,"inviteCode":"0007"}
+DEBUG: [ Jiechengkeji ] [ 16:56:02 ] [ execute ]signUp()
+DEBUG: [ Jiechengkeji ] [ 16:56:02 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 16:56:02 ] [ querySql ]SELECT * FROM user WHERE  1=1 AND phone='18369171890' ORDER BY
+        id DESC
+SQL: SELECT * FROM user WHERE  1=1 AND phone='18369171890' ORDER BY
+        id DESC [ RunTime:0.2220s ]
+

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>萝卜兼职</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <script>
+            !function(a,b){function c(){var b=f.getBoundingClientRect().width;b/i>540&&(b=540*i);var c=b/10;f.style.fontSize=c+"px",k.rem=a.rem=c}var d,e=a.document,f=e.documentElement,g=e.querySelector('meta[name="viewport"]'),h=e.querySelector('meta[name="flexible"]'),i=0,j=0,k=b.flexible||(b.flexible={});if(g){console.warn("将根据已有的meta标签来设置缩放比例");var l=g.getAttribute("content").match(/initial\-scale=([\d\.]+)/);l&&(j=parseFloat(l[1]),i=parseInt(1/j))}else if(h){var m=h.getAttribute("content");if(m){var n=m.match(/initial\-dpr=([\d\.]+)/),o=m.match(/maximum\-dpr=([\d\.]+)/);n&&(i=parseFloat(n[1]),j=parseFloat((1/i).toFixed(2))),o&&(i=parseFloat(o[1]),j=parseFloat((1/i).toFixed(2)))}}if(!i&&!j){var p=(a.navigator.appVersion.match(/android/gi),a.navigator.appVersion.match(/iphone/gi)),q=a.devicePixelRatio;i=p?q>=3&&(!i||i>=3)?3:q>=2&&(!i||i>=2)?2:1:1,j=1/i}if(f.setAttribute("data-dpr",i),!g)if(g=e.createElement("meta"),g.setAttribute("name","viewport"),g.setAttribute("content","initial-scale="+j+", maximum-scale="+j+", minimum-scale="+j+", user-scalable=no"),f.firstElementChild)f.firstElementChild.appendChild(g);else{var r=e.createElement("div");r.appendChild(g),e.write(r.innerHTML)}a.addEventListener("resize",function(){clearTimeout(d),d=setTimeout(c,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(d),d=setTimeout(c,300))},!1),"complete"===e.readyState?e.body.style.fontSize=12*i+"px":e.addEventListener("DOMContentLoaded",function(){e.body.style.fontSize=12*i+"px"},!1),c(),k.dpr=a.dpr=i,k.refreshRem=c,k.rem2px=function(a){var b=parseFloat(a)*this.rem;return"string"==typeof a&&a.match(/rem$/)&&(b+="px"),b},k.px2rem=function(a){var b=parseFloat(a)/this.rem;return"string"==typeof a&&a.match(/px$/)&&(b+="rem"),b}}(window,window.lib||(window.lib={}));
+        </script>
+        <script>
+            var ROOT ="__ROOT__";
+            var APP_PATH = "__APP__";
+            var MOD_PATH = "__MODULE__";
+            var CON_PATH = "__CONTROLLER__";
+        </script>
+        <link rel="stylesheet" href="__PUBLIC__/chief/css/chief.min.css?t=1484275784744">
+    </head>
+    <body>
+        <div class="page-group">
+            <div class="page page-current" id="chief_myfollow">
+                <ul class="follow_list">
+                    <!-- <li>
+                        <img src="/Public/images/logo.png" alt="">
+                        <div>
+                            <h3>萝卜头</h3>
+                            <p>关注时间&thinsp;:&thinsp;<span>2016-09-02 15:38:15</span></p>
+                        </div>
+                    </li> -->
+                </ul>
+                <div class="nodata" style="display:none;">
+                    您还没有粉丝哦...<br>
+                    快去<a id="yaoqing" href="javascript:;">邀请</a>你的好朋友们吧~
+                </div>
+            </div>
+        </div>
+        <script type="text/html" id="tpl-follow_list">
+            {{each datas as data index}}
+                <li>
+                    <img src="{{data.headimgurl ? data.headimgurl : '/Public/images/logo.png'}}" alt="">
+                    <div>
+                        <h3>{{data.nickname || '某不知名的粉丝'}}</h3>
+                        <p>关注时间&thinsp;:&thinsp;<span>{{data.createtime}}</span></p>
+                    </div>
+                </li>
+            {{/each}}
+        </script>
+        <include file="Common/footer"/>          
+    </body>
+    <script>
+        var f = location.search.slice(location.search.indexOf('?f=') + 3);
+
+        $.ajax({
+            url: APP_PATH + '/Home/Chief/myfollow',
+            method: 'GET',
+            datatype: 'json',
+            success: function (res) {
+                if (res.code === 0) {
+                    location.replace(APP_PATH + '/Home/Chief/nofollow?f=' + f);
+                } else {
+                    var data = { datas: res.data.follow_list };
+                    $('.follow_list').html(template('tpl-follow_list', data));
+                }
+            }
+        });
+    </script>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>萝卜表单</title>
+        <include file="Common/header"/>
+    </head>
+    <body>
+        <div class="page-group">
+            <div class="page page-current" id="index">
+                <header class="bar bar-nav">
+                    <!-- <a class="button button-link button-nav pull-left" href="__APP__/home/Gp/cities">
+                        <span class="iconf iconf-location pos_i"></span><span class="location-info" data-cId='1'>威海</span>
+                    </a> -->
+                    <h1 class='title'>这个星期天去哪里玩呢？</h1>
+                    <!-- <a class="button button-link button-nav pull-right external" id='user-center-btn'>
+                        <span class="iconf iconf-user02"></span>
+                    </a> -->
+                </header>
+                <div class="content infinite-scroll infinite-scroll-bottom bg_white" id="indexScroll" data-distance="10">
+                    
+                    <!-- 轮播图 -->
+                    <div class="swiper-container" data-space-between="10">
+                    </div>
+
+                    <div class="wrap-form">
+                        <form action="">
+                            <div class="form-com form-desc">
+                                <div class="label">描述</div>
+                                <div class="form-content">
+                                    <p>这里是描述信息这里是描述信息这里是描述信息这里是描述信息这里是描述信息这里是描述信息这里是描述信息这里是描述信息这里是描述信息这里是描述</p>
+                                </div>
+                            </div>
+                            <!-- <div class="form-image">
+                                <div class="label">图片</div>
+                                <input type="file">
+                            </div> -->
+                            <div class="form-com form-text">
+                                <div class="label">文字</div>
+                                <div class="form-content">
+                                    <input type="text">
+                                </div>
+                            </div>
+                            <div class="form-com form-textarea">
+                                <div class="label">文本域</div>
+                                <div class="form-content">
+                                    <textarea name=""></textarea>
+                                </div>
+                            </div>
+                            <!-- <div class="form-radio">
+                                <div class="label">单选</div>
+                                <input type="radio">
+                            </div>
+                            <div class="form-select">
+                                <div class="label">多选</div>
+                                <select name="" id=""></select>
+                            </div>
+                            <div class="form-file">
+                                <div class="label">文件</div>
+                                <input type="file">
+                            </div> -->
+                        </form>
+                    </div>
+                    <div class="form-btn">
+                        确认提交
+                    </div>
+                </div>
+            </div>
+            <div class="panel-overlay"></div>
+        </div>
+
+        <!-- 模板-轮播图 -->
+        <script id="banner-list-tpl" type="text/html">
+            <div class="swiper-wrapper">
+                {{each banners as banner i}}
+                    <div class="swiper-slide">
+                        {{if banner.linkurl == '' }} 
+                        <!-- 取消轮播图的链接 -->
+                        <!-- <a href="javascript:void(0)"> -->
+                        <a>
+                            <img src="{{#banner.image}}" alt="{{#banner.id}}">
+                        </a>
+                        {{else}} 
+                        <!-- <a href="{{banner.linkurl}}"> -->
+                        <a href="{{#banner.linkurl}}" external>
+                            <img src="{{#banner.image}}" alt="{{#banner.id}}">
+                        </a>
+                        {{/if}}
+                    </div>
+                {{/each}}
+            </div>
+            <div class="swiper-pagination"></div>
+        </script>
+        <script id="form-desc" type="text/html">
+            
+        </script>
+        <script id="form-image" type="text/html">
+            
+        </script>
+        <script id="form-text" type="text/html">
+            
+        </script>
+        <script id="form-textarea" type="text/html">
+            
+        </script>
+        <script id="form-radio" type="text/html">
+            
+        </script>
+        <script id="form-select" type="text/html">
+            
+        </script>
+        <script id="form-file" type="text/html">
+            
+        </script>
+        <include file="Common/footer"/>
+    </body>
+    <script>
+        var TYPES = {
+            DESC: 0,
+            IMAGE: 1,
+            TEXT: 2,
+            TEXTAREA: 3,
+            RADIO: 4,
+            SELECT: 5,
+            FILE: 6
+        };
+
+        var form = document.forms[0];
+        function handleCOM(com) {
+            var type = com.type;
+            var typename;
+            var resultType;
+            for (typename in TYPES) {
+                if (TYPES[typename] === type) {
+                    resultType = typename;
+                    break;
+                }
+            }
+
+            form.append(template('form-' + resultType.toLowerCase(), com));
+        }
+
+        function initDefaultCity (fId){
+            $.ajax({
+                type: 'GET',
+                url: '__APP__/Home/Form/bannerList',
+                data: { "fId": fId },
+                dataType: 'json',
+                timeout: 3000,
+                context: $('.swiper-container'),
+                success: function(data){
+                    if(data.code) {
+                        var data = {
+                            "banners": data.data
+                        };
+                        var html = template('banner-list-tpl', data);
+                        this.html(html);
+                        var bannerLgt = data.banners.length;
+                        $(".swiper-container").swiper({
+                            pagination: (bannerLgt<= 1)?'':'.swiper-pagination',
+                            paginationClickable: true,
+                            spaceBetween: 0,
+                            centeredSlides: true,
+                            loop: (bannerLgt<= 1)?false:true,
+                            autoplay: 3000,
+                            autoplayDisableOnInteraction: false
+                        });
+                    } else {
+                        $('.swiper-container').hide();
+                    }
+                },
+                error: function(xhr, type){
+                    $('.swiper-container').hide();
+                }
+            });
+        }
+    </script>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{$realname}的二维码</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <script>
+            !function(a,b){function c(){var b=f.getBoundingClientRect().width;b/i>540&&(b=540*i);var c=b/10;f.style.fontSize=c+"px",k.rem=a.rem=c}var d,e=a.document,f=e.documentElement,g=e.querySelector('meta[name="viewport"]'),h=e.querySelector('meta[name="flexible"]'),i=0,j=0,k=b.flexible||(b.flexible={});if(g){console.warn("将根据已有的meta标签来设置缩放比例");var l=g.getAttribute("content").match(/initial\-scale=([\d\.]+)/);l&&(j=parseFloat(l[1]),i=parseInt(1/j))}else if(h){var m=h.getAttribute("content");if(m){var n=m.match(/initial\-dpr=([\d\.]+)/),o=m.match(/maximum\-dpr=([\d\.]+)/);n&&(i=parseFloat(n[1]),j=parseFloat((1/i).toFixed(2))),o&&(i=parseFloat(o[1]),j=parseFloat((1/i).toFixed(2)))}}if(!i&&!j){var p=(a.navigator.appVersion.match(/android/gi),a.navigator.appVersion.match(/iphone/gi)),q=a.devicePixelRatio;i=p?q>=3&&(!i||i>=3)?3:q>=2&&(!i||i>=2)?2:1:1,j=1/i}if(f.setAttribute("data-dpr",i),!g)if(g=e.createElement("meta"),g.setAttribute("name","viewport"),g.setAttribute("content","initial-scale="+j+", maximum-scale="+j+", minimum-scale="+j+", user-scalable=no"),f.firstElementChild)f.firstElementChild.appendChild(g);else{var r=e.createElement("div");r.appendChild(g),e.write(r.innerHTML)}a.addEventListener("resize",function(){clearTimeout(d),d=setTimeout(c,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(d),d=setTimeout(c,300))},!1),"complete"===e.readyState?e.body.style.fontSize=12*i+"px":e.addEventListener("DOMContentLoaded",function(){e.body.style.fontSize=12*i+"px"},!1),c(),k.dpr=a.dpr=i,k.refreshRem=c,k.rem2px=function(a){var b=parseFloat(a)*this.rem;return"string"==typeof a&&a.match(/rem$/)&&(b+="px"),b},k.px2rem=function(a){var b=parseFloat(a)/this.rem;return"string"==typeof a&&a.match(/px$/)&&(b+="rem"),b}}(window,window.lib||(window.lib={}));
+        </script>
+        <script>
+            var ROOT ="__ROOT__";
+            var APP_PATH = "__APP__";
+            var MOD_PATH = "__MODULE__";
+            var CON_PATH = "__CONTROLLER__";
+        </script>
+        <link rel="stylesheet" href="__PUBLIC__/chief/css/chief.min.css?t=1484275784744">
+        <style>
+            html, body {
+                overflow-y: hidden;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="chief_qrcode">
+            <div class="innerWrap">
+                <section>
+                    <img src="" id="head" alt="">
+                    <div>
+                        <h3>我是<span id="name">&nbsp;&nbsp;&nbsp;</span></h3>
+                        <p>我是<span class="fc_orange">萝卜兼职头领</span></p>
+                    </div>
+                </section>
+                <section>
+                    <img class="imger" src="" alt="">
+                </section>
+                <section>
+                    <p>长按此图，识别图中二维码!</p>
+                    <p>关注<span class="fc_green bold">萝卜兼职</span>,高薪职位天天有,<br>
+                    推广还能<span class="fc_green bold">赚钱</span>哦!</p>
+                </section>
+            </div>
+        </div>
+        <include file="Common/footer"/>         
+    </body>
+    <script>
+        var f = location.search.slice(location.search.indexOf('?f=') + 3), user_headimg = '__PUBLIC__/chief/images/default_head.png';
+
+        $.ajax({
+            method: 'GET',
+            url: APP_PATH + '/Home/Chief/qrcode?f=' + f,
+            datatype: 'json',
+            success: function (res) {
+                if (res) {
+                    console.log(res);
+                    res || (res = {});
+                    var chief_info = res.data.chief_info || {},
+                    wx_info = res.data.wx_info || {};
+
+                    if (chief_info.qr_path && chief_info.qr_path.length !== 0) {
+                        $('.imger')[0].src = chief_info.qr_path;
+                    }
+                    $('#head')[0].src = wx_info.headimgurl || user_headimg;
+                    var who = chief_info.realname || wx_info.nickname || '战斗的萝卜们';
+                    $('#name').html(who);
+
+                } else {
+                    $('#head')[0].src = user_headimg;
+                    $('#name').html('战斗的萝卜们');
+                }
+            }
+        });
+        function whenError() {
+            $('#head').attr('src', user_headimg);
+            console.log('图片出错的时候调用默认的图片');
+        }
+        $('#head').on('error', whenError);
+    </script>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>萝卜兼职</title>
+    	<include file="Common/header"/>
+    </head>
+    <body>
+        <div class="page-group">
+            <div class="page panel-left panel-cover" id="chooseProvince">
+                <header class="bar bar-nav">
+                    <a class="button button-link button-nav pull-left back toIndex">
+                        <span class="icon icon-left"></span>&nbsp;返回
+                    </a>
+                    <h1 class="title">选择城市</h1>
+                </header>
+                <div class="content">               
+                    <div class="wrapUl native-scroll wrapTabCity" id="wrapTabCity">
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="page panel-left panel-cover" id="chooseCity">
+                <header class="bar bar-nav">
+                    <a class="button button-link button-nav pull-left back toIndex" href="#index">
+                        <span class="icon icon-left"></span>&nbsp;返回
+                    </a>
+                    <h1 class="title">选择城市</h1>
+                </header>
+                <div class="content">               
+                    <div class="wrapUl native-scroll" id="wrapTabCity">
+                    </div>
+                </div>
+            </div> -->
+        </div>
+
+        <include file="Common/footer"/>  
+
+        <script id="province-list-tpl" type="text/html">
+            <ul>
+                {{each provinces as province i}}
+                    <li class="padd-20 pos_rela">
+                        <h3 class="pos_rela fc_orange">{{#province.name}}</h3>
+                        <ul class="bor_top">
+                        {{each province.data as city }}
+                            <a href="__APP__/Home/Index/index/cName/{{city.name}}/cId/{{city.id}}" class="external"><li class="padd-20 pos_rela fc_lightGray">{{#city.name}}</li></a>
+                        {{/each}}
+                        </ul>
+                    </li>
+                {{/each}}
+            </ul>
+        </script>
+
+        <script>
+        $(function () {
+
+            $(document).on("pageInit", "#chooseProvince", function(e, pageId, $page) {
+
+                $.ajax({
+
+                    type: 'POST',
+                    url: APP_PATH+'/Home/Gp/cityList',
+
+                    data: { "pId": '1' },
+                    dataType: 'json',
+                    timeout: 3000,
+
+                    context: $('#wrapTabCity'),
+
+                    success: function(data){
+
+                        if(data.code) {
+
+                            var data = {
+                                provinces: data.data
+                            };
+
+                            console.log(data);
+
+                            var html = template('province-list-tpl', data);
+                            this.html(html);
+
+                        } else {
+
+                            this.append("非常抱歉，暂无城市数据！");
+
+                        }
+                    },
+                    error: function(xhr, type){
+
+                        this.append("非常抱歉，服务器开小差了！");
+                        console.log("xhr", xhr);
+                        console.log("type", type);
+                    }
+                });
+
+            });
+
+            $(document).on("pageInit", "#chooseCity", function(e, pageId, $page) {
+                console.log("chooseCity");
+            }); 
+            
+            $.init();
+            console.log("execed init();");
+
+        });
+        </script>
+    </body>
+</html>

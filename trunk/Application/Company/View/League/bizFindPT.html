@@ -1,0 +1,94 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>萝卜兼职</title>
+        <include file="Common/header" />
+        <script>
+            'use strict';
+            var dpr, rem, scale;
+            var docEl = document.documentElement;
+            var fontEl = document.createElement('style');
+            scale = 1 / dpr;
+            dpr = window.devicePixelRatio || 1;
+            rem = docEl.clientWidth * dpr / 15;
+
+            docEl.firstElementChild.appendChild(fontEl);
+            fontEl.innerHTML = 'html{font-size:' + rem + 'px!important;}';
+        </script>
+        <style>
+            html, body {
+                background-color: #FEDE47;
+                font-size: calc(100vw / 7.5)!important;
+            }
+            .modal {
+              width: 5.4rem;
+              margin-left: -2.7rem;
+              border-radius: 0.14rem;
+            }
+            .toast {
+              border-radius: 0.4rem;
+              padding: 0 0.32rem;
+              height: 0.8rem;
+              line-height: 0.8rem;
+              font-size: 0.32rem;
+              white-space: nowrap;
+            }
+        </style>
+    </head>
+    <body>
+    	<div class="page  page-current bizFindPT" id="bizFindPT">
+            <header>萝卜兼职->靠谱的大学生兼职平台</header>
+            <section>
+                <h3>为商家提供&thinsp;:</h3>
+                <article>
+                    <div>免<br>费<br>项<br>目</div>
+                    <ul>
+                        <li>①免费的兼职信息发布平台；</li>
+                        <li>②免费的兼职报名短信提醒；</li>
+                        <li>③免费企业宣传平台。</li>
+                    </ul>
+                </article>
+                <article>
+                    <div>收<br>费<br>项<br>目</div>
+                    <ul>
+                        <li>①确保100%人员到岗，解决"放鸽子"问题； </li>
+                        <li>②岗前培训，解决兼职不专业的问题；</li>
+                        <li>③微信公众号广告服务，解决宣传无门路的问题；</li>
+                        <li>④专业领队，解决企业"盯人难"的问题。</li>
+                    </ul>
+                </article>
+            </section>
+            <section>
+                <form action="" enctype="multipart/form-data">
+                    <fieldset>
+                        <legend><img src="/Public/images/fillin.png" alt=""></legend>
+                        <div class="wrapform">
+                            <label for="linkman">联系人<span style="color:red">*</span></label>
+                            <input name="linkman" id="linkman" type="text">
+                            <label for="phone">电话<span style="color:red">*</span></label>
+                            <input name="phone" id="phone" type="tel">
+                            <label for="file">营业执照<span style="color:red">*</span></label>
+                            <div class="upload">
+                                <input id="file" name="file" accept="image/*" type="file">上传
+                            </div>
+                            <i class="upsuccess">✔</i>
+                        </div>
+                        <img src="/Public/images/submit.png" class="btn_sub">
+                    </fieldset>
+                </form>
+            </section>
+            <footer>
+                <img src="/Public/images/btn_call.png" class="btn_call">
+                <img src="/Public/images/btn_pt.png" class="btn_pt">
+            </footer>
+            <include file="Common/footer" />
+    	</div>        
+    </body>
+    <script src="__PUBLIC__/source/debug/scripts/company-league-formSubmit.js?t=1482911928945"></script>
+    <script type="text/javascript">
+        /* globals T, initT, $ */
+        'use strict';
+        var t = new T('/Company/League/apply');
+        initT(t, $('.btn_sub'), $('.btn_call'), $('.btn_pt'), $('#bizFindPT')[0]);
+    </script>
+</html>

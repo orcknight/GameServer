@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>萝卜兼职</title>
+        
+        <include file="Common/header"/>
+
+    </head>
+    <body>
+        <div class="page" style="display: block;">
+            <!--头部-->
+            <header class="bar bar-nav">
+            <a class="button button-link button-nav pull-left" href="#" data-panel="#">
+                <span class="icon icon-left"></span>
+               返回
+            </a>
+                <h1 class="title">完善信息</h1>
+            </header>
+            <div class="content wrapPerfectInfo" id="wrapPerfectInfo">
+                <!-- <div>
+                    <img src="/Public/images/bg_sign.jpg" alt="头部背景图片" class="img-responsive">
+                </div>  -->  
+                <form action="" method="post" class="form_perfectInfo">
+                    <div class="content-block f14 wrapRegCont list-block">
+                        
+                        <div class="row no-gutter  item-content">
+                            <div class="item-inner">
+                                <div class="col-25 text-left item-title pos_rela line_r">
+                                    姓&nbsp;&nbsp;名
+                                </div>
+                                <div class="col-75 item-input">
+                                    <input  id="" class="form-control gttv" type="text" name="phone" placeholder="请输入真实姓名" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-gutter  item-content">
+                            <div class="item-inner">
+                                <div class="col-25 text-left item-title pos_rela line_r">
+                                    性&nbsp;&nbsp;别
+                                </div>
+                                <div class="col-75 item-input tx_indent">
+                                    <input id="s_male" class="marg_left_10 marg_right_10" type="radio" name="sex" value="male" checked="checked" /><label for="s_male" class="marg_right_10">男</label>
+                                    <input id="s_female" class="marg_left_10 marg_right_10" type="radio" name="sex" value="female" /><label for="s_female" class="">女</label>
+                                </div>   
+                            </div>
+                        </div>
+                        <div class="row no-gutter item-content">
+                            <div class="item-inner">
+                                <div class="col-25 text-left item-title pos_rela line_r">
+                                    城&nbsp;&nbsp;市
+                                </div>
+                                <div class="col-75">
+                                    <div class="col-50 f_left selectProvince pos_rela item-input">
+                                        <select class="tx_indent">
+                                            <option value="点击选择省">点击选择省</option>
+                                            <option value="山东省">山东省</option>
+                                            <option value="山东省">山东省</option>
+                                            <option value="山东省">山东省</option>
+                                            <option value="山东省">山东省</option>
+                                        </select>
+                                        <span class="icon icon-right pos_arr"></span>
+                                    </div>
+                                    <div class="col-50 f_right selectCity pos_rela item-input">
+                                        <select class="tx_indent">
+                                            <option value="威海市">威海市</option>
+                                            <option value="青岛市" selected="selected">青岛市</option>
+                                            <option value="威海市">威海市</option>
+                                            <option value="威海市">威海市</option>
+                                            <option value="威海市">威海市</option>
+                                        </select>
+                                        <span class="icon icon-right pos_arr" style="right: -.45rem;"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-gutter item-content item-link">
+                            <div class="item-inner">
+                                <div class="col-25 text-left item-title pos_rela line_r">
+                                    学&nbsp;&nbsp;校
+                                </div>
+                                <div class="col-75 ">
+                                    <div class="f_left pos_rela selectSchool item-input">
+                                        <!-- <span class="fc_lightGray">点击选择学校</span> -->
+                                        <select class="tx_ellips tx_indent">
+                                            <option value="点击选择学校">点击选择学校</option>
+                                            <option value="山东省">山东省</option>
+                                            <option value="山东省">山东省</option>
+                                            <option value="山东省">山东省</option>
+                                            <option value="山东省">山东省</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-gutter selectClass  item-content item-link">
+                            <div class="item-inner">
+                                <div class="col-25 text-left pos_rela line_r">
+                                    年&nbsp;&nbsp;级
+                                </div>
+                                <div class="col-75 ">
+                                    <div class="f_left pos_rela tx_indent  item-input">
+                                        <select class="tx_indent">
+                                            <option value="点击选择年级">点击选择年级</option>
+                                            <option value="山东省">山东省</option>
+                                            <option value="山东省">山东省</option>
+                                            <option value="山东省">山东省</option>
+                                            <option value="山东省">山东省</option>
+                                        </select>
+                                    </div>
+                                </div>    
+                            </div>
+                            
+                        </div>
+                    </div>
+                </form>
+                <div class="content-block">
+                    <div class="row">
+                        <div class="col-100">
+                            <a id="" href="#" class="button button-big button_orange">提交</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tip_info text-center" style="display: none;"></div>
+        </div>
+
+    <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+
+    </body>
+</html>
+
+<script>
+
+    var time=60;
+    var intervalId;
+
+    $(document).ready(function () {
+        
+        //点击获取验证码的验证
+        $("#phone").bind("input propertychange", function () {
+
+            var tel = $("#phone").val(); //获取手机号
+            var telReg = !!tel.match(/^(0|86|17951)?(13[0-9]|15[012356789]|17[0-9]|18[0-9]|14[57])[0-9]{8}$/);
+            var wait = 60;
+
+            if (telReg) {
+
+                $('.repeat_send').removeClass('bg-gray');
+                $(".btn_send").removeAttr("disabled");
+
+                $('.repeat_send').unbind('click').click(function () {
+
+                    var verifyCode = $("input[name='verifyCode']").val();
+
+                    function time() {
+
+                        $('.btn_send').addClass('count');
+                        $('.btn_send').html(wait+ '秒后重发');
+
+                        if (wait == 0) {
+
+                            $('.btn_send').html('获取验证码');
+                            wait = 60;
+                            $('.btn_send').addClass('repeat_send');
+                            
+                            $('.btn_send').removeClass('bg-gray');
+                            $(".btn_send").removeAttr("disabled");
+                            return;
+
+                        } else {
+
+                            $('.btn_send').removeClass('repeat_send');
+                            wait--;
+                            $('.btn_send').addClass('bg-gray');
+                            $(".btn_send").attr("disabled","disabled");
+                            
+                            setTimeout(function () {
+                                time()
+                            }, 1000);
+
+                        }
+                    }
+
+                    time();
+
+                    $.ajax({
+                        type: 'POST',
+                        dataType: 'json',
+                        url: MOD_PATH + '/Tools/getCaptcha', 
+                        data: {
+                            "phone": tel,
+                            "verifyCode" : verifyCode,
+                            "type": 1    
+
+                        },
+                        success: function (data) {
+                            if (data.code == 0) {
+                                wait = 10;
+                                $('.btn_send').addClass('repeat_send');
+                                $(".btn_send").removeAttr("disabled");
+                                return;
+                            }else {
+                                $.toast(data.msg, 1000, "toast_orange");                           
+                            }
+                        },
+                        error: function () {
+                            $.toast("萝卜们太热情，服务器表示鸭梨很大！", 1000, "toast_orange");
+                        }
+                    });
+
+                });
+                
+            } else {
+
+                $('.repeat_send').addClass('bg-gray');
+                $(".btn_send").attr("disabled","disabled");
+                $('.repeat_send').unbind('click').click(function () {
+                    $.toast("请输入正确格式的号码", 1000, "toast_orange");
+                    return;
+                });
+
+            };
+        });
+
+        //点击重置密码按钮的验证
+        $("#btnResetPwd").unbind('click').bind('click',function () {
+
+            var smsCode = $("#phonecaptcha").val();
+            var newPwdTx = $("#newPwd").val();
+            var tel = $("#phone").val(); //获取手机号
+
+            var telReg = !!tel.match(/^(0|86|17951)?(13[0-9]|15[0-9]|17[0-9]|18[0-9]|14[57])[0-9]{8}$/);
+            if (!telReg) {
+                $.toast("请输入正确格式的号码", 1000, "toast_orange");   
+                return false;    
+            }
+
+            var regNum = /^\d+$/;
+            if ($("#phonecaptcha").val().length !=6 || !regNum.test($("#phonecaptcha").val())) { //验证6位纯数字
+                $.toast("请输入6位数字验证码", 1000, "toast_orange");                 
+                return false;
+            }    
+
+            // check password
+            // var reg=/^[\w]{6,16}$/; 
+            var reg=/^(([a-z]+[0-9]+)|([0-9]+[a-z]+))[a-z0-9]*$/i;
+            if(!reg.test($("#newPwd").val())){ //验证为6-16位数字加字母组合
+                $.toast("密码必须为8位的数字字母组合", 1000, "toast_orange");  
+                return false;
+
+            }                   
+
+            if (!$(".btn_send").hasClass('count')) {
+                $.toast("请获取验证码", 1000, "toast_orange");
+                return false;
+            }
+
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: MOD_PATH+'/user/resetPwd',
+                data: {
+                    "phone": tel,
+                    "captcha": smsCode,
+                    "password": newPwdTx
+                },
+                success: function (data) {
+                    if (data.code == 1) { //重置密码成功,跳转页面
+                        $.toast("重置密码成功!", 1000, "toast_orange");
+                        window.location.href = "/index.php";
+                    } else { //验证码的验证放在服务器端返回
+                        $("#phonecaptcha").val('');
+                         $.toast(data.msg, 1000, "toast_orange");
+                    }
+                },
+                error: function () {
+                    $.toast("萝卜们太热情，服务器表示鸭梨很大！", 1000, "toast_orange");
+                }
+
+            });
+
+        });
+
+    });
+
+</script>

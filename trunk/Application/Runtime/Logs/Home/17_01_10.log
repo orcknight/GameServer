@@ -1,0 +1,945 @@
+[ 2017-01-10T11:30:12+08:00 ] 127.0.0.1 /index.php/Home/User/setChiefInviteCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 11:30:12 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:30:12 ] [ data ]{"data":"{\"phone\":\"18369171890\",\"password\":\"aq123456\",\"chiefInviteCode\":\"0007\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/setChiefInviteCode"}
+DEBUG: [ Jiechengkeji ] [ 11:30:12 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0007"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setChiefInviteCode')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0007"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setChiefInviteCode') [ RunTime:0.0160s ]
+DEBUG: [ Jiechengkeji ] [ 11:30:12 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:30:12 ] [ execute ]setInviteCode()
+
+[ 2017-01-10T11:30:48+08:00 ] 127.0.0.1 /index.php/Home/User/signIn
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 11:30:48 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:30:48 ] [ data ]{"data":"{\"phone\":\"18369171890\",\"password\":\"aq123456\",\"chiefInviteCode\":\"0007\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/signIn"}
+DEBUG: [ Jiechengkeji ] [ 11:30:48 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0007"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/signIn')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0007"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/signIn') [ RunTime:0.0090s ]
+DEBUG: [ Jiechengkeji ] [ 11:30:48 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:30:48 ] [ execute ]signIn()
+DEBUG: [ Jiechengkeji ] [ 11:30:48 ] [ phone ]18369171890
+DEBUG: [ Jiechengkeji ] [ 11:30:48 ] [ password ]aq123456
+DEBUG: [ Jiechengkeji ] [ 11:30:48 ] [ md5(password) ]ec878b54e20a467b7f1c8e46f14d21c4
+DEBUG: [ Jiechengkeji ] [ 11:30:48 ] [ extSql ]SELECT id, phone, username, password, status, realname FROM user WHERE phone='18369171890' AND password='ec878b54e20a467b7f1c8e46f14d21c4'
+SQL: SELECT id, phone, username, password, status, realname FROM user WHERE phone='18369171890' AND password='ec878b54e20a467b7f1c8e46f14d21c4' [ RunTime:0.0790s ]
+DEBUG: [ Jiechengkeji ] [ 11:30:48 ] [ result ][{"id":"266400","phone":"18369171890","username":null,"password":"ec878b54e20a467b7f1c8e46f14d21c4","status":"1","realname":null}]
+SQL: SELECT openid from user where phone = 18369171890 [ RunTime:0.0560s ]
+DEBUG: [ Jiechengkeji ] [ 11:30:48 ] [ openid ]-1
+SQL: SELECT chiefId FROM ac_chief_fans WHERE openid='-1' AND bind=0 [ RunTime:0.0080s ]
+NOTIC: [8] Undefined offset: 0 E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 243 行.
+DEBUG: [ Jiechengkeji ] [ 11:30:48 ] [ chiefid ]null
+
+[ 2017-01-10T11:31:00+08:00 ] 127.0.0.1 /index.php/Home/User/setChiefInviteCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+DEBUG: [ Jiechengkeji ] [ 11:31:00 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:31:00 ] [ data ]{"data":"{\"phone\":\"18369171890\",\"password\":\"aq123456\",\"chiefInviteCode\":\"0007\",\"userId\":\"266400\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/setChiefInviteCode"}
+DEBUG: [ Jiechengkeji ] [ 11:31:00 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0007","userId":"266400"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setChiefInviteCode')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0007","userId":"266400"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setChiefInviteCode') [ RunTime:0.0140s ]
+DEBUG: [ Jiechengkeji ] [ 11:31:00 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:31:00 ] [ execute ]setInviteCode()
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 694 行.
+DEBUG: [ Jiechengkeji ] [ 11:31:00 ] [ querySql ]SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0007'
+SQL: SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0007' [ RunTime:0.0130s ]
+DEBUG: [ Jiechengkeji ] [ 11:31:00 ] [ result ][{"chiefid":"1583"}]
+DEBUG: [ Jiechengkeji ] [ 11:31:00 ] [ querySql ]SELECT chiefInviteCode FROM user WHERE id = 266400
+SQL: SELECT chiefInviteCode FROM user WHERE id = 266400 [ RunTime:0.0130s ]
+DEBUG: [ Jiechengkeji ] [ 11:31:00 ] [ result ][{"chiefinvitecode":"0007"}]
+
+[ 2017-01-10T11:32:48+08:00 ] 127.0.0.1 /index.php/Home/User/setChiefInviteCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 11:32:48 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:32:48 ] [ data ]{"data":"{\"phone\":\"18369171890\",\"password\":\"aq123456\",\"chiefInviteCode\":\"0007\",\"userId\":\"266400\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/setChiefInviteCode"}
+DEBUG: [ Jiechengkeji ] [ 11:32:48 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0007","userId":"266400"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setChiefInviteCode')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0007","userId":"266400"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setChiefInviteCode') [ RunTime:0.0150s ]
+DEBUG: [ Jiechengkeji ] [ 11:32:48 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:32:48 ] [ execute ]setInviteCode()
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 694 行.
+DEBUG: [ Jiechengkeji ] [ 11:32:48 ] [ querySql ]SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0007'
+SQL: SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0007' [ RunTime:0.0130s ]
+DEBUG: [ Jiechengkeji ] [ 11:32:48 ] [ result ][{"chiefid":"1583"}]
+DEBUG: [ Jiechengkeji ] [ 11:32:48 ] [ querySql ]SELECT chiefInviteCode FROM user WHERE id = 266400
+SQL: SELECT chiefInviteCode FROM user WHERE id = 266400 [ RunTime:0.0140s ]
+DEBUG: [ Jiechengkeji ] [ 11:32:48 ] [ result ][{"chiefinvitecode":"0000"}]
+
+[ 2017-01-10T11:32:50+08:00 ] 127.0.0.1 /index.php/Home/User/setChiefInviteCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+DEBUG: [ Jiechengkeji ] [ 11:32:50 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:32:50 ] [ data ]{"data":"{\"phone\":\"18369171890\",\"password\":\"aq123456\",\"chiefInviteCode\":\"0007\",\"userId\":\"266400\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/setChiefInviteCode"}
+DEBUG: [ Jiechengkeji ] [ 11:32:50 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0007","userId":"266400"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setChiefInviteCode')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0007","userId":"266400"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setChiefInviteCode') [ RunTime:0.0110s ]
+DEBUG: [ Jiechengkeji ] [ 11:32:50 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:32:50 ] [ execute ]setInviteCode()
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 694 行.
+DEBUG: [ Jiechengkeji ] [ 11:32:50 ] [ querySql ]SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0007'
+SQL: SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0007' [ RunTime:0.0100s ]
+DEBUG: [ Jiechengkeji ] [ 11:32:50 ] [ result ][{"chiefid":"1583"}]
+DEBUG: [ Jiechengkeji ] [ 11:32:50 ] [ querySql ]SELECT chiefInviteCode FROM user WHERE id = 266400
+SQL: SELECT chiefInviteCode FROM user WHERE id = 266400 [ RunTime:0.0100s ]
+DEBUG: [ Jiechengkeji ] [ 11:32:50 ] [ result ][{"chiefinvitecode":"0000"}]
+
+[ 2017-01-10T11:33:43+08:00 ] 127.0.0.1 /index.php/Home/User/setChiefInviteCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ data ]{"data":"{\"phone\":\"18369171890\",\"password\":\"aq123456\",\"chiefInviteCode\":\"0007\",\"userId\":\"266400\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/setChiefInviteCode"}
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0007","userId":"266400"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setChiefInviteCode')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0007","userId":"266400"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setChiefInviteCode') [ RunTime:0.0090s ]
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ execute ]setInviteCode()
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 694 行.
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ querySql ]SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0007'
+SQL: SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0007' [ RunTime:0.0090s ]
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ result ][{"chiefid":"1583"}]
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ querySql ]SELECT chiefInviteCode FROM user WHERE id = 266400
+SQL: SELECT chiefInviteCode FROM user WHERE id = 266400 [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ result ][{"chiefinvitecode":""}]
+SQL: SELECT id FROM wallet WHERE userId = 266400 [ RunTime:0.0320s ]
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ result ][{"id":"72092"}]
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ querySql ]SELECT * FROM ac_chief_fans WHERE  1=1 AND openid='-1' AND bind='0' ORDER BY
+        id DESC
+SQL: SELECT * FROM ac_chief_fans WHERE  1=1 AND openid='-1' AND bind='0' ORDER BY
+        id DESC [ RunTime:0.0090s ]
+NOTIC: [8] Undefined variable: codeChiefId E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Service\UserService.class.php 第 213 行.
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ querySql ]SELECT * FROM ac_chief WHERE  1=1 AND id='1583' ORDER BY
+        id DESC
+SQL: SELECT * FROM ac_chief WHERE  1=1 AND id='1583' ORDER BY
+        id DESC [ RunTime:0.0090s ]
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ querySql ]SELECT * FROM ac_chief WHERE  1=1 AND id='1583' ORDER BY
+        id DESC
+SQL: SELECT * FROM ac_chief WHERE  1=1 AND id='1583' ORDER BY
+        id DESC [ RunTime:0.0100s ]
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ querySql ]SELECT * FROM user WHERE  1=1 AND id='265868' ORDER BY
+        id DESC
+SQL: SELECT * FROM user WHERE  1=1 AND id='265868' ORDER BY
+        id DESC [ RunTime:0.0100s ]
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ execute ]update()
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ executeSql ]UPDATE user SET chiefUserId='265868', adminId='10', isNewUser='0', chiefInviteCode='0007', adminInviteCode='0010' WHERE id=266400
+SQL: UPDATE user SET chiefUserId='265868', adminId='10', isNewUser='0', chiefInviteCode='0007', adminInviteCode='0010' WHERE id=266400 [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ result ]1
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ querySql ]SELECT * FROM wallet WHERE  1=1  AND userId='265868'  ORDER BY
+        id DESC
+SQL: SELECT * FROM wallet WHERE  1=1  AND userId='265868'  ORDER BY
+        id DESC [ RunTime:0.1370s ]
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ execute ]add()
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ sql ]INSERT INTO wallet_order(fromWalletId, toWalletId, money, type,
+        orderType, businessId, orderId, remitter, remitterName, payee, payeeName, status, remark)VALUES(
+        '72092', '71822', '40', '1', '101', '0', '',
+        '', '', '', '', '2', '推广收益')
+SQL: INSERT INTO wallet_order(fromWalletId, toWalletId, money, type,
+        orderType, businessId, orderId, remitter, remitterName, payee, payeeName, status, remark)VALUES(
+        '72092', '71822', '40', '1', '101', '0', '',
+        '', '', '', '', '2', '推广收益') [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ result ]1245
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0110s ]
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ result ][{"id":"1245"}]
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ execute ]DAO-update()
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ setSql ]money=money+40, 
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ executeSql ]UPDATE wallet SET money=money+40 WHERE id=71822
+SQL: UPDATE wallet SET money=money+40 WHERE id=71822 [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ result ]1
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ querySql ]SELECT * FROM wallet WHERE  1=1  AND adminId='10'  ORDER BY
+        id DESC
+SQL: SELECT * FROM wallet WHERE  1=1  AND adminId='10'  ORDER BY
+        id DESC [ RunTime:0.1230s ]
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ execute ]add()
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ sql ]INSERT INTO wallet_order(fromWalletId, toWalletId, money, type,
+        orderType, businessId, orderId, remitter, remitterName, payee, payeeName, status, remark)VALUES(
+        '72092', '129', '20', '1', '101', '0', '',
+        '', '', '', '', '2', '推广收益')
+SQL: INSERT INTO wallet_order(fromWalletId, toWalletId, money, type,
+        orderType, businessId, orderId, remitter, remitterName, payee, payeeName, status, remark)VALUES(
+        '72092', '129', '20', '1', '101', '0', '',
+        '', '', '', '', '2', '推广收益') [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ result ]1246
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0070s ]
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ result ][{"id":"1246"}]
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ execute ]DAO-update()
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ setSql ]money=money+20, 
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ executeSql ]UPDATE wallet SET money=money+20 WHERE id=129
+SQL: UPDATE wallet SET money=money+20 WHERE id=129 [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 11:33:43 ] [ result ]1
+NOTIC: [8] Undefined variable: user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Service\UserService.class.php 第 239 行.
+
+[ 2017-01-10T11:35:37+08:00 ] 127.0.0.1 /index.php/Home/User/setChiefInviteCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+DEBUG: [ Jiechengkeji ] [ 11:35:36 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:35:36 ] [ data ]{"data":"{\"phone\":\"18369171890\",\"password\":\"aq123456\",\"chiefInviteCode\":\"0007\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/setChiefInviteCode"}
+DEBUG: [ Jiechengkeji ] [ 11:35:36 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0007"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setChiefInviteCode')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0007"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setChiefInviteCode') [ RunTime:0.0130s ]
+DEBUG: [ Jiechengkeji ] [ 11:35:37 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:35:37 ] [ execute ]setInviteCode()
+
+[ 2017-01-10T11:35:48+08:00 ] 127.0.0.1 /index.php/Home/User/signin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+DEBUG: [ Jiechengkeji ] [ 11:35:48 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:35:48 ] [ data ]{"data":"{\"phone\":\"18369171890\",\"password\":\"aq123456\",\"chiefInviteCode\":\"0007\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/signin"}
+DEBUG: [ Jiechengkeji ] [ 11:35:48 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0007"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/signin')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0007"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/signin') [ RunTime:0.0090s ]
+DEBUG: [ Jiechengkeji ] [ 11:35:48 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:35:48 ] [ execute ]signIn()
+DEBUG: [ Jiechengkeji ] [ 11:35:48 ] [ phone ]18369171890
+DEBUG: [ Jiechengkeji ] [ 11:35:48 ] [ password ]aq123456
+DEBUG: [ Jiechengkeji ] [ 11:35:48 ] [ md5(password) ]ec878b54e20a467b7f1c8e46f14d21c4
+DEBUG: [ Jiechengkeji ] [ 11:35:48 ] [ extSql ]SELECT id, phone, username, password, status, realname FROM user WHERE phone='18369171890' AND password='ec878b54e20a467b7f1c8e46f14d21c4'
+SQL: SELECT id, phone, username, password, status, realname FROM user WHERE phone='18369171890' AND password='ec878b54e20a467b7f1c8e46f14d21c4' [ RunTime:0.0690s ]
+DEBUG: [ Jiechengkeji ] [ 11:35:48 ] [ result ][{"id":"266400","phone":"18369171890","username":null,"password":"ec878b54e20a467b7f1c8e46f14d21c4","status":"1","realname":null}]
+SQL: SELECT openid from user where phone = 18369171890 [ RunTime:0.0560s ]
+DEBUG: [ Jiechengkeji ] [ 11:35:48 ] [ openid ]-1
+SQL: SELECT chiefId FROM ac_chief_fans WHERE openid='-1' AND bind=0 [ RunTime:0.0080s ]
+NOTIC: [8] Undefined offset: 0 E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 243 行.
+DEBUG: [ Jiechengkeji ] [ 11:35:48 ] [ chiefid ]null
+
+[ 2017-01-10T11:36:05+08:00 ] 127.0.0.1 /index.php/Home/User/setChiefInviteCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ data ]{"data":"{\"phone\":\"18369171890\",\"password\":\"aq123456\",\"chiefInviteCode\":\"0007\",\"userId\":\"266400\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/setChiefInviteCode"}
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0007","userId":"266400"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setChiefInviteCode')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0007","userId":"266400"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setChiefInviteCode') [ RunTime:0.0100s ]
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ execute ]setInviteCode()
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 694 行.
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ querySql ]SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0007'
+SQL: SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0007' [ RunTime:0.0090s ]
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ result ][{"chiefid":"1583"}]
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ querySql ]SELECT chiefInviteCode FROM user WHERE id = 266400
+SQL: SELECT chiefInviteCode FROM user WHERE id = 266400 [ RunTime:0.0090s ]
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ result ][{"chiefinvitecode":""}]
+SQL: SELECT id FROM wallet WHERE userId = 266400 [ RunTime:0.0300s ]
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ result ][{"id":"72092"}]
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ querySql ]SELECT * FROM ac_chief_fans WHERE  1=1 AND openid='-1' AND bind='0' ORDER BY
+        id DESC
+SQL: SELECT * FROM ac_chief_fans WHERE  1=1 AND openid='-1' AND bind='0' ORDER BY
+        id DESC [ RunTime:0.0090s ]
+NOTIC: [8] Undefined variable: codeChiefId E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Service\UserService.class.php 第 213 行.
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ querySql ]SELECT * FROM ac_chief WHERE  1=1 AND id='1583' ORDER BY
+        id DESC
+SQL: SELECT * FROM ac_chief WHERE  1=1 AND id='1583' ORDER BY
+        id DESC [ RunTime:0.0100s ]
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ querySql ]SELECT * FROM ac_chief WHERE  1=1 AND id='1583' ORDER BY
+        id DESC
+SQL: SELECT * FROM ac_chief WHERE  1=1 AND id='1583' ORDER BY
+        id DESC [ RunTime:0.0100s ]
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ querySql ]SELECT * FROM user WHERE  1=1 AND id='265868' ORDER BY
+        id DESC
+SQL: SELECT * FROM user WHERE  1=1 AND id='265868' ORDER BY
+        id DESC [ RunTime:0.0110s ]
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ execute ]update()
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ executeSql ]UPDATE user SET chiefUserId='265868', adminId='10', isNewUser='0', chiefInviteCode='0007', adminInviteCode='0010' WHERE id=266400
+SQL: UPDATE user SET chiefUserId='265868', adminId='10', isNewUser='0', chiefInviteCode='0007', adminInviteCode='0010' WHERE id=266400 [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ result ]1
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ querySql ]SELECT * FROM wallet WHERE  1=1  AND userId='265868'  ORDER BY
+        id DESC
+SQL: SELECT * FROM wallet WHERE  1=1  AND userId='265868'  ORDER BY
+        id DESC [ RunTime:0.1370s ]
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ execute ]add()
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ sql ]INSERT INTO wallet_order(fromWalletId, toWalletId, money, type,
+        orderType, businessId, orderId, remitter, remitterName, payee, payeeName, status, remark)VALUES(
+        '72092', '71822', '40', '1', '101', '0', '',
+        '', '', '', '', '2', '推广收益')
+SQL: INSERT INTO wallet_order(fromWalletId, toWalletId, money, type,
+        orderType, businessId, orderId, remitter, remitterName, payee, payeeName, status, remark)VALUES(
+        '72092', '71822', '40', '1', '101', '0', '',
+        '', '', '', '', '2', '推广收益') [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ result ]1247
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0090s ]
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ result ][{"id":"1247"}]
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ execute ]DAO-update()
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ setSql ]money=money+40, 
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ executeSql ]UPDATE wallet SET money=money+40 WHERE id=71822
+SQL: UPDATE wallet SET money=money+40 WHERE id=71822 [ RunTime:0.0110s ]
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ result ]1
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 11:36:04 ] [ querySql ]SELECT * FROM wallet WHERE  1=1  AND adminId='10'  ORDER BY
+        id DESC
+SQL: SELECT * FROM wallet WHERE  1=1  AND adminId='10'  ORDER BY
+        id DESC [ RunTime:0.1380s ]
+DEBUG: [ Jiechengkeji ] [ 11:36:05 ] [ execute ]add()
+DEBUG: [ Jiechengkeji ] [ 11:36:05 ] [ sql ]INSERT INTO wallet_order(fromWalletId, toWalletId, money, type,
+        orderType, businessId, orderId, remitter, remitterName, payee, payeeName, status, remark)VALUES(
+        '72092', '129', '20', '1', '101', '0', '',
+        '', '', '', '', '2', '推广收益')
+SQL: INSERT INTO wallet_order(fromWalletId, toWalletId, money, type,
+        orderType, businessId, orderId, remitter, remitterName, payee, payeeName, status, remark)VALUES(
+        '72092', '129', '20', '1', '101', '0', '',
+        '', '', '', '', '2', '推广收益') [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 11:36:05 ] [ result ]1248
+DEBUG: [ Jiechengkeji ] [ 11:36:05 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 11:36:05 ] [ result ][{"id":"1248"}]
+DEBUG: [ Jiechengkeji ] [ 11:36:05 ] [ execute ]DAO-update()
+DEBUG: [ Jiechengkeji ] [ 11:36:05 ] [ setSql ]money=money+20, 
+DEBUG: [ Jiechengkeji ] [ 11:36:05 ] [ executeSql ]UPDATE wallet SET money=money+20 WHERE id=129
+SQL: UPDATE wallet SET money=money+20 WHERE id=129 [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 11:36:05 ] [ result ]1
+NOTIC: [8] Undefined variable: user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Service\UserService.class.php 第 239 行.
+
+[ 2017-01-10T11:38:26+08:00 ] 127.0.0.1 /index.php/Home/User/setChiefInviteCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 11:38:26 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:38:26 ] [ data ]{"data":"{\"phone\":\"18369171890\",\"password\":\"aq123456\",\"chiefInviteCode\":\"0008\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/setChiefInviteCode"}
+DEBUG: [ Jiechengkeji ] [ 11:38:26 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0008"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setChiefInviteCode')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0008"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setChiefInviteCode') [ RunTime:0.0170s ]
+DEBUG: [ Jiechengkeji ] [ 11:38:26 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:38:26 ] [ execute ]setInviteCode()
+
+[ 2017-01-10T11:38:37+08:00 ] 127.0.0.1 /index.php/Home/User/signin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+DEBUG: [ Jiechengkeji ] [ 11:38:37 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:38:37 ] [ data ]{"data":"{\"phone\":\"18369171890\",\"password\":\"aq123456\",\"chiefInviteCode\":\"0008\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/signin"}
+DEBUG: [ Jiechengkeji ] [ 11:38:37 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0008"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/signin')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0008"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/signin') [ RunTime:0.0100s ]
+DEBUG: [ Jiechengkeji ] [ 11:38:37 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:38:37 ] [ execute ]signIn()
+DEBUG: [ Jiechengkeji ] [ 11:38:37 ] [ phone ]18369171890
+DEBUG: [ Jiechengkeji ] [ 11:38:37 ] [ password ]aq123456
+DEBUG: [ Jiechengkeji ] [ 11:38:37 ] [ md5(password) ]ec878b54e20a467b7f1c8e46f14d21c4
+DEBUG: [ Jiechengkeji ] [ 11:38:37 ] [ extSql ]SELECT id, phone, username, password, status, realname FROM user WHERE phone='18369171890' AND password='ec878b54e20a467b7f1c8e46f14d21c4'
+SQL: SELECT id, phone, username, password, status, realname FROM user WHERE phone='18369171890' AND password='ec878b54e20a467b7f1c8e46f14d21c4' [ RunTime:0.0710s ]
+DEBUG: [ Jiechengkeji ] [ 11:38:37 ] [ result ][{"id":"266400","phone":"18369171890","username":null,"password":"ec878b54e20a467b7f1c8e46f14d21c4","status":"1","realname":null}]
+SQL: SELECT openid from user where phone = 18369171890 [ RunTime:0.0520s ]
+DEBUG: [ Jiechengkeji ] [ 11:38:37 ] [ openid ]-1
+SQL: SELECT chiefId FROM ac_chief_fans WHERE openid='-1' AND bind=0 [ RunTime:0.0090s ]
+NOTIC: [8] Undefined offset: 0 E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 243 行.
+DEBUG: [ Jiechengkeji ] [ 11:38:37 ] [ chiefid ]null
+
+[ 2017-01-10T11:38:41+08:00 ] 127.0.0.1 /index.php/Home/User/setChiefInviteCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 11:38:41 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:38:41 ] [ data ]{"data":"{\"phone\":\"18369171890\",\"password\":\"aq123456\",\"chiefInviteCode\":\"0008\",\"userId\":\"266400\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/setChiefInviteCode"}
+DEBUG: [ Jiechengkeji ] [ 11:38:41 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0008","userId":"266400"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setChiefInviteCode')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0008","userId":"266400"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setChiefInviteCode') [ RunTime:0.0160s ]
+DEBUG: [ Jiechengkeji ] [ 11:38:41 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:38:41 ] [ execute ]setInviteCode()
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 694 行.
+DEBUG: [ Jiechengkeji ] [ 11:38:41 ] [ querySql ]SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0008'
+SQL: SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0008' [ RunTime:0.0160s ]
+DEBUG: [ Jiechengkeji ] [ 11:38:41 ] [ result ][{"chiefid":"1586"}]
+DEBUG: [ Jiechengkeji ] [ 11:38:41 ] [ querySql ]SELECT chiefInviteCode FROM user WHERE id = 266400
+SQL: SELECT chiefInviteCode FROM user WHERE id = 266400 [ RunTime:0.0140s ]
+DEBUG: [ Jiechengkeji ] [ 11:38:41 ] [ result ][{"chiefinvitecode":"0007"}]
+
+[ 2017-01-10T11:39:00+08:00 ] 127.0.0.1 /index.php/Home/User/setChiefInviteCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 11:39:00 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:39:00 ] [ data ]{"data":"{\"phone\":\"18369171890\",\"password\":\"aq123456\",\"chiefInviteCode\":\"0008\",\"userId\":\"266400\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/setChiefInviteCode"}
+DEBUG: [ Jiechengkeji ] [ 11:39:00 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0008","userId":"266400"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setChiefInviteCode')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0008","userId":"266400"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setChiefInviteCode') [ RunTime:0.0090s ]
+DEBUG: [ Jiechengkeji ] [ 11:39:00 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:39:00 ] [ execute ]setInviteCode()
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 694 行.
+DEBUG: [ Jiechengkeji ] [ 11:39:00 ] [ querySql ]SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0008'
+SQL: SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0008' [ RunTime:0.0090s ]
+DEBUG: [ Jiechengkeji ] [ 11:39:00 ] [ result ][{"chiefid":"1586"}]
+DEBUG: [ Jiechengkeji ] [ 11:39:00 ] [ querySql ]SELECT chiefInviteCode FROM user WHERE id = 266400
+SQL: SELECT chiefInviteCode FROM user WHERE id = 266400 [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 11:39:00 ] [ result ][{"chiefinvitecode":""}]
+SQL: SELECT id FROM wallet WHERE userId = 266400 [ RunTime:0.0290s ]
+DEBUG: [ Jiechengkeji ] [ 11:39:00 ] [ result ][{"id":"72092"}]
+DEBUG: [ Jiechengkeji ] [ 11:39:00 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 11:39:00 ] [ querySql ]SELECT * FROM ac_chief_fans WHERE  1=1 AND openid='-1' AND bind='0' ORDER BY
+        id DESC
+SQL: SELECT * FROM ac_chief_fans WHERE  1=1 AND openid='-1' AND bind='0' ORDER BY
+        id DESC [ RunTime:0.0090s ]
+NOTIC: [8] Undefined variable: codeChiefId E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Service\UserService.class.php 第 213 行.
+DEBUG: [ Jiechengkeji ] [ 11:39:00 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 11:39:00 ] [ querySql ]SELECT * FROM ac_chief WHERE  1=1 AND id='1586' ORDER BY
+        id DESC
+SQL: SELECT * FROM ac_chief WHERE  1=1 AND id='1586' ORDER BY
+        id DESC [ RunTime:0.0110s ]
+DEBUG: [ Jiechengkeji ] [ 11:39:00 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 11:39:00 ] [ querySql ]SELECT * FROM ac_chief WHERE  1=1 AND id='1586' ORDER BY
+        id DESC
+SQL: SELECT * FROM ac_chief WHERE  1=1 AND id='1586' ORDER BY
+        id DESC [ RunTime:0.0090s ]
+DEBUG: [ Jiechengkeji ] [ 11:39:00 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 11:39:00 ] [ querySql ]SELECT * FROM user WHERE  1=1 AND id='265884' ORDER BY
+        id DESC
+SQL: SELECT * FROM user WHERE  1=1 AND id='265884' ORDER BY
+        id DESC [ RunTime:0.0110s ]
+DEBUG: [ Jiechengkeji ] [ 11:39:00 ] [ execute ]update()
+DEBUG: [ Jiechengkeji ] [ 11:39:00 ] [ executeSql ]UPDATE user SET chiefUserId='265884', adminId='11', isNewUser='0', chiefInviteCode='0008', adminInviteCode='0011' WHERE id=266400
+SQL: UPDATE user SET chiefUserId='265884', adminId='11', isNewUser='0', chiefInviteCode='0008', adminInviteCode='0011' WHERE id=266400 [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 11:39:00 ] [ result ]1
+DEBUG: [ Jiechengkeji ] [ 11:39:00 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 11:39:00 ] [ querySql ]SELECT * FROM wallet WHERE  1=1  AND userId='265884'  ORDER BY
+        id DESC
+SQL: SELECT * FROM wallet WHERE  1=1  AND userId='265884'  ORDER BY
+        id DESC [ RunTime:0.1320s ]
+
+[ 2017-01-10T11:39:45+08:00 ] 127.0.0.1 /index.php/Home/User/setChiefInviteCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ data ]{"data":"{\"phone\":\"18369171890\",\"password\":\"aq123456\",\"chiefInviteCode\":\"0008\",\"userId\":\"266400\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/setChiefInviteCode"}
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0008","userId":"266400"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setChiefInviteCode')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0008","userId":"266400"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setChiefInviteCode') [ RunTime:0.0100s ]
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ execute ]setInviteCode()
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 694 行.
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ querySql ]SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0008'
+SQL: SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0008' [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ result ][{"chiefid":"1586"}]
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ querySql ]SELECT chiefInviteCode FROM user WHERE id = 266400
+SQL: SELECT chiefInviteCode FROM user WHERE id = 266400 [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ result ][{"chiefinvitecode":""}]
+SQL: SELECT id FROM wallet WHERE userId = 266400 [ RunTime:0.0390s ]
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ result ][{"id":"72092"}]
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ querySql ]SELECT * FROM ac_chief_fans WHERE  1=1 AND openid='-1' AND bind='0' ORDER BY
+        id DESC
+SQL: SELECT * FROM ac_chief_fans WHERE  1=1 AND openid='-1' AND bind='0' ORDER BY
+        id DESC [ RunTime:0.0100s ]
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ execSql ]UPDATE ac_chief SET number=number+-1 WHERE id = '0'
+SQL: UPDATE ac_chief SET number=number+-1 WHERE id = '0' [ RunTime:0.0090s ]
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ result ]0
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ execSql ]UPDATE ac_chief SET register=register+1 WHERE id = '0'
+SQL: UPDATE ac_chief SET register=register+1 WHERE id = '0' [ RunTime:0.0090s ]
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ result ]0
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ execSql ]UPDATE ac_chief SET number=number+1 WHERE id = '1586'
+SQL: UPDATE ac_chief SET number=number+1 WHERE id = '1586' [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ result ]1
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ execSql ]UPDATE ac_chief SET register=register+1 WHERE id = '1586'
+SQL: UPDATE ac_chief SET register=register+1 WHERE id = '1586' [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ result ]1
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ execSql ]UPDATE ac_chief_fans SET chiefId = 1586, bind = 1 WHERE openid = '-1'
+SQL: UPDATE ac_chief_fans SET chiefId = 1586, bind = 1 WHERE openid = '-1' [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ querySql ]SELECT * FROM ac_chief WHERE  1=1 AND id='1586' ORDER BY
+        id DESC
+SQL: SELECT * FROM ac_chief WHERE  1=1 AND id='1586' ORDER BY
+        id DESC [ RunTime:0.0110s ]
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ querySql ]SELECT * FROM ac_chief WHERE  1=1 AND id='1586' ORDER BY
+        id DESC
+SQL: SELECT * FROM ac_chief WHERE  1=1 AND id='1586' ORDER BY
+        id DESC [ RunTime:0.0100s ]
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ querySql ]SELECT * FROM user WHERE  1=1 AND id='265884' ORDER BY
+        id DESC
+SQL: SELECT * FROM user WHERE  1=1 AND id='265884' ORDER BY
+        id DESC [ RunTime:0.0100s ]
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ execute ]update()
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ executeSql ]UPDATE user SET chiefUserId='265884', adminId='11', isNewUser='0', chiefInviteCode='0008', adminInviteCode='0011' WHERE id=266400
+SQL: UPDATE user SET chiefUserId='265884', adminId='11', isNewUser='0', chiefInviteCode='0008', adminInviteCode='0011' WHERE id=266400 [ RunTime:0.0090s ]
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ result ]1
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 11:39:45 ] [ querySql ]SELECT * FROM wallet WHERE  1=1  AND userId='265884'  ORDER BY
+        id DESC
+SQL: SELECT * FROM wallet WHERE  1=1  AND userId='265884'  ORDER BY
+        id DESC [ RunTime:0.1260s ]
+
+[ 2017-01-10T11:41:27+08:00 ] 127.0.0.1 /index.php/Home/User/setChiefInviteCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ data ]{"data":"{\"phone\":\"18369171890\",\"password\":\"aq123456\",\"chiefInviteCode\":\"0008\",\"userId\":\"266400\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/setChiefInviteCode"}
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0008","userId":"266400"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setChiefInviteCode')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0008","userId":"266400"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setChiefInviteCode') [ RunTime:0.0160s ]
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ execute ]setInviteCode()
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 694 行.
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ querySql ]SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0008'
+SQL: SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0008' [ RunTime:0.0130s ]
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ result ][{"chiefid":"1586"}]
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ querySql ]SELECT chiefInviteCode FROM user WHERE id = 266400
+SQL: SELECT chiefInviteCode FROM user WHERE id = 266400 [ RunTime:0.0170s ]
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ result ][{"chiefinvitecode":""}]
+SQL: SELECT id FROM wallet WHERE userId = 266400 [ RunTime:0.0390s ]
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ result ][{"id":"72092"}]
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ querySql ]SELECT * FROM ac_chief_fans WHERE  1=1 AND openid='-1' AND bind='0' ORDER BY
+        id DESC
+SQL: SELECT * FROM ac_chief_fans WHERE  1=1 AND openid='-1' AND bind='0' ORDER BY
+        id DESC [ RunTime:0.0180s ]
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ execSql ]UPDATE ac_chief SET number=number+-1 WHERE id = '0'
+SQL: UPDATE ac_chief SET number=number+-1 WHERE id = '0' [ RunTime:0.0140s ]
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ result ]0
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ execSql ]UPDATE ac_chief SET register=register+1 WHERE id = '0'
+SQL: UPDATE ac_chief SET register=register+1 WHERE id = '0' [ RunTime:0.0130s ]
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ result ]0
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ execSql ]UPDATE ac_chief SET number=number+1 WHERE id = '1586'
+SQL: UPDATE ac_chief SET number=number+1 WHERE id = '1586' [ RunTime:0.0140s ]
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ result ]1
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ execSql ]UPDATE ac_chief SET register=register+1 WHERE id = '1586'
+SQL: UPDATE ac_chief SET register=register+1 WHERE id = '1586' [ RunTime:0.0150s ]
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ result ]1
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ execSql ]UPDATE ac_chief_fans SET chiefId = 1586, bind = 1 WHERE openid = '-1'
+SQL: UPDATE ac_chief_fans SET chiefId = 1586, bind = 1 WHERE openid = '-1' [ RunTime:0.0140s ]
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ querySql ]SELECT * FROM ac_chief WHERE  1=1 AND id='1586' ORDER BY
+        id DESC
+SQL: SELECT * FROM ac_chief WHERE  1=1 AND id='1586' ORDER BY
+        id DESC [ RunTime:0.0160s ]
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ querySql ]SELECT * FROM ac_chief WHERE  1=1 AND id='1586' ORDER BY
+        id DESC
+SQL: SELECT * FROM ac_chief WHERE  1=1 AND id='1586' ORDER BY
+        id DESC [ RunTime:0.0160s ]
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ querySql ]SELECT * FROM user WHERE  1=1 AND id='265884' ORDER BY
+        id DESC
+SQL: SELECT * FROM user WHERE  1=1 AND id='265884' ORDER BY
+        id DESC [ RunTime:0.0170s ]
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ execute ]update()
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ executeSql ]UPDATE user SET chiefUserId='265884', adminId='11', isNewUser='0', chiefInviteCode='0008', adminInviteCode='0011' WHERE id=266400
+SQL: UPDATE user SET chiefUserId='265884', adminId='11', isNewUser='0', chiefInviteCode='0008', adminInviteCode='0011' WHERE id=266400 [ RunTime:0.0140s ]
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ result ]1
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ querySql ]SELECT * FROM wallet WHERE  1=1  AND userId='265884'  ORDER BY
+        id DESC
+SQL: SELECT * FROM wallet WHERE  1=1  AND userId='265884'  ORDER BY
+        id DESC [ RunTime:0.1280s ]
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ execute ]add()
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ sql ]INSERT INTO wallet_order(fromWalletId, toWalletId, money, type,
+        orderType, businessId, orderId, remitter, remitterName, payee, payeeName, status, remark)VALUES(
+        '72092', '72093', '40', '1', '101', '0', '',
+        '', '', '', '', '2', '推广收益')
+SQL: INSERT INTO wallet_order(fromWalletId, toWalletId, money, type,
+        orderType, businessId, orderId, remitter, remitterName, payee, payeeName, status, remark)VALUES(
+        '72092', '72093', '40', '1', '101', '0', '',
+        '', '', '', '', '2', '推广收益') [ RunTime:0.0140s ]
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ result ]1249
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0140s ]
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ result ][{"id":"1249"}]
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ execute ]DAO-update()
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ setSql ]money=money+40, 
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ executeSql ]UPDATE wallet SET money=money+40 WHERE id=72093
+SQL: UPDATE wallet SET money=money+40 WHERE id=72093 [ RunTime:0.0140s ]
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ result ]1
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ execute ]query()
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ querySql ]SELECT * FROM wallet WHERE  1=1  AND adminId='11'  ORDER BY
+        id DESC
+SQL: SELECT * FROM wallet WHERE  1=1  AND adminId='11'  ORDER BY
+        id DESC [ RunTime:0.1310s ]
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ execute ]add()
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ sql ]INSERT INTO wallet_order(fromWalletId, toWalletId, money, type,
+        orderType, businessId, orderId, remitter, remitterName, payee, payeeName, status, remark)VALUES(
+        '72092', '72063', '20', '1', '101', '0', '',
+        '', '', '', '', '2', '推广收益')
+SQL: INSERT INTO wallet_order(fromWalletId, toWalletId, money, type,
+        orderType, businessId, orderId, remitter, remitterName, payee, payeeName, status, remark)VALUES(
+        '72092', '72063', '20', '1', '101', '0', '',
+        '', '', '', '', '2', '推广收益') [ RunTime:0.0140s ]
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ result ]1250
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ sql ]SELECT last_insert_id() as id
+SQL: SELECT last_insert_id() as id [ RunTime:0.0140s ]
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ result ][{"id":"1250"}]
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ execute ]DAO-update()
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ setSql ]money=money+20, 
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ executeSql ]UPDATE wallet SET money=money+20 WHERE id=72063
+SQL: UPDATE wallet SET money=money+20 WHERE id=72063 [ RunTime:0.0140s ]
+DEBUG: [ Jiechengkeji ] [ 11:41:27 ] [ result ]1
+NOTIC: [8] Undefined variable: user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Service\UserService.class.php 第 239 行.
+
+[ 2017-01-10T11:43:36+08:00 ] 127.0.0.1 /index.php/Home/User/setChiefInviteCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 11:43:36 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:43:36 ] [ data ]{"data":"{\"phone\":\"18369171890\",\"password\":\"aq123456\",\"chiefInviteCode\":\"0008\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/setChiefInviteCode"}
+DEBUG: [ Jiechengkeji ] [ 11:43:36 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0008"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setChiefInviteCode')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0008"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setChiefInviteCode') [ RunTime:0.0140s ]
+DEBUG: [ Jiechengkeji ] [ 11:43:36 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:43:36 ] [ execute ]setInviteCode()
+
+[ 2017-01-10T11:43:45+08:00 ] 127.0.0.1 /index.php/Home/User/signin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 11:43:45 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:43:45 ] [ data ]{"data":"{\"phone\":\"18369171890\",\"password\":\"aq123456\",\"chiefInviteCode\":\"0008\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/signin"}
+DEBUG: [ Jiechengkeji ] [ 11:43:45 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0008"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/signin')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0008"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/signin') [ RunTime:0.0160s ]
+DEBUG: [ Jiechengkeji ] [ 11:43:45 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:43:45 ] [ execute ]signIn()
+DEBUG: [ Jiechengkeji ] [ 11:43:45 ] [ phone ]18369171890
+DEBUG: [ Jiechengkeji ] [ 11:43:45 ] [ password ]aq123456
+DEBUG: [ Jiechengkeji ] [ 11:43:45 ] [ md5(password) ]ec878b54e20a467b7f1c8e46f14d21c4
+DEBUG: [ Jiechengkeji ] [ 11:43:45 ] [ extSql ]SELECT id, phone, username, password, status, realname FROM user WHERE phone='18369171890' AND password='ec878b54e20a467b7f1c8e46f14d21c4'
+SQL: SELECT id, phone, username, password, status, realname FROM user WHERE phone='18369171890' AND password='ec878b54e20a467b7f1c8e46f14d21c4' [ RunTime:0.0710s ]
+DEBUG: [ Jiechengkeji ] [ 11:43:45 ] [ result ][{"id":"266400","phone":"18369171890","username":null,"password":"ec878b54e20a467b7f1c8e46f14d21c4","status":"1","realname":null}]
+SQL: SELECT openid from user where phone = 18369171890 [ RunTime:0.0550s ]
+DEBUG: [ Jiechengkeji ] [ 11:43:45 ] [ openid ]-1
+SQL: SELECT chiefId FROM ac_chief_fans WHERE openid='-1' AND bind=0 [ RunTime:0.0130s ]
+NOTIC: [8] Undefined offset: 0 E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 243 行.
+DEBUG: [ Jiechengkeji ] [ 11:43:45 ] [ chiefid ]null
+
+[ 2017-01-10T11:43:50+08:00 ] 127.0.0.1 /index.php/Home/User/setChiefInviteCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 11:43:50 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:43:50 ] [ data ]{"data":"{\"phone\":\"18369171890\",\"password\":\"aq123456\",\"chiefInviteCode\":\"0008\",\"userId\":\"266400\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/setChiefInviteCode"}
+DEBUG: [ Jiechengkeji ] [ 11:43:50 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0008","userId":"266400"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setChiefInviteCode')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"18369171890","password":"aq123456","chiefInviteCode":"0008","userId":"266400"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setChiefInviteCode') [ RunTime:0.0090s ]
+DEBUG: [ Jiechengkeji ] [ 11:43:50 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 11:43:50 ] [ execute ]setInviteCode()
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 694 行.
+DEBUG: [ Jiechengkeji ] [ 11:43:50 ] [ querySql ]SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0008'
+SQL: SELECT chiefId FROM ac_chief_code_map WHERE inviteCode = '0008' [ RunTime:0.0090s ]
+DEBUG: [ Jiechengkeji ] [ 11:43:50 ] [ result ][{"chiefid":"1586"}]
+DEBUG: [ Jiechengkeji ] [ 11:43:50 ] [ querySql ]SELECT chiefInviteCode FROM user WHERE id = 266400
+SQL: SELECT chiefInviteCode FROM user WHERE id = 266400 [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 11:43:50 ] [ result ][{"chiefinvitecode":"0008"}]
+
+[ 2017-01-10T14:15:43+08:00 ] 127.0.0.1 /index.php/Home/User/signIn
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+DEBUG: [ Jiechengkeji ] [ 14:15:43 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:15:43 ] [ data ]{"data":"{\"phone\":\"13356311346\",\"password\":\"123456\",\"chiefInviteCode\":\"0008\",\"userId\":\"266400\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/signIn"}
+DEBUG: [ Jiechengkeji ] [ 14:15:43 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"13356311346","password":"123456","chiefInviteCode":"0008","userId":"266400"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/signIn')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"13356311346","password":"123456","chiefInviteCode":"0008","userId":"266400"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/signIn') [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 14:15:43 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:15:43 ] [ execute ]signIn()
+DEBUG: [ Jiechengkeji ] [ 14:15:43 ] [ phone ]13356311346
+DEBUG: [ Jiechengkeji ] [ 14:15:43 ] [ password ]123456
+DEBUG: [ Jiechengkeji ] [ 14:15:43 ] [ md5(password) ]e10adc3949ba59abbe56e057f20f883e
+DEBUG: [ Jiechengkeji ] [ 14:15:43 ] [ extSql ]SELECT id, phone, username, password, status, realname FROM user WHERE phone='13356311346' AND password='e10adc3949ba59abbe56e057f20f883e'
+SQL: SELECT id, phone, username, password, status, realname FROM user WHERE phone='13356311346' AND password='e10adc3949ba59abbe56e057f20f883e' [ RunTime:0.0700s ]
+DEBUG: [ Jiechengkeji ] [ 14:15:43 ] [ result ][{"id":"265884","phone":"13356311346","username":"111","password":"e10adc3949ba59abbe56e057f20f883e","status":"1","realname":"11"}]
+SQL: SELECT openid from user where phone = 13356311346 [ RunTime:0.0520s ]
+DEBUG: [ Jiechengkeji ] [ 14:15:43 ] [ openid ]ozd8juPGTyhVH_kM1qW25xXeDVXk
+SQL: SELECT chiefId FROM ac_chief_fans WHERE openid='ozd8juPGTyhVH_kM1qW25xXeDVXk' AND bind=0 [ RunTime:0.0130s ]
+NOTIC: [8] Undefined offset: 0 E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 243 行.
+DEBUG: [ Jiechengkeji ] [ 14:15:43 ] [ chiefid ]null
+
+[ 2017-01-10T14:16:17+08:00 ] 127.0.0.1 /index.php/Home/User/setAdminInviteCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 14:16:17 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:16:17 ] [ data ]{"data":"{\"phone\":\"13356311346\",\"password\":\"123456\",\"chiefInviteCode\":\"0008\",\"adminInviteCode\":\"0010\",\"userId\":\"265884\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/setAdminInviteCode"}
+DEBUG: [ Jiechengkeji ] [ 14:16:17 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"13356311346","password":"123456","chiefInviteCode":"0008","adminInviteCode":"0010","userId":"265884"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setAdminInviteCode')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"13356311346","password":"123456","chiefInviteCode":"0008","adminInviteCode":"0010","userId":"265884"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setAdminInviteCode') [ RunTime:0.0100s ]
+DEBUG: [ Jiechengkeji ] [ 14:16:17 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:16:17 ] [ execute ]setAdminInviteCode()
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 722 行.
+DEBUG: [ Jiechengkeji ] [ 14:16:17 ] [ execute ]getIdByInviteCode()
+SQL: SELECT id FROM admin_user WHERE inviteCode = '0010' [ RunTime:0.0090s ]
+DEBUG: [ Jiechengkeji ] [ 14:16:17 ] [ result ][{"id":"10"}]
+DEBUG: [ Jiechengkeji ] [ 14:16:17 ] [ execute ]update()
+DEBUG: [ Jiechengkeji ] [ 14:16:17 ] [ executeSql ]UPDATE user SET adminId='10', adminInviteCode='0010' WHERE id=265884
+SQL: UPDATE user SET adminId='10', adminInviteCode='0010' WHERE id=265884 [ RunTime:0.0090s ]
+DEBUG: [ Jiechengkeji ] [ 14:16:17 ] [ result ]1
+SQL: UPDATE user SET adminId = '10', adminInviteCode = '0010' WHERE chiefUserId = '265884' [ RunTime:0.2430s ]
+DEBUG: [ Jiechengkeji ] [ 14:16:17 ] [ result ]2
+
+[ 2017-01-10T14:43:51+08:00 ] 127.0.0.1 /index.php/Home/User/setAdminInviteCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 14:43:51 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:43:51 ] [ data ]{"data":"{\"phone\":\"13356311346\",\"password\":\"123456\",\"chiefInviteCode\":\"0008\",\"adminInviteCode\":\"0011\",\"userId\":\"265884\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/setAdminInviteCode"}
+DEBUG: [ Jiechengkeji ] [ 14:43:51 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"13356311346","password":"123456","chiefInviteCode":"0008","adminInviteCode":"0011","userId":"265884"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setAdminInviteCode')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"13356311346","password":"123456","chiefInviteCode":"0008","adminInviteCode":"0011","userId":"265884"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setAdminInviteCode') [ RunTime:0.0140s ]
+DEBUG: [ Jiechengkeji ] [ 14:43:51 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:43:51 ] [ execute ]setAdminInviteCode()
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 731 行.
+DEBUG: [ Jiechengkeji ] [ 14:43:51 ] [ execute ]getIdByInviteCode()
+SQL: SELECT id FROM admin_user WHERE inviteCode = '0011' [ RunTime:0.0150s ]
+DEBUG: [ Jiechengkeji ] [ 14:43:51 ] [ result ][{"id":"11"}]
+DEBUG: [ Jiechengkeji ] [ 14:43:51 ] [ execute ]update()
+DEBUG: [ Jiechengkeji ] [ 14:43:51 ] [ executeSql ]UPDATE user SET adminId='11', adminInviteCode='0011' WHERE id=265884
+SQL: UPDATE user SET adminId='11', adminInviteCode='0011' WHERE id=265884 [ RunTime:0.0130s ]
+DEBUG: [ Jiechengkeji ] [ 14:43:51 ] [ result ]1
+SQL: UPDATE user SET adminId = '11', adminInviteCode = '0011' WHERE chiefUserId = '265884' [ RunTime:0.2600s ]
+DEBUG: [ Jiechengkeji ] [ 14:43:51 ] [ result ]2
+
+[ 2017-01-10T14:44:21+08:00 ] 127.0.0.1 /index.php/Home/User/setAdminInviteCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+DEBUG: [ Jiechengkeji ] [ 14:44:20 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:44:20 ] [ data ]{"data":"{\"phone\":\"13356311346\",\"password\":\"123456\",\"chiefInviteCode\":\"0008\",\"adminInviteCode\":\"0010\",\"userId\":\"265884\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/setAdminInviteCode"}
+DEBUG: [ Jiechengkeji ] [ 14:44:20 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"13356311346","password":"123456","chiefInviteCode":"0008","adminInviteCode":"0010","userId":"265884"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setAdminInviteCode')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"13356311346","password":"123456","chiefInviteCode":"0008","adminInviteCode":"0010","userId":"265884"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setAdminInviteCode') [ RunTime:0.0180s ]
+DEBUG: [ Jiechengkeji ] [ 14:44:20 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:44:20 ] [ execute ]setAdminInviteCode()
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 731 行.
+DEBUG: [ Jiechengkeji ] [ 14:44:20 ] [ execute ]getIdByInviteCode()
+SQL: SELECT id FROM admin_user WHERE inviteCode = '0010' [ RunTime:0.0150s ]
+DEBUG: [ Jiechengkeji ] [ 14:44:20 ] [ result ][]
+DEBUG: [ Jiechengkeji ] [ 14:44:20 ] [ execute ]update()
+NOTIC: [8] Array to string conversion E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Dao\UserDao.class.php 第 52 行.
+DEBUG: [ Jiechengkeji ] [ 14:44:20 ] [ executeSql ]UPDATE user SET adminId='Array', adminInviteCode='0010' WHERE id=265884
+SQL: UPDATE user SET adminId='Array', adminInviteCode='0010' WHERE id=265884 [ RunTime:0.0160s ]
+DEBUG: [ Jiechengkeji ] [ 14:44:20 ] [ result ]1
+NOTIC: [8] Array to string conversion E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Dao\UserDao.class.php 第 180 行.
+SQL: UPDATE user SET adminId = 'Array', adminInviteCode = '0010' WHERE chiefUserId = '265884' [ RunTime:0.2500s ]
+DEBUG: [ Jiechengkeji ] [ 14:44:21 ] [ result ]2
+
+[ 2017-01-10T14:46:02+08:00 ] 127.0.0.1 /index.php/Home/User/setAdminInviteCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+DEBUG: [ Jiechengkeji ] [ 14:46:01 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:46:01 ] [ data ]{"data":"{\"phone\":\"13356311346\",\"password\":\"123456\",\"chiefInviteCode\":\"0008\",\"adminInviteCode\":\"0010\",\"userId\":\"265884\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/setAdminInviteCode"}
+DEBUG: [ Jiechengkeji ] [ 14:46:01 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"13356311346","password":"123456","chiefInviteCode":"0008","adminInviteCode":"0010","userId":"265884"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setAdminInviteCode')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"13356311346","password":"123456","chiefInviteCode":"0008","adminInviteCode":"0010","userId":"265884"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setAdminInviteCode') [ RunTime:0.0140s ]
+DEBUG: [ Jiechengkeji ] [ 14:46:02 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:46:02 ] [ execute ]setAdminInviteCode()
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 731 行.
+DEBUG: [ Jiechengkeji ] [ 14:46:02 ] [ execute ]getIdByInviteCode()
+SQL: SELECT id FROM admin_user WHERE inviteCode = '0010' [ RunTime:0.0140s ]
+DEBUG: [ Jiechengkeji ] [ 14:46:02 ] [ result ][]
+
+[ 2017-01-10T14:46:05+08:00 ] 127.0.0.1 /index.php/Home/User/setAdminInviteCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 14:46:05 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:46:05 ] [ data ]{"data":"{\"phone\":\"13356311346\",\"password\":\"123456\",\"chiefInviteCode\":\"0008\",\"adminInviteCode\":\"0010\",\"userId\":\"265884\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/setAdminInviteCode"}
+DEBUG: [ Jiechengkeji ] [ 14:46:05 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"13356311346","password":"123456","chiefInviteCode":"0008","adminInviteCode":"0010","userId":"265884"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setAdminInviteCode')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"13356311346","password":"123456","chiefInviteCode":"0008","adminInviteCode":"0010","userId":"265884"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setAdminInviteCode') [ RunTime:0.0160s ]
+DEBUG: [ Jiechengkeji ] [ 14:46:05 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:46:05 ] [ execute ]setAdminInviteCode()
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 731 行.
+DEBUG: [ Jiechengkeji ] [ 14:46:05 ] [ execute ]getIdByInviteCode()
+SQL: SELECT id FROM admin_user WHERE inviteCode = '0010' [ RunTime:0.0150s ]
+DEBUG: [ Jiechengkeji ] [ 14:46:05 ] [ result ][]
+
+[ 2017-01-10T14:46:10+08:00 ] 127.0.0.1 /index.php/Home/User/setAdminInviteCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+DEBUG: [ Jiechengkeji ] [ 14:46:10 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:46:10 ] [ data ]{"data":"{\"phone\":\"13356311346\",\"password\":\"123456\",\"chiefInviteCode\":\"0008\",\"adminInviteCode\":\"0011\",\"userId\":\"265884\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/setAdminInviteCode"}
+DEBUG: [ Jiechengkeji ] [ 14:46:10 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"13356311346","password":"123456","chiefInviteCode":"0008","adminInviteCode":"0011","userId":"265884"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setAdminInviteCode')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"13356311346","password":"123456","chiefInviteCode":"0008","adminInviteCode":"0011","userId":"265884"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setAdminInviteCode') [ RunTime:0.0170s ]
+DEBUG: [ Jiechengkeji ] [ 14:46:10 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:46:10 ] [ execute ]setAdminInviteCode()
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 731 行.
+DEBUG: [ Jiechengkeji ] [ 14:46:10 ] [ execute ]getIdByInviteCode()
+SQL: SELECT id FROM admin_user WHERE inviteCode = '0011' [ RunTime:0.0160s ]
+DEBUG: [ Jiechengkeji ] [ 14:46:10 ] [ result ][{"id":"11"}]
+DEBUG: [ Jiechengkeji ] [ 14:46:10 ] [ execute ]update()
+DEBUG: [ Jiechengkeji ] [ 14:46:10 ] [ executeSql ]UPDATE user SET adminId='11', adminInviteCode='0011' WHERE id=265884
+SQL: UPDATE user SET adminId='11', adminInviteCode='0011' WHERE id=265884 [ RunTime:0.0150s ]
+DEBUG: [ Jiechengkeji ] [ 14:46:10 ] [ result ]1
+SQL: UPDATE user SET adminId = '11', adminInviteCode = '0011' WHERE chiefUserId = '265884' [ RunTime:0.2470s ]
+DEBUG: [ Jiechengkeji ] [ 14:46:10 ] [ result ]2
+
+[ 2017-01-10T14:46:27+08:00 ] 127.0.0.1 /index.php/Home/User/setAdminInviteCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 14:46:26 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:46:26 ] [ data ]{"data":"{\"phone\":\"13356311346\",\"password\":\"123456\",\"chiefInviteCode\":\"0008\",\"adminInviteCode\":\"0011\",\"userId\":\"265884\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/setAdminInviteCode"}
+DEBUG: [ Jiechengkeji ] [ 14:46:26 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"13356311346","password":"123456","chiefInviteCode":"0008","adminInviteCode":"0011","userId":"265884"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setAdminInviteCode')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"13356311346","password":"123456","chiefInviteCode":"0008","adminInviteCode":"0011","userId":"265884"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setAdminInviteCode') [ RunTime:0.0090s ]
+DEBUG: [ Jiechengkeji ] [ 14:46:26 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:46:26 ] [ execute ]setAdminInviteCode()
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 731 行.
+DEBUG: [ Jiechengkeji ] [ 14:46:26 ] [ execute ]getIdByInviteCode()
+SQL: SELECT id FROM admin_user WHERE inviteCode = '0011' [ RunTime:0.0100s ]
+DEBUG: [ Jiechengkeji ] [ 14:46:26 ] [ result ][{"id":"11"}]
+DEBUG: [ Jiechengkeji ] [ 14:46:26 ] [ execute ]update()
+DEBUG: [ Jiechengkeji ] [ 14:46:26 ] [ executeSql ]UPDATE user SET adminId='11', adminInviteCode='0011' WHERE id=265884
+SQL: UPDATE user SET adminId='11', adminInviteCode='0011' WHERE id=265884 [ RunTime:0.0090s ]
+DEBUG: [ Jiechengkeji ] [ 14:46:26 ] [ result ]0
+SQL: UPDATE user SET adminId = '11', adminInviteCode = '0011' WHERE chiefUserId = '265884' [ RunTime:0.2310s ]
+DEBUG: [ Jiechengkeji ] [ 14:46:27 ] [ result ]0
+
+[ 2017-01-10T14:46:31+08:00 ] 127.0.0.1 /index.php/Home/User/setAdminInviteCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 14:46:30 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:46:30 ] [ data ]{"data":"{\"phone\":\"13356311346\",\"password\":\"123456\",\"chiefInviteCode\":\"0008\",\"adminInviteCode\":\"0011\",\"userId\":\"265884\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/setAdminInviteCode"}
+DEBUG: [ Jiechengkeji ] [ 14:46:30 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"13356311346","password":"123456","chiefInviteCode":"0008","adminInviteCode":"0011","userId":"265884"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setAdminInviteCode')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"13356311346","password":"123456","chiefInviteCode":"0008","adminInviteCode":"0011","userId":"265884"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setAdminInviteCode') [ RunTime:0.0110s ]
+DEBUG: [ Jiechengkeji ] [ 14:46:30 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:46:30 ] [ execute ]setAdminInviteCode()
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 731 行.
+DEBUG: [ Jiechengkeji ] [ 14:46:30 ] [ execute ]getIdByInviteCode()
+SQL: SELECT id FROM admin_user WHERE inviteCode = '0011' [ RunTime:0.0090s ]
+DEBUG: [ Jiechengkeji ] [ 14:46:30 ] [ result ][{"id":"11"}]
+DEBUG: [ Jiechengkeji ] [ 14:46:30 ] [ execute ]update()
+DEBUG: [ Jiechengkeji ] [ 14:46:30 ] [ executeSql ]UPDATE user SET adminId='11', adminInviteCode='0011' WHERE id=265884
+SQL: UPDATE user SET adminId='11', adminInviteCode='0011' WHERE id=265884 [ RunTime:0.0100s ]
+DEBUG: [ Jiechengkeji ] [ 14:46:30 ] [ result ]0
+SQL: UPDATE user SET adminId = '11', adminInviteCode = '0011' WHERE chiefUserId = '265884' [ RunTime:0.2470s ]
+DEBUG: [ Jiechengkeji ] [ 14:46:31 ] [ result ]0
+
+[ 2017-01-10T14:48:05+08:00 ] 127.0.0.1 /index.php/Home/User/setAdminInviteCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+DEBUG: [ Jiechengkeji ] [ 14:48:05 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:48:05 ] [ data ]{"data":"{\"phone\":\"13356311346\",\"password\":\"123456\",\"chiefInviteCode\":\"0008\",\"adminInviteCode\":\"0011\",\"userId\":\"265884\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/setAdminInviteCode"}
+DEBUG: [ Jiechengkeji ] [ 14:48:05 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"13356311346","password":"123456","chiefInviteCode":"0008","adminInviteCode":"0011","userId":"265884"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setAdminInviteCode')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"13356311346","password":"123456","chiefInviteCode":"0008","adminInviteCode":"0011","userId":"265884"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setAdminInviteCode') [ RunTime:0.0170s ]
+DEBUG: [ Jiechengkeji ] [ 14:48:05 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:48:05 ] [ execute ]setAdminInviteCode()
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 731 行.
+DEBUG: [ Jiechengkeji ] [ 14:48:05 ] [ execute ]getIdByInviteCode()
+SQL: SELECT id FROM admin_user WHERE inviteCode = '0011' [ RunTime:0.0160s ]
+DEBUG: [ Jiechengkeji ] [ 14:48:05 ] [ result ][{"id":"11"}]
+DEBUG: [ Jiechengkeji ] [ 14:48:05 ] [ querySql ]SELECT adminInviteCode FROM user WHERE id = 265884
+SQL: SELECT adminInviteCode FROM user WHERE id = 265884 [ RunTime:0.0150s ]
+DEBUG: [ Jiechengkeji ] [ 14:48:05 ] [ result ][{"admininvitecode":"0011"}]
+
+[ 2017-01-10T14:48:08+08:00 ] 127.0.0.1 /index.php/Home/User/setAdminInviteCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+DEBUG: [ Jiechengkeji ] [ 14:48:08 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:48:08 ] [ data ]{"data":"{\"phone\":\"13356311346\",\"password\":\"123456\",\"chiefInviteCode\":\"0008\",\"adminInviteCode\":\"0011\",\"userId\":\"265884\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/setAdminInviteCode"}
+DEBUG: [ Jiechengkeji ] [ 14:48:08 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"13356311346","password":"123456","chiefInviteCode":"0008","adminInviteCode":"0011","userId":"265884"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setAdminInviteCode')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"13356311346","password":"123456","chiefInviteCode":"0008","adminInviteCode":"0011","userId":"265884"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setAdminInviteCode') [ RunTime:0.0130s ]
+DEBUG: [ Jiechengkeji ] [ 14:48:08 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:48:08 ] [ execute ]setAdminInviteCode()
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 731 行.
+DEBUG: [ Jiechengkeji ] [ 14:48:08 ] [ execute ]getIdByInviteCode()
+SQL: SELECT id FROM admin_user WHERE inviteCode = '0011' [ RunTime:0.0130s ]
+DEBUG: [ Jiechengkeji ] [ 14:48:08 ] [ result ][{"id":"11"}]
+DEBUG: [ Jiechengkeji ] [ 14:48:08 ] [ querySql ]SELECT adminInviteCode FROM user WHERE id = 265884
+SQL: SELECT adminInviteCode FROM user WHERE id = 265884 [ RunTime:0.0120s ]
+DEBUG: [ Jiechengkeji ] [ 14:48:08 ] [ result ][{"admininvitecode":"0011"}]
+
+[ 2017-01-10T14:48:12+08:00 ] 127.0.0.1 /index.php/Home/User/setAdminInviteCode
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 14:48:12 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:48:12 ] [ data ]{"data":"{\"phone\":\"13356311346\",\"password\":\"123456\",\"chiefInviteCode\":\"0008\",\"adminInviteCode\":\"0010\",\"userId\":\"265884\"}","source":"local-wechat.luobojianzhi.com","action":"\/index.php\/Home\/User\/setAdminInviteCode"}
+DEBUG: [ Jiechengkeji ] [ 14:48:12 ] [ biSql ]INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"13356311346","password":"123456","chiefInviteCode":"0008","adminInviteCode":"0010","userId":"265884"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setAdminInviteCode')
+SQL: INSERT INTO bi_log_v2( data, source, action) VALUES ( '{"phone":"13356311346","password":"123456","chiefInviteCode":"0008","adminInviteCode":"0010","userId":"265884"}', 'local-wechat.luobojianzhi.com', '/index.php/Home/User/setAdminInviteCode') [ RunTime:0.0100s ]
+DEBUG: [ Jiechengkeji ] [ 14:48:12 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:48:12 ] [ execute ]setAdminInviteCode()
+NOTIC: [8] Undefined index: wt_user E:\project\wechat.luobojianzhi.com\trunk\Application\Home\Controller\UserController.class.php 第 731 行.
+DEBUG: [ Jiechengkeji ] [ 14:48:12 ] [ execute ]getIdByInviteCode()
+SQL: SELECT id FROM admin_user WHERE inviteCode = '0010' [ RunTime:0.0080s ]
+DEBUG: [ Jiechengkeji ] [ 14:48:12 ] [ result ][]
+

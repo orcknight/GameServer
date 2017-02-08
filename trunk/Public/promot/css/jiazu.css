@@ -1,0 +1,180 @@
+body{
+	background-color: #e8ebf2;
+}
+.code_body{
+	background-color:#e89e22 ;
+}
+.user_info .user-img{ 
+}
+.user_info .user-img img{
+	width:102px;
+	height:102px;
+	border-radius:1000px;
+	margin:18px auto 15px;
+	box-shadow:0 0 38px rgba(0,0,0,0.2); 
+}
+.user_info .user-text{
+	text-align: center;
+	font-size:18px;
+	font-weight:bold;
+	color:#2b2b2b; 
+
+}
+.user_info .user-dengji{
+	color: #fb4747;
+	width:82px;
+	margin:6px auto;
+}
+.user_info .user-dengji i{
+	color:#ffa000;
+}
+.user_info .user-time{
+	text-align:center;
+	color:#7b7c7d;
+	margin-bottom:6px;
+}
+.user_info .tuijian{
+	text-align:center;
+	color: #0098d3;
+}
+
+.user_count{
+	width:296px;
+	height:110px;
+	margin:30px auto 50px;
+	background: url(../images/user_count.png) no-repeat;
+	background-size:296px 110px;
+	box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+.user_count .left{
+	float: left;
+	width:50%;
+	height:100%;
+}
+.user_count .right{
+	float: right;
+	width:50%;
+}
+.user_count span{
+	font-size:20px;
+	display:block;
+	text-align:center;
+	line-height:66px;
+	color:#fff;
+}
+.user_count div{
+	text-align:center;
+	line-height:42px;
+	color: #fff;
+}
+
+.bottom{
+	/* 盒子布局 */
+	display:-webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	/* 布局方向 */
+	-webkit-box-orient:horizontal;
+	-webkit-flex-flow:row;
+	flex-flow:row;
+	height:90px;
+	padding:0 25px;
+}
+.bottom .menu{
+	/* 布局比重 */
+	-webkit-box-flex:1;
+	-webkit-flex:1;
+	flex:1;
+	height:90px;
+}
+.bottom .menu a{display:block;}
+.bottom .circle{
+	width:59px;
+	height:59px;
+	border-radius:1000px;
+	border:1px solid #fff;
+	box-shadow:0 0 19px rgba(0,0,0,0.2);
+	margin:0 auto;
+	position:relative;
+}
+.bottom .menu i{
+	position:absolute;
+	font-size:38px;
+	display:block;
+	line-height:61px;
+	color:#fff;
+	top:2px;
+	left:50%;
+	margin-left:-19px;
+}
+.bottom .circle01{
+	background-color:#f98970;
+}
+.bottom .circle02{
+	background-color:#05d59d;
+}
+.bottom .circle03{
+	background-color:#03a8cc;
+}
+.bottom span{
+	display:block;
+	text-align:center;
+	margin:12px 0;
+	color: #676765;
+	margin-bottom:60px;
+}
+
+
+/* 申请头领页 */
+.defense .img{
+	width:100%;
+	height:126px;
+	background:url(../images/chaoren.png) no-repeat center center;
+	background-size:auto 126px;
+	margin:35px auto 24px;
+}
+.defense p{
+	text-align:center;
+	color: #f2a42a;
+	font-size:16px;
+	margin-bottom:6px;
+	padding: 0 10px;
+}
+.defense p.con{
+	font-size:12px;
+	text-align:left;
+}
+.join{margin-top:13px;}
+.join .top{margin:0 6px 21px;background-color: #fff;border:1px solid #d2d2d2;padding-top:20px;padding-bottom:12px;}
+.join .top .info{width:100%;margin-bottom:8px;height:auto;}
+.join .top .info span{float: left;width:20%;text-align:right;line-height:40px;margin-right:2%;}
+.join .top .info input{float:left;width:66%;height:38px;line-height:38px;padding:0 2%;border:1px solid #d2d2d2;border-radius:6px;}
+.join .top .left{
+	float: left;
+	width:70%;	
+	height:40px;
+}
+.join .submit{padding:0 6px;}
+.join .submit input{width:100%;height:40px;background-color: #f2a42a;border-radius:5px;font-size:18px;color:#fff;text-align:center;margin-bottom:30px;-webkit-appearance:none;}
+
+
+/* 家族成员页 */
+.search{height:46px;line-height:46px;padding:0 14px;border-bottom:1px solid #ddd;}
+.search i{color:#a3a3a3;font-size:20px;margin-left:10px;margin-top:2px;float:left;}
+.search input{height:46px;border:0;padding-left:9px;width:300px;box-sizing:border-box;background-color: transparent;float:left;}
+.list li{height:50px;border-bottom: 1px solid #ddd;padding:0 20px;margin:2px;}
+.list li img{width:36px;height:36px;float:left;margin-top:7px;}
+.list li span{float:left;line-height:20px;margin-left:10px;color:#666;margin-top:7px; }
+
+/* 二维码页面 */
+.code_top{height:74px;background-color:#e89e22;padding:22px 24px 0;}
+.code_top img{float:left;width:54px;height:54px;border-radius:1000px;}
+.code_top .left{margin-left:12px;height:54px;float:left;margin-top:6px;}
+.code_top .left p{color:#fff;}
+.code_top .left p span{color:#501100;}
+.code_center{height:116px;background:#ffefd2 url(../images/luobo_show.png) no-repeat center center;background-size:227px 86px;}
+.code_bottom{padding:25px 50px 10px;}
+.code_bottom .des{color:#fff;text-align:center;margin-bottom:5px;}
+.code_bottom .des span{color:#501100;font-weight:bold;}
+.code_bottom .code_ma{width:100%;height:255px;margin:12px auto;background:url(../images/code_kuang.png) no-repeat center center;background-size:255px 255px;}
+.code_bottom .code_ma img{width:245px;height:245px;margin:0 auto;padding-top:5px;}

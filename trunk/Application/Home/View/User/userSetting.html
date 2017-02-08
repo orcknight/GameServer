@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>萝卜兼职</title>
+        <include file="Common/header"/>
+    </head>
+    <body>
+        <div class="page-group">
+            <div class="page page-current" id="userSetting">
+                <header class="bar bar-nav">
+                <a class="button button-link button-nav pull-left back" href="__APP__/Home/User/userCenter" data-transition="slide-out" data-no-cache="true">
+                    <span class="icon icon-left"></span>
+                   返回
+                </a>
+                    <h1 class="title">设置</h1>
+                </header>
+                <div class="content wrapUserSetting" id="wrapUserSetting">
+                    <section class="marg_top_10">
+                        <div class="list-block">
+                            <ul class="marg_bottom_10">
+                                <a href="__APP__/Home/User/modifyPwd"  data-no-cache="true">
+                                    <li class="item-content item-link" id="modifyPwd">
+                                        <div class="item-inner">
+                                            <div class="f16 item-title">
+                                            <i class="iconf iconf-passWord marg_right_10"   style="color: #56abe3;" ></i>修改密码
+                                            </div>
+                                        </div>
+                                    </li>
+                                </a>
+                                <a href="javascript:void(0);">
+                                    <li class="item-content item-link " id="signOut" >
+                                        <div class="item-inner">
+                                            <div class="f16 item-title">
+                                            <i class="iconf iconf-loginOut marg_right_10"  style="color: #eb4f38;"></i>退出登录
+                                            </div>
+                                        </div>
+                                    </li>
+                                </a>
+                            </ul>
+                        </div>    
+                    </section>
+                </div>
+            </div>
+        </div>
+        <include file="Common/footer"/>   
+        <include file="Common/tpl/tpl-userCenter" />         
+        <script type="text/javascript" src='__PUBLIC__/source/debug/scripts/home-user-setting.js' charset='utf-8'></script>
+        <script type="text/javascript" src='__PUBLIC__/source/debug/scripts/home-user-modifypwd.js' charset='utf-8'></script>
+        <script type="text/javascript" src='__PUBLIC__/source/debug/scripts/home-user-center.js?t=1484274672336' charset='utf-8'></script>
+    </body>
+</html>
+

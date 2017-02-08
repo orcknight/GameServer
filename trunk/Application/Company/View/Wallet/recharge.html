@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title>萝卜兼职</title>
+    
+    <include file="Common/header"/>
+
+  </head>
+  <body>
+    <div class="page-group">
+        <div class="page page-current" id="recharge">
+            <header class="bar bar-nav">
+                <a class="button button-link button-nav pull-left back" href="__APP__/Company/Wallet/myWallet">
+                    <span class="icon icon-left"></span>
+                    返回
+                </a>
+                <h1 class='title'>充值</h1>
+            </header>
+            <div class="buttons-tab fixed-tab" data-offset="44" style="padding: .5rem 0;">
+                <div id="s1" data-status="1" class="tab-link button line_r text-right" style="width: 30%; height: 1.8rem; line-height: 1.8rem;">充值金额</div>
+                <input id="rechargeVal" type="text" name=""  value="" placeholder="请输入金额" class="" style="outline: none;-webkit-appearance:none; border: 0 none; -webkit-appearance: none; padding: 10px .5rem; height: 1.8rem;" />
+            </div>
+            <div class="resetConBlock">
+                <div class="content-block">
+                    <div class="tabs">
+                        <div id="tab_content" class="tab active">
+                            <div class="content-block content infinite-scroll infinite-scroll-bottom"  data-distance="10" style="top: 100px;">
+                                <div class="payType">
+                                    选择支付方式
+                                </div>
+                                <div class="wrapJob">
+                                    <div class="f14 pos_rela line_b payTypeLi" style=" padding: .85rem;">
+                                        <img src="/Public/images/i_wx.png" >
+                                        <span>微信支付</span>
+                                        <input type="radio"  name="onlinePayType" value="0" checked="" />
+                                    </div>
+                                    
+                                    <div class="content-block" style="margin-top: 2rem; padding: .85rem;">
+                                        <div class="row">
+                                            <div class="col-100">
+                                                <a id="btnRecharge" href="#" class="button button-big button_orange">确认充值</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            
+        </div>
+    </div>
+    <include file="Common/tpl/tpl-wallet" />
+    <include file="Common/tpl/tpl-jobDetail" />
+    <include file="Common/footer"/>
+    <script type="text/javascript" src='__PUBLIC__/source/debug/scripts/company-wallet-bundle.js' charset='utf-8'></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+  </body>
+</html>

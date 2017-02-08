@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <title>萝卜兼职</title>
+        
+        <include file="Common/header"/>
+    </head>
+    <body>
+        <div class="page-group">
+            <div class="page page-current" style="display: block;" id="rechargeCash">
+                <!--头部-->
+                <header class="bar bar-nav">
+                    <a class="button button-link button-nav pull-left back" href="__APP__/Home/Wallet/myWallet" data-transition="slide-out">
+                        <span class="icon icon-left"></span>
+                       返回
+                    </a>
+                    <h1 class="title">充值</h1>
+                </header>
+                <div class="content wrapPerfectInfo" id="wrapUserBaseInfo">
+                    <div class="content-block f14 wrapRegCont">
+                        <div class="row no-gutter">
+                            <div class="row no-gutter line_b">
+                                <div class="col-25 text-left">
+                                    充值金额
+                                </div>
+                                <div class="col-75 line_l">
+                                    <input  id="rechargeNum" class="form-control gttv" type="number" name="amount" placeholder="请输入整数" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-block">
+                            <div class="row">
+                                <div class="col-100">
+                                    <a id="btnRecharge" href="#" class="button button-big button_orange">微信支付</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <include file="Common/footer"/> 
+    <script type="text/javascript" src='__PUBLIC__/source/debug/constVal/constVal.js' charset='utf-8'></script>
+    <script  type='text/javascript' src='__PUBLIC__/source/debug/scripts/home-wallet-myWallet.js?t=1482373334544' charset='utf-8'></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    </body>
+</html>

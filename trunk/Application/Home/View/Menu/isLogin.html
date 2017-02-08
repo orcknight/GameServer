@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>萝卜兼职</title>
+	<include file="Common/header" />
+</head>
+<body>
+	<include file="Common/footer" />
+</body>
+</html>
+<script>
+	/* globals $, APP_PATH */
+	'use strict';
+	$.ajax({
+		url: APP_PATH + '/Home/User/isLogin',
+		type: 'GET',
+		dataType: 'json',
+		async: false,
+		timeout: 2000,
+		success: function (res) {
+			if (res.code === 1) {
+				location.href = APP_PATH + '/Home/Wallet/myWallet';
+			} else {
+				location.href = APP_PATH + '/Home/Index/signIn?toWallet=1';
+			}
+		},
+		error: function () {
+			location.href = APP_PATH + '/Home/Index/signIn';
+		}
+	});
+</script>
