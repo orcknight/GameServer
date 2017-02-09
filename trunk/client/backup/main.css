@@ -1,0 +1,240 @@
+body {
+	margin-left: 2px;
+	margin-top: 0px;
+	margin-right: 2px;
+	color: #666;
+	font-weight:bold; 
+	font-size:14px;
+	line-height: 140%;
+	background-color: #f8f8f8;
+}
+
+div#chat {
+	padding:2px;
+	overflow:auto;
+	border-bottom:1px solid #CCCCCC;
+}
+
+div#long {
+	padding-top:2px;
+	padding-left:2px;
+	padding-bottom:3px;
+	border-bottom:1px solid #CCCCCC;
+	overflow:auto;
+}
+
+div#mleft {
+	position:absolute;
+	left: 0px;
+	width:18%;
+	padding-top:2px;
+	margin-bottom:2px;
+	border-right:1px solid #CCCCCC;
+}
+
+div#mright {
+	position:absolute;
+	left:18%;
+	width:81%;
+	margin-bottom:2px;
+}
+
+div#hps {
+	position:absolute;
+	bottom: 50px;
+	line-height: 100%;
+	width: 100%;
+	margin-left: -2px;
+	background-color: #999;
+}
+
+div#menu {
+	position:absolute;
+	bottom: 0px;
+	width: 100%;
+	margin-left: -2px;
+	margin-right: -2px;
+	height: 50px; 
+}
+
+div#obj {
+	width:98%;
+	overflow:auto;
+}
+
+div#hudong {
+	position:absolute;
+	top:2px;
+	left: 1px;
+	padding:3px;
+	padding-bottom:5px;
+	font-size:12px;
+	width:98%;
+	border: 1px solid #aaa;
+	border-radius:3px;
+	background-color:#f0f0f0;
+	overflow:auto;
+}
+
+div#map {
+	position:absolute;
+	top:2px;
+	left: 1px;
+	padding:3px;
+	padding-bottom:5px;
+	font-size:12px;
+	width:98%;
+	border: 1px solid #aaa;
+	border-radius:3px;
+	background-color:#f0f0f0;
+	overflow:auto;
+}
+
+div#acts {
+	width:100%;
+	overflow:auto;
+}
+
+div#exits {
+	width:100%;
+	margin-top: 1px;
+	border-top:1px solid #CCCCCC;
+	overflow:auto;
+}
+
+div#out {
+	width:100%;
+	margin-top: 3px;
+	margin-left: 3px;
+	overflow:auto;
+}
+
+div#mycmds {
+	position:absolute;
+	height:93px;
+	bottom:-3px;
+	margin-left: 3px;
+	font-size: 18px;
+	background-color:#f0f0f0;
+	overflow:auto;
+}
+
+input{
+	border: 1px solid #888; 
+	-webkit-appearance:none;
+	height: 35px;
+	color: #666;
+	font-weight:bold; 
+	width:99%;
+	background-color: rgba(200,200,200,0.1);
+	border-radius:3px; 
+}
+
+button{
+	border: 1px solid #888; 
+	-webkit-appearance:none;
+	color: #666;
+	font-weight:bold; 
+	vertical-align:middle;
+	font-size: 11px; 
+	margin: 1px;
+	width:99%;
+	background-color: rgba(200,200,200,0.1);
+	border-radius:2px; 
+}
+
+button:active{
+  background-color:#999;
+}
+
+input:active{
+  background-color:#999;
+}
+
+input.newbt {
+	white-space:pre;
+	word-wrap: break-word;
+	font-size: 11px; 
+	height: 28px;
+	vertical-align:middle;
+	width:86%;
+	padding:1px;
+	margin: 1px;
+	background-color: rgba(200,200,200,0.1);
+	border-radius:2px; 
+} 
+
+input.hpbt {
+	border: 0px solid #888; 
+	white-space:pre;
+	word-wrap: break-word;
+	color: #fff; 
+	font-size: 9px; 
+	vertical-align:middle;
+	padding:0px;
+	margin: 0px;
+	line-height: 100%;
+	border-radius:0px;
+	background-color: transparent; 
+} 
+
+div.hpbt {
+	border: 0px solid #888; 
+	opacity: 0.7;
+	background-color: #666; 
+} 
+
+input.newbt:active{
+  background-color:#448EF3;
+}
+
+input.menubt {
+	border: 0px solid #888; 
+	color: #eee; 
+	height: 50px; 
+	width:99%;
+	border-radius:0px; 
+	background-color: #333;
+}
+input.ucmds {
+	border: 1px solid #888; 
+	height: auto;
+	width:auto;
+	color: #8888ff; 
+	padding-left:5px;
+	padding-right:5px;
+	padding-bottom:1px;
+	margin-left:-2px;
+	margin-top:3px;
+	border-radius:1px; 
+}
+input.ucmds:active{
+  background-color:#888;
+}
+
+input.menubt:active{
+  background-color:#999;
+}
+
+input#loginok { 
+	height: 40px; 
+	width:100%;
+	font-size: 20px; 
+	color: #fff; 
+	background-color: #448EF3; 
+	border: 0px; 
+}
+
+span.out {
+	white-space:pre;
+	word-wrap: break-word;
+	font-size: 12px; 
+}
+span.map {
+	white-space:nowrap;
+	font-size: 11px; 
+}
+span.chat {
+	white-space:nowrap;
+	font-size: 12px; 
+}
