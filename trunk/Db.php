@@ -22,9 +22,8 @@ class Db {
         
         if($this->db == null){
 
-            $conn = mysql_connect(DbConfig::DBHOST, DbConfig::DBUSER, DbConfig::DBPWD) or die("error connecting") ; //连接数据库
-            mysql_query("set names 'utf8'"); //数据库输出编码 应该与你的数据库编码保持一致.
-            mysql_select_db(DbConfig::DBNAME); //打开数据库
+            $conn = mysqli_connect(DbConfig::DBHOST, DbConfig::DBUSER, DbConfig::DBPWD, DbConfig::DBNAME); //连接数据库
+            $conn->set_charset('utf8');
             $this->db = $conn;
             
             return $this->db;
@@ -37,12 +36,10 @@ class Db {
     public function query($querySql){
         
         $retArray = array();
-        $index = 0;
-        $result = mysql_query($querySql, $this->getDb()); //查询    
-        while($row = mysql_fetch_array($result))
+        $result = $this->getDb()->query($querySql); //查询    
+        while($row = mysqli_fetch_assoc($result))
         {
-            $retValue[$index] = $row;
-            $index++;
+            $retArray[] = $row;
         }
         
         return $retArray;
