@@ -10,6 +10,9 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 $io = new SocketIO(2020);
 $io->on('connection', function($socket){
     $socket->addedUser = false;
+    
+    
+    $socket->emit('stream', "0000007\n");
 
     // when the client emits 'new message', this listens and executes
     $socket->on('new message', function ($data)use($socket){

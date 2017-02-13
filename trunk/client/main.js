@@ -787,7 +787,7 @@ function writeServerData(buf) {
 			return;
 		}
 
-		if(!loginok)
+		/*if(!loginok)
 		{
 			if(line.substr(0,4)=='015')//弹出提示
 			{
@@ -795,7 +795,7 @@ function writeServerData(buf) {
 				writelogin();
 			}
 			return;
-		}
+		}*/
 		if(line.substr(0,15)=='一一一一一一一一一一一一一一一')
 		{
 			line = '一一一一一一一一一一一一一一一一一一一\n';
