@@ -67,21 +67,25 @@ function GetStr(name)
      return "";
 };
 
+/* look指令等，点击物品或者玩家已经npc会调用这个接口 */
 function cmds(str) {
 	sock.emit('stream',str.id+'\n');
 };
 
+/* 打开互动窗口，如聊天，背包的时候调用此函数 */
 function cmdsa(str) {
 	sock.emit('stream',str.id+'\n');
 	$('div#hudong').hide();
 };
-
+ 
+/* 用聊天窗口发送命令的时候调用 */
 function cmdsb() {
 	if($('input#chatmsg').val()=='') return;
 	sock.emit('stream',$('input#chatmsg').val()+'\n');
 	document.getElementById("chatmsg").value="";
 };
 
+/* 交互窗口调用 比如npc的购物，玩家的给予，查看装备等功能 */
 function cmdsc(str) {
 	$('div#hudong').hide();
 	$('div#mycmds').hide();
@@ -95,12 +99,14 @@ function cmdsc(str) {
 	}
 };
 
+/* 聊天的时候调用 */
 function says(str) {
 	if($('input#chatmsg').val()=='') return;
 	sock.emit('stream',str.id.replace('$txt#',$('input#chatmsg').val())+'\n');
 	document.getElementById("chatmsg").value="";
 };
 
+/* 刚进入房间的时候清空内容，并进行刷新 */
 function writeToST(str) {
 	$('div#long').html('');
 	$('div#exits').html('');
@@ -121,6 +127,7 @@ function writeToST(str) {
 	tit = ansistr(str);
 };
 
+/* 创建地图列表, 其中dirnw等变量是由writeToEX函数提前写入的 */
 function writedirs() {
 	var out = $('div#exits');
 	out.html('<table width="100%" border="0" cellspacing="1" cellpadding="0">'
@@ -142,6 +149,7 @@ function writedirs() {
 				+'</table>');
 };
 
+/* 解析服务端传回的地图位置字符串，并赋值给相应的变量 */
 function writeToEX(str) {
 	var out = $('div#exits');
 	var strs = str.split("$zj#");
