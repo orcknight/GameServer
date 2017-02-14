@@ -216,6 +216,7 @@ function writeToEX(str) {
 	}
 };
 
+/* 点击人物以后创建命令栏，写入动作栏 给予 禁言等界面 */
 function writeToACT(str) {
 	var r = 1,w = 3,h = 9,s = 30;
 	var out = $('div#hudong');
@@ -258,6 +259,7 @@ function writeToACT(str) {
 	}
 };
 
+/* 写血量 经验等栏目 */
 function writeToHP(str) {
 	var r = 5,w = 5,h = 25,s = 33;
 	var out = $('div#hps');
@@ -338,6 +340,7 @@ function writeToHP(str) {
 	$('div#hps').css('height','auto');
 };
 
+/* 写顶层按钮 比如选择技能以后出现的请教按钮 */
 function writeToPop(str) {
 	var r = 1,w = 2,h = 9,s = 30;
 	var out = $('div#hudong');
@@ -390,6 +393,7 @@ function close_hd()
 	$('#map').hide();
 };
 
+/* 写人物简介按钮 */
 function writeToHD(str) {
 	var out = $('div#hudong');
 	out.show();
@@ -427,6 +431,7 @@ function writeToHD(str) {
 	}
 };
 
+/* 写地图全景 */
 function writeToMAP(str) {
 	var out = $('div#map');
 	out.show();
@@ -460,6 +465,7 @@ function writeToMAP(str) {
 	}
 };
 
+/* 写对象列表 */
 function writeToOBJ(str) {
 	var out = $('div#obj');
 	var strs = str.split("$zj#");
@@ -472,6 +478,7 @@ function writeToOBJ(str) {
 	}
 };
 
+/* 移除一个对象 */
 function removeOBJ(str) {
 	var ob = document.getElementById(htmlDecode(str));
 	if(!ob)
@@ -483,6 +490,7 @@ function removeOBJ(str) {
 	ob.parentNode.removeChild(ob);
 };
 
+/* 写聊天窗口 */
 function writeToCHAT(str) {
 	str = str.replace(/\【/, '[ ');
 	str = str.replace(/\】/, ' ] ');
@@ -502,6 +510,7 @@ function writeToCHAT(str) {
 	out.scrollTop(out.prop("scrollHeight"));
 };
 
+/* 写场景描述 */
 function writeToLO(str) {
 	str = str.replace(/\【/, '[ ');
 	str = str.replace(/\】/, ' ]');
@@ -514,6 +523,7 @@ function close_mycmds()
 	$('#mycmds').hide();
 };
 
+/* 写命令窗口， 如查看背包，综合属性 */
 function writeToMU(str) {
 	var out = $('div#mycmds');
 	out.show();
@@ -530,6 +540,7 @@ function writeToMU(str) {
 	out.append('<button style="color:'+textcol+';margin:2px;width:15%;height:42px;" type="button" onclick="close_mycmds()">关闭<br>选项</button>');
 };
 
+/* 写聊天主窗口 */
 function writeToScreen(str) {
 	str = str.replace(/\【/, '[ ');
 	str = str.replace(/\】/, ' ]');
@@ -546,6 +557,7 @@ function writeToScreen(str) {
 	out.scrollTop(out.prop("scrollHeight"));
 };
 
+/* 写登陆窗口 */
 function writelogin() {
 	var out = $('div#hudong');
 	var cha = $('div#chat');
@@ -561,6 +573,7 @@ function writelogin() {
 	out.append('<span class="out"><input type="button" id="loginok" value="登录游戏" onclick="logincheck()"></span>');
 };
 
+/* 写建立角色窗口 */
 function writechar() {
 	var out = $('div#hudong');
 	var cha = $('div#chat');
@@ -575,6 +588,7 @@ function writechar() {
 	out.append('<span class="out"><input type="button" id="loginok" value="建立角色" onclick="charcheck()"></span>');
 };
 
+/* 登陆验证 */
 function logincheck(id,pass) {
 	var myid,mypass;
 	if(id!=null)
@@ -637,6 +651,7 @@ function logincheck(id,pass) {
     });
 };
 
+/* 建立角色验证 */
 function charcheck() {
 	var myname = $('input#nicheng');
 	var mysex = $("input[name='sex']:checked");
@@ -656,6 +671,7 @@ function charcheck() {
 	sock.emit('stream',mysex.val()+'║001║'+myname.val()+'\n');
 };
 
+/* 重新登陆 */
 function relogin()
 {
 	sock.emit('stream','quit\n');
@@ -684,6 +700,7 @@ function filepath(obj)
 	}  
 }  
 
+/* 切换背景 */
 function changebk(str)
 {
 	$('body').css('background','url(http://www.zjmud.cn/mud/img/'+str.id+'.jpg)');
@@ -694,6 +711,7 @@ function changebk(str)
 	$('div#mycmds').css('background-size',$(window).width()+'px '+$(window).height()+'px');
 }
 
+/* 写配置窗口 */
 function config()
 {
 	var out = $('div#hudong');
@@ -752,6 +770,7 @@ function config()
 	};
 };
 
+/* 解析服务器数据并绘制图形 */
 function writeServerData(buf) {
 	var line = buf;
 	
@@ -770,11 +789,13 @@ function writeServerData(buf) {
 			return;
 		}
 
+        /* 创建脚色窗口 */
 		if(line.substr(0,8)=='0000008')
 		{
 			writechar();
 			return;
 		}
+        /* 创建菜单 */
 		if(line.substr(0,8)=='0000007')
 		{
 			loginok = true;
@@ -795,7 +816,7 @@ function writeServerData(buf) {
 			return;
 		}
 
-		/*if(!loginok)
+		if(!loginok)
 		{
 			if(line.substr(0,4)=='015')//弹出提示
 			{
@@ -803,7 +824,7 @@ function writeServerData(buf) {
 				writelogin();
 			}
 			return;
-		}*/
+		}
 		if(line.substr(0,15)=='一一一一一一一一一一一一一一一')
 		{
 			line = '一一一一一一一一一一一一一一一一一一一\n';
@@ -886,6 +907,7 @@ function writeServerData(buf) {
 	adjustLayout();
 };
 
+/* 适应屏幕 */
 function adjustLayout() {
 	if(!loginok) return;
 
