@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title>申请头领</title>
+	<link rel="stylesheet" type="text/css" href="/Public/promot/css/base.css">
+	<link rel="stylesheet" type="text/css" href="/Public/promot/css/jiazu.css">
+	<link rel="stylesheet" type="text/css" href="/Public/promot/css/toast.css">
+	<link rel="stylesheet" type="text/css" href="/Public/promot/css/weui.min.css">
+</head>
+<body>
+	<!--<header>-->
+		<!--<a onclick="window.history.back()" class="icon-font return">&#xe601;</a>-->
+		<!--<span>申请头领</span>-->
+	<!--</header>-->
+	<div class="defense">
+		<div class="img"></div>
+		<p>申请提示</p>
+		<p class="con">通过实名认证，成为萝卜头领，将萝卜兼职分享给小伙伴，可以获得丰厚的现金和礼品，表现优秀者可获得总部实习和团队旅行奖励！
+	</div>
+	
+	<div class="join">
+		<form method="post" onsubmit="return false" id="form">
+			<div class="top">
+				<div class="clearfix info">
+					<span>真实姓名</span>
+					<input type="text" name="realname" id="realname" placeholder="输入真实姓名" value="{$info.realname}">
+				</div>
+				<div class="clearfix info">
+					<span>所在城市</span>
+					<div class="left">			
+						<select name="province" id="province" class="spinner" onchange="change_prov()">
+							<volist name="prov_list" id="vo">
+							<option value="{$vo.id}" <php>if($info['province'] == $vo['id']){echo 'selected';}</php>>{$vo.name}</option>
+							</volist>
+						</select>
+						<select name="city" id="city" class="spinner" onchange="change_city()">
+							<volist name="city_list" id="vo">
+							<option value="{$vo.id}" <php>if($info['city'] == $vo['id']){echo 'selected';}</php>>{$vo.name}</option>
+							</volist>
+						</select>
+					</div>
+				</div>
+
+				 <div class="clearfix info" id='regionList'>
+					<span>区域</span>
+					<div class="left">	
+						<select name="regionId" id="region" class="spinner spinner1 " onchange='loadSchool()'>
+							<volist name="region_list" id="vo">
+								<option value="{$vo.id}"> <php>if($info['regionid'] == $vo['id']){echo 'selected';}</php>{$vo.name}</option>
+							</volist>
+						</select>
+					</div>
+				</div> 
+				<div class="clearfix info" id='schoolList'>
+					<span>学校名称</span>
+					<div class="left">	
+						<select name="school" id="school" class="spinner spinner1">
+							<volist name="school_list" id="vo">
+								<option value="{$vo.id}"> <php>if($info['school'] == $vo['id']){echo 'selected';}</php>{$vo.name}</option>
+							</volist>
+						</select>
+					</div>
+				</div>
+				<div class="clearfix info">
+					<span>手机号</span>
+					<input type="tel" name="tel" id="tel" placeholder="输入有效手机号码" value="{$info.tel}">
+				</div>
+				<div class="clearfix info">
+					<span>QQ号</span>
+					<input type="tel" name="qq" id="qq" placeholder="输入你常用的qq号码" value="{$info.qq}">
+				</div>
+			</div>
+			<div class="submit">
+				<input type="hidden" name="id" value="{$info.id|default='0'}">
+
+				<input id="btn_submit" type="submit" value="确定"  onclick="dopost('{:U('Promot/doApply')}','form',0,'{:U('Promot/index')}')" >
+			</div>
+			
+		</form>
+	</div>
+
+
+<script src="/Public/promot/js/jquery.js"></script>
+<script src="/Public/promot/js/promot.js"></script>
+<script>
+	
+	$(function()
+	{
+		$("#schoolList").show();
+		
+	});
+</script>
+</body>
+</html>

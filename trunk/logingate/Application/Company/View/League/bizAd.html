@@ -1,0 +1,44 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>萝卜兼职</title>
+        <include file="Common/header"/>
+    </head>
+    <body>
+    	<div class="page  page-current ff" id="bizAd">
+            <div class="content">
+                <p class="p1">
+                    萝卜小助手关注量总计10万;<br />网站日平均点击量可达20000人次;<br /> 目前已覆盖10.0000万大学生<br />  （山东、北京、天津等省市）;
+                </p>
+                <p class="p2">
+                    <span class="title">广告投放价格：</span><br />
+                    萝卜兼职单页轮播图2000元/月； <br />萝卜兼职平台文案推送500元/次；<br /> 萝卜兼职平台文案底部广告200元/次。
+                </p>
+                <div class="form_ad">
+                    <form action="">
+                        <fieldset>
+                            <legend class="adTstyle">广告投放</legend>
+                            <span>联系人<b style="color:red">*</b></span><input id="linkman" name="linkman" class="txtStyle" type="text" />
+                            <br /><span>电话<b style="color:red">*</b></span><input name="phone" class="txtStyle" type="text" />
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="btn_submit">
+                    提交
+                </div>
+            </div>
+            <footer class="footer_botm">
+                <img src="/Public/images/btn_call.png" class="btn_call">
+                <img src="/Public/images/btn_ad.png" class="btn_pt">
+            </footer>
+    	</div>
+        <include file="Common/footer"/>
+        <script src="__PUBLIC__/source/debug/scripts/company-league-formSubmit.js?t=1482911928945"></script>
+        <script type="text/javascript">
+            /* globals T, initT, $ */
+            'use strict';
+            var t = new T('/Company/League/publicity');
+            initT(t, $('.btn_submit'), $('.btn_call'), $('.btn_pt'), $('#bizAd')[0]);
+        </script>       
+    </body>
+</html>

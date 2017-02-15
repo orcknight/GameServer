@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        <title>萝卜兼职</title>        
+        <include file="Common/header"/>
+        <include file="Common/tpl/tpl-userIncomeDetail" />
+    </head>
+    <body>
+        <div class="page-group">
+            <div class="page page-current" id="bindZFB">
+                <header class="bar bar-nav">
+                    <a class="button button-link button-nav pull-left back" href="__APP__/Home/Wallet/myWallet">
+                        <span class="icon icon-left"></span>
+                        返回
+                    </a>
+                    <h1 class="title">绑定支付宝</h1>
+                </header>
+                <div class="content wrapBindZFB" id="wrapBindZFB">
+                    <div id="toShow"></div>
+                    
+                    <div class="content-block pos_rela text-center">
+                        <div class="row">
+                            <div class="col-100">
+                                <a id="immeBind" href="javascript:;" class="button button-big button_orange">立即绑定支付宝</a>
+                            </div>
+                        </div>
+                    </div>               
+                </div> 
+            </div>
+        </div>
+        <include file="Common/footer" />
+        <script type="text/javascript" src='__PUBLIC__/source/debug/constVal/constVal.js' charset='utf-8'></script>
+        <script type="text/javascript" src='__PUBLIC__/source/debug/scripts/home-wallet-myWallet.js?t=1487059234162' charset='utf-8'></script>
+    </body>
+</html>

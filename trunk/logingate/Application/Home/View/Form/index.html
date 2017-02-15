@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>萝卜表单</title>
+        <include file="Common/header"/>
+    </head>
+    <body>
+        <div class="page-group">
+            <div class="page page-current" id="index">
+                <header class="bar bar-nav">
+                    <h1 class='title'></h1>
+                </header>
+                <div class="content infinite-scroll infinite-scroll-bottom bg_white" id="indexScroll" data-distance="10">
+                    
+                    <!-- 轮播图 -->
+                    <div class="swiper-container" data-space-between="10">
+                    </div>
+                    
+                    <div class="form-desc"></div>
+
+                    <div class="wrap-form wrapPerfectInfo">
+                        <form action="" class="form_perfectInfo">
+                            <div class="content-block f14 wrapRegCont list-block"></div>
+                        </form>
+                    </div>
+                    
+                    <div class="content-block">
+                        <div class="row">
+                            <div class="col-100">
+                                <a id="submitBtn" class="button button-big button_orange">提交</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-overlay"></div>
+        </div>
+
+        <!-- 模板-轮播图 -->
+        <script id="banner-list-tpl" type="text/html">
+            <div class="swiper-wrapper">
+                {{each banners as banner i}}
+                    <div class="swiper-slide">
+                        <a href="" external>
+                            <img src="{{#banner.imageurl}}" alt="{{#banner.id}}">
+                        </a>
+                    </div>
+                {{/each}}
+            </div>
+            <div class="swiper-pagination"></div>
+        </script>
+        <!--组件-->
+        <script id="form-desc" type="text/html">
+            {{if status != 1}}
+            <div class="row no-gutter item-content">
+                <div class="item-inner">
+                    <div class="col-100 text-left item-title pos_rela">
+                        <span class="form-title">{{title}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row no-gutter item-content">
+                <div class="item-inner">
+                    <div class="col-100 item-input wrapTextarea">
+                        <input data-comid="{{formcomid}}" data-comtype="{{type}}" data-comname="{{title}}" class="form-control gttv" type="text" placeholder="{{placeholder}}" readonly="" />
+                    </div>
+                </div>
+            </div>
+            {{/if}}
+        </script>
+        <script id="form-text" type="text/html">
+            {{if status != 1}}
+            <div class="row no-gutter  item-content">
+                <div class="item-inner">
+                    <div class="col-100 text-left item-title pos_rela">
+                        <span class="form-title">{{title}}{{if isrequired == 0}}(可选){{/if}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row no-gutter  item-content">
+                <div class="item-inner">
+                    <div class="col-100 item-input">
+                        <input data-comid="{{formcomid}}" data-comtype="{{type}}" data-comname="{{title}}" id="" class="form-control gttv" type="text" placeholder="{{placeholder}}" />
+                    </div>
+                </div>
+            </div>
+            {{/if}}
+        </script>
+        <script id="form-textarea" type="text/html">
+            {{if status != 1}}
+            <div class="row no-gutter item-content">
+                <div class="item-inner">
+                    <div class="col-100 text-left item-title pos_rela">
+                        <span class="form-title">{{title}}{{if isrequired == 0}}(可选){{/if}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row no-gutter item-content">
+                <div class="item-inner">
+                    <div class="col-100 item-input wrapTextarea">
+                        <textarea data-comid="{{formcomid}}" data-comtype="{{type}}" data-comname="{{title}}" class="form-control gttv" placeholder="{{placeholder}}" ></textarea>
+                    </div>
+                </div>
+            </div>
+            {{/if}}
+        </script>
+
+        <script id="form-image" type="text/html">
+            <!--to do-->
+        </script>
+        <script id="form-radio" type="text/html">
+            <!--to do-->
+        </script>
+        <script id="form-select" type="text/html">
+            <!--to do-->
+        </script>
+        <script id="form-file" type="text/html">
+            <!--to do-->
+        </script>
+        <include file="Common/footer"/>
+    </body>
+    <script>
+        var TYPES = {
+            DESC: 0,
+            IMAGE: 1,
+            TEXT: 2,
+            TEXTAREA: 3,
+            RADIO: 4,
+            SELECT: 5,
+            FILE: 6
+        };
+        var form = document.forms[0], btn = $('#submitBtn');
+        var formidmatch = location.search.match(/formid=(\d+)/);
+        var formid = formidmatch && formidmatch[1];
+
+        getFormDetail(formid);
+
+        $(form).on('submit', function (e) {
+            e.preventDefault();
+            return false;
+        });
+        btn.on('click', handleSubmit);
+
+        function handleSubmit() {
+            btn.off('click');
+            var checkObj = checkForm();
+            if (!checkObj.result) {
+                var toastkey = checkObj.key;
+                if (checkObj.key.length > 6) {
+                    toastkey = toastkey.slice(0, 6) + '...';
+                } else {
+                    toastkey += '~';
+                }
+                $.toast('请填写' + toastkey);
+                btn.on('click', handleSubmit);
+                return;
+            }
+            submitForm();
+
+            function checkForm() {
+                var elements = form.elements, field, name;
+                for (var i = 0, len = elements.length; i < len; i++) {
+                    field = elements[i];
+                    value = field.value;
+                    name = field.dataset.comname;
+
+                    if (!value || !value.trim()) {
+                        return {result: false, key: name};
+                    }
+                }
+                return {result: true};
+            }
+
+            function submitForm() {
+                var elements = form.elements, field, name, value, type, arr = [];
+                for (var i = 0, len = elements.length; i < len; i++) {
+                    field = elements[i];
+                    name = field.dataset.comname;
+                    value = field.value;
+                    type = field.dataset.comtype;
+                    arr.push({
+                        name: name,
+                        value: value,
+                        type: type
+                    });
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: APP_PATH + '/Home/Form/addFormResult',
+                    data: {
+                        formid: formid,
+                        content: arr
+                    },
+                    dataType: 'json',
+                    success: function (res) {
+                        if (res.code) {
+                            $.toast('提交成功');
+                        } else {
+                            $.toast('提交失败');
+                        }
+                        btn.on('click', handleSubmit);
+                    },
+                    error: function (err) {
+                        $.toast('提交失败');
+                        btn.on('click', handleSubmit);
+                    }
+                });                
+            }
+        }
+
+        function getFormDetail(fId) {
+            fId || (fId = 1);
+            $.ajax({
+                type: 'POST',
+                url: APP_PATH + '/Home/Form/getFormById',
+                data: {id: fId},
+                dataType: 'json',
+                success: function (res) {
+                    if (!res.code) return;
+                    res = res.data;
+                    var formcoms = res.formcoms, images = res.images, title = res.title, desc = res.description;
+                    initSwiper(images);
+                    handleTitle(title);
+                    handleDesc(desc);
+                    handleCOM(formcoms);
+                },
+                error: server_error
+            });
+        }
+
+        function handleTitle(title) {
+            $('.title').text(title);
+        }
+
+        function handleDesc(desc) {
+            $('.form-desc').text(desc);
+        }
+
+        function handleCOM(coms) {
+            var wrap = $(form).find('.list-block');
+            var html = '';
+            coms.forEach(function (com) {
+                var type = com.type;
+                var typename;
+                var resultType;
+                for (typename in TYPES) {
+                    if (TYPES[typename] == type) {
+                        resultType = typename;
+                        break;
+                    }
+                }
+                resultType || (resultType = 0);
+                html += template('form-' + resultType.toLowerCase(), com);
+            });
+
+            wrap.append(html);
+        }
+
+        function initSwiper(images) {
+            var data = {
+                "banners": images
+            };
+            var html = template('banner-list-tpl', data);
+            $(".swiper-container").html(html);
+            var bannerLgt = data.banners.length;
+            $(".swiper-container").swiper({
+                pagination: (bannerLgt<= 1)?'':'.swiper-pagination',
+                paginationClickable: true,
+                spaceBetween: 0,
+                centeredSlides: true,
+                loop: (bannerLgt<= 1)?false:true,
+                autoplay: 3000,
+                autoplayDisableOnInteraction: false
+            });
+        }
+
+
+    </script>
+</html>

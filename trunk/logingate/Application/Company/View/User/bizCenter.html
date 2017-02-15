@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>萝卜兼职</title>
+        <include file="Common/header"/>
+    </head>
+    <body>
+        <div class="page-group">
+            <div class="page page-current"  id='bizCenter'>
+                <header class="bar bar-nav">
+                    <h1 class="title">企业中心</h1>
+                </header>
+                <div class="content wrapUserCenter" id="wrapUserCenter">
+                    <div class="bgContainer bg_orange">
+                        <div id = 'biz-center-top-info'>
+                        </div>
+                    </div>   
+                    <section class="marg_bottom_10">
+                        <div class="list-block">
+                            <ul class="marg_bottom_10">
+                                <a href="__APP__/Company/Wallet/myWallet" external>
+                                    <li class="item-content item-link">
+                                        <div class="item-inner">
+                                            <div class="f16 item-title">
+                                                <i class="iconf iconf-cash marg_right_10" style="color: #ec5942;  display: inline-block; margin-top: -3px;"></i>我的钱包
+                                            </div>
+                                        </div>
+                                    </li>
+                                </a>
+                            </ul>
+                        </div>
+                    </section>
+                    <section class="marg_bottom_10">
+                        <div class="list-block">
+                            <ul class="marg_bottom_10">
+                                <a href="__APP__/Company/User/bizInfo">
+                                    <li class="item-content item-link">
+                                        <div class="item-inner">
+                                            <div class="f16 item-title">
+                                                <i class="iconf iconf-manager marg_right_10" ></i>企业简介
+                                            </div>
+                                        </div>
+                                    </li>
+                                </a>
+                            </ul>
+                        </div>
+                    </section>
+                    <section class="marg_bottom_10">
+                        <div class="list-block">
+                            <ul class="marg_bottom_10">
+                                <a href="__APP__/Company/Job/sendJob" external>
+                                    <li class="item-content item-link">
+                                        <div class="item-inner">
+                                            <div class="f16 item-title">
+                                                <i class="iconf iconf-sendJob marg_right_10" style="color: #00bb9e;"></i>发布兼职
+                                            </div>
+                                        </div>
+                                    </li>
+                                </a>
+                                <a href="__APP__/Company/User/sendList" external>
+                                    <li class="item-content item-link">
+                                        <div class="item-inner">
+                                            <div class="f16 item-title">
+                                                <i class="iconf iconf-sendList marg_right_10" ></i>发布记录
+                                            </div>
+                                        </div>
+                                    </li>
+                                </a>
+                                <a href="__APP__/Company/User/applyList" external>
+                                    <li class="item-content item-link">
+                                        <div class="item-inner">
+                                            <div class="f16 item-title">
+                                                <i class="iconf iconf-applyList marg_right_10" style="color: #ed523c;"></i>投递记录
+                                            </div>
+                                        </div>
+                                    </li>
+                                </a>
+                                <a id="sendMoney" href="javascript:;" external>
+                                    <li class="item-content item-link">
+                                        <div class="item-inner">
+                                            <div class="f16 item-title">
+                                                <i class="iconf iconf-cashbag marg_right_10"  style="color: #a461bd; display: inline-block; margin-top: -3px;"></i>发放工资
+                                            </div>
+                                        </div>
+                                    </li>
+                                </a>
+                            </ul>
+                        </div>    
+                    </section>
+                    <section class="marg_bottom_10">
+                        <div class="list-block">
+                            <ul class="marg_bottom_10">
+                                <a href="__APP__/Company/User/feedback">
+                                    <li class="item-content item-link">
+                                        <div class="item-inner">
+                                            <div class="f16 item-title">
+                                                <i class="iconf iconf-fankui marg_right_10" style="color: #56abe4;"></i>意见反馈
+                                            </div>
+                                        </div>
+                                    </li>
+                                </a>
+                            </ul>
+                        </div>
+                    </section>
+                    <section class="marg_bottom_10">
+                        <div class="list-block">
+                            <ul class="marg_bottom_10">
+                                <a href="__APP__/Company/User/bizSetting">
+                                    <li class="item-content item-link">
+                                        <div class="item-inner">
+                                            <div class="f16 item-title">
+                                                <i class="iconf iconf-set marg_right_10" style="color: #a461bd;"></i>设置
+                                            </div>
+                                        </div>
+                                    </li>
+                                </a>
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+                <div class="tip_info text-center" style="display: none;"></div>
+            </div>
+        </div>         
+        <include file="Common/footer"/>
+        <include file="Common/tpl/tpl-bizCenter" />
+        <include file="Common/tpl/tpl-bizInfo" />
+        <include file="Common/tpl/tpl-bizInfoDetail" />
+        <include file="Common/tpl/tpl-perfectInfo" />
+        <include file="Common/tpl/tpl-payList" />
+        <script type="text/javascript" src='__PUBLIC__/source/debug/scripts/company-user-bizInfo.js' charset='utf-8'></script>
+        <script type="text/javascript" src='__PUBLIC__/source/debug/scripts/company-user-feedback.js' charset='utf-8'></script>
+        <script type="text/javascript" src='__PUBLIC__/source/debug/scripts/company-user-bizSetting.js?t=1482911928945' charset='utf-8'></script>
+        <script type="text/javascript" src='__PUBLIC__/source/debug/scripts/company-user-bizCenter.js?t=1482911928945' charset='utf-8'></script>
+    </body>
+</html>

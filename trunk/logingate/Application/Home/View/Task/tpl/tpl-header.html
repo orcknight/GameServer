@@ -1,0 +1,51 @@
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--禁止自动识别电话号码/邮箱-->
+<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">    
+<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<link rel="shortcut icon"  type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+
+
+<link rel="stylesheet" href="__PUBLIC__/source/debug/styles/sm.css">
+<link rel="stylesheet" href="__PUBLIC__/source/debug/styles/sm-extend.css">
+<link rel="stylesheet" href="__PUBLIC__/source/debug/styles/main.css?t=1487055379193">
+<link rel="stylesheet" href="__PUBLIC__/task/css/task.css?t=1487055379193">
+<script>
+    var ROOT ="__ROOT__";
+    var APP_PATH = "__APP__";
+    var MOD_PATH = "__MODULE__";
+    var CON_PATH = "__CONTROLLER__";
+</script>
+
+<include file="Task/tpl/tpl-task" />
+
+<!-- 模板-SELECT-OPTIONS -->
+<script id ="select-option-tpl" type='text/html'>
+    {{each option as value index}}
+        {{if value.status==1}}
+            <option value="{{value.id}}"{{value.id == current?'selected':''}}>{{value.name}}</option>
+        {{/if}}
+    {{/each}}
+</script>
+
+<script id="scroll-base-tpl" type="text/html">
+    <div class="content infinite-scroll infinite-scroll-bottom" data-distance="10">
+        <div class="wrapJob">
+            <ul class="jobList"></ul>
+            <div class="infinite-scroll-preloader">
+                <div class="preloader"></div>
+            </div>
+        </div>
+        <footer class="text-center padd_20">
+            <p class="fc_orange f16">萝卜兼职网</p>
+            <p class="fc_orange f10">www.luobojianzhi.com</p>
+            <p class="f10">最靠谱的大学生兼职平台</p>
+        </footer>
+    </div>
+</script>

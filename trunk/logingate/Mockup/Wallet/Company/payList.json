@@ -1,0 +1,141 @@
+{
+	"code": 1,
+	"msg": "查询成功",
+	"data": {
+		"currPage": 1,
+		"pageSize": 10,
+		"total" : "18",
+		"data": [
+			{
+				"id": "123456",
+				"pcateid": "2",
+				"title": "支付测试",
+				"paytype": "日结",
+				"createtime": "2016-08-18 16:58:55",
+				"region": "高区",
+				"province": "山东省",
+				"city": "威海市",
+				"total": "1",
+				"attributes": [0],
+				"category": "礼仪"
+			},
+			{
+				"id": "123456",
+				"pcateid": "2",
+				"title": "支付测试",
+				"paytype": "日结",
+				"createtime": "2016-08-18 16:58:55",
+				"region": "高区",
+				"province": "山东省",
+				"city": "威海市",
+				"total": "1",
+				"attributes": [0],
+				"category": "礼仪"
+			},
+			{
+				"id": "123456",
+				"pcateid": "2",
+				"title": "支付测试",
+				"paytype": "日结",
+				"createtime": "2016-08-18 16:58:55",
+				"region": "高区",
+				"province": "山东省",
+				"city": "威海市",
+				"total": "1",
+				"attributes": [0],
+				"category": "礼仪"
+			},
+			{
+				"id": "123456",
+				"pcateid": "2",
+				"title": "支付测试",
+				"paytype": "日结",
+				"createtime": "2016-08-18 16:58:55",
+				"region": "高区",
+				"province": "山东省",
+				"city": "威海市",
+				"total": "1",
+				"attributes": [0],
+				"category": "礼仪"
+			},
+			{
+				"id": "123456",
+				"pcateid": "2",
+				"title": "支付测试",
+				"paytype": "日结",
+				"createtime": "2016-08-18 16:58:55",
+				"region": "高区",
+				"province": "山东省",
+				"city": "威海市",
+				"total": "1",
+				"attributes": [0],
+				"category": "礼仪"
+			},
+			{
+				"id": "123456",
+				"pcateid": "2",
+				"title": "支付测试",
+				"paytype": "日结",
+				"createtime": "2016-08-18 16:58:55",
+				"region": "高区",
+				"province": "山东省",
+				"city": "威海市",
+				"total": "1",
+				"attributes": [0],
+				"category": "礼仪"
+			},
+			{
+				"id": "123456",
+				"pcateid": "2",
+				"title": "支付测试",
+				"paytype": "日结",
+				"createtime": "2016-08-18 16:58:55",
+				"region": "高区",
+				"province": "山东省",
+				"city": "威海市",
+				"total": "1",
+				"attributes": [0],
+				"category": "礼仪"
+			},
+			{
+				"id": "123456",
+				"pcateid": "2",
+				"title": "支付测试",
+				"paytype": "日结",
+				"createtime": "2016-08-18 16:58:55",
+				"region": "高区",
+				"province": "山东省",
+				"city": "威海市",
+				"total": "1",
+				"attributes": [0],
+				"category": "礼仪"
+			},
+			{
+				"id": "123456",
+				"pcateid": "2",
+				"title": "支付测试",
+				"paytype": "日结",
+				"createtime": "2016-08-18 16:58:55",
+				"region": "高区",
+				"province": "山东省",
+				"city": "威海市",
+				"total": "1",
+				"attributes": [0],
+				"category": "礼仪"
+			},
+			{
+				"id": "123456",
+				"pcateid": "2",
+				"title": "哈哈",
+				"paytype": "日结",
+				"createtime": "2016-08-18 16:58:55",
+				"region": "高区",
+				"province": "山东省",
+				"city": "威海市",
+				"total": "1",
+				"attributes": [0],
+				"category": "礼仪"
+			}
+		]
+	}
+}

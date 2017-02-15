@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>萝卜兼职</title>
+        <include file="Common/header"/>
+        <script type="text/javascript">
+            // 跳转到职位分类页面
+            function redirectURL(type) {
+                var cId = $(".location-info").data('cid');
+                var path = location.pathname;
+                console.log(path);
+                if(path.indexOf("cId")!=-1) {
+                    cId = path.substring(path.lastIndexOf("/cId/")+5, path.length);
+                    console.log(cId);
+                } 
+                var goURL = "__APP__/home/job/categories/cId/"+cId+"/type/"+type;
+                //商城入口test
+                if(type == 11){
+                    var goURL = "__APP__/home/job/shopIndex/cId/"+cId+"/type/"+type;
+                }
+                console.log("goURL", goURL);
+                location.href = goURL;
+            }
+        </script>
+    </head>
+    <body>
+        <div class="page-group">
+                <div class="page page-current" id="index">
+                    <header class="bar bar-nav">
+                        <a class="button button-link button-nav pull-left" href="__APP__/home/Gp/cities">
+                            <span class="iconf iconf-location pos_i"></span><span class="location-info" data-cId='1'>威海</span>
+                        </a>
+                        <h1 class='title'>萝卜兼职</h1>
+                        <a class="button button-link button-nav pull-right external" id='user-center-btn'>
+                            <span class="iconf iconf-user02"></span>
+                        </a>
+                    </header>
+                    <div class="content infinite-scroll infinite-scroll-bottom bg_white" id="indexScroll" data-distance="10">
+
+                        <!-- 轮播图 -->
+                        <div class="swiper-container" data-space-between="10">
+                        </div>
+
+                        <!-- 筛选条件，主标签 -->
+                        <div class="tabGroup pos_rela">
+                            <div class="row no-gutter line_b">
+                                <div class="col-50 text-center pos_rela line_r" id="job_new">
+                                    <a class="f_left text-right" style="width: 55%;" onclick="redirectURL(9);return true" external>名企招聘</a>
+                                    <span class="i_jobTrainee  f_left marg_left_20"></span>
+                                </div>
+                                <div class="col-50 text-center pos_rela line_r" id="job_all" style="display:none;">
+                                    <a class="f_left text-right" style="width: 55%;" onclick="redirectURL(0);return true" external>最新兼职</a>
+                                    <span class="i_jobNew f_left marg_left_20"></span>
+                                </div>
+                                <div class="col-50 text-center pos_rela" id="job_all">
+                                    <a class="f_left text-right" style="width: 55%;" href="__APP__/Home/Task/index" external>线上兼职</a>
+                                    <span class="i_jobNew f_left marg_left_20"></span>
+                                </div>
+                            </div>
+                            <div class="row no-gutter">
+                                <div class="col-50 text-center pos_rela line_r" id="">
+                                    <a class="f_left text-right" style="width: 55%;" onclick="redirectURL(6);return true" external>寒暑假工</a>
+                                    <span class="i_jobHoliday f_left marg_left_20"></span>
+                                </div>
+                                <div class="col-50 text-center" id="job_new" style="display: none;">
+                                    <a class="f_left text-right" style="width: 55%;" onclick="redirectURL(4);return true" external>名企实习</a>
+                                    <span class="i_jobTrainee  f_left marg_left_20"></span>
+                                </div>
+                                <div class="col-50 text-center" id="job_all">
+                                    <a class="f_left text-right" style="width: 55%;" onclick="redirectURL(2);return true" external>担保兼职</a>
+                                    <span class="i_jobGuarantee f_left marg_left_20"></span>
+                                </div>
+                            </div>
+                            <div class="row no-gutter" style="display: none;">
+                                <div class="col-50 text-center pos_rela line_r" id="">
+                                    <a class="f_left text-right" style="width: 55%;" onclick="redirectURL(11);return true" external>商城入口</a>
+                                    <span class="i_jobHoliday f_left marg_left_20"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="list-block">
+                            <ul class="jobList list-container"></ul>
+                            <!-- 加载提示符 -->
+                            <div class="infinite-scroll-preloader">
+                                <div class="preloader"></div>
+                            </div>
+                        </div>
+                         <!-- 底部版权信息 -->
+                        <footer class="text-center padd_20">
+                            <p class="fc_orange f16">萝卜兼职网</p>
+                            <p class="fc_orange f10">www.luobojianzhi.com</p>
+                            <p class="f10">最靠谱的大学生兼职平台</p>
+                        </footer>                   
+                    </div>
+                </div>
+                <div class="panel-overlay"></div>
+        </div>
+
+        <!-- 模板-轮播图 -->
+        <script id="banner-list-tpl" type="text/html">
+            <div class="swiper-wrapper">
+                {{each banners as banner i}}
+                    <div class="swiper-slide">
+                        {{if banner.linkurl == '' }} 
+                        <!-- 取消轮播图的链接 -->
+                        <!-- <a href="javascript:void(0)"> -->
+                        <a>
+                            <img src="{{#banner.image}}" alt="{{#banner.id}}">
+                        </a>
+                        {{else}} 
+                        <!-- <a href="{{banner.linkurl}}"> -->
+                        <a href="{{#banner.linkurl}}" external>
+                            <img src="{{#banner.image}}" alt="{{#banner.id}}">
+                        </a>
+                        {{/if}}
+                    </div>
+                {{/each}}
+            </div>
+            <div class="swiper-pagination"></div>
+        </script>     
+        <script id="province-list-tpl" type="text/html">
+            <ul>
+                {{each provinces as province i}}
+                    <li class="padd-20 pos_rela">
+                        <h3 class="pos_rela fc_orange">{{#province.name}}</h3>
+                        <ul class="bor_top">
+                        {{each province.data as city }}
+                            <a href="__APP__/Home/Index/index/cId/{{city.id}}" class="external"><li class="padd-20 pos_rela fc_lightGray">{{#city.name}}</li></a>
+                        {{/each}}
+                        </ul>
+                    </li>
+                {{/each}}
+            </ul>
+        </script>
+        <include file="Common/footer"/>     
+        <script  type='text/javascript' src='__PUBLIC__/source/debug/scripts/home-job-detail.js?t=1484211825100' charset='utf-8'></script>
+        <script>
+            $(function () {
+
+                var path = location.pathname;
+                var cId  = path.slice(path.lastIndexOf('/')+1);
+
+                $(document).on("pageInit", "#index", function(e, pageId, $page) {
+
+                    console.log("inited page::", "index!");
+
+                    // 默认进首页后,需定位后才能得到cId和name,或进选择城市页面后返回首页也会获得cId和name;
+                    if(isNaN(cId) || !cId){
+                        if (condition="$cId eq 0"){
+                            $.showPreloader('萝卜卫星定位中，请稍后...');
+                            getH5Location();
+                            cId =1;
+                            initDefaultCity(cId);
+                        }else{
+                            cId = {$cId};
+                            initDefaultCity(cId);
+                        }
+                    } else {
+                        $.ajax({
+                            type: 'POST',
+                            url: '__APP__/Home/Gp/getNameByCId',
+                            data: { "cId": cId },
+                            dataType: 'json',
+                            timeout: 3000,
+                            context: $('.location-info'),
+                            success: function(data){
+                                this.html(data.data.name);
+                                initDefaultCity(cId);
+                            },
+                            error: function(xhr, type){
+                                console.log("xhr", xhr);
+                            }
+                        });
+                    };
+
+                    function locationSucc(value) {
+                        var latitude = value.coords.latitude;
+                        var longitude = value.coords.longitude;
+                        console.log("latitude:", latitude);
+                        console.log("longitude:", longitude);
+                        getCity(latitude, longitude);
+                    }
+
+                    function locationFail(value) {
+                        console.log(value);
+                        $.hidePreloader();
+                        $.toast("(^_^) 火星太危险，请选择返回地球城市！", 1500);  
+                    }
+
+                    //使用H5定位
+                    function getH5Location() {
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(locationSucc, locationFail, {
+                                enableHighAccuracy: true, // 指示浏览器获取高精度的位置，默认为false
+                                timeout: 5000, // 指定获取地理位置的超时时间，默认不限时，单位为毫秒
+                                maximumAge: 1000 // 最长有效期，在重复获取地理位置时，此参数指定多久再次获取位置。
+                            });
+                        } else {
+                            $.hidePreloader();
+                            $.toast("火星太危险，请选择返回地球城市！", 1500);  
+                        }
+                    }
+                    // 根据经纬度，获取城市信息
+                    function getCity(lati, longi){
+                        $.ajax({
+                            type: 'POST',
+                            url: '__APP__/Home/gp/returnCity',
+                            data: {
+                                "latitude": lati,
+                                "longitude": longi
+                            },
+                            dataType: 'json',
+                            timeout: 3000,
+                            context: $('.location-info'),
+                            success: function(data){
+                                if(data.code !=0){
+                                    var city = data.data;
+                                    var cName = city.name;
+                                    this.html(cName);
+                                    cId = city.id;
+
+                                    $.hidePreloader();
+
+                                    $goURL = CON_PATH+"/index/cId/"+cId;   
+                                    cName = "大" + cName.replace("市", "");
+                                    $.confirm('确定前往？', '您所在 "' + cName + '"',
+                                        function () {
+                                            //if(cId != 1) {
+                                                location.href = $goURL;
+                                            //}
+                                        },
+                                        function () {
+                                        }
+                                    ); 
+                                }else {
+                                    $.toast("火星太危险，请选择返回地球城市！", 1500);  
+                                    $.hidePreloader();
+                                }
+                            },
+                            error: function(xhr, type){
+                                server_error();
+                            }
+                        });
+                    }
+                
+                    // 跳转用户中心
+                    $('#user-center-btn').on('click', function (e){
+                        $.ajax({
+                            type: 'POST',
+                            url:  '__APP__/Home/User/isLogin',
+                            dataType: 'json',
+                            timeout: 3000,
+                            success:function(res){
+                                if(res.code==1){
+                                    location.href ='__APP__/Home/User/userCenter/cId/'+cId;
+                                }else{
+                                    $.toast("(^_^) 请先登录", 500);   
+                                    setTimeout(function(){
+                                        location.href='__APP__/Home/Wechat/signIn/cId/'+cId;
+                                    }, 500);
+                                }
+                            },
+                            error:function(){
+                                server_error();
+                            }
+                        });
+                    });
+
+                     
+                    function initDefaultCity (cId){
+                        $.ajax({
+                            type: 'GET',
+                            url: '__APP__/Home/sys/bannerList',
+                            data: { "cId": cId},
+                            dataType: 'json',
+                            timeout: 3000,
+                            context: $('.swiper-container'),
+                            success: function(data){
+                                if(data.code) {
+                                    var data = {
+                                        "banners": data.data
+                                    };
+                                    var html = template('banner-list-tpl', data);
+                                    this.html(html);
+                                    var bannerLgt = data.banners.length;
+                                    $(".swiper-container").swiper({
+                                        pagination: (bannerLgt<= 1)?'':'.swiper-pagination',
+                                        paginationClickable: true,
+                                        spaceBetween: 0,
+                                        centeredSlides: true,
+                                        loop: (bannerLgt<= 1)?false:true,
+                                        autoplay: 3000,
+                                        autoplayDisableOnInteraction: false
+                                    });
+                                } else {
+                                    $('.swiper-container').hide();
+                                }
+                            },
+                            error: function(xhr, type){
+                                $('.swiper-container').hide();
+                                console.log("xhr", xhr);
+                            }
+                        });
+                        
+                        addItems(cId, true);
+                    };
+                                 
+                });
+
+
+                var pageSize = 10;
+                var currPage = 1;
+                var loading = false;
+                var maxItems = 100;
+                var hasLoaded = false;
+
+                var type = 8; // 0:时间 1:热度 8：权重，时间
+                var subType = {"regionId":0, "pCateId":0, "timeId":0};
+
+                var currDate = new Date().getTime();
+
+                function addItems(cId, notScroll) {
+                    
+                    if (!notScroll || (notScroll && !hasLoaded)) {
+                        
+                        $.ajax({
+                            type: 'POST',
+                            url: '__APP__/Home/Job/jobs?t=' + currDate,
+                            cache: false,
+                            data: { "cId": cId, 
+                                "currPage": currPage, 
+                                "pageSize": pageSize, 
+                                "type": type,
+                                "subType": subType,
+                                 statuses: 1
+                            },
+                            dataType: 'json',
+                            timeout: 3000,
+                            context: $('.jobList'),
+                            success: function(data){
+                                console.log("data", data);
+                                if(data.code) {
+                                    maxItems = data.data.total;
+                                    var data = { "jobs": data.data.data };
+
+                                    //电话咨询时“元/月”不显示
+                                    for(var i = 0;i<data.jobs.length;i++){
+                                        var num = /^[0-9,\.,\-,\+,\~]*$/;
+                                        var income = data.jobs[i].income;
+                                        var bool = num.test(income);
+                                        if(!bool){
+                                           data.jobs[i].incomeunit = '';
+                                        }
+                                    }
+                                    console.log(data);
+                                    var html = template('job-list-tpl', data);
+                                    this.append(html);
+
+                                    if (notScroll && !hasLoaded) {
+                                        hasLoaded = true;
+                                    }
+
+                                    // 每次追加完DOM，就隐藏掉loading
+                                    $('.infinite-scroll-preloader').hide();
+                                    // 重置加载flag
+                                    loading = false;
+                                    // 页数+1
+                                    currPage++;
+                                } else {
+                                    $.toast("(^_^) 暂无匹配的兼职信息！", 1000);
+                                    $.detachInfiniteScroll($('.infinite-scroll'));
+                                    $('.infinite-scroll-preloader').hide();
+                                }
+                            },
+                            error: function(xhr, type){
+                                console.log("xhr", xhr);
+                                server_error();
+                                $.detachInfiniteScroll($('.infinite-scroll'));
+                                $('.infinite-scroll-preloader').hide();
+                            }
+                        });
+                    } else {
+                        if ($('.jobList li').length === 0) {
+                            currPage = 1;
+                            hasLoaded = false;
+                            addItems(cId || 1, true);
+                        }
+                    }
+                }   
+                // 注册'infinite'事件处理函数
+                $(document).on('infinite', '.infinite-scroll-bottom', function() {
+                    $('.infinite-scroll-preloader').show();
+                    // 如果正在加载，则退出
+                    if (loading) return;
+                    // 设置flag
+                    loading = true;
+                    // 延迟100s的加载过程
+                    setTimeout(function() {
+                        if (maxItems <= (currPage-1) * pageSize) {
+                            // 加载完毕，则注销无限加载事件，以防不必要的加载
+                            $.detachInfiniteScroll($('.infinite-scroll'));
+                            // $('.infinite-scroll-preloader').html("<span class='f14'>(^_^) 木有兼职信息啦！</span>");
+                            $.toast("(^_^) 木有兼职信息啦！", 1000);
+                            $('.infinite-scroll-preloader').hide();
+                            return;
+                        }
+                        // 添加新条目
+                        addItems(cId);
+                        //容器发生改变,如果是js滚动，需要刷新滚动
+                        $.refreshScroller();
+                    }, 500);
+                });      
+
+                $(document).on("pageInit", "#chooseProvince", function(e, pageId, $page) {
+                    $.ajax({
+                        type: 'POST',
+                        url: APP_PATH+'/Home/Gp/cityList',
+
+                        data: { "pId": '1' },
+                        dataType: 'json',
+                        timeout: 3000,
+                        context: $('#wrapTabCity'),
+
+                        success: function(data){
+                            if(data.code) {
+                                var data = {
+                                    provinces: data.data
+                                };
+                                var html = template('province-list-tpl', data);
+                                this.html(html);
+                            } else {
+                                this.append("非常抱歉，暂无城市数据！");
+                            }
+                        },
+                        error: function(xhr, type){
+                            this.append("非常抱歉，服务器开小差了！");
+                        }
+                    });
+                });
+                $.init();
+            });
+        </script>
+    </body>
+</html>

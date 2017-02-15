@@ -1,0 +1,133 @@
+<script id="tpl-bizIncomeDetail" type="text/html">
+    {{each datas as items i}}
+        <li class="incomeLi" tId="{{items.id}}">
+            <div class="row no-gutter">
+                <div class="col-33">
+                    <span class="f14">{{items.orderdate}}</span>
+                    <span class="f12">{{items.ordertime}}</span>
+                </div>
+                <div class="col-46">
+                    {{if items.type === TYPE_DECREASE()}}
+                        <span class="f14 fc_orange">-{{items.money}}元</span>
+                        <span class="f12">{{items.remittername}}</span>
+                    {{else if items.type === TYPE_INCREASE()}}
+                        <span class="f14 fc_orange">+{{items.money}}元</span>
+                        <span class="f12">萝卜钱包</span>
+                    {{/if}}
+                </div>
+                <div class="col-20">
+                    {{if items.ordertype === ORDERTYPE_COMPANY_DEPOSIT()}}
+                        {{if items.status === STATUS_ORDER_FAILED()}}
+                            <span class="fc_orange text-right" style="white-space: nowrap; color: red;">充值失败</span>
+                        {{else if items.status === STATUS_ORDER_PROCESSING()}}
+                            <span class="fc_orange text-right" style="white-space: nowrap;">充值中</span>
+                        {{else if items.status === STATUS_ORDER_SUCCEEDED()}}
+                            <span class="fc_orange text-right" style="white-space: nowrap; color: green;">充值成功</span>
+                        {{/if}}
+                    {{else if items.ordertype === ORDERTYPE_COMPANY_PAYOFF()}}
+                        <span class="fc_orange text-right" style="white-space: nowrap;">发放工资</span>
+                    {{/if}}
+                </div>
+            </div>
+        </li>
+    {{/each}}
+</script>
+
+<script id="tpl-payList" type="text/html">
+    {{each jobs as job i}}
+        <li class="jobLi" iIndex="jobLi{{i}}">
+            <a href="__APP__/Company/Job/jobDetail/{{job.id}}">
+                <span class="iType cateId{{job.pcateid%12}}">{{job.category}}</span>
+                <div class="row no-gutter">
+                    <div class="col-80 tx_ellips">
+                        {{job.title}}
+                    </div>
+                </div>
+                <div class="row no-gutter">
+                    <div class="col-66 fc_lightGray">
+                        <p class="f12 pos_rela">
+                            <span class="iconf iconf-location"></span>
+                            <span class="marg_left_10 tx_ellips pos_ab">{{job.province}}{{job.city}}{{job.region}}</span>
+                        </p>
+                        <p class="f12 pos_rela">
+                            <span class="iconf iconf-clock"></span>
+                            <span class="marg_left_10 pos_ab">{{job.createtime}}</span>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li class="pos_rela text-right cancelFav">
+            <span class="f12 btnCancelFav bindBtnShowUserList" data-id="{{job.id}}">{{job.total}}人工资</span>
+        </li>
+    {{/each}}
+</script>
+
+<script id="tpl-payUserList_paid" type="text/html">
+    {{each datas as items i}}
+        <li class="jobLi" iindex="" id="{{items.userid}}">
+            <a href="javascript:void(0);">
+                {{if items.headimgurl =="" || items.headimgurl == undefined}}
+                    <span class="iType" style="background: url('/Public/images/logo.png') no-repeat scroll 0 0 #fff; background-size: contain; border: 0;"></span>
+                {{else}}
+                    <span class="iType" style="background: url('{{items.headimgurl}}') no-repeat scroll 0 0 #fff; background-size: contain; border: 0;"></span>
+                {{/if}}
+                <div class="row no-gutter">
+                    <div class="col-80 tx_ellips">
+                        {{items.username}}
+                    </div>
+                    <div class="col-20 text-center">
+                        <div class="pos_ab" style=" width: auto; margin-top: 20px; color: green;">已发放</div>
+                    </div>
+                </div>
+                <div class="row no-gutter">
+                    <div class="col-66 fc_lightGray">
+                        <p class="f12 pos_rela">
+                            <span class="iconf iconf-location"></span>
+                            <span class="marg_left_10 tx_ellips pos_ab">{{items.schoolname}}</span>
+                        </p>
+                        <p class="f12 pos_rela">
+                            <span class="iconf iconf-tel"></span>
+                            <span class="marg_left_10 pos_ab">{{items.phone}}</span>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </li>  
+    {{/each}} 
+</script>
+
+<script id="tpl-payUserList_toPay" type="text/html">
+    {{each datas as items i}}
+        <li class="jobLi" iindex="" id="{{items.userid}}">
+            <a href="javascript:void(0);">
+                {{if items.headimgurl =="" || items.headimgurl == undefined}}
+                    <span class="iType" style="background: url('/Public/images/logo.png') no-repeat scroll 0 0 #fff; background-size: contain; border: 0;"></span>
+                {{else}}
+                    <span class="iType" style="background: url('{{items.headimgurl}}') no-repeat scroll 0 0 #fff; background-size: contain; border: 0;"></span>
+                {{/if}}
+                
+                <div class="row no-gutter">
+                    <div class="col-80 tx_ellips">
+                        {{items.username}}
+                    </div>
+                    <div class="col-20 text-center">
+                        <input type="checkbox" data-applyid="{{items.applyid}}" name="items" value="{{items.userid}}" class="pos_abs" style="float: none; margin-top: 20px; position: absolute;    margin-right: 0px; display: inline-block; right: 20px;" />
+                    </div>
+                </div>
+                <div class="row no-gutter">
+                    <div class="col-66 fc_lightGray">
+                        <p class="f12 pos_rela">
+                            <span class="iconf iconf-location"></span>
+                            <span class="marg_left_10 tx_ellips pos_ab">{{items.schoolname}}</span>
+                        </p>
+                        <p class="f12 pos_rela">
+                            <span class="iconf iconf-tel"></span>
+                            <span class="marg_left_10 pos_ab">{{items.phone}}</span>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </li>   
+    {{/each}} 
+</script>

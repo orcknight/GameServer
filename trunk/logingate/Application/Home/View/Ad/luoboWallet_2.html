@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>萝卜兼职-我要理财</title>
+        <include file="Common/header"/>
+    </head>
+    <body>
+        <img src="/Public/images/walletAd_1.png" alt="" style="width: 100%;float: left;">
+        <div style="padding: 0.75rem;background:url(/Public/images/walletAd_4.jpg) no-repeat;object-fit: cover;float: left;">
+            <img src="/Public/images/walletAd_3.png" alt="" style="width: 70%;margin-left: 15%;" id="goBtn">
+        </div>
+    </body>
+    <include file="Common/footer"/>
+    <script>
+        var toWallet = getQueryStringArgs()['toWallet'];
+        function getQueryStringArgs () {
+            var qs = (location.search.length > 0 ? location.search.substring(1) : ""),
+            args = {},
+            items = qs.length ? qs.split("&") : [],
+            item = null,
+            name = null,
+            value = null,
+            i = 0,
+            len = items.length;
+
+            for (i = 0; i < len; i++) {
+                item = items[i].split("=");
+                name = decodeURIComponent(item[0]);
+                value = decodeURIComponent(item[1]);
+                if (name.length) {
+                    args[name] = value;
+                }
+            }
+            return args;
+        }
+        $('#goBtn').on('click','',function(){
+            if(toWallet == "1"){
+                location.href = APP_PATH + '/Home/Wallet/myWallet';
+            }else if(toWallet == "0"){
+                location.href = APP_PATH + '/Home/Index/signIn?toWallet=1';
+            }else {
+                location.href = APP_PATH + '/Home/Index/signIn';
+            }
+        });
+    </script>
+</html>
+

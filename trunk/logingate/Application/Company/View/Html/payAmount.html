@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title>萝卜兼职</title>
+    
+    <include file="Common/header"/>
+    <script type="text/javascript" src="/Public/source/debug/scripts/sm.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/Public/source/debug/scripts/sm-extend.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <div class="page-group">
+        <div class="page page-current" id="payAmount">
+            <header class="bar bar-nav">
+                <a class="button button-link button-nav pull-left" href="#index" data-panel='#'>
+                    <span class="icon icon-left"></span>
+                   返回
+                </a>
+                <h1 class='title'>输入金额</h1>
+            </header>
+            <div class="buttons-tab fixed-tab" data-offset="44" style="padding: .5rem 0;">
+                <div id="s1" data-status="1" class="tab-link button line_r text-right" style="width: 30%; height: 1.8rem; line-height: 1.8rem;">单人工资</div>
+                <input type="text" name=""  value="" placeholder="请输入金额" class="" style="outline: none;-webkit-appearance:none; border: 0 none; -webkit-appearance: none; padding: 10px .5rem; height: 1.8rem; " />
+            </div>
+            <div class="resetConBlock">
+                <div class="content-block">
+                    <div class="tabs">
+                        <div id="tab_content" class="tab active">
+                            <div class="content-block content infinite-scroll infinite-scroll-bottom"  data-distance="10" style="top: 100px;">
+                                <div class="wrapJob">
+                                    <div class="f14 fc_orange" style="margin-top: 2rem; padding: .85rem;">
+                                        提示：所付工资总数,会根据您输入的'单人工资'数,乘以人员总数获得.
+                                    </div>
+                                    
+                                    <div class="content-block" style="margin-top: 2rem; padding: .85rem;">
+                                        <div class="row">
+                                            <div class="col-100">
+                                                <a id="btnPay" href="#" class="btnPay button button-big button_orange">确认</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            
+        </div>
+    </div>
+
+    <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+    <script>
+        $(function() {
+            $(document).on("pageInit", "#payAmount", function(e, pageId, $page) {
+                $(document).on('click','.btnPay', function () {
+                    var shtml = '需支付所有员工工资总数:<h3 style="color:#fff;">1000元</h3><input type="password" placeholder="请输入支付密码" style="color: #000;" />';
+                    $.alert(shtml, '');
+                });
+            });
+            $.init();
+        });
+            
+    </script>
+  </body>
+</html>

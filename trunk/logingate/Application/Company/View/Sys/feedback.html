@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <title>萝卜兼职</title>
+        <include file="Common/header"/>
+    </head>
+    <body>
+    	<div class="page-group">
+            <div class="page page-current" id="feedBack">
+	            <!--头部-->
+	            <header class="bar bar-nav">
+	            <a class="button button-link button-nav pull-left" href="__APP__/Company/User/bizCenter" data-panel="#">
+	                <span class="icon icon-left"></span> 返回
+	            </a>
+	                <h1 class="title">意见反馈</h1>
+	            </header>
+	            <div class="content wrapPerfectInfo" id="wrapFeedBack">
+	                <form action="" method="post" class="form_feedback">
+	                    <div class="content-block f14 ">
+	                        <div class="row no-gutter">
+	                            <textarea placeholder="请输入您的反馈意见" class="feedBack" autofocus="false"></textarea>
+	                        </div>
+	                    </div>
+	                </form>
+	                <div class="content-block">
+	                    <div class="row" id='submitFB'>
+	                        <div class="col-100">
+	                            <a id="" href="#" class="button button-big button_orange">提交</a>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+        	</div>
+        </div>
+        <include file="Common/footer"/>
+        <script type="text/javascript">
+            $(function () {
+                $(document).on("pageInit", "#feedBack", function(e, id, page) {
+                    console.log("inited", "feedBack Page!");
+                    $("#submitFB").click(function(){
+                        var content =$("textarea").val();
+                        if(content == '' || content == null){
+                            $.toast("提交内容不能为空哦！", 1000);
+                        }else{
+                            $.ajax({
+                                type:'POST',
+                                url: MOD_PATH + '/Sys/feedBack',
+                                data:{
+                                    'content':content
+                                },
+                                success:function(result){
+                                    if(result.code==1){
+                                        $.toast("提交反馈成功！", 1000);
+                                        setTimeout(function() {
+                                            location.href = APP_PATH + '/Company/User/bizCenter'
+                                        }, 3000);
+                                    }else{
+                                        server_error();
+                                    }
+                                },
+                                error: function(xhr,type){
+                                    server_error();
+                                }
+                            });
+                        }
+                    });
+                });
+                $.init();
+            });
+        </script>         
+    </body>
+</html>
+

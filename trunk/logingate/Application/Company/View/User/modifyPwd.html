@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>萝卜兼职</title>
+        <include file="Common/header"/>
+    </head>
+    <body>
+    <div class="page-group">
+        <div class="page page-current" id="modifyPwd">
+            <header class="bar bar-nav">
+            <a class="button button-link button-nav pull-left back" href="__APP__/Company/User/bizCenter"  data-transition="slide-out">
+                <span class="icon icon-left"></span>
+               返回
+            </a>
+                <h1 class="title">修改密码</h1>
+            </header>
+           
+            <div class="content">
+                <form action="__MODULE__/Index/changePwd" method="post" id="">
+                    <div class="content-block f14 wrapRegCont">
+                        <div class="row no-gutter line_b" style="display: none;">
+                            <div class="col-25 text-left">
+                                图形验证码
+                            </div>
+                            <div class="col-40 line_l">
+                                <input class="form-control gttv" type="text" name="verifyCode" placeholder="请输入6位验证码" />
+                            </div>
+                            <div class="col-33 f_right text-right tuCode">
+                                <img src="__MODULE__/Index/getThinkCode"  border="1" style="cursor: pointer;" title="看不清？点击更换另一个验证码。"/>
+                            </div>
+                        </div>
+                        <div class="row no-gutter line_b">
+                            <div class="col-25 text-left">
+                                旧密码
+                            </div>
+                            <div class="col-75 line_l">
+                                <input id="m_oldPwd" class="form-control gttv" type="password" name="password" placeholder="请输入您的旧密码" maxlength="16"/>
+                            </div>
+                        </div>
+                        <div class="row no-gutter line_b">
+                            <div class="col-25 text-left">
+                                新密码
+                            </div>
+                            <div class="col-75 line_l">
+                                <input id="m_newPwd" class="form-control gttv" type="password" name="password" placeholder="请输入6位新密码"  maxlength="16"/>
+                            </div>
+                        </div>
+                        <div class="row no-gutter line_b">
+                            <div class="col-25 text-left">
+                                确认密码
+                            </div>
+                            <div class="col-75 line_l">
+                                <input id="m_aginNewPwd" class="form-control gttv" type="password" name="password" placeholder="请再次输入6位新密码"  maxlength="16"/>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="content-block">
+                    <div class="row">
+                        <div class="col-100">
+                            <a id="m_btnResetPwd" href="#" class="button button-big button_orange bg_reg">修改密码</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <include file="Common/footer" />
+    <include file="Common/tpl/tpl-bizCenter" />
+    <script type="text/javascript" src='__PUBLIC__/source/debug/scripts/company-user-bizSetting.js?t=1482911928945' charset='utf-8'></script>
+    <script type="text/javascript" src='__PUBLIC__/source/debug/scripts/company-user-bizCenter.js?t=1482911928945' charset='utf-8'></script>
+    </body>
+</html>
+

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>萝卜兼职</title>
+        <include file="Common/header"/>
+    </head>
+    <body>
+        <div class="page-group">
+            <div class="page page-current" id="applyUserList">
+                <header class="bar bar-nav">
+                    <a class="button button-link button-nav pull-left" external href="__CONTROLLER__/applyList" data-transition="slide-out">
+                        <span class="icon icon-left"></span>
+                        返回
+                    </a>
+                    <h1 class='title'>人员信息</h1>
+                </header>
+                <div class="buttons-tab fixed-tab" data-offset="44">
+                    <div id="s1" data-status="1" class="tab-link button line_r active">待通过</div>
+                    <div id="s2" data-status="2" class="tab-link button line_r">待完成</div>
+                    <div id="s3" data-status="4" class="tab-link button">已完成</div>
+                </div>
+                <div class="resetConBlock">
+                    <div class="content-block">
+                        <div class="tabs">
+                            <div id="tab_content" class="tab active">
+                                <div class="content-block content infinite-scroll infinite-scroll-bottom"  data-distance="10">
+                                    <div class="wrapJob">
+                                        <ul class="jobList"></ul>
+                                        <div class="infinite-scroll-preloader">
+                                            <div class="preloader"></div>
+                                        </div>
+                                    </div>
+                                    <footer class="text-center padd_20">
+                                        <p class="fc_orange f16">萝卜兼职网</p>
+                                        <p class="fc_orange f10">www.luobojianzhi.com</p>
+                                        <p class="f10">最靠谱的大学生兼职平台</p>
+                                    </footer>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+                <a class="btn-fix-bottom btn-prev">&nbsp;&nbsp;</a>
+                <a class="btn-fix-bottom btn-next">&nbsp;&nbsp;</a>
+                <a class="btn-fix-bottom btn-send-wage" style="display:none;">发放工资</a>
+            </div>
+        </div>
+        
+        <script id="scroll-base-tpl" type="text/html">
+            <div class="content-block content infinite-scroll infinite-scroll-bottom"  data-distance="10">
+                <div class="wrapJob">
+                    <ul class="jobList"></ul>
+                    <div class="infinite-scroll-preloader">
+                        <div class="preloader"></div>
+                    </div>
+                </div>
+                <footer class="text-center padd_20" style="padding-bottom: 2.5rem;">
+                    <p class="fc_orange f16">萝卜兼职网</p>
+                    <p class="fc_orange f10">www.luobojianzhi.com</p>
+                    <p class="f10">最靠谱的大学生兼职平台</p>
+                </footer>                
+            </div>
+        </script>
+        <script id="tab-tpl" type="text/html">
+            <label class="check-all">
+                <input type="checkbox" class="job-pre-check" /><span class="check-all-text">全选</span>
+            </label>
+            {{each dataList as user i}}
+                <li class="jobLi pre-check" iindex="jobLi{{i}}">
+                    <label>
+                        <input type="checkbox" name="job-apply" data-userid="{{user.userid}}" data-applyid="{{user.id}}" class="job-pre-check" />
+                        {{if user.headimgurl == ' ' || user.headimgurl == undefined }}
+                            <span class="iType" style="background: url('/Public/images/logo.png') no-repeat scroll 0 0 #fff; background-size: cover; border: 0;"></span>
+                        {{else}}
+                            <span class="iType" style="background: url('{{user.headimgurl}}') no-repeat scroll 0 0 #fff; background-size: cover; border: 0;"></span>
+                        {{/if}}
+                        <div class="row no-gutter">
+                            {{if user.realname == '' || user.realname == undefined}}
+                                <div class="col-80 tx_ellips">未填写真实姓名</div>
+                            {{else}}
+                                <div class="col-80 tx_ellips">{{user.realname}}</div>
+                            {{/if}}
+                            <div class="col-20 text-center">
+                                <a href="tel:{{user.phone}}"><div class="wrapTel iconf iconf-tel02"></div></a>
+                            </div>
+                        </div>
+                        <div class="row no-gutter">
+                            <div class="col-66 fc_lightGray detail-item">
+                                <p class="f12 pos_rela">
+                                    <span class="iconf iconf-location"></span>
+                                    <span class="marg_left_10 tx_ellips pos_ab">{{user.province}}{{user.city}}{{user.region}}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </label>
+                    {{if tabNum == 1}}  
+                    <li class="pos_rela text-right cancelFav">
+                        <span class="escape-count">已逃<i>{{user.escapecount || 0}}</i>单</span>
+                    </li>
+                    {{/if}}
+                </li>
+            {{/each}}
+        </script>
+
+        <include file="Common/footer" />
+        
+        <script type="text/javascript">
+            $(function(){
+                //需获取从哪条投递记录进来的职位id
+                var path = location.pathname;
+                var jobId = path.substring(path.lastIndexOf("/")+1);
+                // Step1: 初始化"待通过"列表，status:1.待通过；2.待完成；3.已完成
+                var status = 1;
+                var pageSize = 10;
+                var currPage = 1;
+                var loading = false;
+                var maxItems = 100;
+                var sId = 1; //默认展示第一个tab下对应的模板内容
+
+                var prev = $('.btn-prev'), next = $('.btn-next'), sendWage = $('.btn-send-wage');
+
+                function addItems() {
+                    $.ajax({
+                        type: 'POST',
+                        url: APP_PATH+'/Company/Apply/filter',
+                        data: { 
+                            "currPage": currPage, 
+                            "pageSize": pageSize,
+                            "jobId": jobId,
+                            "status": status
+                        },
+                        dataType: 'json',
+                        timeout: 3000,
+                        success: function(data){
+                            if(data.code) {
+                                maxItems = data.data.total;
+                                if(maxItems <= 0) return false;
+
+                                var data = { "dataList": data.data.data };
+
+                                var html = template('tab-tpl', data);
+                                $(".jobList").append(html);
+
+                                if(maxItems < pageSize) {
+                                    $('.infinite-scroll-preloader').hide();
+                                }
+                                loading = false;
+                                currPage++;
+
+                                bindCheckAll();
+                            } else {
+                                $.toast("(^_^) 木有更多信息啦！", 1000);
+                                $.detachInfiniteScroll($('.infinite-scroll'));
+                                $('.infinite-scroll-preloader').remove();
+                            }
+                        },
+                        error: function(xhr, type){
+                            server_error();
+                            $.detachInfiniteScroll($('.infinite-scroll'));
+                            $('.infinite-scroll-preloader').remove();
+                        }
+                    });
+                }
+
+                // 注册'infinite'事件处理函数
+                $(document).on('infinite', '.infinite-scroll-bottom', function() {
+                    if (loading) return;
+                    loading = true;
+                    setTimeout(function() {
+                        if (maxItems <= (currPage-1) * pageSize) {
+                            $.toast("(^_^) 木有更多人员信息啦！", 1000);
+                            $.detachInfiniteScroll($('.infinite-scroll'));
+                            $('.infinite-scroll-preloader').hide();
+                            return;
+                        }
+                        addItems();
+                        $.refreshScroller();
+                    }, 100);
+                });      
+                addItems();
+                fillBtn();
+
+                bindIsPassOrDone();
+                bindSendWage();
+
+                $(document).on("pageInit", "#applyUserList", function(e, id, page) {
+                    console.log('inited page:: applyUserList!');
+
+                    // 绑定选择菜单事件
+                    $('.tab-link').off('click').on('click', function (e) {
+                        var str = this.id;
+                        var tmpId = str.substring(str.length - 1); //对应元素Id,非statusId
+
+                        var statusId = $(this).data("status"); //对应tab的statusId
+
+                        // Tab样式切换
+                        $(this).siblings().removeClass('active');
+                        $(this).addClass('active');
+                        // Content样式切换
+                        $('#tab_'+sId).addClass('active');
+                        $('#tab_'+sId).siblings().removeClass('active');
+
+                        // inited1:注销绑定滚动监听/无限加载事件/加载提示符
+                        $(document).off('infinite');
+                        $.detachInfiniteScroll($('.infinite-scroll'));
+                        $('.infinite-scroll-preloader').remove();
+                        // inited2: 重绘DOM元素
+                        $('.content').remove();
+                        $('#tab_content').html(template('scroll-base-tpl', {}));
+                        $.refreshScroller();
+                        // inited3: 分页参数
+                        currPage = 1;
+                        sId = parseInt(tmpId); //通过sId,查找对应模板文件填充到content里
+                        status = statusId;
+
+                        addItems();
+                        fillBtn();
+
+                        $(document).on('infinite', '.infinite-scroll-bottom', function() {
+                            if (loading) return;
+                            loading = true;
+                            setTimeout(function() {
+                                var totalPage = Math.ceil(maxItems/pageSize); 
+                                 if (currPage > totalPage){
+                                    $.toast("(^_^) 木有更多人员信息啦！", 1000);
+                                    $.detachInfiniteScroll($('.infinite-scroll'));
+                                    $('.infinite-scroll-preloader').hide();
+                                    return;
+                                }
+                                addItems();
+                                $.refreshScroller();
+                            }, 100);
+                        });
+                        $.init();        
+                    }); 
+                });
+
+                //根据sId判断按钮的文字内容
+                function fillBtn() {
+                    switch(sId) {
+                        case 1: prev.show().text('拒绝'); next.show().text('通过'); sendWage.hide(); break;
+                        case 2: prev.show().text('未完成'); next.show().text('完成'); sendWage.hide(); break;
+                        case 3: prev.hide(); next.hide(); sendWage.show(); break;
+                    }
+                }
+                var STATUS = {
+                    pass: 2,
+                    reject: 3,
+                    done: 4,
+                    todo: 5
+                };
+                //绑定是否通过或完成事件
+                function bindIsPassOrDone(){
+                    $(document).on('click.apply', '.btn-prev', function (event) {
+                        var statusToSet = 0, url = APP_PATH + '/Company/Apply/setStatus';
+                        if (sId === 1) {
+                            statusToSet = STATUS.reject;
+                        } else {
+                            statusToSet = STATUS.todo;
+                        }
+                        var checks = $('.jobList input[name="job-apply"]:checked');
+                        var ids = [];
+                        checks.each(function (key, item) {
+                            ids.push(item.data('applyid'));
+                        });
+                        ids = ids.join(',');
+                        if (!ids) {
+                            $.toast('您还没有勾选要操作的人员');
+                            return false;
+                        }
+                        $.ajax({
+                            type: 'POST',
+                            dataType: 'json',
+                            url: url,
+                            data: {
+                                ids: ids,
+                                status: statusToSet
+                            },
+                            success: function (res) {
+                                if (res.code) {
+                                    $.toast('操作成功');
+                                    checks.each(function (key, item) {
+                                        $(item).parent().parent().remove();
+                                    });
+                                    return;
+                                } else {
+                                    $.toast(res.msg);
+                                    return;
+                                }
+                            },
+                            error: server_error
+                        });
+                    });
+                    $(document).on('click.apply', '.btn-next', function (event) {
+                        var statusToSet = 0, url = APP_PATH + '/Company/Apply/setStatus';
+                        if (sId === 1) {
+                            statusToSet = STATUS.pass;
+                        } else {
+                            statusToSet = STATUS.done;
+                        }
+                        var checks = $('.jobList input[name="job-apply"]:checked');
+                        var ids = [];
+                        checks.each(function (key, item) {
+                            ids.push($(item).data('applyid'));
+                        });
+                        ids = ids.join(',');
+                        if (!ids) {
+                            $.toast('您还没有勾选要操作的人员');
+                            return false;
+                        }
+                        $.ajax({
+                            type: 'POST',
+                            dataType: 'json',
+                            url: url,
+                            data: {
+                                ids: ids,
+                                status: statusToSet
+                            },
+                            success: function (res) {
+                                if (res.code) {
+                                    $.toast('操作成功');
+                                    checks.each(function (key, item) {
+                                        $(item).parent().parent().remove();
+                                    });
+                                    return;
+                                } else {
+                                    $.toast(res.msg);
+                                    return;
+                                }
+                            },
+                            error: server_error
+                        });
+                    });
+                }
+                //绑定发工资
+                function bindSendWage() {
+                    $(document).on('click.apply', '.btn-send-wage', function (event) {
+                        var checks = $('.jobList input[name="job-apply"]:checked');
+
+                        if (checks.length === 0){
+                            $.toast('您还没有勾选要发放薪资的人员', 1000);
+                        } else {
+                            var sValue = '', aValue = '';
+                            checks.each(function (key, item) {
+                                sValue += item.dataset.userid +',';
+                                aValue += item.dataset.applyid + ',';
+                            });
+                            setTimeout(function () {
+                                $.router.load(APP_PATH + "/Company/Wallet/payAmount?uIds="+ sValue + "&aIds=" + aValue + "&jobId=" + jobId);
+                            }, 100);
+                        }
+                    });
+                }
+                //绑定全选
+                function bindCheckAll() {
+                    $(document).on('click.apply', 'label.check-all', function () {
+                        var isChecked = $(this).find('input[type="checkbox"]').attr('checked');
+                        var toSet = false;
+                        if (isChecked) {
+                            toSet = true;
+                        }
+                        $('.jobList').find('input[name="job-apply"]').each(function (key, item) {
+                            item.checked = toSet;
+                        });
+                    });
+                }
+            });
+        </script>
+        <script type="text/javascript" src='__PUBLIC__/source/debug/scripts/company-wallet-bundle.js' charset='utf-8'></script>
+    </body>
+</html>

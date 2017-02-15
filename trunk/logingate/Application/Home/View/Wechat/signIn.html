@@ -1,0 +1,140 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>萝卜兼职</title>
+        <include file="Common/header"/>
+    </head>
+    <body>
+        <div class="page" id="signIn">
+            <header class="bar bar-nav">
+                <h1 class="title">个人登录</h1>
+            </header>
+            <div class="content">
+                <div >
+                    <img src="__PUBLIC__/images/bg_sign.jpg" alt="头部背景图片" class="img-responsive">
+                </div>
+                <div class="content-block">
+                    <div class="info_row row no-gutter" style="border-radius: 5px 5px 0px 0px;">
+                        <div class="col-20 text-center">
+                            <span class="iconf iconf-user login-ico"></span>
+                        </div>
+                        <div class="col-80">
+                            <input class="login-input" type="text" id="phone" name="phone"placeholder="请输入11位手机号码" />
+                        </div>
+                    </div>
+                    <div class="info_row row no-gutter" style="border-top: 0 none; border-radius: 0px 0px 5px 5px;">
+                        <div class="col-20 text-center">
+                            <span class="iconf iconf-passWord login-ico"></span>
+                        </div>
+                        <div class="col-80">
+                            <input class="login-input" type="password" id="password" name="password" placeholder="请输入您的密码" />
+                        </div>
+                    </div>    
+                </div>
+                <div class="content-block">
+                    <div class="row f14">
+                        <span class="col-50 text-left">
+                            <a class="tx_a_passw fc_gray" href="__CONTROLLER__/resetPwd" external>忘记密码</a>    
+                        </span>
+                        <span class="col-50 text-right">
+                            <a id="doSignUp" class="tx_a_reg" href="javascript:;" external>立即注册</a>
+                        </span>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <div class="row">
+                        <div class="col-100">
+                            <a id="doSignIn" href="#" class="button button-big button_orange bg_login">登&nbsp;&nbsp;录</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tip_info text-center" style="display: none;"></div>
+        </div>
+        <include file="Common/footer"/>    
+        <script>
+            $(function () {
+                $(document).on("pageInit", "#signIn", function(e, id, page) {
+                    var jobId = getQueryStringArgs()['jobId'];
+                    var toWallet = getQueryStringArgs()['toWallet'];
+                    var toOnline = getQueryStringArgs()['toOnline'];
+                    $('#doSignIn').click(function () {
+                        event.preventDefault();
+
+                        var phone = $("#phone").val();
+                        var pwd = $("#password").val();
+
+                        if (phone =='' || pwd == '') {
+                            $.toast("(^_^) 用户名或密码不能为空啦");
+                        } else {
+                            doSignIn(phone, pwd);
+                        }
+                    });
+                    $('#doSignUp').click(function () {
+                        if (jobId) {
+                            location.href = '__CONTROLLER__/signUp?jobId=' + jobId;
+                        } else {
+                            location.href = '__CONTROLLER__/signUp';
+                        }
+                    });
+                    function getQueryStringArgs () {
+                        var qs = (location.search.length > 0 ? location.search.substring(1) : ""),
+                        args = {},
+                        items = qs.length ? qs.split("&") : [],
+                        item = null,
+                        name = null,
+                        value = null,
+                        i = 0,
+                        len = items.length;
+
+                        for (i = 0; i < len; i++) {
+                            item = items[i].split("=");
+                            name = decodeURIComponent(item[0]);
+                            value = decodeURIComponent(item[1]);
+                            if (name.length) {
+                                args[name] = value;
+                            }
+                        }
+                        return args;
+                    }
+                    function doSignIn(phone, pwd) {
+                        $.post(
+                            "__MODULE__/User/signIn", { 
+                                phone: phone,
+                                password: pwd
+                            }, 
+                            function (data) {
+                                if (data.code == 0) {
+                                    $.toast("(^_^) 用户名或密码错误啦！", 1000);
+                                } else {
+                                    $.toast("(^_^) 找兼职，上萝卜！", 1000);
+                                    setTimeout(function(){
+                                        if (toWallet) {
+                                            location.href = APP_PATH + '/Home/Wallet/myWallet'; //后期跳转到某页
+                                        } else if (toOnline) {
+                                            if (parseInt(toOnline)) {
+                                                location.href = APP_PATH + '/Home/Task/detail?task_id=' + toOnline + '?qLink=1';
+                                            } else {
+                                                location.href = APP_PATH + '/Home/Task/index';
+                                            }
+                                        } else {
+                                            if (jobId) {
+                                                location.href = APP_PATH + '/Home/Job/detail/jobId/' + jobId + '?qLink=1';
+                                            } else {
+                                                location.href = APP_PATH;
+                                            }                                     
+                                        }
+                                    }, 500);
+                                }
+                            }
+                        );
+                    }
+                });
+                $.init();
+            });
+        </script>    
+    </body>
+</html>

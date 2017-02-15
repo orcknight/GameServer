@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>萝卜兼职</title>
+    <include file="Common/header"/>
+    <style type="text/css">
+    /*我的收藏页，特殊样式，头部边线隐藏掉*/
+        #myFav .list-block ul:before {
+            height: 0 !important;
+        }
+    </style>
+    </head>
+    <body>
+        <div class="page-group">
+            <div class="page page-current" id="myFav">
+                <header class="bar bar-nav">
+                    <a class="button button-link button-nav pull-left"  href="__APP__/Home/User/userCenter" external>
+                        <span class="icon icon-left"></span>
+                       返回
+                    </a>
+                    <h1 class='title'>我的收藏</h1>
+                </header>
+                <div class="content infinite-scroll infinite-scroll-bottom" id="favScroll" data-distance="10">
+                    <div class="list-block wrapJob">
+                        <ul class="jobList list-container"></ul>
+                        <!-- 加载提示符 -->
+                        <div class="infinite-scroll-preloader">
+                            <div class="preloader"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <include file="Common/tpl/tpl-myFav" />
+        <include file="Common/footer"/>
+        <script type="text/javascript" src="/Public/source/debug/scripts/home-job-detail.js?t=1484211825100"></script>      
+        <script type='text/javascript' src='__PUBLIC__/source/debug/scripts/home-user-myfav.js?t=1484211825100' charset='utf-8'></script>
+    </body>
+    <script>
+      $(function(){
+        var userId = 0;
+        $.ajax({
+            type: 'POST',
+            url:APP_PATH+ '/Home/User/detail',
+            dataType: 'json',
+            async:false,
+            timeout: 3000,
+            context: $('#userData'),
+            success:function(res){
+
+                userId = res.data.id;
+            },
+            error:function(){
+                server_error();
+            }
+        });
+      });
+    </script>
+</html>

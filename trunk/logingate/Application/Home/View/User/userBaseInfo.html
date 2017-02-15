@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>萝卜兼职</title>
+        <include file="Common/header"/>
+    </head>
+    <body>
+        <div class="page-group">
+            <div class="page page-current" style="display: block;" id="userBaseInfo">
+                <header class="bar bar-nav">
+                    <a class="button button-link button-nav pull-left back" href="__APP__/Home/User/userResume" data-transition="slide-out">
+                        <span class="icon icon-left"></span>
+                       返回
+                    </a>
+                    <h1 class="title">基本信息</h1>
+                </header>
+                <div class="content wrapPerfectInfo" id="wrapUserBaseInfo">
+                    <form action="" method="post" class="form_perfectInfo">
+                    </form>
+                    <div class="content-block">
+                        <div class="row">
+                            <div class="col-100">
+                                <a id="save-base-btn"  class="button button-big button_orange">保存</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tip_info text-center" style="display: none;"></div>
+            </div>
+        </div>
+        <include file="Common/tpl/tpl-baseInfo" />
+        <include file="Common/footer"/> 
+        <script type='text/javascript' src='__PUBLIC__/source/debug/scripts/home-user-baseInfo.js' charset='utf-8'></script>     
+    </body>
+</html>

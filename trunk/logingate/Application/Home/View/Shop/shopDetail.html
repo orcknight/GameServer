@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>萝卜兼职</title>
+      <include file="Common/header"/>
+      <include file="Common/tpl/tpl-shop" />
+    </head>
+    <body>
+        <div class="page-group">
+            <div class="page page-current" id='shopDetail'>
+                <header class="bar bar-nav">
+                    <a class="button button-link button-nav pull-left back" data-transition="slide-out" href="__APP__">
+                        <span class="icon icon-left"></span>
+                        返回
+                    </a>
+                    <h1 class='title'>商品详情</h1>
+                </header>
+                <div class="content native-scroll" id="shopDetailScroll">
+                    <!-- 轮播图 -->
+                    <div class="swiper-container" data-space-between="10"></div>
+                    <!-- 商品详情信息 -->
+                    <div id="shopCont" class="shopCont">
+                        <div class="wrapShopDetail">
+                            <section class="marg_bottom_10">
+                                <div class="f14">
+                                    <p class="line_h2 ">
+                                        <span class="detail_jobType">
+                                           <img src="__PUBLIC__/images/ziying02.png" alt="萝卜自营">  
+                                        </span>
+                                        <span class="fc_red">【新年首机】移动联通电信4G手机 双卡双待荣耀 畅玩5C 全网通 高配版</span>
+                                    </p>
+                                    <p class="row no-gutter line_h2 tx_ellips">
+                                        <span class="f12">移动联通电信4G手机 双卡双待荣耀 畅玩5C 全网通 高配版待荣耀 畅玩5C 全网通 高配版</span>
+                                    </p>
+                                    <p class="row no-gutter line_h2">
+                                        <span class="tx_ellips col-25 fc_red">
+                                            <span class="pull-left f12" style="line-height: 2.4;">￥</span>
+                                            <stong class="f14 pull-left">2299.00</stong>
+                                        </span>
+                                        <del class="tx_ellips col-50 pull-left f12 fc_lightGray" style="line-height: 2.2">￥2299.00</del>
+                                    </p>   
+                                </div>
+                            </section>
+                            <section class="marg_bottom_10">
+                                <div class="line_h2 fc_lightGray f12">
+                                    <span class="f_left">数量</span>
+                                    <span class="f_left marg_left_10 marg_right_10">
+                                        <div class="quantity-wrapper">
+                                            <input type="hidden" id="" value="200">
+                                            <a class="quantity-decrease limited" onclick="minus()">
+                                                <em id="minus">-</em>
+                                            </a>
+                                            <input type="tel" class="quantity" size="4" value="1" id="number" onblur="modify();">
+                                                <a class="quantity-increase" id="quantityPlus" onclick="plus()">
+                                                <em id="plus">+</em>
+                                            </a>
+                                        </div> 
+                                    </span>
+                                    <span class="">件</span>
+                                    <span class="lowestbuy-tip fc_red" style="display: none;">(限购200件)</span>
+                                </div>
+                            </section> 
+                            <section class="marg_bottom_10">
+                                <div class="f14">
+                                    <p class="line_h2 ">
+                                        移动联通电信4G手机 双卡双待荣耀 畅玩
+                                        <img class="img-responsive" src="__PUBLIC__/images/test01.jpg" alt="">
+                                        6期免息 尊享豪礼 晒单有礼
+                                        <img class="img-responsive" src="__PUBLIC__/images/test02.jpg" alt=""> 
+                                        <img class="img-responsive"src="__PUBLIC__/images/test03.jpg" alt=""> 
+                                        <img class="img-responsive" src="__PUBLIC__/images/test04.jpg" alt="">  
+                                    </p>
+                                    <p class="line_h2 ">
+                                        移动联通电信4G手机 双卡双待荣耀 畅玩5C 全网通 高配版待荣耀 畅玩
+                                        <img class="img-responsive" src="__PUBLIC__/images/test01.jpg" alt="">
+                                        6期免息 尊享豪礼 晒单有礼
+                                        <img class="img-responsive" src="__PUBLIC__/images/test02.jpg" alt=""> 
+                                        <img class="img-responsive" src="__PUBLIC__/images/test03.jpg" alt=""> 
+                                        <img class="img-responsive" src="__PUBLIC__/images/test04.jpg" alt="">  
+                                    </p>
+                                </div>
+                            </section>
+                        </div> 
+                    </div>
+                </div>
+                <!-- 底部按钮组 -->
+                <footer class="btnGroup">
+                    <div class="row no-gutter">
+                        <div class="col-100 text-center f18 fc_white bg_orange btnGoBuy" id="">
+                        确认购买
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <include file="Common/footer"/>
+        <script>
+            var path = location.pathname;
+            var shopId = 1;
+            var cId = 1;
+
+            var jobId  = path.split('/')[6];
+
+            $(function(){
+                $(document).on("pageInit", "#shopDetail", function(e, pageId, $page) {
+
+                    console.log("inited page::", "shopDetail!");
+
+                    initDefaultCity(cId);
+                    //加载banner
+                    function initDefaultCity (cId){
+                        $.ajax({
+                            type: 'GET',
+                            url: '__APP__/Home/sys/bannerList',
+                            data: { "cId": cId},
+                            dataType: 'json',
+                            timeout: 3000,
+                            context: $('.swiper-container'),
+                            success: function(data){
+                                if(data.code) {
+                                    var data = {
+                                        "banners": data.data
+                                    };
+                                    var html = template('banner-list-tpl', data);
+                                    this.html(html);
+                                    var bannerLgt = data.banners.length;
+                                    $(".swiper-container").swiper({
+                                        pagination: (bannerLgt<= 1)?'':'.swiper-pagination',
+                                        paginationClickable: true,
+                                        spaceBetween: 0,
+                                        centeredSlides: true,
+                                        loop: (bannerLgt<= 1)?false:true,
+                                        autoplay: 3000,
+                                        autoplayDisableOnInteraction: false
+                                    });
+                                } else {
+                                    $('.swiper-container').hide();
+                                }
+                            },
+                            error: function(xhr, type){
+                                $('.swiper-container').hide();
+                                console.log("xhr", xhr);
+                            }
+                        });
+                    };
+
+                    function loadDetail(jobId){
+                        $.ajax({
+                            type: 'POST',
+                            url: APP_PATH+ '/Home/Job/getJobDetails',
+                            data: {"id": jobId},
+                            dataType: 'json',
+                            async:false,
+                            timeout: 3000,
+                            context: $('#shopCont'),
+
+                            success: function(res){
+                                if(res.code=='0'){
+                                    $.toast("(+﹏+) 找不到这个职位了", 1000, "toast_orange");
+                                    return;
+                                } else {
+                                    var job= res.data;
+
+                                    var html = template("shop-detail-tpl", job);
+                                   
+                                    this.html(html);
+                                    
+                                }
+                        },
+                        error: function(xhr, type){
+                          $.toast("(+﹏+) 萝卜们太热情，服务器表示鸭梨很大！", 1000, "toast_orange");
+                        }
+                      });
+                    }
+
+                    // 点击确认购买，是否跳转用户中心
+                    $('.btnGoBuy').on('click', function (e){
+                        $.ajax({
+                            type: 'POST',
+                            url:APP_PATH+ '/Home/User/isLogin',
+                            dataType: 'json',
+                            timeout: 3000,
+                            success:function(res){
+                                if(res.code==1){
+                                    location.href = APP_PATH + '/Home/User/userCenter';
+                                }else{
+                                    $.toast("(^_^) 请先登录", 500);   
+                                    setTimeout(function(){
+                                        location.href=APP_PATH +"/Home/Wechat/signIn";
+                                    }, 500);
+                                }
+                            },
+                            error:function(){
+                                server_error();
+                            }
+                        });
+                    });
+                });
+
+                $.init();
+            });          
+        </script>
+    </body> 
+</html>

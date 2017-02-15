@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+   <head>
+        <title>萝卜兼职</title>
+        <include file="Common/header"/>
+        <include file="Common/tpl/tpl-jobDetail" />
+        <include file="Common/tpl/tpl-sendList" />
+    </head>
+    <body>
+    <div class="page-group">
+        <div class="page page-current" id="sendList">
+            <header class="bar bar-nav">
+                <a class="button button-link button-nav pull-left" href="__APP__/Company/User/bizCenter" external>
+                    <span class="icon icon-left"></span>
+                   返回
+                </a>
+                <h1 class='title'>发布记录</h1>
+            </header>
+            <div class="buttons-tab fixed-tab" data-offset="44">
+                <div id="s1" data-status="0" class="tab-link button line_r active">待审核</div>
+                <div id="s2" data-status="1" class="tab-link button line_r">招聘中</div>
+                <div id="s3" data-status="3" class="tab-link button">已结束</div>
+            </div>
+            <div class="resetConBlock">
+                <div class="content-block">
+                    <div class="tabs">
+                        <div id="tab_content" class="tab active">
+                            <div class="content-block content infinite-scroll infinite-scroll-bottom"  data-distance="10">
+                                <div class="wrapJob">
+                                    <ul class="jobList"></ul>
+                                    <!-- 加载提示符 -->
+                                    <div class="infinite-scroll-preloader">
+                                        <div class="preloader"></div>
+                                    </div> 
+                                </div>
+                                <footer class="text-center padd_20">
+                                    <p class="fc_orange f16">萝卜兼职网</p>
+                                    <p class="fc_orange f10">www.luobojianzhi.com</p>
+                                    <p class="f10">最靠谱的大学生兼职平台</p>
+                                </footer>                                
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+    <include file="Common/footer" />
+    <script type="text/javascript" src='__PUBLIC__/source/debug/scripts/company-job-detail.js' charset='utf-8'></script>
+    <script type="text/javascript" src='__PUBLIC__/source/debug/scripts/company-user-sendList.js' charset='utf-8'></script>
+    </body>
+</html>

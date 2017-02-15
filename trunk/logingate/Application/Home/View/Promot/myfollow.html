@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>萝卜兼职</title>
+    <link rel="stylesheet" type="text/css" href="/Public/promot/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/Public/promot/css/jiazu.css">
+</head>
+<body>
+<!--<header>-->
+    <!--<a onclick="window.history.back()" class="icon-font return">&#xe601;</a>-->
+    <!--<span>家族成员（{$count}）</span>-->
+<!--</header>-->
+<div class="list">
+    <!--<div class="search">-->
+        <!--<i class="icon-font">&#xe606;</i>-->
+        <!--<input type="text" name="" id="">-->
+    <!--</div>-->
+    <ul>
+        <volist name="follow_list" id="vo">
+        <li>
+            <img src="{$vo.headimgurl}" alt="">
+            <span>{$vo.nickname}</span>
+            </br>
+            <span style="float: right">关注时间:<php>echo $vo['createtime']</php></span>
+        </li>
+        </volist>
+    </ul>
+</div>
+<script src="/Public/promot/js/jquery.js"></script>
+<script src="/Public/promot/js/promot.js"></script>
+</body>
+</html>

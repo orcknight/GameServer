@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>      
+        <title>萝卜兼职</title> 
+        <include file="Common/header"/>
+        <include file="Common/tpl/tpl-userIncomeDetail" />
+    </head>
+    <body>
+        <div class="page-group">
+            <div class="page page-current" id="bindZFBsetPwd">
+                <header class="bar bar-nav">
+                    <a class="button button-link button-nav pull-left back" href="__APP__/Home/Wallet/bindZFB">
+                        <span class="icon icon-left"></span>
+                       返回
+                    </a>
+                    <h1 class="title">设置支付密码</h1>
+                </header>
+                <div class="content wrapBindZFBsetPwd" id="wrapBindZFBsetPwd">
+                    <div class="zfbInfo pos_rela line_b f12 text-center">
+                        <span class="fc_orange">1.设置支付密码</span>&nbsp;>&nbsp;2.填写信息&nbsp;>&nbsp;3.绑定成功  
+                    </div>
+                    <div class="content-block f14 wrapRegCont">
+                        <div class="row no-gutter line_b">
+                            <div class="col-25 text-left">
+                                支付密码
+                            </div>
+                            <div class="col-75 line_l">
+                                <input id="payPwd" class="form-control gttv" type="password" name="password" placeholder="请输入6位纯数字支付密码" />
+                            </div>
+                        </div>
+                        <div class="row no-gutter line_b">
+                            <div class="col-25 text-left">
+                                确认密码
+                            </div>
+                            <div class="col-75 line_l">
+                                <input id="repeatPwd" class="form-control gttv" type="password" name="password" placeholder="请输入6位纯数字支付密码" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-block">
+                        <div class="row">
+                            <div class="col-100">
+                                <a id="nextBtn" href="javascript:;" class="button button-big button_orange">下一步</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <include file="Common/footer" />
+        <script type="text/javascript" src='__PUBLIC__/source/debug/constVal/constVal.js' charset='utf-8'></script>
+        <script type="text/javascript" src='__PUBLIC__/source/debug/scripts/home-wallet-myWallet.js?t=1487059234162' charset='utf-8'></script>
+    </body>
+</html>

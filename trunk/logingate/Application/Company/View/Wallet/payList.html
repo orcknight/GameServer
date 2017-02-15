@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>  
+        <title>萝卜兼职</title>
+        <include file="Common/header"/>  
+        <include file="Common/tpl/tpl-wallet" />
+        <include file="Common/tpl/tpl-jobDetail" />
+    </head>
+    <body>
+        <div class="page-group">
+            <div class="page page-current" id="payList_toPay">
+                <header class="bar bar-nav">
+                    <a class="button button-link button-nav pull-left external" href="__APP__/Company/User/bizCenter">
+                        <span class="icon icon-left"></span>
+                        返回
+                    </a>
+                    <h1 class='title'>发放工资</h1>
+                </header>
+                <div class="buttons-tab fixed-tab" data-offset="44">
+                    <div id="s1" data-status="1" class="tab-link button line_r active">待发工资</div>
+                    <div id="s2" data-status="2" class="tab-link button line_r ">已发工资</div>
+                </div>
+                <div class="content native-scroll tab infinite-scroll infinite-scroll-bottom" data-distance="10">
+                    <div class="wrapJob">
+                        <ul class="jobList" id="jobList"></ul>
+                        <div class="infinite-scroll-preloader" style="display: none">
+                            <div class="preloader"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <include file="Common/footer" />
+        <script type="text/javascript" src='__PUBLIC__/source/debug/scripts/company-wallet-bundle.js' charset='utf-8'></script>
+    </body>
+</html>

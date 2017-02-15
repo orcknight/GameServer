@@ -1,0 +1,239 @@
+<script id='sendJob-city-tpl' type='text/html'>
+    {{each cities as value index}}
+        <option value="{{value.id}}" {{value.id==company.cityid?'selected':''}}>{{value.name}}</option>
+    {{/each}}
+</script>
+
+<script id='sendJob-province-tpl' type='text/html'>
+    {{each provinces as value index}}
+        <option value="{{value.id}}" {{value.id==company.provinceid?'selected':''}}>{{value.name}}</option>
+    {{/each}}
+</script>
+
+<script id='sendJob-region-tpl' type='text/html'>
+    {{each regions as value index}}
+        <option value="{{value.id}}" {{value.id==company.regionid?'selected':''}}>{{value.name}}</option>
+    {{/each}}
+</script>
+
+<script id='sendJob-tpl' type='text/html'>
+    <div class="content-block f14 wrapRegCont list-block">
+        <!-- 表单隐藏公司名称数据项 -->
+        <div class="row no-gutter  item-content display_none">
+            <div class="item-inner">
+                <div class="col-25 text-left item-title pos_rela line_r">
+                    公司名称
+                </div>
+                <div class="col-75 item-input">
+                    <input  id="" class="form-control gttv" type="text" name="company" value="{{company.companyname}}" placeholder="请输入公司名称" />
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutter  item-content">
+            <div class="item-inner">
+                <div class="col-25 text-left item-title pos_rela line_r">
+                    兼职名称
+                </div>
+                <div class="col-75 item-input">
+                    <input  id="" class="form-control gttv" type="text" name="title" placeholder="请输入兼职名称" />
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutter  item-content item-link">
+            <div class="item-inner">
+                <div class="col-25 text-left item-title pos_rela line_r">
+                    兼职类别
+                </div>
+                <div class="col-75 item-input">
+                    <div class="f_left pos_rela selectSchool item-input">
+                        <select class="tx_ellips tx_indent" name='pCateId' id="pCateId">
+                            {{each category as value index}}
+                                <option value="{{value.id}}">{{value.name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutter  item-content item-link">
+            <div class="item-inner">
+                <div class="col-25 text-left item-title pos_rela line_r">
+                    兼职类型
+                </div>
+                <div class="col-75 item-input">
+                    <div class="f_left pos_rela selectSchool item-input">
+                        <select class="tx_ellips tx_indent" id="jobType_select">
+                            {{each types as value index}}
+                                <option value="{{value.id}}" {{value.id==0?'selected':''}}>{{value.name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutter  item-content">
+            <div class="item-inner">
+                <div class="col-25 text-left item-title pos_rela line_r">
+                    招聘人数
+                </div>
+                <div class="col-75 item-input">
+                    <input  id="" class="form-control gttv" type="text" name="number" placeholder="输入有效数字" />
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutter  item-content item-link">
+            <div class="item-inner">
+                <div class="col-25 text-left item-title pos_rela line_r">
+                    结算方式
+                </div>
+                <div class="col-75 item-input">
+                    <div class="f_left pos_rela selectSchool item-input">
+                        <select class="tx_indent" name="payType">
+                            <option value="1" selected="selected">日结</option>
+                            <option value="2" >周结</option>
+                            <option value="3">月结</option>
+                            <option value="4">次结</option>
+                            <option value="5">完工结算</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutter item-content">
+            <div class="item-inner">
+                <div class="col-25 text-left item-title pos_rela line_r">
+                    工资待遇
+                </div>
+                <div class="col-75">
+                    <div class="col-50 f_left selectProvince pos_rela item-input">
+                        <input  id="" class="form-control gttv" type="text" name="income" placeholder="输入有效数字" />
+                        <span class="icon icon-right pos_arr"></span>
+                    </div>
+                    <div class="col-50 f_right selectCity pos_rela item-input">
+                        <select class="tx_indent" name="incomeUnit">
+                            <option value="1">元/小时</option>
+                            <option value="2" selected="selected">元/天</option>
+                            <option value="3">元/周</option>
+                            <option value="4">元/月</option>
+                            <option value="5">元/次</option>
+                        </select>
+                        <span class="icon icon-right pos_arr" style="right: -.45rem;"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutter item-content">
+            <div class="item-inner">
+                <div class="col-25 text-left item-title pos_rela line_r">
+                    工作地点
+                </div>
+                <div class="col-75">
+                    <div class="col-50 f_left selectProvince pos_rela item-input">
+                        <select class="tx_indent" id="sendJob-province-select" name="provinceId">
+                        {{include 'sendJob-province-tpl'}}
+                        </select>
+                        <span class="icon icon-right pos_arr"></span>
+                    </div>
+                    <div class="col-50 f_right selectCity pos_rela item-input">
+                        <select class="tx_indent" id="sendJob-city-select" name="cityId">
+
+                        </select>
+                        <span class="icon icon-right pos_arr" style="right: -.45rem;"></span>
+                    </div>
+                    <div class="col-100 f_left selectRegion pos_rela item-input">
+                        <select class="tx_indent" id="sendJob-region-select" name="regionId">
+
+                        </select>
+                        <span class="icon icon-right pos_arr" style="right: -.45rem;"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutter  item-content">
+            <div class="item-inner">
+                <div class="col-25 text-left item-title pos_rela line_r">
+                    详细地址
+                </div>
+                <div class="col-75 item-input">
+                    <input  id="" class="form-control gttv" type="text" name="address" value="{{company.address}}" placeholder="请输入详细地址" />
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutter  item-content">
+            <div class="item-inner">
+                <div class="col-25 text-left item-title pos_rela line_r">
+                    工作日期
+                </div>
+                <div class="col-75 item-input">
+                    <div class="col-50 f_left selectProvince pos_rela item-input">
+                        <input class="form-control gttv"  id="sendJob-startDate" name="beginTime" placeholder="开始日期"/>
+                        <span class="icon icon-right pos_arr"></span>
+                    </div>
+                    <div class="col-50 f_right selectCity pos_rela item-input">
+                        <input class="form-control gttv" id="sendJob-endDate" name="endTime" placeholder="结束日期"/> 
+                        <span class="icon icon-right pos_arr" style="right: -.45rem;"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutter  item-content">
+            <div class="item-inner">
+                <div class="col-25 text-left item-title pos_rela line_r">
+                    工作时段
+                </div>
+                <div class="col-75 item-input">
+                    <div class="col-50 f_left pos_rela item-input">
+                        <input id="beginHour" type="text" class="form-control input-lg gttv demo-test-time" name="beginHour" placeholder="开始时间" value="08: 00">
+                        <span class="icon icon-right pos_arr"></span>
+                    </div>
+                    <div class="col-50 f_right pos_rela item-input">
+                        <input id="endHour" type="text" class="form-control input-lg gttv demo-test-time" name="endHour" placeholder="结束时间" value="17: 00">
+                        <span class="icon icon-right pos_arr" style="right: -.45rem;"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutter  item-content item-link">
+            <div class="item-inner">
+                <div class="col-25 text-left item-title pos_rela line_r">
+                    截止时间
+                </div>
+                <div class="col-75 item-input">
+                    <div class="f_left pos_rela selectSchool item-input">
+                        <input id="datetime-picker" type="text" class="form-control input-lg gttv" name="deadline" placeholder="截止时间">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutter  item-content">
+            <div class="item-inner">
+                <div class="col-25 text-left item-title pos_rela line_r">
+                    联系人
+                </div>
+                <div class="col-75 item-input">
+                    <input  id="" class="form-control gttv" type="text" name="linkman" value="{{company.realname}}" placeholder="请输入联系人名字" />
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutter  item-content">
+            <div class="item-inner">
+                <div class="col-25 text-left item-title pos_rela line_r">
+                    联系电话
+                </div>
+                <div class="col-75 item-input">
+                    <input  id="" class="form-control gttv" type="text" name="phone" value="{{company.phone}}"placeholder="请输入联系电话" />
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutter  item-content">
+            <div class="item-inner">
+                <div class="col-25 text-left item-title pos_rela line_r">
+                    职位描述
+                </div>
+                <div class="col-75 item-input wrapTagTextArea">
+                    <textarea  id="" class="form-control gttv" type="textarea" name="intro" placeholder="请输入职位描述" ></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
