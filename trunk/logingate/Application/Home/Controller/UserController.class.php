@@ -245,82 +245,37 @@ class UserController extends BaseController{
     /**
      * 登录接口
      */
-    public function signIn() {
+    public function login() {
 
-        $this->trackLog("execute", "signIn()");
+        $this->trackLog("execute", "login()");
 
-        $phone = I('phone', '', 'trim');
-        $password = I('password', '', 'trim');
-
-        $this->trackLog("phone", $phone);
-        $this->trackLog("password", $password);
-        $this->trackLog("md5(password)", md5($password));
-
-        if(empty($phone)|| empty($password)) {
-          $data['code']  = 0;
-          $data['msg']  = "缺少必要参数";
+        $name = I('id', '', 'trim');
+        $pass = I('pass', '', 'trim');
+        $this->trackLog("name", $name);
+        $this->trackLog("pass", $pass);
+        if(empty($name)|| empty($pass)) {
+          $data['cod']  = 3;
+          $data['sta']  = "argerr";
           $this->ajaxReturn($data);
         }
 
-        $password = md5($password);
-
-        $extSql = "SELECT id, phone, username, password, status, realname FROM user WHERE phone='$phone' AND password='$password'";
-        $this->trackLog("extSql", $extSql);
-
-        $Model = new Model();
-        $result = $Model->query($extSql);
-        $this->trackLog("result", $result);
-
-        if($result) {
-            $user = $result[0];
-            
-            session('x_user', $user);
-
-            $result = $Model->query("SELECT openid from user where phone = $phone");
-            $openid = $result[0]['openid'];
-            $this->trackLog("openid", $openid);
-            
-            //如果是头领，把头领和用户绑定起来
-            $this->setChiefUserId($user['phone'], $user['id']);
-            
-            if(strlen(trim($openid))==0){  // 微信账户绑定
-
-                if($_SESSION['wt_user']) {
-                    $openid = $_SESSION['wt_user']['openid'];
-                    $extSQL = "UPDATE user set openid ='$openid' where phone = '$phone'";
-                    $this->trackLog("extSQL", $extSQL);
-                    $result = $Model->execute($extSQL);
-                    $this->trackLog("result", $result);
-                }
-
-            }
-            
-
-          if($openid){ // 更新萝卜头领注册数量
-
-              $result = $Model->query("SELECT chiefId FROM ac_chief_fans WHERE openid='$openid' AND bind=0");
-              $chiefId = $result[0]['chiefid'];
-              $this->trackLog("chiefid", $chiefId);
-
-              if($chiefId) {
-                  // 累加头领注册人数
-                  $result = $Model->execute("UPDATE ac_chief SET register=register+1 WHERE id='$chiefId'");
-                  $this->trackLog("result", $result);
-                  // 更新粉丝绑定状态
-                  $result = $Model->execute("UPDATE ac_chief_fans SET bind=1 WHERE openid='$openid'");
-                  $this->trackLog("result", $result);
-              }
-          }
-
-          $data['code']  = 1;
-          $data['msg']  = "用户已经查找到。";
-          $data['data'] = $user;
-          $this->ajaxReturn($data);
-        }else{
-          $data['code']  = 0;
-          $data['msg']  = "用户名或者密码错误！";
-          $this->ajaxReturn($data);
+        $querySql = "SELECT password FROM user WHERE name = '$name'";
+        $result = M()->query($querySql);
+        if(!$result){
+            $data['cod']  = 3;
+            $data['sta']  = "iderr";
+            $this->ajaxReturn($data);
         }
+        
+        if(md5($pass) != $result[0]['password']){
+            $data['cod']  = 3;
+            $data['sta']  = "passerr";
+            $this->ajaxReturn($data);    
+        }
+
+        $data['cod']  = 3;
+        $data['sta']  = getIPaddress() . "&null";
+        $this->ajaxReturn($data);
     }
 
     /**

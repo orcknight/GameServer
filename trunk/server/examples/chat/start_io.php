@@ -11,6 +11,11 @@ $io = new SocketIO(2020);
 $io->on('connection', function($socket){
     $socket->addedUser = false;
     
+    /*$socket->on('stream', function($connection, $msg) use($io) {
+        
+        echo $msg;    
+    }); */
+    
     
     $socket->emit('stream', "0000007\n");
 
