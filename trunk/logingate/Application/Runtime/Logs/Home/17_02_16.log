@@ -1,0 +1,14 @@
+[ 2017-02-16T00:12:00+08:00 ] 127.0.0.1 /index.php/Home/User/login?callback=jQuery21408718794832620014_1487175113897&id=orcknight&pass=aq123456&_=1487175113898
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+DEBUG: [ Jiechengkeji ] [ 00:12:00 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 00:12:00 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 00:12:00 ] [ execute ]login()
+DEBUG: [ Jiechengkeji ] [ 00:12:00 ] [ name ]orcknight
+DEBUG: [ Jiechengkeji ] [ 00:12:00 ] [ pass ]aq123456
+SQL: SELECT password FROM user WHERE name = 'orcknight' [ RunTime:0.0010s ]
+
