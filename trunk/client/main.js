@@ -1,4 +1,4 @@
-﻿
+
 var sock = io.connect("ws://127.0.0.1:2020/", { 'reconnect': true });
 var loginok = false;
 var textcol = '#666'; pd_on = 'chat';
@@ -616,7 +616,7 @@ function logincheck(id,pass) {
     $.ajax({
         type : "get",
         async : false,
-        url : "http://112.74.106.238/mud/login.php",
+        url : "http://game.gate.com/index.php/Home/User/login",
         data : {"id" : myid,"pass" : mypass},
         cache : false, 
         dataType : "jsonp",

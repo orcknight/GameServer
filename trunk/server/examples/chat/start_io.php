@@ -13,9 +13,16 @@ $io->on('connection', function($socket) use($io){
     
     $socket->on('stream', function($msg) use($socket) {
         
-        if($msg == '/n'){
+        echo $msg;
+        
+        if($msg == "\n"){
+            
             $socket->emit('stream', "版本验证成功\n");    
         }
+        
+
+         
+
     });
 
     // when the client emits 'new message', this listens and executes

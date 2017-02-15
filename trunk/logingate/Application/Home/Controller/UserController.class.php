@@ -264,7 +264,7 @@ class UserController extends BaseController{
         if(!$result){
             $data['cod']  = 3;
             $data['sta']  = "iderr";
-            $this->ajaxReturn($data);
+            $this->ajaxReturn($data, 'JSONP');
         }
         
         if(md5($pass) != $result[0]['password']){

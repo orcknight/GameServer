@@ -19,7 +19,7 @@ class BaseController extends Controller {
 
     public function _initialize() {
         $this->trackLog("initializing", "BaseController");
-        $this->bilog_v2();
+        //$this->bilog_v2();
         $this->trackLog("initialized", "BaseController");
     }
     
