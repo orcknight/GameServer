@@ -8,16 +8,15 @@ use PHPSocketIO\SocketIO;
 require_once __DIR__ . '/../../vendor/autoload.php';
 
 $io = new SocketIO(2020);
-$io->on('connection', function($socket){
+$io->on('connection', function($socket) use($io){
     $socket->addedUser = false;
     
-    /*$socket->on('stream', function($connection, $msg) use($io) {
+    $socket->on('stream', function($msg) use($socket) {
         
-        echo $msg;    
-    }); */
-    
-    
-    $socket->emit('stream', "0000007\n");
+        if($msg == '/n'){
+            $socket->emit('stream', "版本验证成功\n");    
+        }
+    });
 
     // when the client emits 'new message', this listens and executes
     $socket->on('new message', function ($data)use($socket){
