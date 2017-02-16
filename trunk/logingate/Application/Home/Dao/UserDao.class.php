@@ -13,20 +13,12 @@ class UserDao extends BaseDao{
     
         $this->trackLog("execute", "add()");
         
-        $chiefUserId = isset($args['chiefUserId']) ? $args['chiefUserId'] : 0;
-        $adminId = isset($args['adminId']) ? $args['adminId'] : 0;
-        $isNewUser = isset($args['isNewUser']) ? $args['isNewUser'] : 0;
+        $name = $args['name'];
+        $pass = $args['pass'];
         $phone = $args['phone'];
-        $password = $args['password'];
-        $openid = $args['openid'];
-        $status = $args['status'];
-        $chiefInviteCode = $args['chiefInviteCode'];
-        $realName = $args['realName'];
-        $provinceId = $args['provinceId'];
-        $cityId = $args['cityId'];
+        $email = $args['email'];
         
-        $sql = "INSERT INTO user (chiefUserId, adminId, isNewUser, phone,realName,provinceId,cityId, password, openid, status, chiefInviteCode) 
-        VALUES('$chiefUserId', '$adminId', '$isNewUser', '$phone','$realName','$provinceId','$cityId', '$password', '$openid', '$status', '$chiefInviteCode')";
+        $sql = "INSERT INTO user (name, password, phone, email) VALUES ('$name', '$pass', '$phone', '$email')";
         $this->trackLog("sql", $sql);
         $res = $this->db->execute($sql);
         $this->trackLog("res", $res);
@@ -159,48 +151,16 @@ class UserDao extends BaseDao{
         return $result;               
     }
     
-    public function getChiefInviteCodeById($id){
+    public function isDuplicate($name){
         
-        $querySql = "SELECT chiefInviteCode FROM user WHERE id = $id";
-        $this->trackLog("querySql", $querySql);
-        $result = $this->getDb()->query($querySql);
-        $this->trackLog("result", $result);
-        
-        if(!$result){
-            
-            return '';
+        $querySql = "SELECT * FROM user WHERE name = '$name'";
+        $result = M()->query($querySql);
+        if($result){
+            return true;
         }
         
-        return $result[0]['chiefinvitecode'];
-    }
-    
-    public function getAdminInviteCodeById($id){
+        return false;
         
-        $querySql = "SELECT adminInviteCode FROM user WHERE id = $id";
-        $this->trackLog("querySql", $querySql);
-        $result = $this->getDb()->query($querySql);
-        $this->trackLog("result", $result);
-        
-        if(!$result){
-            
-            return '';
-        }
-        
-        return $result[0]['admininvitecode'];
-        
-    }
-    
-    public function updateFansAdminIdAndCode($args){
-        
-        $chiefUserId = $args['chiefUserId'];
-        $adminId = $args['adminId'];
-        $adminInviteCode = $args['adminInviteCode'];
-        
-        $execSql = "UPDATE user SET adminId = '$adminId', adminInviteCode = '$adminInviteCode' WHERE chiefUserId = '$chiefUserId'";
-        $result = $this->getDb()->execute($execSql);
-        $this->trackLog("result", $result);
-        
-        return $result;
     }
     
     

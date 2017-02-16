@@ -256,7 +256,7 @@ class UserController extends BaseController{
         if(empty($name)|| empty($pass)) {
           $data['cod']  = 3;
           $data['sta']  = "argerr";
-          $this->ajaxReturn($data);
+          $this->ajaxReturn($data, 'JSONP');
         }
 
         $querySql = "SELECT password FROM user WHERE name = '$name'";
@@ -270,12 +270,12 @@ class UserController extends BaseController{
         if(md5($pass) != $result[0]['password']){
             $data['cod']  = 3;
             $data['sta']  = "passerr";
-            $this->ajaxReturn($data);    
+            $this->ajaxReturn($data, 'JSONP');    
         }
 
         $data['cod']  = 3;
         $data['sta']  = getIPaddress() . "&null";
-        $this->ajaxReturn($data);
+        $this->ajaxReturn($data, 'JSONP');
     }
 
     /**
@@ -283,59 +283,20 @@ class UserController extends BaseController{
      */
     public function signUp() {
 
-        $this->trackLog("execute", "doSignUp()");
-        
-        $phone = I('phone', '', 'trim');
-        $password = I('password');
-        $captcha = I('captcha', '', 'trim');
-        $chiefInviteCode = I('chiefInviteCode', '', 'trim');
-        $realName = I('realName','','trim');
-        $provinceId = I('provinceId',0,'intval');
-        $cityId = I('cityId',0,'intval');
-        $agree = I('agree');
-        
-        $this->trackLog('phone', $phone);
-        $this->trackLog('password', $password);
-        $this->trackLog('captcha', $captcha);
-        $this->trackLog('chiefInviteCode', $chiefInviteCode);
-        $this->trackLog('md5(password)', md5($password));
-
-        if(!is_numeric($phone) || empty($password)) {
-            $data['code']  = 0;
-            $data['msg']  = "参数格式不正确！";
-            $this->ajaxReturn($data);
-        }
-
-        if(!isWhitePhoneNumber($phone)){
-            
-            if ($phone != session('captchaPhone') || $captcha != session('captcha')) {
-                $data['code']  = 0;
-                $data['msg']  = "手机验证码错误！";
-                $this->ajaxReturn($data);
-            }    
-        }
-        
-        $password = md5($password);
-        $openid = -1;
-        if($_SESSION['wt_user']) {
-            $openid = $_SESSION['wt_user']['openid'];
-        }
+        $this->trackLog("execute", "signUp()");
         
         $args = array(
-            "username" => "小萝卜",
-            "realName"=>$realName,
-            "provinceId"=>$provinceId,
-            "cityId"=>$cityId,
-            "phone" => $phone,
-            "password" => $password,
-            "openid" => $openid,
-            "status" => 1,
-            "chiefInviteCode" => $chiefInviteCode,
+            'name' => $_POST["id"],
+            'pass' => $_POST["pass"],
+            'pass2' => $_POST["pass2"],
+            'email' => $_POST["email"],
+            'phone' => $_POST["phone"],  
         );
         $this->trackLog("args", $args);
         
         $userService = new UserService();
         $this->ajaxReturn($userService->signUp($args));
+        
     }
 
     //个人简介，直接从session里取得用户信息
