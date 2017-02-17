@@ -12,7 +12,7 @@ $io = new SocketIO(2020);
 $io->on('connection', function($socket) use($io){
     $socket->addedUser = false;
     
-    Timer::add(1, function()use($socket){
+    $socket->timer_id = Timer::add(1, function()use($socket){
         $time_now = time();
         
         $socket->emit("stream", "\n012\$5,5,28,45#杨萎:100/100:#000000║气血.100:100/100/100:#99FF0000:exert recover║内力.0:0/0/0:#990066FF║精神.100:100/100/100:#996600CC:exert regenerate║精力.0:0/0/200:#99006600║怒气.0:0/0:#99990000║食物.197:197/200:#99FF6600║饮水.197:197/200:#990000FF║经验.0:0/1000:#99FF0066║潜能.99:99/2901/3000:#99FF00FF\n↵");
@@ -93,7 +93,18 @@ $io->on('connection', function($socket) use($io){
 
     // when the user disconnects.. perform this
     $socket->on('disconnect', function () use($socket) {
-        global $usernames, $numUsers;
+        
+        echo 'disconnect';
+        
+        if($socket->timer_id > 0){
+            
+            Timer::del($socket->timer_id);    
+        }
+        
+        
+        
+        
+        /*global $usernames, $numUsers;
         // remove the username from global usernames list
         if($socket->addedUser) {
             unset($usernames[$socket->username]);
@@ -104,7 +115,7 @@ $io->on('connection', function($socket) use($io){
                'username' => $socket->username,
                'numUsers' => $numUsers
             ));
-        }
+        }*/
    });
    
 });
