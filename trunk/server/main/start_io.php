@@ -6,7 +6,7 @@ use Workerman\Lib\Timer;
 use PHPSocketIO\SocketIO;
 
 // composer autoload
-require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 $io = new SocketIO(2020);
 $io->on('connection', function($socket) use($io){

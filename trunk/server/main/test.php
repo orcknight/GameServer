@@ -2,7 +2,7 @@
 
 use Workerman\Worker;
 
-require_once __DIR__ . '/../../vendor/workerman/workerman-for-win/Autoloader.php';
+require_once __DIR__ . '/../vendor/workerman/workerman-for-win/Autoloader.php';
 
 $global_uid = 0;
 

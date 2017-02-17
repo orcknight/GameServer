@@ -5,7 +5,7 @@
 3: "重新连接成功。\n"
 4: "006b12:[1;32m常用$br#指令[2;37;0m:mycmds ofen$zj#b13:[1;33m技能$br#相关[2;37;0m:mycmds skill$zj#b14:[1;31m战斗$br#相关[2;37;0m:mycmds fight$zj#b15:[1;35m任务$br#相关[2;37;0m:mycmds quest$zj#b16:[1;37m游戏$br#指南[2;37;0m:mycmds help$zj#b17:[1;36m频道$br#交流[2;37;0m:liaotian\n"
 5: "021 飞行 :help mapb$zj# 附近 :map view\n"
-6: "002世外桃源\n"
+6: "002世外桃源\n" //当前所在位置
 7: "004这里桃花如画，春意盎然。小桥流水，落英缤纷，好一番诗情雅意。河边有一块大石，一女子轻妆素裹，倚石凝眉，说不尽的哀思。旁边一男子英武挺拔，傲然而立。旁边有一个牌子，你也许应该仔细看看。\n"
 8: "003north:心狠手辣$zj#south:狡黠多变$zj#east:光明磊落$zj#west:阴险奸诈\n"
 9: "005[1;36m封君[2;37;0m:look /clone/user/user#7315070\n"
@@ -26,7 +26,7 @@
 ↵重新连接成功。
 ↵006b12:[1;32m常用$br#指令[2;37;0m:mycmds ofen$zj#b13:[1;33m技能$br#相关[2;37;0m:mycmds skill$zj#b14:[1;31m战斗$br#相关[2;37;0m:mycmds fight$zj#b15:[1;35m任务$br#相关[2;37;0m:mycmds quest$zj#b16:[1;37m游戏$br#指南[2;37;0m:mycmds help$zj#b17:[1;36m频道$br#交流[2;37;0m:liaotian
 ↵021 飞行 :help mapb$zj# 附近 :map view
-↵002世外桃源
+↵002世外桃源 
 ↵004这里桃花如画，春意盎然。小桥流水，落英缤纷，好一番诗情雅意。河边有一块大石，一女子轻妆素裹，倚石凝眉，说不尽的哀思。旁边一男子英武挺拔，傲然而立。旁边有一个牌子，你也许应该仔细看看。
 ↵003north:心狠手辣$zj#south:狡黠多变$zj#east:光明磊落$zj#west:阴险奸诈
 ↵005狄云:look /d/register/npc/diyun#8118014$zj#水笙:look /d/register/npc/shuisheng#8118011
