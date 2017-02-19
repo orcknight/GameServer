@@ -10,23 +10,38 @@ require_once __DIR__ . '/dao/TileDao.php';
 class cmdEngine{
     
     public $socketMap = array(); 
+    public $tileMap = array();
     
     private $userDao = null;
     private $playerDao = null;
     private $tileDao = null;
     
+    public function __construct(){
+        
+        $this->tileMap = $this->getTileDao()->loadTileToCache();    
+    }
+    
     public function Parse($msg, &$socket){
         
         $replyMsg = $this->ProcessGateMessage($msg, $socket);
+        echo $socket->userId . "\n";
+        echo $socket->tileName . "\n";
+        $tileName =  $socket->tileName;
         if(!empty($replyMsg)){
             
             return $replyMsg;
         }
         
         $cmd = explode(" ", $msg)[0];
+        echo $cmd;
         if($cmd == "\n"){
             
             return "版本验证成功\r\n";
+        }elseif($cmd == "east\n"){
+            
+            $eastName = $this->tileMap[$socket->tileName]['ename'];
+            echo $eastName;
+            return $this->getTileDao()->buildTileTxt($eastName);
         }
         
     }
@@ -75,6 +90,8 @@ class cmdEngine{
             }
             
             $playerInfo = $this->getPlayerDao()->queryPlayerInfo($player['id']);
+            $socket->tileName = $playerInfo['tileName'];
+            echo $socket->tileName;
             
             return chr(13).chr(10). 
             "0000007" . chr(13).chr(10). 
@@ -84,8 +101,6 @@ class cmdEngine{
             "021 飞行 :help mapb\$zj# 附近 :map view" .chr(13).chr(10). 
             "你连线进入了拍拍熊专列[立志传一线]。" . chr(13).chr(10). 
             $this->getTileDao()->buildTileTxt($playerInfo['tileName']);
-            
-            echo $this->getTileDao()->buildTileTxt($playerInfo['tileName']);
             
         }elseif(substr_count($msg, "║001║") == 1){
             
@@ -121,6 +136,7 @@ class cmdEngine{
             "───────────────────────────────\r\n" . 
             "你连线进入了武林群侠[合一]。\r\n";
 
+            $socket->tileName = "shengmingzhigu";
             return $retMsg . $this->getTileDao()->buildTileTxt("shengmingzhigu");
             
         }

@@ -22,7 +22,28 @@ class TileDao{
         
     }
     
-    
+    public function loadTileToCache(){
+        
+        $mapArray = array();
+        $db = new DbHelper();
+        $querySql = "SELECT * FROM tile"; 
+        $result = $db->query($querySql); 
+        if(!$result){
+            
+            return $mapArray;
+        }
+        
+        for($i = 0; $i < sizeof($result); $i++){
+            
+            $item = $result[$i];
+            $mapArray[$item['name']] = $item;
+        }
+        unset($result);
+        
+        return $mapArray;    
+        
+    }
+
     public function buildTileTxt($name){
         
         $tileInfo = $this->queryTile($name);
@@ -32,11 +53,6 @@ class TileDao{
         $txt .= $this->buildARoundTxt($tileInfo);
         
         return $txt;
-    }
-    
-    public function buildLocationTxt($name){
-        
-        
     }
     
     private function buildARoundTxt($info){
@@ -61,7 +77,7 @@ class TileDao{
         }
         
         $txt = rtrim($txt, $contact);
-        $txt .= $txt . "\r\n";
+        $txt = $txt . "\r\n";
         
         return $txt;
     }
