@@ -243,8 +243,6 @@ class cmdEngine{
         $txt .= "002" . $tileInfo['cname'] . "\r\n";
         $txt .= "004" . $tileInfo['describe'] . "\r\n";
         $txt .= $this->buildARoundTxtByCache($tileInfo);
-        $txt .= "007[1;31m南嫖[2;37;0m 杨威(yang wei)\$br#一一一一一一一一一一一一一一一一一一一一一一一\$br#他容貌猥琐，不可一世。哇！他可是性爱导师。\$br#他看起来有九十多岁。\$br#他的武功看来[1;31m不堪一击[2;37;0m，出手似乎极轻。\$br#他[1;32m看起来气血充盈，并没有受伤。[2;37;0m\$br#他装备着：\$br#[1;36m㊣[2;37;0m布衣(cloth)\r\n"."↵\r\n".
-        "009给予:give di zang\$zj#拜师:bai di zang\$zj#跟随:follow di zang\$zj#[1;31m偷窃[2;37;0m:steal di zang\$zj#\r\n";
         
         return $txt;    
         
