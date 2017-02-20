@@ -40,8 +40,24 @@ class cmdEngine{
         }elseif($cmd == "east\n"){
             
             $eastName = $this->tileMap[$socket->tileName]['ename'];
-            echo $eastName;
-            return $this->getTileDao()->buildTileTxt($eastName);
+            $socket->tileName = $eastName;
+            return $this->getTileInfoFromCache($eastName);
+        }elseif($cmd == "south\n"){
+            $southName = $this->tileMap[$socket->tileName]['sname'];
+            $socket->tileName = $southName;
+            return $this->getTileInfoFromCache($southName);
+        }elseif($cmd == "north\n"){
+            $northName = $this->tileMap[$socket->tileName]['nname'];
+            $socket->tileName = $northName;
+            return $this->getTileInfoFromCache($northName);
+        }elseif($cmd == "west\n"){
+            $westName = $this->tileMap[$socket->tileName]['wname'];
+            $socket->tileName = $westName;
+            return $this->getTileInfoFromCache($westName);
+        }elseif($cmd == "out\n"){
+            $westName = $this->tileMap[$socket->tileName]['outname'];
+            $socket->tileName = $westName;
+            return $this->getTileInfoFromCache($westName);
         }
         
     }
@@ -100,7 +116,7 @@ class cmdEngine{
             "006b12:[1;32m常用\$br#指令[2;37;0m:mycmds ofen\$zj#b13:[1;33m技能\$br#相关[2;37;0m:mycmds skill\$zj#b14:[1;31m战斗\$br#相关[2;37;0m:mycmds fight\$zj#b15:[1;35m任务\$br#相关[2;37;0m:mycmds quest\$zj#b16:[1;37m游戏\$br#指南[2;37;0m:mycmds help\$zj#b17:[1;36m频道\$br#交流[2;37;0m:liaotian" . chr(13).chr(10).
             "021 飞行 :help mapb\$zj# 附近 :map view" .chr(13).chr(10). 
             "你连线进入了拍拍熊专列[立志传一线]。" . chr(13).chr(10). 
-            $this->getTileDao()->buildTileTxt($playerInfo['tileName']);
+            $this->getTileInfoFromCache($playerInfo['tileName']);
             
         }elseif(substr_count($msg, "║001║") == 1){
             
@@ -137,7 +153,7 @@ class cmdEngine{
             "你连线进入了武林群侠[合一]。\r\n";
 
             $socket->tileName = "shengmingzhigu";
-            return $retMsg . $this->getTileDao()->buildTileTxt("shengmingzhigu");
+            return $retMsg . $this->getTileInfoFromCache("shengmingzhigu");
             
         }
         
@@ -219,11 +235,51 @@ class cmdEngine{
         }    
     }
     
-    private function getTileTxt($name){
+    private function getTileInfoFromCache($name){
         
         
+        $tileInfo = $this->tileMap[$name];
+        $txt = "↵\r\n";
+        $txt .= "002" . $tileInfo['cname'] . "\r\n";
+        $txt .= "004" . $tileInfo['describe'] . "\r\n";
+        $txt .= $this->buildARoundTxtByCache($tileInfo);
+        $txt .= "007[1;31m南嫖[2;37;0m 杨威(yang wei)\$br#一一一一一一一一一一一一一一一一一一一一一一一\$br#他容貌猥琐，不可一世。哇！他可是性爱导师。\$br#他看起来有九十多岁。\$br#他的武功看来[1;31m不堪一击[2;37;0m，出手似乎极轻。\$br#他[1;32m看起来气血充盈，并没有受伤。[2;37;0m\$br#他装备着：\$br#[1;36m㊣[2;37;0m布衣(cloth)\r\n"."↵\r\n".
+        "009给予:give di zang\$zj#拜师:bai di zang\$zj#跟随:follow di zang\$zj#[1;31m偷窃[2;37;0m:steal di zang\$zj#\r\n";
         
+        return $txt;    
         
+    }
+    
+    private function buildARoundTxtByCache($info){
+        
+        $contact = "\$zj#";
+        $txt = '003';
+        if(!empty($info['nname'])){
+            
+            $txt .= "north:" . $this->tileMap[$info['nname']]['cname'] . $contact;    
+        }
+        if(!empty($info['sname'])){
+            
+            $txt .= "south:" . $this->tileMap[$info['sname']]['cname'] . $contact;    
+        }
+        if(!empty($info['ename'])){
+            
+            $txt .= "east:" . $this->tileMap[$info['ename']]['cname'] . $contact;    
+        }
+        if(!empty($info['wname'])){
+            
+            $txt .= "west:" . $this->tileMap[$info['wname']]['cname'] . $contact;    
+        }
+        
+        if(!empty($info['outname'])){
+            
+            $txt .= "out:" . $this->tileMap[$info['outname']]['cname'] . $contact;    
+        }
+        
+        $txt = rtrim($txt, $contact);
+        $txt = $txt . "\r\n";
+        
+        return $txt;
     }
     
 }
