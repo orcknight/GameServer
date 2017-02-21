@@ -6,11 +6,13 @@ use dao\UserDao;
 use dao\PlayerDao;
 use dao\TileDao;
 use dao\NpcDao;
+use bll\ObjectManager;
                                        
 require_once __DIR__ . '/dao/UserDao.php';
 require_once __DIR__ . '/dao/PlayerDao.php';
 require_once __DIR__ . '/dao/TileDao.php';
 require_once __DIR__ . '/dao/NpcDao.php';
+require_once __DIR__ . '/bll/ObjectManager.php';
 
 class cmdEngine{
     
@@ -21,6 +23,7 @@ class cmdEngine{
     private $playerDao = null;
     private $tileDao = null;
     private $npcDao = null;
+    private $objectManager = null;
     
     public function __construct(){
         
@@ -65,8 +68,7 @@ class cmdEngine{
             return $this->getTileInfoFromCache($westName, $socket);
         }elseif($cmd == "look"){
             
-            $msg = rtrim($msg, "\n");
-            return $this->getNpcDao()->queryNpc($socket->cityName, $socket->tileName, explode(" ", $msg)[1])['long'];    
+            return $this->getObjectManager()->doLookCmd($msg, $socket);    
         }
         
     }
@@ -220,6 +222,16 @@ class cmdEngine{
         return  $this->npcDao;     
     }
     
+    private function getObjectManager(){
+        
+        if($this->objectManager == null){
+            
+            $this->objectManager = new ObjectManager();
+        }
+        
+        return  $this->objectManager;
+    }
+    
     private function getSocketById($id){
         
         if($id < 1){
@@ -235,8 +247,7 @@ class cmdEngine{
         return $this->socketMap[$id];
         
     }
-    
-    
+
     private function closeAndKickOffInfo($userId){
         
         $preSocket = $this->getSocketById($userId);
@@ -257,22 +268,13 @@ class cmdEngine{
     }
     
     private function getTileInfoFromCache($name, &$socket){
-        
-        
+
         $tileInfo = $this->tileMap[$name];
         $txt = "↵\r\n";
         $txt .= "002" . $tileInfo['cname'] . "\r\n";
         $txt .= "004" . $tileInfo['describe'] . "\r\n";
         $txt .= $this->buildARoundTxtByCache($tileInfo);
-        
-        $npcs = $this->getNpcDao()->queryNpcs($socket->cityName, $socket->tileName);
-        $npcTxt = "005";
-        foreach($npcs as $item){
-            
-            $npcTxt .= ($item['title'] . ":look " . $item['name'] . "\$zj#");   
-        }
-        $npcTxt = rtrim($npcTxt, "\$zj#") . "\n";
-        $txt .= $npcTxt;
+        $txt .= $this->getObjectManager()->loadObject($socket->cityName, $socket->tileName);
         
         return $txt;    
         
