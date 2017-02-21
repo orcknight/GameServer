@@ -1,4 +1,4 @@
-﻿
+
 var sock = io.connect("ws://127.0.0.1:2020/", { 'reconnect': true });
 var loginok = false;
 var textcol = '#666'; pd_on = 'chat';

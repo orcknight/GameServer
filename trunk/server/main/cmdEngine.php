@@ -1,11 +1,16 @@
 <?php
+
+header("Content-Type: text/html; charset=utf-8");
+
 use dao\UserDao;     
 use dao\PlayerDao;
 use dao\TileDao;
+use dao\NpcDao;
                                        
 require_once __DIR__ . '/dao/UserDao.php';
 require_once __DIR__ . '/dao/PlayerDao.php';
 require_once __DIR__ . '/dao/TileDao.php';
+require_once __DIR__ . '/dao/NpcDao.php';
 
 class cmdEngine{
     
@@ -15,6 +20,7 @@ class cmdEngine{
     private $userDao = null;
     private $playerDao = null;
     private $tileDao = null;
+    private $npcDao = null;
     
     public function __construct(){
         
@@ -33,7 +39,6 @@ class cmdEngine{
         }
         
         $cmd = explode(" ", $msg)[0];
-        echo $cmd;
         if($cmd == "\n"){
             
             return "版本验证成功\r\n";
@@ -41,23 +46,27 @@ class cmdEngine{
             
             $eastName = $this->tileMap[$socket->tileName]['ename'];
             $socket->tileName = $eastName;
-            return $this->getTileInfoFromCache($eastName);
+            return $this->getTileInfoFromCache($eastName, $socket);
         }elseif($cmd == "south\n"){
             $southName = $this->tileMap[$socket->tileName]['sname'];
             $socket->tileName = $southName;
-            return $this->getTileInfoFromCache($southName);
+            return $this->getTileInfoFromCache($southName, $socket);
         }elseif($cmd == "north\n"){
             $northName = $this->tileMap[$socket->tileName]['nname'];
             $socket->tileName = $northName;
-            return $this->getTileInfoFromCache($northName);
+            return $this->getTileInfoFromCache($northName, $socket);
         }elseif($cmd == "west\n"){
             $westName = $this->tileMap[$socket->tileName]['wname'];
             $socket->tileName = $westName;
-            return $this->getTileInfoFromCache($westName);
+            return $this->getTileInfoFromCache($westName, $socket);
         }elseif($cmd == "out\n"){
             $westName = $this->tileMap[$socket->tileName]['outname'];
             $socket->tileName = $westName;
-            return $this->getTileInfoFromCache($westName);
+            return $this->getTileInfoFromCache($westName, $socket);
+        }elseif($cmd == "look"){
+            
+            $msg = rtrim($msg, "\n");
+            return $this->getNpcDao()->queryNpc($socket->cityName, $socket->tileName, explode(" ", $msg)[1])['long'];    
         }
         
     }
@@ -107,6 +116,7 @@ class cmdEngine{
             
             $playerInfo = $this->getPlayerDao()->queryPlayerInfo($player['id']);
             $socket->tileName = $playerInfo['tileName'];
+            $socket->cityName = $playerInfo['cityName'];
             echo $socket->tileName;
             
             return chr(13).chr(10). 
@@ -116,7 +126,7 @@ class cmdEngine{
             "006b12:[1;32m常用\$br#指令[2;37;0m:mycmds ofen\$zj#b13:[1;33m技能\$br#相关[2;37;0m:mycmds skill\$zj#b14:[1;31m战斗\$br#相关[2;37;0m:mycmds fight\$zj#b15:[1;35m任务\$br#相关[2;37;0m:mycmds quest\$zj#b16:[1;37m游戏\$br#指南[2;37;0m:mycmds help\$zj#b17:[1;36m频道\$br#交流[2;37;0m:liaotian" . chr(13).chr(10).
             "021 飞行 :help mapb\$zj# 附近 :map view" .chr(13).chr(10). 
             "你连线进入了拍拍熊专列[立志传一线]。" . chr(13).chr(10). 
-            $this->getTileInfoFromCache($playerInfo['tileName']);
+            $this->getTileInfoFromCache($playerInfo['tileName'], $socket);
             
         }elseif(substr_count($msg, "║001║") == 1){
             
@@ -153,7 +163,8 @@ class cmdEngine{
             "你连线进入了武林群侠[合一]。\r\n";
 
             $socket->tileName = "shengmingzhigu";
-            return $retMsg . $this->getTileInfoFromCache("shengmingzhigu");
+            $socket->cityName = "register";
+            return $retMsg . $this->getTileInfoFromCache("shengmingzhigu", $socket);
             
         }
         
@@ -199,6 +210,16 @@ class cmdEngine{
         return  $this->tileDao;    
     }
     
+    private function getNpcDao(){
+        
+        if($this->npcDao == null){
+            
+            $this->npcDao = new NpcDao();
+        }
+        
+        return  $this->npcDao;     
+    }
+    
     private function getSocketById($id){
         
         if($id < 1){
@@ -235,7 +256,7 @@ class cmdEngine{
         }    
     }
     
-    private function getTileInfoFromCache($name){
+    private function getTileInfoFromCache($name, &$socket){
         
         
         $tileInfo = $this->tileMap[$name];
@@ -243,6 +264,15 @@ class cmdEngine{
         $txt .= "002" . $tileInfo['cname'] . "\r\n";
         $txt .= "004" . $tileInfo['describe'] . "\r\n";
         $txt .= $this->buildARoundTxtByCache($tileInfo);
+        
+        $npcs = $this->getNpcDao()->queryNpcs($socket->cityName, $socket->tileName);
+        $npcTxt = "005";
+        foreach($npcs as $item){
+            
+            $npcTxt .= ($item['title'] . ":look " . $item['name'] . "\$zj#");   
+        }
+        $npcTxt = rtrim($npcTxt, "\$zj#") . "\n";
+        $txt .= $npcTxt;
         
         return $txt;    
         
@@ -275,8 +305,12 @@ class cmdEngine{
         }
         
         $txt = rtrim($txt, $contact);
+        if(strlen($txt) < 5){
+            
+            return '';
+        }
         $txt = $txt . "\r\n";
-        
+
         return $txt;
     }
     

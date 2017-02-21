@@ -1,4 +1,7 @@
 <?php
+
+header("Content-Type: text/html; charset=utf-8");
+
 use Workerman\Worker;
 use Workerman\WebServer;
 use Workerman\Autoloader;

@@ -24,7 +24,7 @@ class JobService extends BaseService {
         $statuses = $args['statuses'];
         $whereStr = $this->getWhereStrByParam($args);
         
-        $total = $this->getCountByParam($cId, $statuses, $whereStr);
+        $total = $this->getCountByParam($cId, $statuses, $whereStr, 0);
         if($total < 1) {
             
             $resultData['code']  = 0;
@@ -93,7 +93,7 @@ class JobService extends BaseService {
         $statuses = $args['statuses'];
         $whereStr = $this->getWhereStrByParam($args);
         
-        $total = $this->getCountByParam($cId, $statuses, $whereStr);
+        $total = $this->getCountByParam($cId, $statuses, $whereStr, 1);
         if($total < 1) {
             
             $resultData['code']  = 0;
@@ -153,12 +153,12 @@ class JobService extends BaseService {
     * @param mixed $whereStr
     * @return mixed
     */
-    private function getCountByParam($cId, $statuses, $whereStr){
+    private function getCountByParam($cId, $statuses, $whereStr, $superType){
         
         $execSqlCount="SELECT count(*) AS count FROM `job` AS j 
         LEFT JOIN job_attribute ja ON j.id = ja.job_id
         LEFT JOIN job_pos jp ON j.id = jp.id
-        WHERE cityId = $cId AND j.superType = 1 AND j.status = '$statuses' " . $whereStr;
+        WHERE cityId = $cId AND j.superType = $superType AND j.status = '$statuses' " . $whereStr;
         $resultTotal=M()->query($execSqlCount);
         if(!$resultTotal){
             

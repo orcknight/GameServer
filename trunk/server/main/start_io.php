@@ -1,4 +1,7 @@
 <?php
+
+header("Content-Type: text/html; charset=utf-8");
+
 use Workerman\Worker;
 use Workerman\WebServer;
 use Workerman\Autoloader;
@@ -25,7 +28,7 @@ $io->on('connection', function($socket) use($io){
         
         
         Global $cmdEngine;
-
+        
         $replyTxt = $cmdEngine->Parse($msg, $socket);
         $socket->emit('stream', $replyTxt);
         return;
