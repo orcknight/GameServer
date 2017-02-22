@@ -13,6 +13,13 @@ class ObjectManager {
     private $npcDao = null;
     private $itemDao = null;
     
+    public function __construct()
+    {
+    
+        $this->db = $this->getDb(); 
+    }
+    
+    
     
     public function loadObject($cityName, $tileName){
         
