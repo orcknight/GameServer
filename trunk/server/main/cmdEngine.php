@@ -7,12 +7,15 @@ use dao\PlayerDao;
 use dao\TileDao;
 use dao\NpcDao;
 use bll\ObjectManager;
+use EventDispatcher;
                                        
 require_once __DIR__ . '/dao/UserDao.php';
 require_once __DIR__ . '/dao/PlayerDao.php';
 require_once __DIR__ . '/dao/TileDao.php';
 require_once __DIR__ . '/dao/NpcDao.php';
 require_once __DIR__ . '/bll/ObjectManager.php';
+require_once __DIR__ . '/bll/ObjectManager.php';
+require_once __DIR__ . '/EventDispatcher.php';
 
 class cmdEngine{
     
@@ -24,6 +27,7 @@ class cmdEngine{
     private $tileDao = null;
     private $npcDao = null;
     private $objectManager = null;
+    private $eventDispatcher = null;
     
     public function __construct(){
         
@@ -230,6 +234,16 @@ class cmdEngine{
         }
         
         return  $this->objectManager;
+    }
+    
+    private function getEventDispatcher(){
+        
+        if($this->eventDispatcher == null){
+            
+            $this->eventDispatcher = new EventDispatcher();
+        }
+        
+        return  $this->eventDispatcher;    
     }
     
     private function getSocketById($id){
