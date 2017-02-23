@@ -642,7 +642,7 @@ function logincheck(id,pass) {
 				setCookie('myid',myid);
 				setCookie('mypass',mypass);
 				setCookie('auto_login',true);
-				sock.emit('stream',myid+'║'+mypass+'║'+mypass+'║'+json.sta+'\n');
+				sock.emit('stream', 'user\\' + myid+'║'+mypass+'║'+mypass+'║'+json.sta+'\n');
 			}
         },
         error:function(xhr,status,error){

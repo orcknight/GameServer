@@ -4,9 +4,11 @@ namespace bll;
 
 use Dao\NpcDao;
 use Dao\ItemDao;
+use Dao\TileDao;
 
 require_once __DIR__ . '/../dao/NpcDao.php';
 require_once __DIR__ . '/../dao/ItemDao.php';
+require_once __DIR__ . '/../dao/TileDao.php';
 
 
 class CacheManager {
@@ -68,6 +70,7 @@ class CacheManager {
     //Dao层属性
     private $npcDao = null;
     private $itemDao = null;
+    private $tileDao = null;
     private function getItemDao(){
         
         if($this->itemDao == null){
@@ -88,16 +91,26 @@ class CacheManager {
         return  $this->npcDao;     
     }
     
+    private function getTileDao(){
+        
+        if($this->tileDao == null){
+            
+            $this->tileDao = new TileDao();
+        }
+        
+        return  $this->tileDao;     
+    }
+    
     //系统缓存数据
     public $socketMap = array(); 
     public $tileMap = array();
     
-    private function getTileMap(){
+    public function getTileMap(){
         
         return $tileMap;  
     }
     
-    private function getSocketById($id){
+    public function getSocketById($id){
         
         if($id < 1){
             

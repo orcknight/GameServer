@@ -8,17 +8,26 @@ require_once __DIR__ . '/../bll/CacheManager.php';
 
 class BaseEventHandler {
     
-    
     protected static $cacheManager = null;
+    
     public static function getCacheManager(){
         
-        if($cacheManager == null){
+        if(self::$cacheManager == null){
             
-            $cacheManager = new CacheManager();
+            self::$cacheManager = new CacheManager();
         }
         
-        return $cacheManager;
+        return self::$cacheManager;
     }
+    
+    protected $socket = null;
+    
+    public function setSocket(&$socket){
+        
+        $this->socket = $socket;
+    }
+    
+    
     
 }
 

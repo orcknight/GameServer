@@ -29,7 +29,7 @@ class cmdEngine{
     public function Parse($msg, &$socket){
         
         $eventName = $this->getEventName($msg);
-        $this->getEventDispatcher()->handle($eventName);
+        return $this->getEventDispatcher()->handleEvent($eventName, $msg, $socket);
         
         
         
@@ -173,6 +173,9 @@ class cmdEngine{
             return "Default";
         }
         
+        $cmd = explode(" ", $msg)[0];
+        $name = explode("\\", $cmd)[0];
+        return $name;
     }
     
     private function getUserDao(){
@@ -231,7 +234,7 @@ class cmdEngine{
         
         if($this->eventDispatcher == null){
             
-            $this->eventDispatcher = new EventDispatcher();
+            $this->eventDispatcher = new CmdEventDispatcher();
         }
         
         return  $this->eventDispatcher;    
@@ -253,25 +256,6 @@ class cmdEngine{
         
     }
 
-    private function closeAndKickOffInfo($userId){
-        
-        $preSocket = $this->getSocketById($userId);
-        if($preSocket != null){
-            
-            echo 'disconnect '. $userId . "\n";
-            
-            $preSocket->emit('stream', "你的账号在别处登录，你被迫下线了！" . chr(13) . chr(10) . 
-            "与服务器断开连接。" . chr(13) . chr(10));
-            
-            if($preSocket->timer_id > 0){
-        
-                Timer::del($preSocket->timer_id);    
-            }
-            
-            $preSocket->disconnect(true);   
-        }    
-    }
-    
     private function getTileInfoFromCache($name, &$socket){
 
         $tileInfo = $this->tileMap[$name];
