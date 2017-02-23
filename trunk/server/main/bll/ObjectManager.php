@@ -15,8 +15,6 @@ class ObjectManager {
     
     public function __construct()
     {
-    
-        $this->db = $this->getDb(); 
     }
     
     

@@ -1,26 +1,19 @@
 <?php
 
-header("Content-Type: text/html; charset=utf-8");
-
 use dao\UserDao;     
 use dao\PlayerDao;
 use dao\TileDao;
 use dao\NpcDao;
 use bll\ObjectManager;
-use EventDispatcher;
                                        
 require_once __DIR__ . '/dao/UserDao.php';
 require_once __DIR__ . '/dao/PlayerDao.php';
 require_once __DIR__ . '/dao/TileDao.php';
 require_once __DIR__ . '/dao/NpcDao.php';
 require_once __DIR__ . '/bll/ObjectManager.php';
-require_once __DIR__ . '/bll/ObjectManager.php';
-require_once __DIR__ . '/EventDispatcher.php';
+require_once __DIR__ . '/CmdEventDispatcher.php';
 
 class cmdEngine{
-    
-    public $socketMap = array(); 
-    public $tileMap = array();
     
     private $userDao = null;
     private $playerDao = null;
@@ -30,11 +23,18 @@ class cmdEngine{
     private $eventDispatcher = null;
     
     public function __construct(){
-        
-        $this->tileMap = $this->getTileDao()->loadTileToCache();    
+          
     }
     
     public function Parse($msg, &$socket){
+        
+        $eventName = $this->getEventName($msg);
+        $this->getEventDispatcher()->handle($eventName);
+        
+        
+        
+        
+        
         
         $replyMsg = $this->ProcessGateMessage($msg, $socket);
         echo $socket->userId . "\n";
@@ -74,18 +74,6 @@ class cmdEngine{
             
             return $this->getObjectManager()->doLookCmd($msg, $socket);    
         }
-        
-    }
-    
-    public function setSocketMap($id, &$socket){
-        
-        $this->socketMap[$id] = $socket;
-        
-    }
-    
-    public function delSocketMap($id){
-        
-        unset($this->socketMap[$id]);
         
     }
     
@@ -177,10 +165,13 @@ class cmdEngine{
         return '';
     }
     
-    
-    private function login($user){
+    private function getEventName($msg){
         
-        
+        $msg = rtrim($msg, "\n");
+        if(empty($msg)){
+            
+            return "Default";
+        }
         
     }
     

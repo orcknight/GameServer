@@ -6,19 +6,16 @@ use event\UserEventHandler;
 require_once __DIR__ . '/event/ObjectEventHandler.php';
 require_once __DIR__ . '/event/UserEventHandler.php';
 
-class EventDispatcher
+class CmdEventDispatcher
 {
-    private $event;
-    private $event
-    function __construct($eventStr){
-        $this->event = $eventStr;
+    function __construct(){
     }
 
     function handleEvent($event){
 
-        $eventReactorClass = "{$this->event}EventHandler";
+        $eventReactorClass = "{$event}EventHandler";
         if (class_exists($eventReactorClass )){
-            $handler_obj = new $eventReactorClass ($this->event);
+            $handler_obj = new $eventReactorClass ($event);
             $response = $handler_obj->handle();
             return $response;
         }else{
