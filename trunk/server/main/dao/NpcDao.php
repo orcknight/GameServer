@@ -12,7 +12,6 @@ class NpcDao{
         
         $db = new DbHelper();
         $querySql = "SELECT * FROM npc WHERE cityName='$cityName' AND tileName = '$tileName'";
-        echo $querySql;
         $result = $db->query($querySql);
         if(!$result){
             
@@ -26,7 +25,6 @@ class NpcDao{
         
         $db = new DbHelper();
         $querySql = "SELECT * FROM npc WHERE cityName='$cityName' AND tileName = '$tileName' AND name = '$name'";
-        echo $querySql;
         $result = $db->query($querySql);
         if(!$result){
             

@@ -3,10 +3,12 @@
 use event\ObjectEventHandler;
 use event\UserEventHandler;
 use event\DefaultEventHandler;
+use event\MoveEventHandler;
                                        
 require_once __DIR__ . '/event/ObjectEventHandler.php';
 require_once __DIR__ . '/event/UserEventHandler.php';
 require_once __DIR__ . '/event/DefaultEventHandler.php';
+require_once __DIR__ . '/event/MoveEventHandler.php';
 
 class CmdEventDispatcher
 {

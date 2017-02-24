@@ -7,21 +7,21 @@ use dao\UserDao;
 use dao\PlayerDao;
 use dao\TileDao;
 use dao\NpcDao;
+use bll\ObjectManager;
 
 require_once __DIR__ . '/BaseEventHandler.php';
 require_once __DIR__ . '/../dao/UserDao.php';
 require_once __DIR__ . '/../dao/PlayerDao.php';
 require_once __DIR__ . '/../dao/TileDao.php';
 require_once __DIR__ . '/../dao/NpcDao.php';
+require_once __DIR__ . '/../bll/ObjectManager.php';
+
 
 class UserEventHandler extends BaseEventHandler{
     
     public function handle($msg){  
         
-        $msg = explode("\\", $msg)[1];
         
-        echo $msg;
-    
         if(3 == substr_count($msg, "║")){
             
             $name = explode("║", $msg)[0];
@@ -126,6 +126,56 @@ class UserEventHandler extends BaseEventHandler{
         }    
     }
     
+    
+    private function getTileInfoFromCache($name, &$socket){
+
+        $tileInfo = $this->getCacheManager()->getTileMap()[$name];
+        $txt = "↵\r\n";
+        $txt .= "002" . $tileInfo['cname'] . "\r\n";
+        $txt .= "004" . $tileInfo['describe'] . "\r\n";
+        $txt .= $this->buildARoundTxtByCache($tileInfo);
+        $txt .= $this->getObjectManager()->loadObject($socket->cityName, $socket->tileName);
+        
+        return $txt;    
+        
+    }
+    
+    private function buildARoundTxtByCache($info){
+        
+        $contact = "\$zj#";
+        $txt = '003';
+        if(!empty($info['nname'])){
+            
+            $txt .= "north:" . $this->getCacheManager()->getTileMap()[$info['nname']]['cname'] . $contact;    
+        }
+        if(!empty($info['sname'])){
+            
+            $txt .= "south:" . $this->getCacheManager()->getTileMap()[$info['sname']]['cname'] . $contact;    
+        }
+        if(!empty($info['ename'])){
+            
+            $txt .= "east:" . $this->getCacheManager()->getTileMap()[$info['ename']]['cname'] . $contact;    
+        }
+        if(!empty($info['wname'])){
+            
+            $txt .= "west:" . $this->getCacheManager()->getTileMap()[$info['wname']]['cname'] . $contact;    
+        }
+        
+        if(!empty($info['outname'])){
+            
+            $txt .= "out:" . $this->getCacheManager()->getTileMap()[$info['outname']]['cname'] . $contact;    
+        }
+        
+        $txt = rtrim($txt, $contact);
+        if(strlen($txt) < 5){
+            
+            return '';
+        }
+        $txt = $txt . "\r\n";
+
+        return $txt;
+    }
+    
     private $userDao = null;
     private $playerDao = null;
     private $tileDao = null;
@@ -172,6 +222,17 @@ class UserEventHandler extends BaseEventHandler{
         }
         
         return  $this->npcDao;     
+    }
+    
+    
+    private function getObjectManager(){
+        
+        if($this->objectManager == null){
+            
+            $this->objectManager = new ObjectManager();
+        }
+        
+        return  $this->objectManager;
     }
     
     

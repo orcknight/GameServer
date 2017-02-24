@@ -107,7 +107,7 @@ class CacheManager {
     
     public function getTileMap(){
         
-        return $tileMap;  
+        return $this->tileMap;  
     }
     
     public function getSocketById($id){

@@ -171,11 +171,19 @@ class cmdEngine{
         if(empty($msg)){
             
             return "Default";
+        }else if(3 == substr_count($msg, "║") || substr_count($msg, "║001║") == 1){
+            
+            return "User";    
+        }else if( in_array ( explode(" ", $msg)[0] , ["east", "south", "north", "west", "out"]) ){
+            
+            return "Move";
+        }else if(in_array ( explode(" ", $msg)[0] , ["look"])){
+            
+            return "Object";    
+            
         }
         
-        $cmd = explode(" ", $msg)[0];
-        $name = explode("\\", $cmd)[0];
-        return $name;
+        return "Default";
     }
     
     private function getUserDao(){

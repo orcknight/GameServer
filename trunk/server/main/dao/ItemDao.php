@@ -12,7 +12,6 @@ class ItemDao{
         
         $db = new DbHelper();
         $querySql = "SELECT * FROM item WHERE cityName='$cityName' AND tileName = '$tileName'";
-        echo $querySql;
         $result = $db->query($querySql);
         if(!$result){
             
@@ -26,7 +25,7 @@ class ItemDao{
         
         $db = new DbHelper();
         $querySql = "SELECT * FROM item WHERE cityName='$cityName' AND tileName = '$tileName' AND name = '$name'";
-        echo $querySql;
+        echo $querySql . "\n";
         $result = $db->query($querySql);
         if(!$result){
             
