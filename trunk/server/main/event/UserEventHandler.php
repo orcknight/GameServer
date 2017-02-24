@@ -101,11 +101,21 @@ class UserEventHandler extends BaseEventHandler{
             $socket->cityName = "register";
             return $retMsg . $this->getTileInfoFromCache("shengmingzhigu", $this->socket);
             
+        }else{
+            
+            $msg = rtrim($msg, "\n");
+            $socket = $this->socket;
+            $cmd = explode(" ", $msg)[0];
+            if($cmd == "pianshu"){
+            
+                return $this->getObjectManager()->doLookCmd($msg, $socket);    
+            }
         }
         
         return '';
         
     }
+    
     
     private function closeAndKickOffInfo($userId){
         
@@ -224,7 +234,6 @@ class UserEventHandler extends BaseEventHandler{
         return  $this->npcDao;     
     }
     
-    
     private function getObjectManager(){
         
         if($this->objectManager == null){
@@ -234,10 +243,6 @@ class UserEventHandler extends BaseEventHandler{
         
         return  $this->objectManager;
     }
-    
-    
-    
-    
     
 }
 

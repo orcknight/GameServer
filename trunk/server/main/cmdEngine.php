@@ -171,7 +171,8 @@ class cmdEngine{
         if(empty($msg)){
             
             return "Default";
-        }else if(3 == substr_count($msg, "║") || substr_count($msg, "║001║") == 1){
+        }else if(3 == substr_count($msg, "║") || substr_count($msg, "║001║") == 1
+        || in_array ( explode(" ", $msg)[0] , ["pianshu"] )){
             
             return "User";    
         }else if( in_array ( explode(" ", $msg)[0] , ["east", "south", "north", "west", "out"]) ){

@@ -14,7 +14,7 @@ class ObjectEventHandler extends BaseEventHandler{
     
     public function handle($msg){
         
-        $cmd = rtrim($msg, "\n");
+        $msg = rtrim($msg, "\n");
         $socket = $this->socket;
         
         $cmd = explode(" ", $msg)[0];
