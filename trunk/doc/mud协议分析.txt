@@ -68,10 +68,11 @@
 
 
 
-"007请选择你的属性偏属，然后进行洗点！
-↵008猛士型：高臂力偏属。:pianshu msx$zj#智慧型：高悟性偏属。:pianshu zhx$zj#耐力型：高根骨偏属。:pianshu nlx$zj#敏捷型：高身法偏属。:pianshu mjx$zj#均衡型：各项平均20属性。:pianshu jhx
-↵
-↵"
+
+007请选择你的属性偏属，然后进行洗点！
+008猛士型：高臂力偏属。:pianshu msx$zj#智慧型：高悟性偏属。:pianshu zhx$zj#耐力型：高根骨偏属。:pianshu nlx$zj#敏捷型：高身法偏属。:pianshu mjx$zj#均衡型：各项平均20属性。:pianshu jhx
+
+
 
 
 
