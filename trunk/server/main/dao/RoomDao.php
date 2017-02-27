@@ -11,7 +11,7 @@ class TileDao{
     public function queryTile($name){
         
         $db = new DbHelper();
-        $querySql = "SELECT * FROM tile WHERE name = '$name'"; 
+        $querySql = "SELECT * FROM room WHERE name = '$name'"; 
         $result = $db->query($querySql); 
         if(!$result){
             
@@ -26,7 +26,7 @@ class TileDao{
         
         $mapArray = array();
         $db = new DbHelper();
-        $querySql = "SELECT * FROM tile"; 
+        $querySql = "SELECT * FROM room"; 
         $result = $db->query($querySql); 
         if(!$result){
             

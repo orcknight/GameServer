@@ -66,10 +66,18 @@ class PlayerDao{
  
     }
     
-    public function updatePlayLocation($id, $cityName, $roomName){
+    public function updatePlayerLocation($id, $cityName, $roomName){
         
         $db = new DbHelper();
         $execSql = "UPDATE player_info SET cityName = '$cityName', roomName = '$roomName' WHERE playerId = $id";
+        return $db->execute($execSql);
+        
+    }
+    
+    public function updatePlayerCharacter($id, $character){
+        
+        $db = new DbHelper();
+        $execSql = "UPDATE player SET character = '$character' WHERE playerId = $id";
         return $db->execute($execSql);
         
     }

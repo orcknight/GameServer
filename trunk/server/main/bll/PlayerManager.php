@@ -18,22 +18,22 @@ class PlayerManager {
     
     public function updateLocation($cityName, $roomName){
         
-        $playerInfo['cityName'] = $cityName;
-        $playerInfo['roomName'] = $roomName;
+        $this->playerInfo['cityName'] = $cityName;
+        $this->playerInfo['roomName'] = $roomName;
         
         if($cityName == "register"){
             
             $this->updatePlayerCharacter($roomName);
         }
         
-        $this->getPlayerDao()->updatePlayLocation($playerInfo['id'], $cityName, $roomName);
+        $this->getPlayerDao()->updatePlayerLocation($this->playerInfo['id'], $cityName, $roomName);
     }
     
     public function setPianShu($pianshu){
         
         $txt = "\r\n你跳入忘忧池，顿时被一股激流卷了进去。\r\n";
         
-        $playerInfo['pianshu'] = $pianshu;    
+        $this->playerInfo['pianshu'] = $pianshu;    
     }
     
     private function getPlayerDao(){
@@ -46,12 +46,18 @@ class PlayerManager {
         return  $this->playerDao;     
     }
     
-    private function updatePlayerCharacter($tileName){
+    private function updatePlayerCharacter($roomName){
         
-        $a1 = ['guangmingleiluo' => '光明磊落', 'yinxianjiaozha' => '阴险狡诈', 'jiaojieduobian' => '']
+        $characterArray = ['guangmingleiluo' => '光明磊落', 'yinxianjiaozha' => '阴险狡诈', 
+        'jiaojieduobian' => '狡黠多变', 'xinhenshoula' => '心狠手辣'];
         
-        
-        
+        if(array_key_exists($roomName, $characterArray)){
+            
+            $this->getPlayerDao()->updatePlayerCharacter($this->playerInfo['id'], $characterArray[$roomName]);
+            $this->playerInfo['character'] =  $characterArray[$roomName];
+            
+            echo  'character' . $this->playerInfo['character'] . "\n";
+        }
     }
     
     

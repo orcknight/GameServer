@@ -8,7 +8,7 @@ use Dao\TileDao;
 
 require_once __DIR__ . '/../dao/NpcDao.php';
 require_once __DIR__ . '/../dao/ItemDao.php';
-require_once __DIR__ . '/../dao/TileDao.php';
+require_once __DIR__ . '/../dao/RoomDao.php';
 
 
 class CacheManager {
