@@ -56,14 +56,22 @@ class PlayerDao{
         
     }
     
-    public function addPlayerInfo($playerId, $tileName){
+    public function addPlayerInfo($playerId, $cityName = "register", $roomName = "shengmingzhigu"){
         
         $db = new DbHelper();
-        $execSql = "INSERT INTO player_info (playerId, ip ,tileName) 
-        VALUES ('$playerId', '127.0.0.1', '$tileName')";
+        $execSql = "INSERT INTO player_info (playerId, ip , cityName, roomName) 
+        VALUES ('$playerId', '127.0.0.1', '$cityName' , '$roomName')";
         
         return $db->execute($execSql);
  
+    }
+    
+    public function updatePlayLocation($id, $cityName, $roomName){
+        
+        $db = new DbHelper();
+        $execSql = "UPDATE player_info SET cityName = '$cityName', roomName = '$roomName' WHERE playerId = $id";
+        return $db->execute($execSql);
+        
     }
     
 }

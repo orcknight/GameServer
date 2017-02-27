@@ -22,10 +22,10 @@ class CacheManager {
     
     
     
-    public function loadObject($cityName, $tileName){
+    public function loadObject($cityName, $roomName){
         
         $count = 0;
-        $npcs = $this->getNpcDao()->queryNpcs($cityName, $tileName);
+        $npcs = $this->getNpcDao()->queryNpcs($cityName, $roomName);
         $npcTxt = "";
         foreach($npcs as $item){
             
@@ -39,7 +39,7 @@ class CacheManager {
             $count++;  
         }
         
-        $items = $this->getItemDao()->queryItems($cityName, $tileName);
+        $items = $this->getItemDao()->queryItems($cityName, $roomName);
         foreach($items as $item){
             
             if($count % 10 == 0){
@@ -63,7 +63,7 @@ class CacheManager {
             
         }else{
             
-            return $this->getItemDao()->queryItem($socket->cityName, $socket->tileName, explode(" ", $msg)[1])['long'];
+            return $this->getItemDao()->queryItem($socket->cityName, $socket->roomName, explode(" ", $msg)[1])['long'];
         }
     }
 
@@ -137,10 +137,6 @@ class CacheManager {
         unset($this->socketMap[$id]);
         
     }
-    
-    
-    
-    
     
 }
   

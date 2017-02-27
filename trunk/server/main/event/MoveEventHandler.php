@@ -19,7 +19,7 @@ class MoveEventHandler extends BaseEventHandler{
             
             $eastName = $this->getCacheManager()->getTileMap()[$socket->tileName]['ename'];
             echo $eastName;
-            $socket->tileName = $eastName;
+            $socket->userInfo['tileName'] = $eastName;
             return $this->getTileInfoFromCache($eastName, $socket);
         }elseif($cmd == "south"){
             $southName = $this->getCacheManager()->getTileMap()[$socket->tileName]['sname'];

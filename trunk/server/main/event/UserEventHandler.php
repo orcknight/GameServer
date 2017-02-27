@@ -82,7 +82,7 @@ class UserEventHandler extends BaseEventHandler{
             
             //通过检查，设置默认的血量等数值
             $playerId = $this->getPlayerDao()->addPlayer($this->socket->userId, $myName, $mySex);
-            $playerInfo = $this->getPlayerDao()->addPlayerInfo($playerId, "shengmingzhigu");
+            $playerInfo = $this->getPlayerDao()->addPlayerInfo($playerId);
             
             //发送↵0000007开始显示页面
             $socket->emit('stream', chr(13).chr(10) . "0000007" . chr(13).chr(10));
@@ -97,7 +97,7 @@ class UserEventHandler extends BaseEventHandler{
             "───────────────────────────────\r\n" . 
             "你连线进入了武林群侠[合一]。\r\n";
 
-            $socket->tileName = "shengmingzhigu";
+            $socket->roomName = "shengmingzhigu";
             $socket->cityName = "register";
             return $retMsg . $this->getTileInfoFromCache("shengmingzhigu", $this->socket);
             
