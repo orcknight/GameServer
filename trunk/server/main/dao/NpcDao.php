@@ -8,10 +8,10 @@ require_once __DIR__ . '/../db/DbHelper.php';
 
 class NpcDao{
     
-    public function queryNpcs($cityName, $tileName){
+    public function queryNpcs($roomName){
         
         $db = new DbHelper();
-        $querySql = "SELECT * FROM npc WHERE cityName='$cityName' AND tileName = '$tileName'";
+        $querySql = "SELECT * FROM npc WHERE roomName = '$roomName'";
         $result = $db->query($querySql);
         if(!$result){
             
@@ -21,10 +21,10 @@ class NpcDao{
         return $result;
     }
     
-    public function queryNpc($cityName, $tileName, $name){
+    public function queryNpc($roomName, $name){
         
         $db = new DbHelper();
-        $querySql = "SELECT * FROM npc WHERE cityName='$cityName' AND tileName = '$tileName' AND name = '$name'";
+        $querySql = "SELECT * FROM npc WHERE roomName = '$roomName' AND name = '$name'";
         $result = $db->query($querySql);
         if(!$result){
             

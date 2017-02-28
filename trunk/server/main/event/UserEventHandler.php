@@ -5,14 +5,14 @@ namespace event;
 use event\BaseEventHandler;
 use dao\UserDao;     
 use dao\PlayerDao;
-use dao\TileDao;
+use dao\RoomDao;
 use dao\NpcDao;
 use bll\ObjectManager;
 
 require_once __DIR__ . '/BaseEventHandler.php';
 require_once __DIR__ . '/../dao/UserDao.php';
 require_once __DIR__ . '/../dao/PlayerDao.php';
-require_once __DIR__ . '/../dao/TileDao.php';
+require_once __DIR__ . '/../dao/RoomDao.php';
 require_once __DIR__ . '/../dao/NpcDao.php';
 require_once __DIR__ . '/../bll/ObjectManager.php';
 
@@ -33,14 +33,13 @@ class UserEventHandler extends BaseEventHandler{
                 
                 return '';
             }
-            $myPlayerInfo = &$this->getPlayerInfo();
-            $myPlayerInfo['id'] = $userId;
             
             //客户端连接检查，如果多个账号连接，发送下线消息并关闭连接
             $this->closeAndKickOffInfo($userId);
             
             //存储新连接到系统套接字缓存中
             self::$cacheManager->setSocketMap($userId, $this->socket);
+            $this->socket->userId = $userId;
             
             //检查是否创建了角色
             $player = $this->getPlayerDao()->queryPlayer($userId);
@@ -51,8 +50,7 @@ class UserEventHandler extends BaseEventHandler{
             
             $playerInfo = $this->getPlayerDao()->queryPlayerInfo($player['id']);
             
-            $myPlayerInfo['roomName'] = $playerInfo['roomName'];
-            $myPlayerInfo['cityName'] = $playerInfo['cityName'];
+            self::$cacheManager->setPlayerInfo($userId, 'roomName', $playerInfo['roomName']);
             
             return chr(13).chr(10). 
             "0000007" . chr(13).chr(10). 
@@ -96,10 +94,12 @@ class UserEventHandler extends BaseEventHandler{
             "你可以进入不同的方向选择品质和先天属性，然后就投胎做人了。\r\n" .
             "───────────────────────────────\r\n" . 
             "你连线进入了武林群侠[合一]。\r\n";
+            
+            
+            
+            self::$cacheManager->setPlayerInfo($this->socket->userId, 'roomName', "register/shengmingzhigu");
 
-            $socket->roomName = "shengmingzhigu";
-            $socket->cityName = "register";
-            return $retMsg . $this->getTileInfoFromCache("shengmingzhigu", $this->socket);
+            return $retMsg . $this->getTileInfoFromCache("register/shengmingzhigu", $this->socket);
             
         }else{
             
@@ -138,13 +138,15 @@ class UserEventHandler extends BaseEventHandler{
     
     
     private function getTileInfoFromCache($name, &$socket){
-
+        
         $tileInfo = $this->getCacheManager()->getTileMap()[$name];
         $txt = "↵\r\n";
         $txt .= "002" . $tileInfo['cname'] . "\r\n";
         $txt .= "004" . $tileInfo['describe'] . "\r\n";
         $txt .= $this->buildARoundTxtByCache($tileInfo);
-        $txt .= $this->getObjectManager()->loadObject($socket->playerInfo['cityName'], $socket->playerInfo['roomName']);
+        
+        $roomName = self::$cacheManager->getPlayerInfo($socket->userId, 'roomName');
+        $txt .= $this->getObjectManager()->loadObject($roomName);
         
         return $txt;    
         
@@ -218,7 +220,7 @@ class UserEventHandler extends BaseEventHandler{
         
         if($this->tileDao == null){
             
-            $this->tileDao = new TileDao();
+            $this->tileDao = new RoomDao();
         }
         
         return  $this->tileDao;    
@@ -242,12 +244,6 @@ class UserEventHandler extends BaseEventHandler{
         }
         
         return  $this->objectManager;
-    }
-    
-    private function &getPlayerInfo()
-    { 
-        $temp = $this->socket->playerInfo;
-        return $temp;
     }
     
 }

@@ -1,0 +1,350 @@
+[ 2017-02-28T08:59:52+08:00 ] 127.0.0.1 /index.php/Home/User/login?callback=jQuery2140934622239982736_1488243565470&id=orcknight&pass=aq123456&_=1488243565471
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 08:59:52 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 08:59:52 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 08:59:52 ] [ execute ]login()
+DEBUG: [ Jiechengkeji ] [ 08:59:52 ] [ name ]orcknight
+DEBUG: [ Jiechengkeji ] [ 08:59:52 ] [ pass ]aq123456
+SQL: SELECT password FROM user WHERE name = 'orcknight' [ RunTime:0.0250s ]
+
+[ 2017-02-28T09:03:50+08:00 ] 127.0.0.1 /index.php/Home/User/login?callback=jQuery2140906314885381998_1488243830531&id=orcknight&pass=aq123456&_=1488243830532
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+DEBUG: [ Jiechengkeji ] [ 09:03:50 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 09:03:50 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 09:03:50 ] [ execute ]login()
+DEBUG: [ Jiechengkeji ] [ 09:03:50 ] [ name ]orcknight
+DEBUG: [ Jiechengkeji ] [ 09:03:50 ] [ pass ]aq123456
+SQL: SELECT password FROM user WHERE name = 'orcknight' [ RunTime:0.0200s ]
+
+[ 2017-02-28T09:09:34+08:00 ] 127.0.0.1 /index.php/Home/User/login?callback=jQuery214012355368438787129_1488244174460&id=orcknight&pass=aq123456&_=1488244174461
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.008000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.008000s ]
+DEBUG: [ Jiechengkeji ] [ 09:09:34 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 09:09:34 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 09:09:34 ] [ execute ]login()
+DEBUG: [ Jiechengkeji ] [ 09:09:34 ] [ name ]orcknight
+DEBUG: [ Jiechengkeji ] [ 09:09:34 ] [ pass ]aq123456
+SQL: SELECT password FROM user WHERE name = 'orcknight' [ RunTime:0.0260s ]
+
+[ 2017-02-28T09:11:27+08:00 ] 127.0.0.1 /index.php/Home/User/login?callback=jQuery21404481978106062843_1488244287328&id=orcknight&pass=aq123456&_=1488244287329
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 09:11:27 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 09:11:27 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 09:11:27 ] [ execute ]login()
+DEBUG: [ Jiechengkeji ] [ 09:11:27 ] [ name ]orcknight
+DEBUG: [ Jiechengkeji ] [ 09:11:27 ] [ pass ]aq123456
+SQL: SELECT password FROM user WHERE name = 'orcknight' [ RunTime:0.0200s ]
+
+[ 2017-02-28T09:12:06+08:00 ] 127.0.0.1 /index.php/Home/User/login?callback=jQuery21408199506692391676_1488244325646&id=orcknight&pass=aq123456&_=1488244325647
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+DEBUG: [ Jiechengkeji ] [ 09:12:05 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 09:12:05 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 09:12:05 ] [ execute ]login()
+DEBUG: [ Jiechengkeji ] [ 09:12:05 ] [ name ]orcknight
+DEBUG: [ Jiechengkeji ] [ 09:12:05 ] [ pass ]aq123456
+SQL: SELECT password FROM user WHERE name = 'orcknight' [ RunTime:0.0190s ]
+
+[ 2017-02-28T09:13:23+08:00 ] 127.0.0.1 /index.php/Home/User/login?callback=jQuery21408910577881436836_1488244402825&id=orcknight&pass=aq123456&_=1488244402826
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 09:13:23 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 09:13:23 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 09:13:23 ] [ execute ]login()
+DEBUG: [ Jiechengkeji ] [ 09:13:23 ] [ name ]orcknight
+DEBUG: [ Jiechengkeji ] [ 09:13:23 ] [ pass ]aq123456
+SQL: SELECT password FROM user WHERE name = 'orcknight' [ RunTime:0.0290s ]
+
+[ 2017-02-28T09:17:54+08:00 ] 127.0.0.1 /index.php/Home/User/login?callback=jQuery21404439937876321973_1488244674368&id=orcknight&pass=aq123456&_=1488244674369
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+DEBUG: [ Jiechengkeji ] [ 09:17:54 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 09:17:54 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 09:17:54 ] [ execute ]login()
+DEBUG: [ Jiechengkeji ] [ 09:17:54 ] [ name ]orcknight
+DEBUG: [ Jiechengkeji ] [ 09:17:54 ] [ pass ]aq123456
+SQL: SELECT password FROM user WHERE name = 'orcknight' [ RunTime:0.0170s ]
+
+[ 2017-02-28T09:18:23+08:00 ] 127.0.0.1 /index.php/Home/User/login?callback=jQuery21402617412702482911_1488244702859&id=orcknight&pass=aq123456&_=1488244702860
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 09:18:23 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 09:18:23 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 09:18:23 ] [ execute ]login()
+DEBUG: [ Jiechengkeji ] [ 09:18:23 ] [ name ]orcknight
+DEBUG: [ Jiechengkeji ] [ 09:18:23 ] [ pass ]aq123456
+SQL: SELECT password FROM user WHERE name = 'orcknight' [ RunTime:0.0200s ]
+
+[ 2017-02-28T09:19:55+08:00 ] 127.0.0.1 /index.php/Home/User/login?callback=jQuery214005067526964011271_1488244794535&id=orcknight&pass=aq123456&_=1488244794536
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 09:19:54 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 09:19:54 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 09:19:54 ] [ execute ]login()
+DEBUG: [ Jiechengkeji ] [ 09:19:54 ] [ name ]orcknight
+DEBUG: [ Jiechengkeji ] [ 09:19:54 ] [ pass ]aq123456
+SQL: SELECT password FROM user WHERE name = 'orcknight' [ RunTime:0.0250s ]
+
+[ 2017-02-28T09:23:51+08:00 ] 127.0.0.1 /index.php/Home/User/login?callback=jQuery214011029446787490227_1488245031421&id=orcknight&pass=aq123456&_=1488245031422
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 09:23:51 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 09:23:51 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 09:23:51 ] [ execute ]login()
+DEBUG: [ Jiechengkeji ] [ 09:23:51 ] [ name ]orcknight
+DEBUG: [ Jiechengkeji ] [ 09:23:51 ] [ pass ]aq123456
+SQL: SELECT password FROM user WHERE name = 'orcknight' [ RunTime:0.0250s ]
+
+[ 2017-02-28T09:24:53+08:00 ] 127.0.0.1 /index.php/Home/User/login?callback=jQuery21403792562506895043_1488245093141&id=orcknight&pass=aq123456&_=1488245093142
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 09:24:53 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 09:24:53 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 09:24:53 ] [ execute ]login()
+DEBUG: [ Jiechengkeji ] [ 09:24:53 ] [ name ]orcknight
+DEBUG: [ Jiechengkeji ] [ 09:24:53 ] [ pass ]aq123456
+SQL: SELECT password FROM user WHERE name = 'orcknight' [ RunTime:0.0310s ]
+
+[ 2017-02-28T12:26:16+08:00 ] 127.0.0.1 /index.php/Home/User/login?callback=jQuery21408449959744960893_1488255975063&id=orcknight&pass=aq123456&_=1488255975064
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 12:26:15 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 12:26:15 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 12:26:15 ] [ execute ]login()
+DEBUG: [ Jiechengkeji ] [ 12:26:15 ] [ name ]orcknight
+DEBUG: [ Jiechengkeji ] [ 12:26:15 ] [ pass ]aq123456
+SQL: SELECT password FROM user WHERE name = 'orcknight' [ RunTime:0.0230s ]
+
+[ 2017-02-28T13:08:43+08:00 ] 127.0.0.1 /index.php/Home/User/login?callback=jQuery214047947854623591724_1488258521791&id=orcknight&pass=aq123456&_=1488258521792
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 13:08:42 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 13:08:42 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 13:08:42 ] [ execute ]login()
+DEBUG: [ Jiechengkeji ] [ 13:08:42 ] [ name ]orcknight
+DEBUG: [ Jiechengkeji ] [ 13:08:42 ] [ pass ]aq123456
+SQL: SELECT password FROM user WHERE name = 'orcknight' [ RunTime:0.0260s ]
+
+[ 2017-02-28T13:09:47+08:00 ] 127.0.0.1 /index.php/Home/User/login?callback=jQuery214021178494396652248_1488258586972&id=orcknight&pass=aq123456&_=1488258586973
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+DEBUG: [ Jiechengkeji ] [ 13:09:47 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 13:09:47 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 13:09:47 ] [ execute ]login()
+DEBUG: [ Jiechengkeji ] [ 13:09:47 ] [ name ]orcknight
+DEBUG: [ Jiechengkeji ] [ 13:09:47 ] [ pass ]aq123456
+SQL: SELECT password FROM user WHERE name = 'orcknight' [ RunTime:0.0270s ]
+
+[ 2017-02-28T13:10:09+08:00 ] 127.0.0.1 /index.php/Home/User/login?callback=jQuery21409168726516091368_1488258606285&id=orcknight&pass=aq123456&_=1488258606286
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 13:10:09 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 13:10:09 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 13:10:09 ] [ execute ]login()
+DEBUG: [ Jiechengkeji ] [ 13:10:09 ] [ name ]orcknight
+DEBUG: [ Jiechengkeji ] [ 13:10:09 ] [ pass ]aq123456
+SQL: SELECT password FROM user WHERE name = 'orcknight' [ RunTime:0.0270s ]
+
+[ 2017-02-28T13:11:16+08:00 ] 127.0.0.1 /index.php/Home/User/login?callback=jQuery214014484038223428763_1488258676242&id=orcknight&pass=aq123456&_=1488258676243
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 13:11:16 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 13:11:16 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 13:11:16 ] [ execute ]login()
+DEBUG: [ Jiechengkeji ] [ 13:11:16 ] [ name ]orcknight
+DEBUG: [ Jiechengkeji ] [ 13:11:16 ] [ pass ]aq123456
+SQL: SELECT password FROM user WHERE name = 'orcknight' [ RunTime:0.0260s ]
+
+[ 2017-02-28T13:26:48+08:00 ] 127.0.0.1 /index.php/Home/User/login?callback=jQuery21405180077173736466_1488259608557&id=orcknight&pass=aq123456&_=1488259608558
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+DEBUG: [ Jiechengkeji ] [ 13:26:48 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 13:26:48 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 13:26:48 ] [ execute ]login()
+DEBUG: [ Jiechengkeji ] [ 13:26:48 ] [ name ]orcknight
+DEBUG: [ Jiechengkeji ] [ 13:26:48 ] [ pass ]aq123456
+SQL: SELECT password FROM user WHERE name = 'orcknight' [ RunTime:0.0260s ]
+
+[ 2017-02-28T13:27:51+08:00 ] 127.0.0.1 /index.php/Home/User/login?callback=jQuery21408207939266052202_1488259670495&id=orcknight&pass=aq123456&_=1488259670496
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+DEBUG: [ Jiechengkeji ] [ 13:27:51 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 13:27:51 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 13:27:51 ] [ execute ]login()
+DEBUG: [ Jiechengkeji ] [ 13:27:51 ] [ name ]orcknight
+DEBUG: [ Jiechengkeji ] [ 13:27:51 ] [ pass ]aq123456
+SQL: SELECT password FROM user WHERE name = 'orcknight' [ RunTime:0.0250s ]
+
+[ 2017-02-28T13:53:22+08:00 ] 127.0.0.1 /index.php/Home/User/login?callback=jQuery21402248820957700417_1488261201216&id=orcknight&pass=aq123456&_=1488261201217
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+DEBUG: [ Jiechengkeji ] [ 13:53:21 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 13:53:21 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 13:53:21 ] [ execute ]login()
+DEBUG: [ Jiechengkeji ] [ 13:53:21 ] [ name ]orcknight
+DEBUG: [ Jiechengkeji ] [ 13:53:21 ] [ pass ]aq123456
+SQL: SELECT password FROM user WHERE name = 'orcknight' [ RunTime:0.0250s ]
+
+[ 2017-02-28T14:07:14+08:00 ] 127.0.0.1 /index.php/Home/User/login?callback=jQuery21404774165040769889_1488262034161&id=orcknight&pass=aq123456&_=1488262034162
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+DEBUG: [ Jiechengkeji ] [ 14:07:14 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:07:14 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:07:14 ] [ execute ]login()
+DEBUG: [ Jiechengkeji ] [ 14:07:14 ] [ name ]orcknight
+DEBUG: [ Jiechengkeji ] [ 14:07:14 ] [ pass ]aq123456
+SQL: SELECT password FROM user WHERE name = 'orcknight' [ RunTime:0.0240s ]
+
+[ 2017-02-28T14:15:43+08:00 ] 127.0.0.1 /index.php/Home/User/login?callback=jQuery21408247146335603135_1488262542837&id=orcknight&pass=aq123456&_=1488262542838
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 14:15:43 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:15:43 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:15:43 ] [ execute ]login()
+DEBUG: [ Jiechengkeji ] [ 14:15:43 ] [ name ]orcknight
+DEBUG: [ Jiechengkeji ] [ 14:15:43 ] [ pass ]aq123456
+SQL: SELECT password FROM user WHERE name = 'orcknight' [ RunTime:0.0240s ]
+
+[ 2017-02-28T14:20:13+08:00 ] 127.0.0.1 /index.php/Home/User/login?callback=jQuery214032290927178045026_1488262812625&id=orcknight&pass=aq123456&_=1488262812626
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+DEBUG: [ Jiechengkeji ] [ 14:20:12 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:20:12 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:20:12 ] [ execute ]login()
+DEBUG: [ Jiechengkeji ] [ 14:20:12 ] [ name ]orcknight
+DEBUG: [ Jiechengkeji ] [ 14:20:12 ] [ pass ]aq123456
+SQL: SELECT password FROM user WHERE name = 'orcknight' [ RunTime:0.0340s ]
+
+[ 2017-02-28T14:20:48+08:00 ] 127.0.0.1 /index.php/Home/User/login?callback=jQuery214046628138884695236_1488262847628&id=orcknight&pass=aq123456&_=1488262847629
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+DEBUG: [ Jiechengkeji ] [ 14:20:47 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:20:47 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:20:47 ] [ execute ]login()
+DEBUG: [ Jiechengkeji ] [ 14:20:47 ] [ name ]orcknight
+DEBUG: [ Jiechengkeji ] [ 14:20:47 ] [ pass ]aq123456
+SQL: SELECT password FROM user WHERE name = 'orcknight' [ RunTime:0.0350s ]
+
+[ 2017-02-28T16:46:21+08:00 ] 127.0.0.1 /index.php/Home/User/login?callback=jQuery21406445450017661714_1488271580221&id=orcknight&pass=aq123456&_=1488271580222
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 16:46:20 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 16:46:20 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 16:46:20 ] [ execute ]login()
+DEBUG: [ Jiechengkeji ] [ 16:46:20 ] [ name ]orcknight
+DEBUG: [ Jiechengkeji ] [ 16:46:20 ] [ pass ]aq123456
+SQL: SELECT password FROM user WHERE name = 'orcknight' [ RunTime:0.0270s ]
+
+[ 2017-02-28T16:49:58+08:00 ] 127.0.0.1 /index.php/Home/User/login?callback=jQuery21405065270904265258_1488271798248&id=orcknight&pass=aq123456&_=1488271798249
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 16:49:58 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 16:49:58 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 16:49:58 ] [ execute ]login()
+DEBUG: [ Jiechengkeji ] [ 16:49:58 ] [ name ]orcknight
+DEBUG: [ Jiechengkeji ] [ 16:49:58 ] [ pass ]aq123456
+SQL: SELECT password FROM user WHERE name = 'orcknight' [ RunTime:0.0260s ]
+

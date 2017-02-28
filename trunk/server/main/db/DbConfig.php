@@ -4,10 +4,10 @@
 */
 class DbConfig
 {
-    const DBHOST    = 'localhost'; //改成自己的mysql数据库服务器
-    const DBNAME    = 'server_logingate';  //连接的数据库名称
-    const DBUSER    = 'root'; //用户名       
-    const DBPWD     = '123456'; //密码
+    const DBHOST    = 'bdm25683027.my3w.com'; //改成自己的mysql数据库服务器
+    const DBNAME    = 'bdm25683027_db';  //连接的数据库名称
+    const DBUSER    = 'bdm25683027'; //用户名       
+    const DBPWD     = 'aq123456'; //密码
     
 }
   

@@ -6,9 +6,9 @@ use DbHelper;
 
 require_once __DIR__ . '/../db/DbHelper.php';
 
-class TileDao{
+class RoomDao{
     
-    public function queryTile($name){
+    public function queryRoom($name){
         
         $db = new DbHelper();
         $querySql = "SELECT * FROM room WHERE name = '$name'"; 
@@ -22,7 +22,7 @@ class TileDao{
         
     }
     
-    public function loadTileToCache(){
+    public function loadRoomToCache(){
         
         $mapArray = array();
         $db = new DbHelper();

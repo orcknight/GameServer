@@ -14,42 +14,60 @@ class MoveEventHandler extends BaseEventHandler{
         
         $cmd = rtrim($msg, "\n");
         $socket = $this->socket;
+        
+        $roomName = self::$cacheManager->getPlayerInfo($socket->userId, "roomName");
+        
+        echo $roomName;
     
         if($cmd == "east"){
             
-            $eastName = $this->getCacheManager()->getTileMap()[$socket->tileName]['ename'];
+            $eastName = $this->getCacheManager()->getTileMap()[$roomName]['ename'];
             echo $eastName;
-            $socket->userInfo['tileName'] = $eastName;
+            self::$cacheManager->setPlayerInfo($socket->userId, "roomName", $eastName);
             return $this->getTileInfoFromCache($eastName, $socket);
         }elseif($cmd == "south"){
-            $southName = $this->getCacheManager()->getTileMap()[$socket->tileName]['sname'];
-            $socket->tileName = $southName;
+            $southName = $this->getCacheManager()->getTileMap()[$roomName]['sname'];
+            self::$cacheManager->setPlayerInfo($socket->userId, "roomName", $southName);
             return $this->getTileInfoFromCache($southName, $socket);
         }elseif($cmd == "north"){
-            $northName = $this->getCacheManager()->getTileMap()[$socket->tileName]['nname'];
-            $socket->tileName = $northName;
+            $northName = $this->getCacheManager()->getTileMap()[$roomName]['nname'];
+            self::$cacheManager->setPlayerInfo($socket->userId, "roomName", $northName);
             return $this->getTileInfoFromCache($northName, $socket);
         }elseif($cmd == "west"){
-            $westName = $this->getCacheManager()->getTileMap()[$socket->tileName]['wname'];
-            $socket->tileName = $westName;
+            $westName = $this->getCacheManager()->getTileMap()[$roomName]['wname'];
+            self::$cacheManager->setPlayerInfo($socket->userId, "roomName", $westName);
             return $this->getTileInfoFromCache($westName, $socket);
         }elseif($cmd == "out"){
-            $westName = $this->getCacheManager()->getTileMap()[$socket->tileName]['outname'];
-            $socket->tileName = $westName;
+            $westName = $this->getCacheManager()->getTileMap()[$roomName]['outname'];
+            self::$cacheManager->setPlayerInfo($socket->userId, "roomName", $westName);
             return $this->getTileInfoFromCache($westName, $socket);
         }
         
     }
     
+    private function moveto($cityName, $roomName, $directName){
+
+        $curRoom = self::$cacheManager->getRoom($cityName, $roomName);
+        $name = $curRoom[$directName];
+        $directRoom = self::$cacheManager->getRoom($cityName, $roomName);
+        self::$cacheManager->setPlayerInfo($this->socket->userId, "roomName", $name);
+        return $this->getTileInfoFromCache($name, $this->socket);
+        
+    }
+    
     
     private function getTileInfoFromCache($name, &$socket){
+        
+        $myPlayerInfo = &$this->getPlayerInfo();
 
         $tileInfo = $this->getCacheManager()->getTileMap()[$name];
         $txt = "↵\r\n";
         $txt .= "002" . $tileInfo['cname'] . "\r\n";
         $txt .= "004" . $tileInfo['describe'] . "\r\n";
         $txt .= $this->buildARoundTxtByCache($tileInfo);
-        $txt .= $this->getObjectManager()->loadObject($socket->cityName, $socket->tileName);
+        $cityName = self::$cacheManager->getPlayerInfo($this->socket->userId, 'cityName');
+        $roomName = self::$cacheManager->getPlayerInfo($this->socket->userId, 'roomName');
+        $txt .= $this->getObjectManager()->loadObject($cityName, $roomName);
         
         return $txt;    
         
@@ -100,6 +118,12 @@ class MoveEventHandler extends BaseEventHandler{
         }
         
         return  $this->objectManager;
+    }
+    
+    private function &getPlayerInfo()
+    { 
+        $temp = $this->socket->playerInfo;
+        return $temp;
     }
     
     

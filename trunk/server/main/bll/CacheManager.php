@@ -4,7 +4,7 @@ namespace bll;
 
 use Dao\NpcDao;
 use Dao\ItemDao;
-use Dao\TileDao;
+use Dao\RoomDao;
 
 require_once __DIR__ . '/../dao/NpcDao.php';
 require_once __DIR__ . '/../dao/ItemDao.php';
@@ -13,11 +13,39 @@ require_once __DIR__ . '/../dao/RoomDao.php';
 
 class CacheManager {
     
+    private $payersMap = null;
+    private $roomsMap = null;
     
     
     public function __construct()
     {
-         $this->tileMap = $this->getTileDao()->loadTileToCache();       
+        $this->payersMap = array();
+        $this->roomsMap = $this->getRoomDao()->loadRoomToCache();       
+    }
+    
+    public function setPlayerInfo($userId, $key, $value){
+        
+        if(!isset($this->payersMap[$userId])){
+            
+            $this->payersMap[$userId] = array();
+        }
+        
+        $this->payersMap[$userId][$key] = $value;
+    }
+    
+    public function getPlayerInfo($userId, $key){
+        
+        if(!isset($this->payersMap[$userId][$key])){
+            
+            return "";
+        }
+        
+        return $this->payersMap[$userId][$key];
+    }
+    
+    public function getRoom($roomName){
+        
+        return $this->$roomsMap[$roomName];
     }
     
     
@@ -91,14 +119,14 @@ class CacheManager {
         return  $this->npcDao;     
     }
     
-    private function getTileDao(){
+    private function getRoomDao(){
         
-        if($this->tileDao == null){
+        if($this->roomDao == null){
             
-            $this->tileDao = new TileDao();
+            $this->roomDao = new RoomDao();
         }
         
-        return  $this->tileDao;     
+        return  $this->roomDao;     
     }
     
     //系统缓存数据
@@ -137,6 +165,16 @@ class CacheManager {
         unset($this->socketMap[$id]);
         
     }
+    
+    public function __set($name, $value){ 
+        
+        $this->$name = $value; 
+    } 
+    //__get()方法用来获取私有属性 
+    public function &__get($name){ 
+        
+        return $this->$name; 
+    } 
     
 }
   

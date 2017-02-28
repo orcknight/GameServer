@@ -8,10 +8,10 @@ require_once __DIR__ . '/../db/DbHelper.php';
 
 class ItemDao{
     
-    public function queryItems($cityName, $roomName){
+    public function queryItems($roomName){
         
         $db = new DbHelper();
-        $querySql = "SELECT * FROM item WHERE cityName='$cityName' AND roomName = '$roomName'";
+        $querySql = "SELECT * FROM item WHERE roomName = '$roomName'";
         $result = $db->query($querySql);
         if(!$result){
             
@@ -21,10 +21,10 @@ class ItemDao{
         return $result;
     }
     
-    public function queryItem($cityName, $roomName, $name){
+    public function queryItem($roomName, $name){
         
         $db = new DbHelper();
-        $querySql = "SELECT * FROM item WHERE cityName='$cityName' AND roomName = '$roomName' AND name = '$name'";
+        $querySql = "SELECT * FROM item WHERE roomName = '$roomName' AND name = '$name'";
         echo $querySql . "\n";
         $result = $db->query($querySql);
         if(!$result){

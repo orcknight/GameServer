@@ -19,10 +19,10 @@ class ObjectManager {
     
     
     
-    public function loadObject($cityName, $roomName){
+    public function loadObject($roomName){
         
         $count = 0;
-        $npcs = $this->getNpcDao()->queryNpcs($cityName, $roomName);
+        $npcs = $this->getNpcDao()->queryNpcs($roomName);
         $npcTxt = "";
         foreach($npcs as $item){
             
@@ -36,7 +36,7 @@ class ObjectManager {
             $count++;  
         }
         
-        $items = $this->getItemDao()->queryItems($cityName, $roomName);
+        $items = $this->getItemDao()->queryItems($roomName);
         foreach($items as $item){
             
             if($count % 10 == 0){
@@ -60,7 +60,7 @@ class ObjectManager {
             
         }else{
             
-            return $this->getItemDao()->queryItem($socket->cityName, $socket->roomName, explode(" ", $msg)[1])['long'];
+            return $this->getItemDao()->queryItem($socket->roomName, explode(" ", $msg)[1])['long'];
         }    
         
         
