@@ -71,9 +71,7 @@ class ObjectManager {
         }else{
             
             return $this->getItemDao()->queryItem($socket->roomName, explode(" ", $msg)[1])['long'];
-        }    
-        
-        
+        }
         
     }
     

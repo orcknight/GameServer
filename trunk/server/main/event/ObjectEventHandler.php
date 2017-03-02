@@ -18,9 +18,9 @@ class ObjectEventHandler extends BaseEventHandler{
         $socket = $this->socket;
         
         $cmd = explode(" ", $msg)[0];
-    
         if($cmd == "look"){
             
+            echo $msg;
             return $this->getObjectManager()->doLookCmd($msg, $socket);    
         }
         

@@ -152,3 +152,17 @@ DEBUG: [ Jiechengkeji ] [ 19:38:28 ] [ name ]orcknight
 DEBUG: [ Jiechengkeji ] [ 19:38:28 ] [ pass ]aq123456
 SQL: SELECT password FROM user WHERE name = 'orcknight' [ RunTime:0.0250s ]
 
+[ 2017-03-02T20:19:26+08:00 ] 127.0.0.1 /index.php/Home/User/login?callback=jQuery21404512268587499333_1488457166237&id=orcknight&pass=aq123456&_=1488457166238
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+DEBUG: [ Jiechengkeji ] [ 20:19:26 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 20:19:26 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 20:19:26 ] [ execute ]login()
+DEBUG: [ Jiechengkeji ] [ 20:19:26 ] [ name ]orcknight
+DEBUG: [ Jiechengkeji ] [ 20:19:26 ] [ pass ]aq123456
+SQL: SELECT password FROM user WHERE name = 'orcknight' [ RunTime:0.0240s ]
+
