@@ -5,22 +5,36 @@ namespace bll;
 use Dao\NpcDao;
 use Dao\ItemDao;
 use Dao\RoomDao;
+use bll\ObjectManager;
 
 require_once __DIR__ . '/../dao/NpcDao.php';
 require_once __DIR__ . '/../dao/ItemDao.php';
 require_once __DIR__ . '/../dao/RoomDao.php';
+require_once __DIR__ . '/ObjectManager.php';
 
 
 class CacheManager {
     
     private $payersMap = null;
     private $roomsMap = null;
-    
+    private $objectsMap = null;
     
     public function __construct()
     {
         $this->payersMap = array();
-        $this->roomsMap = $this->getRoomDao()->loadRoomToCache();       
+        $this->roomsMap = $this->getRoomDao()->loadRoomToCache();  
+        $this->objectsMap = $this->getRoomDao()->loadRoomStruct();
+        $this->getObjectManager()->loadObjectToMap($this->objectsMap);
+        
+        foreach($this->objectsMap as $key => $item){
+            
+            echo $key . "\n";
+            
+            foreach($item as $itm){
+                
+                echo $itm['cname'] . "\n";
+            }
+        }   
     }
     
     public function setPlayerInfo($userId, $key, $value){
@@ -43,12 +57,25 @@ class CacheManager {
         return $this->payersMap[$userId][$key];
     }
     
-    public function getRoom($roomName){
+    public function &getPlayerRef($userId){
         
-        return $this->$roomsMap[$roomName];
+        if(!isset($this->payersMap[$userId])){
+            
+            $this->payersMap[$userId] = array();
+        }
+        
+        return $this->payersMap[$userId];   
     }
     
+    public function &getObjectRef(){
+        
+        return $this->objectsMap;
+    }
     
+    public function getRoom($roomName){
+        
+        return $this->roomsMap[$roomName];
+    }
     
     public function loadObject($cityName, $roomName){
         
@@ -127,6 +154,17 @@ class CacheManager {
         }
         
         return  $this->roomDao;     
+    }
+    
+    private $objectManager = null;
+    public function getObjectManager(){
+        
+        if($this->objectManager == null){
+        
+            $this->objectManager = new ObjectManager();    
+        }
+        
+        return $this->objectManager; 
     }
     
     //系统缓存数据

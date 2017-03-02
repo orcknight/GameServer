@@ -40,6 +40,7 @@ class UserEventHandler extends BaseEventHandler{
             //存储新连接到系统套接字缓存中
             self::$cacheManager->setSocketMap($userId, $this->socket);
             $this->socket->userId = $userId;
+            self::$cacheManager->setPlayerInfo($userId, 'id', $userId);
             
             //检查是否创建了角色
             $player = $this->getPlayerDao()->queryPlayer($userId);
@@ -49,7 +50,7 @@ class UserEventHandler extends BaseEventHandler{
             }
             
             $playerInfo = $this->getPlayerDao()->queryPlayerInfo($player['id']);
-            
+            self::$cacheManager->setPlayerInfo($userId, 'playerId', $player['id']);
             self::$cacheManager->setPlayerInfo($userId, 'roomName', $playerInfo['roomName']);
             
             return chr(13).chr(10). 
@@ -136,17 +137,17 @@ class UserEventHandler extends BaseEventHandler{
         }    
     }
     
-    
     private function getTileInfoFromCache($name, &$socket){
-        
-        $tileInfo = $this->getCacheManager()->getTileMap()[$name];
+    
+        $tileInfo = self::$cacheManager->getRoom($name);
         $txt = "↵\r\n";
         $txt .= "002" . $tileInfo['cname'] . "\r\n";
         $txt .= "004" . $tileInfo['describe'] . "\r\n";
         $txt .= $this->buildARoundTxtByCache($tileInfo);
         
         $roomName = self::$cacheManager->getPlayerInfo($socket->userId, 'roomName');
-        $txt .= $this->getObjectManager()->loadObject($roomName);
+        $objectsMap = &self::$cacheManager->getObjectRef();
+        $txt .= $this->getObjectManager()->loadObject($roomName, $objectsMap);
         
         return $txt;    
         
@@ -158,24 +159,23 @@ class UserEventHandler extends BaseEventHandler{
         $txt = '003';
         if(!empty($info['nname'])){
             
-            $txt .= "north:" . $this->getCacheManager()->getTileMap()[$info['nname']]['cname'] . $contact;    
+            $txt .= "north:" . self::$cacheManager->getRoom($info['nname'])['cname'] . $contact;    
         }
         if(!empty($info['sname'])){
             
-            $txt .= "south:" . $this->getCacheManager()->getTileMap()[$info['sname']]['cname'] . $contact;    
+            $txt .= "south:" . self::$cacheManager->getRoom($info['sname'])['cname'] . $contact;    
         }
         if(!empty($info['ename'])){
             
-            $txt .= "east:" . $this->getCacheManager()->getTileMap()[$info['ename']]['cname'] . $contact;    
+            $txt .= "east:" . self::$cacheManager->getRoom($info['ename'])['cname'] . $contact;    
         }
         if(!empty($info['wname'])){
             
-            $txt .= "west:" . $this->getCacheManager()->getTileMap()[$info['wname']]['cname'] . $contact;    
+            $txt .= "west:" . self::$cacheManager->getRoom($info['wname'])['cname'] . $contact;    
         }
-        
         if(!empty($info['outname'])){
             
-            $txt .= "out:" . $this->getCacheManager()->getTileMap()[$info['outname']]['cname'] . $contact;    
+            $txt .= "out:" . self::$cacheManager->getRoom($info['outname'])['cname'] . $contact;    
         }
         
         $txt = rtrim($txt, $contact);

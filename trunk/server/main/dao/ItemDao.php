@@ -8,6 +8,19 @@ require_once __DIR__ . '/../db/DbHelper.php';
 
 class ItemDao{
     
+    public function queryAllItem(){
+        
+        $db = new DbHelper();
+        $querySql = "SELECT * FROM item";
+        $result = $db->query($querySql);
+        if(!$result){
+            
+            return array();
+        }
+        
+        return $result;    
+    }
+    
     public function queryItems($roomName){
         
         $db = new DbHelper();

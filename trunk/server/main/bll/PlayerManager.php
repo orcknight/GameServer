@@ -10,23 +10,29 @@ class PlayerManager {
     
     private $playerInfo = null;
     private $playerDao = null;
-    
+     
     public function __construct(&$info)
     {
-        $this->playerInfo = $info;
+        $this->playerInfo = &$info;
     }
     
-    public function updateLocation($cityName, $roomName){
+    public function setPlayerInfo(&$info){
         
-        $this->playerInfo['cityName'] = $cityName;
+        $this->playerInfo = &$info;
+    }
+    
+    public function updateLocation($roomName){
+        
         $this->playerInfo['roomName'] = $roomName;
         
-        if($cityName == "register"){
+        echo $this->playerInfo['roomName'] . "\n";
+        
+        if(explode('/', $roomName)[0] == "register"){
             
             $this->updatePlayerCharacter($roomName);
         }
         
-        $this->getPlayerDao()->updatePlayerLocation($this->playerInfo['id'], $cityName, $roomName);
+        $this->getPlayerDao()->updatePlayerLocation($this->playerInfo['playerId'], $roomName);
     }
     
     public function setPianShu($pianshu){
@@ -48,8 +54,8 @@ class PlayerManager {
     
     private function updatePlayerCharacter($roomName){
         
-        $characterArray = ['guangmingleiluo' => '光明磊落', 'yinxianjiaozha' => '阴险狡诈', 
-        'jiaojieduobian' => '狡黠多变', 'xinhenshoula' => '心狠手辣'];
+        $characterArray = ['register/guangmingleiluo' => '光明磊落', 'register/yinxianjiaozha' => '阴险狡诈', 
+        'register/jiaojieduobian' => '狡黠多变', 'register/xinhenshoula' => '心狠手辣'];
         
         if(array_key_exists($roomName, $characterArray)){
             
@@ -60,7 +66,7 @@ class PlayerManager {
         }
     }
     
-    
+    /*
     private function doWash($arg)
     {
             int i;
@@ -129,7 +135,7 @@ class PlayerManager {
             set_temp("washed", 1, me);
 
             return 1;
-    }
+    } */
 }
 
 ?>

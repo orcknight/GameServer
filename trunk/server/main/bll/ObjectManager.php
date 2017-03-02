@@ -12,14 +12,22 @@ class ObjectManager {
     
     private $npcDao = null;
     private $itemDao = null;
+    private $objectsMap = null;
     
-    public function __construct()
-    {
+    public function __construct(){
     }
     
+    public function loadObjectToMap(&$objectsMap){
+        
+        $items = $this->getItemDao()->queryAllItem();
+        foreach($items as $item){
+            
+            $item['type'] = "item";
+            $objectsMap[$item['roomName']][] = $item;
+        }
+    }
     
-    
-    public function loadObject($roomName){
+    public function loadObject($roomName, &$objectsMap){
         
         $count = 0;
         $npcs = $this->getNpcDao()->queryNpcs($roomName);
@@ -36,8 +44,10 @@ class ObjectManager {
             $count++;  
         }
         
-        $items = $this->getItemDao()->queryItems($roomName);
+        $items = $objectsMap[$roomName];
         foreach($items as $item){
+            
+            //echo $item['cname'] . "\n";
             
             if($count % 10 == 0){
                            
@@ -45,7 +55,7 @@ class ObjectManager {
                 $npcTxt .= "\r\n005";    
             }
             
-            $npcTxt .= ($item['cname'] . ":look " . $item['name'] . "\$zj#"); 
+            $npcTxt .= ($item['cname'] . ":look {$item['type']}/{$item['name']}#{$item['id']}" . "\$zj#"); 
             $count++;  
         }
         $npcTxt = ltrim($npcTxt, "\r\n");

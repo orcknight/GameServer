@@ -43,6 +43,27 @@ class RoomDao{
         return $mapArray;    
         
     }
+    
+    public function loadRoomStruct(){
+        
+        $mapArray = array();
+        $db = new DbHelper();
+        $querySql = "SELECT name FROM room"; 
+        $result = $db->query($querySql); 
+        if(!$result){
+            
+            return $mapArray;
+        }
+        
+        for($i = 0; $i < sizeof($result); $i++){
+            
+            $item = $result[$i];
+            $mapArray[$item['name']] = array();
+        }
+        unset($result);
+        
+        return $mapArray;
+    }
 
     public function buildTileTxt($name){
         

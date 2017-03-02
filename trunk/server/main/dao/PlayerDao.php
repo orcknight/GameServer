@@ -56,20 +56,20 @@ class PlayerDao{
         
     }
     
-    public function addPlayerInfo($playerId, $cityName = "register", $roomName = "shengmingzhigu"){
+    public function addPlayerInfo($playerId, $roomName = "register/shengmingzhigu"){
         
         $db = new DbHelper();
-        $execSql = "INSERT INTO player_info (playerId, ip , cityName, roomName) 
-        VALUES ('$playerId', '127.0.0.1', '$cityName' , '$roomName')";
+        $execSql = "INSERT INTO player_info (playerId, ip, roomName) 
+        VALUES ('$playerId', '127.0.0.1', '$roomName')";
         
         return $db->execute($execSql);
  
     }
     
-    public function updatePlayerLocation($id, $cityName, $roomName){
+    public function updatePlayerLocation($id, $roomName){
         
         $db = new DbHelper();
-        $execSql = "UPDATE player_info SET cityName = '$cityName', roomName = '$roomName' WHERE playerId = $id";
+        $execSql = "UPDATE player_info SET roomName = '$roomName' WHERE playerId = $id";
         return $db->execute($execSql);
         
     }
@@ -77,7 +77,8 @@ class PlayerDao{
     public function updatePlayerCharacter($id, $character){
         
         $db = new DbHelper();
-        $execSql = "UPDATE player SET character = '$character' WHERE playerId = $id";
+        $execSql = "UPDATE player SET `character` = '$character' WHERE userId = $id";
+        echo  $execSql;
         return $db->execute($execSql);
         
     }
