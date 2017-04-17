@@ -68,8 +68,8 @@ class ObjectManager {
         $msg = rtrim($msg, "\n");
         if(1 == substr_count($msg, "npc")){
             
-        }else{
-            
+        }else if(1 == substr_count($msg, "item")){
+
             return $this->getItemDao()->queryItem($socket->roomName, explode(" ", $msg)[1])['long'];
         }
         

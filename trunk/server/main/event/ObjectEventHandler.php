@@ -21,7 +21,29 @@ class ObjectEventHandler extends BaseEventHandler{
         if($cmd == "look"){
             
             echo $msg;
-            return $this->getObjectManager()->doLookCmd($msg, $socket);    
+            return $this->doLookCmd($msg, $socket);    
+        }
+        
+    }
+    
+    public function doLookCmd($msg, &$socket){
+        
+        $msg = rtrim($msg, "\n");
+        if(1 == substr_count($msg, "npc")){
+            
+        }else if(1 == substr_count($msg, "item")){
+            
+            $roomName = self::$cacheManager->getPlayerInfo($socket->userId, "roomName");
+            $objects = &self::$cacheManager->getRoomObjectRef($roomName);
+            
+            foreach($objects as $item){
+                
+                if("{$item['type']}/{$item['name']}#{$item['id']}" == explode(" ", $msg)[1] ){
+                    
+                    return $item['long'];
+                }
+            }
+           
         }
         
     }

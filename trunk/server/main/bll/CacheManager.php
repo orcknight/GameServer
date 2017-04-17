@@ -72,6 +72,11 @@ class CacheManager {
         return $this->objectsMap;
     }
     
+    public function &getRoomObjectRef($roomName){
+        
+        return $this->objectsMap[$roomName];
+    }
+    
     public function getRoom($roomName){
         
         return $this->roomsMap[$roomName];
