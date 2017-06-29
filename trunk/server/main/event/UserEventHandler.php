@@ -117,7 +117,6 @@ class UserEventHandler extends BaseEventHandler{
         
     }
     
-    
     private function closeAndKickOffInfo($userId){
         
         $preSocket = self::getCacheManager()->getSocketById($userId);

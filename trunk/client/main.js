@@ -610,7 +610,7 @@ function logincheck(id,pass) {
 		alert('账号密码不能为空！');
 		return;
 	}
-	$('div#hudong').html('');
+	$('div#hudong').hide();
 	$('div#chat').html('登录中。。。<br>');
 
     $.ajax({
@@ -666,6 +666,7 @@ function charcheck() {
 		return;
 	}
 	$('div#hudong').html('');
+    $('div#hudong').hide();
 	$('div#chat').html('角色创建中。。。<br>');
 
 	sock.emit('stream',mysex.val()+'║001║'+myname.val()+'\n');

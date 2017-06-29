@@ -103,3 +103,104 @@
 ↵008 1. [1;37m扬州人氏[2;37;0m:born 扬州人氏$zj# 2. [1;37m齐鲁人氏[2;37;0m:born 齐鲁人氏$zj# 3. [1;37m福建人氏[2;37;0m:born 福建人氏$zj# 4. [1;37m荆州人氏[2;37;0m:born 荆州人氏$zj# 5. [1;37m巴蜀人氏[2;37;0m:born 巴蜀人氏$zj# 6. [1;37m两广人氏[2;37;0m:born 两广人氏$zj# 7. [1;37m关外人氏[2;37;0m:born 关外人氏$zj# 8. [1;37m中原人氏[2;37;0m:born 中原人氏$zj# 9. [1;37m秦晋人氏[2;37;0m:born 秦晋人氏$zj#10. [1;37m云南人氏[2;37;0m:born 云南人氏$zj#11. [1;37m燕赵人氏[2;37;0m:born 燕赵人氏$zj#12. [1;37m杭州人氏[2;37;0m:born 杭州人氏$zj#13. [1;37m苏州人氏[2;37;0m:born 苏州人氏$zj#14. [1;37m西域人氏[2;37;0m:born 西域人氏$zj#15. [1;36m慕容世家[2;37;0m:born 慕容世家$zj#16. [1;36m段氏皇族[2;37;0m:born 段氏皇族$zj#17. [1;36m关外胡家[2;37;0m:born 关外胡家$zj#18. [1;36m欧阳世家[2;37;0m:born 欧阳世家$zj#
 ↵
 ↵"
+
+"001当前频道【闲聊】，请输入内容：$zj#chat $txt#
+
+
+//打开聊天窗口
+001当前频道【闲聊】，请输入内容：$zj#chat $txt#
+↵009$3,3,9,30#选择频道:liaotian pindao$zj#表情动作:emote$zj#发送语音:liaotian yuyin
+"
+
+//聊天消息
+"100[1;36m【闲聊】[2;37;0m[1;36m[u:cmds:look orcknight1][s:22]怪盗基德[2;37;0m[1;36m：11111[2;37;0m
+↵"
+
+
+
+007请选择你的属性偏属，然后进行洗点！ //互动窗口的文字
+008猛士型：高臂力偏属。:pianshu msx$zj#智慧型：高悟性偏属。:pianshu zhx$zj#耐力型：高根骨偏属。:pianshu nlx$zj#敏捷型：高身法偏属。:pianshu mjx$zj#均衡型：各项平均20属性。:pianshu jhx 互动窗口的按钮
+
+"007少林派第三十七代传人「[1;31m千颜[1;33m铁掌[2;37;0m」澄鸟(hongfang10071)$br#一一一一一一一一一一一一一一一一一一一一一一一$br#他看起来有十多岁。$br#他的武功看来[1;34m已有小成[2;37;0m，出手似乎不轻。$br#他[36m生得肤色白皙，红唇墨发，斯文有礼。$br#[2;37;0m他[1;32m看起来气血充盈，并没有受伤。[2;37;0m$br#他身上没有穿衣服啊！
+↵
+↵009$4,4,10,32#给予:give hongfang10071$zj#查看技能:skills hongfang10071$zj#禁言:vote chblk /clone/user/user#8964683$zj#组队:team with /clone/user/user#8964683$zj#跟随:follow hongfang10071$zj#查看装备:arm hongfang10071$zj#[1;31m偷窃[2;37;0m:steal hongfang10071$zj#
+↵ //互动窗口的按钮
+↵"
+
+
+
+
+007请选择你的属性偏属，然后进行洗点！
+008猛士型：高臂力偏属。:pianshu msx$zj#智慧型：高悟性偏属。:pianshu zhx$zj#耐力型：高根骨偏属。:pianshu nlx$zj#敏捷型：高身法偏属。:pianshu mjx$zj#均衡型：各项平均20属性。:pianshu jhx
+
+"007少林派第三十七代传人「[1;31m千颜[1;33m铁掌[2;37;0m」澄鸟(hongfang10071)$br#一一一一一一一一一一一一一一一一一一一一一一一$br#他看起来有十多岁。$br#他的武功看来[1;34m已有小成[2;37;0m，出手似乎不轻。$br#他[36m生得肤色白皙，红唇墨发，斯文有礼。$br#[2;37;0m他[1;32m看起来气血充盈，并没有受伤。[2;37;0m$br#他身上没有穿衣服啊！
+↵
+↵009$4,4,10,32#给予:give hongfang10071$zj#查看技能:skills hongfang10071$zj#禁言:vote chblk /clone/user/user#8964683$zj#组队:team with /clone/user/user#8964683$zj#跟随:follow hongfang10071$zj#查看装备:arm hongfang10071$zj#[1;31m偷窃[2;37;0m:steal hongfang10071$zj#
+↵
+↵"
+
+
+
+
+007请选择你的属性偏属，然后进行洗点！
+008猛士型：高臂力偏属。:pianshu msx$zj#智慧型：高悟性偏属。:pianshu zhx$zj#耐力型：高根骨偏属。:pianshu nlx$zj#敏捷型：高身法偏属。:pianshu mjx$zj#均衡型：各项平均20属性。:pianshu jhx
+
+
+
+"012$5,5,28,45#啪啪熊:100/100:#000000║气血.100:100/100/100:#99FF0000:exert recover║内力.0:0/0/0:#990066FF║精神.100:100/100/100:#996600CC:exert regenerate║精力.0:0/0/200:#99006600║怒气.0:0/7000:#99990000║食物.200:200/200:#99FF6600║饮水.200:200/200:#990000FF║经验.0:0/1000:#99FF0066║潜能.100:100/2900/3000:#99FF00FF
+↵"
+
+
+
+[{"tile":"洗点", "name":"洗点","cname":"洗点", "desc":"投胎之前可以先洗一下属性点，直到自己满意：","button":"偏属随机洗点:wash$zj#指定分配洗点:washto"}]
+
+
+
+
+007投胎之前可以先洗一下属性点，直到自己满意：
+008偏属随机洗点:wash$zj#指定分配洗点:washto
+
+
+
+
+"002打铁铺
+↵004这是一家简陋的打铁铺，中心摆着一个火炉，炉火把四周照得一片通红，你一走进去就感到浑身火热。墙角堆满了已完工和未完工的菜刀、铁锤、铁棍、匕首、盔甲等物。一位铁匠满头大汗挥舞着铁锤，专心致志地在打铁。
+↵003north:东大街
+↵005[1;36m潜龙[2;37;0m:look /clone/user/user#10900422$zj#[1;36m咱有大吊[2;37;0m:look /clone/user/user#10882870$zj#[1;36m珈百璃[2;37;0m:look /clone/user/user#10848916$zj#[1;36m文小[2;37;0m:look /clone/user/user#10475065
+↵005铁匠:look /d/city/npc/smith#1589
+↵你来到了 打铁铺 。
+↵"
+
+
+
+"002宝昌客栈
+↵004这里是生意兴隆的宝昌客栈，附近的外地游客多选择在此落脚。一个年轻的店小二里里外外忙得团团转，接待着南腔北调的客人。客店的主人从不露面，他究竟是谁，江湖中流传着各种各样的猜测。
+↵003north:客店茶房$zj#west:北大街$zj#up:客店二楼$zj#save:存盘
+↵005[1;36m听风流[2;37;0m:look /clone/user/user#10787881$zj#[1;36m酒玄[2;37;0m:look /clone/user/user#10806554$zj#[1;36m仙天[2;37;0m:look /clone/user/user#10772892$zj#[1;36m泡芙[2;37;0m:look /clone/user/user#10580543
+↵005游讯:look /adm/npc/youxun$zj#店小二:look /d/city/npc/xiaoer#18$zj#[1;37m东方使者[2;37;0m:look /adm/npc/shizhe#17
+↵005【牌子】:look 【牌子】
+↵你来到了 宝昌客栈 。
+↵"
+
+
+"002酒楼厨房
+↵004这是酒楼后面的厨房，几个大水池前面有不少的伙计在摘菜和清洗碗碟，还有一些伙计站在油烟直冒的油锅面前努力的翻炒着各色菜肴，而一个粗手大脚的中年厨娘大声吆喝，指手画脚的却不干活。
+↵003south:醉仙楼
+↵005[1;36m渡段[2;37;0m:look /clone/user/user#10460189$zj#[1;36m幽[2;37;0m:look /clone/user/user#10220848$zj#[1;36m天城[2;37;0m:look /clone/user/user#10897606$zj#[1;36m霸霸[2;37;0m:look /clone/user/user#10895351$zj#[1;36m冷若太玄[2;37;0m:look /clone/user/user#10211354$zj#[1;36m青梅[2;37;0m:look /clone/user/user#10889346$zj#[1;36m柴刀[2;37;0m:look /clone/user/user#10894103$zj#[1;36m慕容海怪[2;37;0m:look /clone/user/user#10499291$zj#[1;36m胡忘尘[2;37;0m:look /clone/user/user#10658591$zj#[1;36m剑月[2;37;0m:look /clone/user/user#10788554$zj#[1;36m风影[2;37;0m:look /clone/user/user#10771716$zj#[1;36m渡小[2;37;0m:look /clone/user/user#10563216$zj#[1;36m新公公[2;37;0m:look /clone/user/user#10235664$zj#[1;36m林公公[2;37;0m:look /clone/user/user#6381273$zj#[1;36m玄庞[2;37;0m:look /clone/user/user#3305161$zj#[1;36m白学家[2;37;0m:look /clone/user/user#10789723$zj#[1;36m静凤[2;37;0m:look /clone/user/user#10030336$zj#[1;36m嗷呜[2;37;0m:look /clone/user/user#10790700$zj#[1;36m练霓裳[2;37;0m:look /clone/user/user#10812336$zj#[1;36m污妖帝尊[2;37;0m:look /clone/user/user#10821607$zj#[1;36m冷若不败[2;37;0m:look /clone/user/user#5644377$zj#[1;36m冰三[2;37;0m:look /clone/user/user#10716066$zj#[1;36m冰五[2;37;0m:look /clone/user/user#10713827$zj#[1;36m冰四[2;37;0m:look /clone/user/user#10713635$zj#[1;36m冰二[2;37;0m:look /clone/user/user#10713395$zj#[1;36m冰一[2;37;0m:look /clone/user/user#10713282$zj#[1;36m秦假仙[2;37;0m:look /clone/user/user#10581074
+↵005明三的丫环双儿:look /d/beijing/npc/shuanger#5833779$zj#华南虎:look /d/fuzhou/npc/huananhu#3042955$zj#湘湘:look /d/changan/npc/xiangxiang#452067$zj#厨娘:look /d/city/npc/chuniang#696
+↵你来到了 酒楼厨房 。
+↵"
+
+玩家进入房间广播进入房间的信息
+"段二郎神一丝不挂的走了过来。
+↵005[1;36m段二郎神[2;37;0m:look /clone/user/user#10925013
+↵"
+
+
+玩家离开的时候广播离开消息
+"段二郎神往东大街(东方)离开。
+↵905look /clone/user/user#10925013
+↵"
+
+
+

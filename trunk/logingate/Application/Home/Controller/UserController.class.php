@@ -261,18 +261,22 @@ class UserController extends BaseController{
 
         $querySql = "SELECT password FROM user WHERE name = '$name'";
         $result = M()->query($querySql);
+        $this->trackLog("result", $result);
         if(!$result){
+            $this->trackLog("iderr", "iderr");
             $data['cod']  = 3;
             $data['sta']  = "iderr";
             $this->ajaxReturn($data, 'JSONP');
         }
         
         if(md5($pass) != $result[0]['password']){
+            $this->trackLog("passerr", "passerr");
             $data['cod']  = 3;
             $data['sta']  = "passerr";
             $this->ajaxReturn($data, 'JSONP');    
         }
 
+        $this->trackLog("null", "null");
         $data['cod']  = 3;
         $data['sta']  = getIPaddress() . "&null";
         $this->ajaxReturn($data, 'JSONP');

@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- 配置hibernate的基本信息 -->
+        <property name="connection.url">jdbc:mysql://bdm25683027.my3w.com:3306/bdm25683027_db</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.username">bdm25683027</property>
+        <property name="connection.password">aq123456</property>
+
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">false</property>
+        <property name="current_session_context_class">thread</property>
+
+        <mapping class="com.tian.server.entity.CityEntity"/>
+        <mapping resource="CityEntity.hbm.xml"/>
+        <mapping class="com.tian.server.entity.ItemEntity"/>
+        <mapping resource="ItemEntity.hbm.xml"/>
+        <mapping class="com.tian.server.entity.KongfuEntity"/>
+        <mapping resource="KongfuEntity.hbm.xml"/>
+        <mapping class="com.tian.server.entity.NpcEntity"/>
+        <mapping resource="NpcEntity.hbm.xml"/>
+        <mapping class="com.tian.server.entity.PlayerEntity"/>
+        <mapping resource="PlayerEntity.hbm.xml"/>
+        <mapping class="com.tian.server.entity.PlayerInfoEntity"/>
+        <mapping resource="PlayerInfoEntity.hbm.xml"/>
+        <mapping class="com.tian.server.entity.PlayerKongfuEntity"/>
+        <mapping resource="PlayerKongfuEntity.hbm.xml"/>
+        <mapping class="com.tian.server.entity.RoomEntity"/>
+        <mapping resource="RoomEntity.hbm.xml"/>
+        <mapping class="com.tian.server.entity.RoomContentEntity"/>
+        <mapping resource="RoomContentEntity.hbm.xml"/>
+        <mapping class="com.tian.server.entity.ServerInfoEntity"/>
+        <mapping resource="ServerInfoEntity.hbm.xml"/>
+        <mapping class="com.tian.server.entity.UserEntity"/>
+        <mapping resource="UserEntity.hbm.xml"/>
+        <!-- <property name="connection.username"/> -->
+        <!-- <property name="connection.password"/> -->
+
+        <!-- DB schema will be updated if needed -->
+        <!-- <property name="hbm2ddl.auto">update</property> -->
+    </session-factory>
+</hibernate-configuration>
