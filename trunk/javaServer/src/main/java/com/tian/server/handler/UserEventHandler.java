@@ -23,6 +23,9 @@ public class UserEventHandler implements CmdEventHandler {
             String mySex        = strArray[0];
             String myName       = strArray[1];
             userService.createRole(myName, mySex);
+        }else if(data.equals("quit\n")){ //创建角色
+
+            userService.logout();
         }else{
 
         }

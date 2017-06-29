@@ -77,6 +77,7 @@ public class MoveService extends BaseService{
 
         //检查用户是否已经登陆
         Map<Integer, PlayerCache> playerCacheMap = UserCacheUtil.getPlayerCache();
+        Map<String, RoomEntity> roomMap = UserCacheUtil.getMapCache();
         //登录了就进行移动操作
         if(playerCacheMap.containsKey(this.userId)){
 
@@ -113,9 +114,10 @@ public class MoveService extends BaseService{
             //切换room并广播信息
             socketIOClient.leaveRoom(room.getName());
 
+            String destName = getDirectionCnName(direction);
             //广播玩家离开房间的信息
             socketIOClient.getNamespace().getRoomOperations(room.getName())
-                    .sendEvent("stream", CmdUtil.getLeaveRoomLine("南方", playerCache.getPlayer()));
+                    .sendEvent("stream", CmdUtil.getLeaveRoomLine(roomMap.get(destRoomName).getCname() + "("  + destName + ")", playerCache.getPlayer()));
 
             //广播玩家进入房间的信息
             socketIOClient.getNamespace().getRoomOperations(destRoomName)
@@ -128,7 +130,6 @@ public class MoveService extends BaseService{
             loadItemsToRoom(destRoomName, playerCache.getPlayer());
 
             //缓存玩家信息
-            Map<String, RoomEntity> roomMap = UserCacheUtil.getMapCache();
             playerCache.setRoom(roomMap.get(destRoomName));
         }
 
@@ -248,6 +249,34 @@ public class MoveService extends BaseService{
 
         String msg = CmdUtil.getObjectsLine(roomObjects, player);
         sendMsg(msg);
+    }
+
+    private String getDirectionCnName(String direction){
+
+        String cnName = "";
+        if(direction == "east"){
+            cnName = "东方";
+        }else if(direction == "west") {
+            cnName = "西方";
+        }else if(direction == "south") {
+            cnName = "南方";
+        }else if(direction == "north") {
+            cnName = "北方";
+        }else if(direction == "northeast") {
+            cnName = "东北";
+        }else if(direction == "northwest") {
+            cnName = "西北";
+        }else if(direction == "southeast") {
+            cnName = "东南";
+        }else if(direction == "southwest") {
+            cnName = "西南";
+        }else if(direction == "in") {
+            cnName = "上面";
+        }else if(direction == "out"){
+            cnName = "下面";
+        }
+
+        return cnName;
     }
 
 }

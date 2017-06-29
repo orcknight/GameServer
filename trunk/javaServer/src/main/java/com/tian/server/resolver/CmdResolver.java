@@ -11,10 +11,11 @@ import java.util.Arrays;
 public class CmdResolver {
 
     private SocketIOClient server;
-    private String[] userCmdArray = new String[] {"pianshu"};
+    private String[] userCmdArray = new String[] {"pianshu", "quit"};
     private String[] moveCmdArray = new String[] {"east", "west", "south", "north", "northeast", "northwest",
     "southeast", "southwest", "in", "out"};
     private String[] chatCmdArray = new String[] {"liaotian", "chat"};
+    private String[] lookCmdArray = new String[] {"look"};
 
     public CmdResolver(SocketIOClient server){
 
@@ -31,6 +32,7 @@ public class CmdResolver {
         Arrays.sort(userCmdArray);
         Arrays.sort(moveCmdArray);
         Arrays.sort(chatCmdArray);
+        Arrays.sort(lookCmdArray);
 
         if(str.length() == 0){
 
@@ -45,6 +47,9 @@ public class CmdResolver {
         }else if(Arrays.binarySearch(chatCmdArray, str.split(" ")[0]) > -1){
 
             handlerStr = "Chat";
+        }else if(Arrays.binarySearch(lookCmdArray, str.split(" ")[0]) > -1){
+
+            handlerStr = "Look";
         }
 
         try {

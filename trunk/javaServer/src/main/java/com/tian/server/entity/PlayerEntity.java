@@ -11,6 +11,7 @@ public class PlayerEntity {
     private int id;
     private Integer userId;
     private String name;
+    private String cname;
     private String sex;
     private String character;
     private Integer level;
@@ -63,6 +64,16 @@ public class PlayerEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Basic
+    @Column(name = "cname", nullable = true, length = 255)
+    public String getCname() {
+        return cname;
+    }
+
+    public void setCname(String cname) {
+        this.cname = name;
     }
 
     @Basic

@@ -190,6 +190,13 @@ public class CmdUtil {
         return msg;
     }
 
+    public static String getLogoutBoradcastLine(PlayerEntity player){
+
+        String msg = player.getName() + "离开了这个世界。\r\n" +
+                "\u001B905look /user/user#" + player.getId() + "\r\n";
+        return msg;
+    }
+
 
 
 }

@@ -64,6 +64,7 @@ public class UserCacheUtil {
             }
 
             List<ItemEntity> savedItems = roomObjects.getItems();
+
             ItemEntity item = (ItemEntity)items.get(roomContent.getItemId()).clone();
             item.setId(IdUtil.getUnUsedId());
             savedItems.add(item);
@@ -89,6 +90,17 @@ public class UserCacheUtil {
         List<PlayerEntity> destPlayers = destObjects.getPlayers();
         destPlayers.add(player);
         destObjects.setPlayers(destPlayers);
+    }
+
+    public static void delPlayerFromRoom(String roomName, PlayerEntity player){
+
+        RoomObjects sourceObjects = roomObjectsCache.get(roomName);
+        List<PlayerEntity> sourcePlayers = sourceObjects.getPlayers();
+        if(sourcePlayers == null){
+
+            return;
+        }
+        sourcePlayers.remove(player);
     }
 
 }

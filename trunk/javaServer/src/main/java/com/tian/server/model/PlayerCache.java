@@ -29,6 +29,9 @@ public class PlayerCache {
     //玩家当前位置
     private RoomEntity room;
 
+    //玩家当前观察的物品id
+    private String lookId;
+
     public void setSocketClient(SocketIOClient socketClient){
 
         this.socketClient = socketClient;
@@ -77,6 +80,16 @@ public class PlayerCache {
     public RoomEntity getRoom(){
 
         return this.room;
+    }
+
+    public void setLookId(String lookId){
+
+        this.lookId = lookId;
+    }
+
+    public String getLookId(){
+
+        return this.lookId;
     }
 
 }

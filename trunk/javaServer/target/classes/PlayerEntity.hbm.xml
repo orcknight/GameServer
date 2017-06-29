@@ -14,6 +14,9 @@
         <property name="name">
             <column name="name" sql-type="varchar(255)" not-null="true"/>
         </property>
+        <property name="cname">
+            <column name="cname" sql-type="varchar(255)" not-null="true"/>
+        </property>
         <property name="sex">
             <column name="sex" sql-type="varchar(32)" length="32" not-null="true"/>
         </property>

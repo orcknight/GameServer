@@ -174,6 +174,28 @@ public class UserService extends  BaseService{
                 CmdUtil.getLocationLine(getLocation(playerInfo.getRoomName())));
     }
 
+    public void logout(){
+
+        //如果已经登陆了，发送下线消息然后
+        Map<Integer, PlayerCache> playerCacheMap = UserCacheUtil.getPlayerCache();
+        PlayerCache playerCache = playerCacheMap.get(this.userId);
+
+        if(playerCache != null) {
+
+            //广播玩家离开的信息
+            socketIOClient.getNamespace().getRoomOperations(playerCache.getPlayerInfo().getRoomName()).sendEvent("stream",
+                    CmdUtil.getLogoutBoradcastLine(playerCache.getPlayer()));
+
+            //清理缓存数据
+            UserCacheUtil.getSocketCache().remove(socketIOClient);
+            playerCacheMap.remove(this.userId);
+            UserCacheUtil.delPlayerFromRoom(playerCache.getPlayerInfo().getRoomName(), playerCache.getPlayer());
+        }
+
+        //关闭连接
+        socketIOClient.disconnect();
+    }
+
     private void sendKickOffMsg(SocketIOClient socketIOClient){
 
         String msg = CmdUtil.getEmptyLine() +
