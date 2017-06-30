@@ -117,7 +117,7 @@ public class MoveService extends BaseService{
             String destName = getDirectionCnName(direction);
             //广播玩家离开房间的信息
             socketIOClient.getNamespace().getRoomOperations(room.getName())
-                    .sendEvent("stream", CmdUtil.getLeaveRoomLine(roomMap.get(destRoomName).getCname() + "("  + destName + ")", playerCache.getPlayer()));
+                    .sendEvent("stream", CmdUtil.getLeaveRoomLine(roomMap.get(destRoomName).getShortDesc() + "("  + destName + ")", playerCache.getPlayer()));
 
             //广播玩家进入房间的信息
             socketIOClient.getNamespace().getRoomOperations(destRoomName)

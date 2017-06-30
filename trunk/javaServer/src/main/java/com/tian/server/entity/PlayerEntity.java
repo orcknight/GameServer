@@ -10,8 +10,12 @@ import javax.persistence.*;
 public class PlayerEntity {
     private int id;
     private Integer userId;
+    private String euid;
+    private String title;
+    private String nickname;
     private String name;
-    private String cname;
+    private Integer age;
+    private Integer ageModify;
     private String sex;
     private String character;
     private Integer level;
@@ -35,6 +39,7 @@ public class PlayerEntity {
     private Integer jing;
     private Integer food;
     private Integer water;
+    private Integer combatExp;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -57,6 +62,36 @@ public class PlayerEntity {
     }
 
     @Basic
+    @Column(name = "euid", nullable = true, length = 255)
+    public String getEuid() {
+        return euid;
+    }
+
+    public void setEuid(String euid) {
+        this.euid = euid;
+    }
+
+    @Basic
+    @Column(name = "title", nullable = true, length = 255)
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @Basic
+    @Column(name = "nickname", nullable = true, length = 255)
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    @Basic
     @Column(name = "name", nullable = true, length = 255)
     public String getName() {
         return name;
@@ -67,13 +102,23 @@ public class PlayerEntity {
     }
 
     @Basic
-    @Column(name = "cname", nullable = true, length = 255)
-    public String getCname() {
-        return cname;
+    @Column(name = "age", nullable = true)
+    public Integer getAge() {
+        return age;
     }
 
-    public void setCname(String cname) {
-        this.cname = name;
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    @Basic
+    @Column(name = "ageModify", nullable = true)
+    public Integer getAgeModify() {
+        return ageModify;
+    }
+
+    public void setAgeModify(Integer ageModify) {
+        this.ageModify = ageModify;
     }
 
     @Basic
@@ -184,50 +229,6 @@ public class PlayerEntity {
 
     public void setWux(Integer wux) {
         this.wux = wux;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        PlayerEntity that = (PlayerEntity) o;
-
-        if (id != that.id) return false;
-        if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (sex != null ? !sex.equals(that.sex) : that.sex != null) return false;
-        if (character != null ? !character.equals(that.character) : that.character != null) return false;
-        if (level != null ? !level.equals(that.level) : that.level != null) return false;
-        if (str != null ? !str.equals(that.str) : that.str != null) return false;
-        if (con != null ? !con.equals(that.con) : that.con != null) return false;
-        if (dex != null ? !dex.equals(that.dex) : that.dex != null) return false;
-        if (kar != null ? !kar.equals(that.kar) : that.kar != null) return false;
-        if (per != null ? !per.equals(that.per) : that.per != null) return false;
-        if (sta != null ? !sta.equals(that.sta) : that.sta != null) return false;
-        if (role != null ? !role.equals(that.role) : that.role != null) return false;
-        if (wux != null ? !wux.equals(that.wux) : that.wux != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (userId != null ? userId.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (sex != null ? sex.hashCode() : 0);
-        result = 31 * result + (character != null ? character.hashCode() : 0);
-        result = 31 * result + (level != null ? level.hashCode() : 0);
-        result = 31 * result + (str != null ? str.hashCode() : 0);
-        result = 31 * result + (con != null ? con.hashCode() : 0);
-        result = 31 * result + (dex != null ? dex.hashCode() : 0);
-        result = 31 * result + (kar != null ? kar.hashCode() : 0);
-        result = 31 * result + (per != null ? per.hashCode() : 0);
-        result = 31 * result + (sta != null ? sta.hashCode() : 0);
-        result = 31 * result + (role != null ? role.hashCode() : 0);
-        result = 31 * result + (wux != null ? wux.hashCode() : 0);
-        return result;
     }
 
     @Basic
@@ -348,5 +349,71 @@ public class PlayerEntity {
 
     public void setWater(Integer water) {
         this.water = water;
+    }
+
+    @Basic
+    @Column(name = "combatExp", nullable = true)
+    public Integer getCombatExp() {
+        return combatExp;
+    }
+
+    public void setCombatExp(Integer combatExp) {
+        this.combatExp = combatExp;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PlayerEntity that = (PlayerEntity) o;
+
+        if (id != that.id) return false;
+        if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
+        if (euid != null ? !euid.equals(that.euid) : that.euid != null) return false;
+        if (title != null ? !title.equals(that.title) : that.title != null) return false;
+        if (nickname != null ? !nickname.equals(that.nickname) : that.nickname != null) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (age != null ? !age.equals(that.age) : that.age != null) return false;
+        if (ageModify != null ? !ageModify.equals(that.ageModify) : that.ageModify != null) return false;
+        if (sex != null ? !sex.equals(that.sex) : that.sex != null) return false;
+        if (character != null ? !character.equals(that.character) : that.character != null) return false;
+        if (level != null ? !level.equals(that.level) : that.level != null) return false;
+        if (str != null ? !str.equals(that.str) : that.str != null) return false;
+        if (con != null ? !con.equals(that.con) : that.con != null) return false;
+        if (dex != null ? !dex.equals(that.dex) : that.dex != null) return false;
+        if (kar != null ? !kar.equals(that.kar) : that.kar != null) return false;
+        if (per != null ? !per.equals(that.per) : that.per != null) return false;
+        if (sta != null ? !sta.equals(that.sta) : that.sta != null) return false;
+        if (role != null ? !role.equals(that.role) : that.role != null) return false;
+        if (wux != null ? !wux.equals(that.wux) : that.wux != null) return false;
+        if (combatExp != null ? !combatExp.equals(that.combatExp) : that.combatExp != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (userId != null ? userId.hashCode() : 0);
+        result = 31 * result + (euid != null ? euid.hashCode() : 0);
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (nickname != null ? nickname.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (age != null ? age.hashCode() : 0);
+        result = 31 * result + (ageModify != null ? ageModify.hashCode() : 0);
+        result = 31 * result + (sex != null ? sex.hashCode() : 0);
+        result = 31 * result + (character != null ? character.hashCode() : 0);
+        result = 31 * result + (level != null ? level.hashCode() : 0);
+        result = 31 * result + (str != null ? str.hashCode() : 0);
+        result = 31 * result + (con != null ? con.hashCode() : 0);
+        result = 31 * result + (dex != null ? dex.hashCode() : 0);
+        result = 31 * result + (kar != null ? kar.hashCode() : 0);
+        result = 31 * result + (per != null ? per.hashCode() : 0);
+        result = 31 * result + (sta != null ? sta.hashCode() : 0);
+        result = 31 * result + (role != null ? role.hashCode() : 0);
+        result = 31 * result + (wux != null ? wux.hashCode() : 0);
+        result = 31 * result + (combatExp != null ? combatExp.hashCode() : 0);
+        return result;
     }
 }

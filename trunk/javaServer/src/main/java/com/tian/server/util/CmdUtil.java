@@ -48,23 +48,23 @@ public class CmdUtil {
 
         if(pl.getNorth() != null){
 
-            mapBuffer .append( "north:" + pl.getNorth().getCname() + contact);
+            mapBuffer .append( "north:" + pl.getNorth().getShortDesc() + contact);
         }
         if(pl.getSouth() != null){
 
-            mapBuffer.append("south:" + pl.getSouth().getCname() + contact);
+            mapBuffer.append("south:" + pl.getSouth().getShortDesc() + contact);
         }
         if(pl.getEast() != null){
 
-            mapBuffer.append("east:" + pl.getEast().getCname() + contact);
+            mapBuffer.append("east:" + pl.getEast().getShortDesc() + contact);
         }
         if(pl.getWest() != null){
 
-            mapBuffer.append("west:" + pl.getWest().getCname() + contact);
+            mapBuffer.append("west:" + pl.getWest().getShortDesc() + contact);
         }
         if(pl.getOut() != null){
 
-            mapBuffer.append("out:" + pl.getOut().getCname() + contact);
+            mapBuffer.append("out:" + pl.getOut().getShortDesc() + contact);
         }
 
         int index = mapBuffer.toString().lastIndexOf(contact);
@@ -80,9 +80,9 @@ public class CmdUtil {
             }
         }
 
-        String msg = "↵\r\n" + "\u001B002" + pl.getLocation().getCname() + "\r\n" +
-                "\u001B004" + pl.getLocation().getDescribe() + "\r\n" + mapBuffer.toString() +
-                getScreenLine("你来到了" + pl.getLocation().getCname() + "。");
+        String msg = "↵\r\n" + "\u001B002" + pl.getLocation().getShortDesc() + "\r\n" +
+                "\u001B004" + pl.getLocation().getLongDesc() + "\r\n" + mapBuffer.toString() +
+                getScreenLine("你来到了" + pl.getLocation().getShortDesc() + "。");
 
         return msg;
     }

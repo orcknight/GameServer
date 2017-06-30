@@ -10,9 +10,9 @@ import javax.persistence.*;
 public class RoomEntity {
     private int id;
     private String name;
-    private String cname;
     private String pname;
-    private String describe;
+    private String shortDesc;
+    private String longDesc;
     private String ename;
     private String wname;
     private String sname;
@@ -23,6 +23,8 @@ public class RoomEntity {
     private String sename;
     private String outname;
     private String inname;
+    private Integer noFight;
+    private Integer noMagic;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -45,16 +47,6 @@ public class RoomEntity {
     }
 
     @Basic
-    @Column(name = "cname", nullable = true, length = 255)
-    public String getCname() {
-        return cname;
-    }
-
-    public void setCname(String cname) {
-        this.cname = cname;
-    }
-
-    @Basic
     @Column(name = "pname", nullable = true, length = 255)
     public String getPname() {
         return pname;
@@ -65,13 +57,23 @@ public class RoomEntity {
     }
 
     @Basic
-    @Column(name = "describe", nullable = true, length = 2048)
-    public String getDescribe() {
-        return describe;
+    @Column(name = "shortDesc", nullable = true, length = 255)
+    public String getShortDesc() {
+        return shortDesc;
     }
 
-    public void setDescribe(String describe) {
-        this.describe = describe;
+    public void setShortDesc(String shortDesc) {
+        this.shortDesc = shortDesc;
+    }
+
+    @Basic
+    @Column(name = "longDesc", nullable = true, length = 2048)
+    public String getLongDesc() {
+        return longDesc;
+    }
+
+    public void setLongDesc(String longDesc) {
+        this.longDesc = longDesc;
     }
 
     @Basic
@@ -174,6 +176,26 @@ public class RoomEntity {
         this.inname = inname;
     }
 
+    @Basic
+    @Column(name = "noFight", nullable = true)
+    public Integer getNoFight() {
+        return noFight;
+    }
+
+    public void setNoFight(Integer noFight) {
+        this.noFight = noFight;
+    }
+
+    @Basic
+    @Column(name = "noMagic", nullable = true)
+    public Integer getNoMagic() {
+        return noMagic;
+    }
+
+    public void setNoMagic(Integer noMagic) {
+        this.noMagic = noMagic;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -183,9 +205,9 @@ public class RoomEntity {
 
         if (id != that.id) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (cname != null ? !cname.equals(that.cname) : that.cname != null) return false;
         if (pname != null ? !pname.equals(that.pname) : that.pname != null) return false;
-        if (describe != null ? !describe.equals(that.describe) : that.describe != null) return false;
+        if (shortDesc != null ? !shortDesc.equals(that.shortDesc) : that.shortDesc != null) return false;
+        if (longDesc != null ? !longDesc.equals(that.longDesc) : that.longDesc != null) return false;
         if (ename != null ? !ename.equals(that.ename) : that.ename != null) return false;
         if (wname != null ? !wname.equals(that.wname) : that.wname != null) return false;
         if (sname != null ? !sname.equals(that.sname) : that.sname != null) return false;
@@ -196,6 +218,8 @@ public class RoomEntity {
         if (sename != null ? !sename.equals(that.sename) : that.sename != null) return false;
         if (outname != null ? !outname.equals(that.outname) : that.outname != null) return false;
         if (inname != null ? !inname.equals(that.inname) : that.inname != null) return false;
+        if (noFight != null ? !noFight.equals(that.noFight) : that.noFight != null) return false;
+        if (noMagic != null ? !noMagic.equals(that.noMagic) : that.noMagic != null) return false;
 
         return true;
     }
@@ -204,9 +228,9 @@ public class RoomEntity {
     public int hashCode() {
         int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (cname != null ? cname.hashCode() : 0);
         result = 31 * result + (pname != null ? pname.hashCode() : 0);
-        result = 31 * result + (describe != null ? describe.hashCode() : 0);
+        result = 31 * result + (shortDesc != null ? shortDesc.hashCode() : 0);
+        result = 31 * result + (longDesc != null ? longDesc.hashCode() : 0);
         result = 31 * result + (ename != null ? ename.hashCode() : 0);
         result = 31 * result + (wname != null ? wname.hashCode() : 0);
         result = 31 * result + (sname != null ? sname.hashCode() : 0);
@@ -217,6 +241,8 @@ public class RoomEntity {
         result = 31 * result + (sename != null ? sename.hashCode() : 0);
         result = 31 * result + (outname != null ? outname.hashCode() : 0);
         result = 31 * result + (inname != null ? inname.hashCode() : 0);
+        result = 31 * result + (noFight != null ? noFight.hashCode() : 0);
+        result = 31 * result + (noMagic != null ? noMagic.hashCode() : 0);
         return result;
     }
 }
