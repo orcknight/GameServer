@@ -1,10 +1,12 @@
 package com.tian.server.util;
 
 import com.tian.server.entity.PlayerEntity;
+import com.tian.server.entity.RoomGateEntity;
 import com.tian.server.model.PlayerLocation;
 import com.tian.server.model.RoomObjects;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by PPX on 2017/6/13.
@@ -159,6 +161,25 @@ public class CmdUtil {
                 }
                 sb.append(player.getName());
                 sb.append(":look /user/user#" + player.getId());
+                temp++;
+            }
+
+            sb.append("\r\n");
+        }
+
+        Map<String, RoomGateEntity> roomGates = roomObjects.getGates();
+        if(roomGates != null){
+
+            sb.append("\u001B005");
+            int temp = 0;
+            for (RoomGateEntity gate : roomGates.values()) {
+
+                if(temp > 0){
+
+                    sb.append(contact);
+                }
+                sb.append(gate.getName());
+                sb.append(":look /gate/" + gate.getName());
                 temp++;
             }
 

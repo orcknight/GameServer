@@ -83,11 +83,26 @@
         <property name="jing">
             <column name="jing" sql-type="int(11)" not-null="false"/>
         </property>
+        <property name="maxJingLi">
+            <column name="maxJingLi" sql-type="int(11)" not-null="false"/>
+        </property>
+        <property name="effJingLi">
+            <column name="effJingLi" sql-type="int(11)" not-null="false"/>
+        </property>
+        <property name="jingLi">
+            <column name="jingLi" sql-type="int(11)" not-null="false"/>
+        </property>
         <property name="food">
             <column name="food" sql-type="int(11)" not-null="false"/>
         </property>
         <property name="water">
             <column name="water" sql-type="int(11)" not-null="false"/>
+        </property>
+        <property name="combatExp">
+            <column name="combatExp" sql-type="int(11)" not-null="false"/>
+        </property>
+        <property name="isAlive">
+            <column name="isAlive" sql-type="tinyint(4)" not-null="false"/>
         </property>
     </class>
 </hibernate-mapping>

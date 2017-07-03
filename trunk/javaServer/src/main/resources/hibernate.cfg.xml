@@ -37,6 +37,8 @@
         <mapping resource="ServerInfoEntity.hbm.xml"/>
         <mapping class="com.tian.server.entity.UserEntity"/>
         <mapping resource="UserEntity.hbm.xml"/>
+        <mapping class="com.tian.server.entity.RoomGateEntity"/>
+        <mapping resource="RoomGateEntity.hbm.xml"/>
         <!-- <property name="connection.username"/> -->
         <!-- <property name="connection.password"/> -->
 

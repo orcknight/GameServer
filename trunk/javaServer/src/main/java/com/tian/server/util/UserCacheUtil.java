@@ -1,10 +1,7 @@
 package com.tian.server.util;
 
 import com.corundumstudio.socketio.SocketIOClient;
-import com.tian.server.entity.ItemEntity;
-import com.tian.server.entity.PlayerEntity;
-import com.tian.server.entity.RoomContentEntity;
-import com.tian.server.entity.RoomEntity;
+import com.tian.server.entity.*;
 import com.tian.server.model.PlayerCache;
 import com.tian.server.model.RoomObjects;
 
@@ -69,6 +66,32 @@ public class UserCacheUtil {
             item.setId(IdUtil.getUnUsedId());
             savedItems.add(item);
             roomObjects.setItems(savedItems);
+        }
+    }
+
+    public static void initRoomGates(List<RoomGateEntity> gates){
+
+        for(RoomGateEntity gate : gates){
+
+            //初始化入口房间
+            RoomObjects roomObjects = roomObjectsCache.get(gate.getEnterRoom());
+            if(roomObjects == null){
+
+                roomObjects = new RoomObjects();
+            }
+
+            Map<String, RoomGateEntity> gatesMap = roomObjects.getGates();
+            gatesMap.put(gate.getEnterDirection(), gate);
+
+            //初始化出口房间
+            roomObjects = roomObjectsCache.get(gate.getExitRoom());
+            if(roomObjects == null){
+
+                roomObjects = new RoomObjects();
+            }
+
+            gatesMap = roomObjects.getGates();
+            gatesMap.put(gate.getExitDirection(), gate);
         }
     }
 

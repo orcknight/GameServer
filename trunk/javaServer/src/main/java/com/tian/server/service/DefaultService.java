@@ -4,10 +4,8 @@ import com.corundumstudio.socketio.SocketIOClient;
 import com.tian.server.dao.ItemDao;
 import com.tian.server.dao.RoomContentDao;
 import com.tian.server.dao.RoomDao;
-import com.tian.server.entity.ItemEntity;
-import com.tian.server.entity.RoomContentEntity;
-import com.tian.server.entity.RoomEntity;
-import com.tian.server.entity.UserEntity;
+import com.tian.server.dao.RoomGateDao;
+import com.tian.server.entity.*;
 import com.tian.server.model.PlayerCache;
 import com.tian.server.model.RoomObjects;
 import com.tian.server.util.CmdUtil;
@@ -56,6 +54,11 @@ public class DefaultService extends BaseService{
             List<ItemEntity> items = itemDao.getList();
 
             UserCacheUtil.initRoomObjectsCache(roomContents, items);
+
+            //初始化门
+            RoomGateDao roomGateDao = new RoomGateDao();
+            List<RoomGateEntity> roomGates = roomGateDao.getList();
+            UserCacheUtil.initRoomGates(roomGates);
         }
 
         //初始完数据以后生成定时器

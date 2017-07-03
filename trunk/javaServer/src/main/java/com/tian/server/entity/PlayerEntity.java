@@ -37,9 +37,13 @@ public class PlayerEntity {
     private Integer maxJing;
     private Integer effJing;
     private Integer jing;
+    private Integer maxJingLi;
+    private Integer effJingLi;
+    private Integer jingLi;
     private Integer food;
     private Integer water;
     private Integer combatExp;
+    private Byte isAlive;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -332,6 +336,36 @@ public class PlayerEntity {
     }
 
     @Basic
+    @Column(name = "maxJingLi", nullable = true)
+    public Integer getMaxJingLi() {
+        return maxJingLi;
+    }
+
+    public void setMaxJingLi(Integer maxJingLi) {
+        this.maxJingLi = maxJingLi;
+    }
+
+    @Basic
+    @Column(name = "jingLi", nullable = true)
+    public Integer getJingLi() {
+        return jingLi;
+    }
+
+    public void setJingLi(Integer jingLi) {
+        this.jingLi = jingLi;
+    }
+
+    @Basic
+    @Column(name = "effJingLi", nullable = true)
+    public Integer getEffJingLi() {
+        return effJingLi;
+    }
+
+    public void setEffJingLi(Integer effJingLi) {
+        this.effJingLi = effJingLi;
+    }
+
+    @Basic
     @Column(name = "food", nullable = true)
     public Integer getFood() {
         return food;
@@ -361,6 +395,16 @@ public class PlayerEntity {
         this.combatExp = combatExp;
     }
 
+    @Basic
+    @Column(name = "isAlive", nullable = true)
+    public Byte getIsAlive() {
+        return isAlive;
+    }
+
+    public void setIsAlive(Byte isAlive) {
+        this.isAlive = isAlive;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -388,6 +432,7 @@ public class PlayerEntity {
         if (role != null ? !role.equals(that.role) : that.role != null) return false;
         if (wux != null ? !wux.equals(that.wux) : that.wux != null) return false;
         if (combatExp != null ? !combatExp.equals(that.combatExp) : that.combatExp != null) return false;
+        if (isAlive != null ? !combatExp.equals(that.isAlive) : that.isAlive != null) return false;
 
         return true;
     }
@@ -414,6 +459,7 @@ public class PlayerEntity {
         result = 31 * result + (role != null ? role.hashCode() : 0);
         result = 31 * result + (wux != null ? wux.hashCode() : 0);
         result = 31 * result + (combatExp != null ? combatExp.hashCode() : 0);
+        result = 31 * result + (isAlive != null ? isAlive.hashCode() : 0);
         return result;
     }
 }
