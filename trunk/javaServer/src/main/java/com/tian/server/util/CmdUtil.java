@@ -168,7 +168,7 @@ public class CmdUtil {
         }
 
         Map<String, RoomGateEntity> roomGates = roomObjects.getGates();
-        if(roomGates != null){
+        if(roomGates.size() > 0){
 
             sb.append("\u001B005");
             int temp = 0;
@@ -179,7 +179,7 @@ public class CmdUtil {
                     sb.append(contact);
                 }
                 sb.append(gate.getName());
-                sb.append(":look /gate/" + gate.getName());
+                sb.append(":look /gate/gate#" + gate.getName());
                 temp++;
             }
 

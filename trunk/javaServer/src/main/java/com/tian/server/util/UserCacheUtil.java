@@ -82,6 +82,7 @@ public class UserCacheUtil {
 
             Map<String, RoomGateEntity> gatesMap = roomObjects.getGates();
             gatesMap.put(gate.getEnterDirection(), gate);
+            roomObjectsCache.put(gate.getEnterRoom(), roomObjects);
 
             //初始化出口房间
             roomObjects = roomObjectsCache.get(gate.getExitRoom());
@@ -92,6 +93,7 @@ public class UserCacheUtil {
 
             gatesMap = roomObjects.getGates();
             gatesMap.put(gate.getExitDirection(), gate);
+            roomObjectsCache.put(gate.getExitRoom(), roomObjects);
         }
     }
 

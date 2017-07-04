@@ -6,8 +6,12 @@ import junit.framework.TestCase;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.junit.Test;
+import org.luaj.vm2.Globals;
+import org.luaj.vm2.LuaValue;
+import org.luaj.vm2.lib.jse.JsePlatform;
 
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
 import java.util.UUID;
 
@@ -27,8 +31,22 @@ public class RoomDaoTest extends TestCase {
     @Test
     public void testGetList() throws Exception {
 
+        String luaPath = this.getClass().getResource("/lua/login.lua").getPath();
+         //= "resources/lua/login.lua";   //lua脚本文件所在路径
+        Globals globals = JsePlatform.standardGlobals();
+        //加载脚本文件login.lua，并编译
+        globals.loadfile(luaPath).call();
+        //获取无参函数hello
+        LuaValue func = globals.get(LuaValue.valueOf("luaPrint"));
+        //执行hello方法
+        func.call();
+        //获取带参函数test
+        LuaValue func1 = globals.get(LuaValue.valueOf("test"));
+        //执行test方法,传入String类型的参数参数
+        String data = func1.call(LuaValue.valueOf("I'am from Java!")).toString();
+        //打印lua函数回传的数据
 
-        UUID uuid = UUID.randomUUID();
+        /*UUID uuid = UUID.randomUUID();
         System.out.println(uuid);
 
         ItemDao itemDao = new ItemDao();
@@ -43,7 +61,7 @@ public class RoomDaoTest extends TestCase {
                 //System.out.println(jsonObject.get("tile"));
                 //System.out.println(jsonObject.get("name"));
             }
-        }
+        }*/
 
     }
 

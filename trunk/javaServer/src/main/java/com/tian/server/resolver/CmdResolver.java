@@ -15,7 +15,7 @@ public class CmdResolver {
     private String[] moveCmdArray = new String[] {"east", "west", "south", "north", "northeast", "northwest",
     "southeast", "southwest", "in", "out"};
     private String[] chatCmdArray = new String[] {"liaotian", "chat"};
-    private String[] lookCmdArray = new String[] {"look"};
+    private String[] lookCmdArray = new String[] {"look", "open", "close"};
 
     public CmdResolver(SocketIOClient server){
 

@@ -62,7 +62,7 @@ public class DefaultService extends BaseService{
         }
 
         //初始完数据以后生成定时器
-        Timer timer = new Timer();
+       /* Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             public void run() {
 
@@ -95,7 +95,7 @@ public class DefaultService extends BaseService{
                 }
 
             }
-        }, 2 * 1000, 2 * 1000);
+        }, 2 * 1000, 2 * 1000);*/
     }
 
 }

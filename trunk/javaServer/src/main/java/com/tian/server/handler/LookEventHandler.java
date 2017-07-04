@@ -22,6 +22,12 @@ public class LookEventHandler implements CmdEventHandler{
         if(dataArray[0].equals("look")){
 
             lookService.look(dataArray[1]);
+        }else if(dataArray[0].equals("open")){
+
+            lookService.openGate(dataArray[1]);
+        }else if(dataArray[0].equals("close")){
+
+            lookService.closeGate(dataArray[1]);
         }
 
 

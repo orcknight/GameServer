@@ -4,6 +4,7 @@ import com.tian.server.entity.ItemEntity;
 import com.tian.server.entity.PlayerEntity;
 import com.tian.server.entity.RoomGateEntity;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,11 @@ public class RoomObjects {
     private Map<String, RoomGateEntity> gates; //门
 
     public List<PlayerEntity> getPlayers(){
+
+        if(this.players == null){
+
+            this.players = new ArrayList<PlayerEntity>();
+        }
 
         return this.players;
     }
