@@ -1,5 +1,6 @@
 package com.tian.test;
 
+import com.tian.server.common.EqptParts;
 import com.tian.server.dao.ItemDao;
 import com.tian.server.entity.ItemEntity;
 import junit.framework.TestCase;
@@ -31,7 +32,7 @@ public class RoomDaoTest extends TestCase {
     @Test
     public void testGetList() throws Exception {
 
-        String luaPath = this.getClass().getResource("/lua/login.lua").getPath();
+        /*String luaPath = this.getClass().getResource("/lua/login.lua").getPath();
          //= "resources/lua/login.lua";   //lua脚本文件所在路径
         Globals globals = JsePlatform.standardGlobals();
         //加载脚本文件login.lua，并编译
@@ -44,7 +45,12 @@ public class RoomDaoTest extends TestCase {
         LuaValue func1 = globals.get(LuaValue.valueOf("test"));
         //执行test方法,传入String类型的参数参数
         String data = func1.call(LuaValue.valueOf("I'am from Java!")).toString();
-        //打印lua函数回传的数据
+        //打印lua函数回传的数据*/
+
+        System.out.println(EqptParts.HEAD.toInteger());
+        System.out.println(EqptParts.RIGHTHAND.toInteger());
+
+
 
         /*UUID uuid = UUID.randomUUID();
         System.out.println(uuid);

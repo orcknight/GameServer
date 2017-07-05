@@ -4,6 +4,7 @@ import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIONamespace;
 import com.tian.server.entity.PlayerEntity;
 import com.tian.server.entity.RoomEntity;
+import com.tian.server.entity.RoomGateEntity;
 import com.tian.server.model.PlayerCache;
 import com.tian.server.model.PlayerLocation;
 import com.tian.server.model.RoomObjects;
@@ -81,7 +82,12 @@ public class MoveService extends BaseService{
         //登录了就进行移动操作
         if(playerCacheMap.containsKey(this.userId)){
 
-            //发送断开连接信息,并且断开连接，并重新缓存用户数据
+            //检查是否可以移动
+            if(!checkMove(direction)){
+                return;
+            }
+
+            //通过用户的移动方向，获取目标房间
             PlayerCache playerCache = playerCacheMap.get(this.userId);
             RoomEntity room = playerCache.getRoom();
             String destRoomName = "";
@@ -277,6 +283,44 @@ public class MoveService extends BaseService{
         }
 
         return cnName;
+    }
+
+    /**
+     * 检查玩家是否可以向某个方向移动
+     * @param direction 移动的方向
+     * @return true ： 可以移动 false ： 不能移动
+     */
+    private Boolean checkMove(String direction){
+
+        //检查下有没有门阻挡
+
+        //检查用户是否已经登陆
+        Map<Integer, PlayerCache> playerCacheMap = UserCacheUtil.getPlayerCache();
+        PlayerCache playerCache = playerCacheMap.get(this.userId);
+        RoomEntity room = playerCache.getRoom();
+        Map<String, RoomObjects> roomObjectsMap = UserCacheUtil.getRoomObjectsCache();
+        RoomObjects roomObjects = roomObjectsMap.get(room.getName());
+        if(roomObjects != null){
+
+            RoomGateEntity gate = roomObjects.getGates().get(direction);
+            if(gate != null){
+
+                if(gate.getStatus() == 1){
+
+                    return true;
+                }else{
+
+                    String name = gate.getName();
+                    name = name.replaceAll("【", "");
+                    name = name.replaceAll("】", "");
+
+                    sendMsg(CmdUtil.getScreenLine("你必须先把" + name + "打开！"));
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
 }

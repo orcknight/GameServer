@@ -25,6 +25,8 @@ public class RoomEntity {
     private String inname;
     private Integer noFight;
     private Integer noMagic;
+    private String outdoors;
+    private Byte isStartRoom;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -194,6 +196,26 @@ public class RoomEntity {
 
     public void setNoMagic(Integer noMagic) {
         this.noMagic = noMagic;
+    }
+
+    @Basic
+    @Column(name = "outdoors", nullable = true)
+    public String getOutdoors() {
+        return outdoors;
+    }
+
+    public void setOutdoors(String outdoors) {
+        this.outdoors = outdoors;
+    }
+
+    @Basic
+    @Column(name = "isStartRoom", nullable = true)
+    public Byte getIsStartRoom() {
+        return isStartRoom;
+    }
+
+    public void setIsStartRoom(Byte isStartRoom) {
+        this.isStartRoom = isStartRoom;
     }
 
     @Override
