@@ -56,5 +56,11 @@
         <property name="noMagic">
             <column name="noMagic" sql-type="int(11)" not-null="true"/>
         </property>
+        <property name="outdoors">
+            <column name="outdoors" sql-type="varchar(64)" not-null="true"/>
+        </property>
+        <property name="isStartRoom">
+            <column name="isStartRoom" sql-type="tinyint(4)" not-null="true"/>
+        </property>
     </class>
 </hibernate-mapping>

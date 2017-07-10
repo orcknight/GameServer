@@ -9,3 +9,57 @@ mapping attr = ([
         "per" : "容貌",
         "spi" : "灵性",
 ]);
+
+
+mapping valid_type = ([
+        "unarmed":      "拳脚", "medical":      "医术",
+        "claw":         "爪功", "cuff":         "拳功",
+        "finger":       "指功", "strike":       "掌功",
+        "hand":         "手功", "leg":          "腿功",
+        "sword":        "剑法", "blade":        "刀法",
+        "dagger":       "短兵", "brush":        "笔法",
+        "spear":        "枪法", "hook":         "钩法",
+        "stick":        "棒法", "staff":        "杖法",
+        "club" :        "棍法", "throwing":     "暗器",
+        "whip":         "鞭法", "axe":          "斧法",
+        "hammer":       "锤法", "force":        "内功",
+        "dodge":        "轻功", "parry":        "招架",
+        "poison":       "毒技", "cooking":      "厨艺",
+        "chuixiao-jifa":"吹萧", "guzheng-jifa": "古筝",
+        "tanqin-jifa":  "弹琴",
+]);
+
+
+"add_skill"     : "所有技能",                   // weapon/rings 终极兵器
+"add_damage"    : "追加伤害",                   // weapon 终极兵器
+"reduce_damage" : "化解伤害",                   // armor 终极防具 
+
+
+１）基本轻功 (dodge)	    ８）  基本拳法 (cuff) 
+  ２）基本内功 (force)	    ９）  基本刀法 (blade) 
+  ３）基本招架 (parry)	    １０）基本棒法 (stick) 
+  ４）基本爪法 (claw)	     １１）基本棍法 (club) 
+  ５）基本手法 (hand)	     １２）基本杖法 (staff) 
+  ６）基本掌法 (strike)	   １３）基本剑法 (sword) 
+  ７）基本指法 (finger)	   １４）基本暗器 (throwing) 
+
+
+游戏攻击实现路径
+1. 首先玩家下达fight kill等指令，如果对方是玩家，则需要对方同意才能进行战斗
+然后通过feature/Attack.c里面的fight_ob函数把对方加入到玩家的enemy列表里面, kill的话加入到killer列表里面
+2. 每个npc都有心跳函数，当进入心跳函数的时候，执行攻击命令
+inherit/Char.c heart_beat函数，在里面执行攻击命令
+3. 执行攻击函数attack
+feature/Attack.c 里面的attack函数
+4. 执行攻击函数fight
+adm/deamons/Combatd.c 里面的fight函数
+
+
+skills map 存放的是 map 技能名：等级
+learned map 存放的是玩家已经学习过的技能 技能名：等级
+skill_map map 存放的连招 技能名：技能名
+skill_prepare 为基本武功设置激发武功 基本技能名字：技能名 如： prepare_skill("strike", "dragon-strike");
+
+all_skills存放的是技能的输出参数等 ({ attack, dodge, parry, damage, force, difficult, rank, attribute });
+如：#技能/攻击/躲闪/招架/伤害/内功/难度/级别/属性 #终极前四项COMBAT之和1100
+yinyang-shiertian/600/600/600/600/600/6000/ultimate/public

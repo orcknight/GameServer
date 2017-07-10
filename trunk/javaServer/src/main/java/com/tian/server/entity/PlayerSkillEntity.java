@@ -3,14 +3,15 @@ package com.tian.server.entity;
 import javax.persistence.*;
 
 /**
- * Created by PPX on 2017/6/12.
+ * Created by PPX on 2017/7/7.
  */
 @Entity
-@Table(name = "player_kongfu", schema = "bdm25683027_db", catalog = "")
-public class PlayerKongfuEntity {
+@Table(name = "player_skill", schema = "bdm25683027_db", catalog = "")
+public class PlayerSkillEntity {
     private int id;
     private Integer playerId;
-    private Integer kongfuId;
+    private String skillName;
+    private Integer level;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -33,13 +34,23 @@ public class PlayerKongfuEntity {
     }
 
     @Basic
-    @Column(name = "kongfuId", nullable = true)
-    public Integer getKongfuId() {
-        return kongfuId;
+    @Column(name = "skillName", nullable = true, length = 128)
+    public String getSkillName() {
+        return skillName;
     }
 
-    public void setKongfuId(Integer kongfuId) {
-        this.kongfuId = kongfuId;
+    public void setSkillName(String skillName) {
+        this.skillName = skillName;
+    }
+
+    @Basic
+    @Column(name = "level", nullable = true)
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 
     @Override
@@ -47,11 +58,12 @@ public class PlayerKongfuEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        PlayerKongfuEntity that = (PlayerKongfuEntity) o;
+        PlayerSkillEntity that = (PlayerSkillEntity) o;
 
         if (id != that.id) return false;
         if (playerId != null ? !playerId.equals(that.playerId) : that.playerId != null) return false;
-        if (kongfuId != null ? !kongfuId.equals(that.kongfuId) : that.kongfuId != null) return false;
+        if (skillName != null ? !skillName.equals(that.skillName) : that.skillName != null) return false;
+        if (level != null ? !level.equals(that.level) : that.level != null) return false;
 
         return true;
     }
@@ -60,7 +72,8 @@ public class PlayerKongfuEntity {
     public int hashCode() {
         int result = id;
         result = 31 * result + (playerId != null ? playerId.hashCode() : 0);
-        result = 31 * result + (kongfuId != null ? kongfuId.hashCode() : 0);
+        result = 31 * result + (skillName != null ? skillName.hashCode() : 0);
+        result = 31 * result + (level != null ? level.hashCode() : 0);
         return result;
     }
 }
