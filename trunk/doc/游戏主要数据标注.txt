@@ -63,3 +63,30 @@ skill_prepare 为基本武功设置激发武功 基本技能名字：技能名 �
 all_skills存放的是技能的输出参数等 ({ attack, dodge, parry, damage, force, difficult, rank, attribute });
 如：#技能/攻击/躲闪/招架/伤害/内功/难度/级别/属性 #终极前四项COMBAT之和1100
 yinyang-shiertian/600/600/600/600/600/6000/ultimate/public
+
+
+actions 每中生物都有自己的default_actions 比如在Human.c中：
+#define BASE_WEIGHT 40000
+
+inherit F_DBASE;
+inherit F_SKILL;
+
+mapping *combat_action = ({
+([      "action":               "$N挥拳攻击$n的$l",
+        "damage_type":  "瘀伤",
+]),
+([      "action":               "$N往$n的$l一抓",
+        "damage_type":  "抓伤",
+]),
+([      "action":               "$N往$n的$l狠狠地踢了一脚",
+        "damage_type":  "瘀伤",
+]),
+([      "action":               "$N提起拳头往$n的$l捶去",
+        "damage_type":  "瘀伤",
+]),
+([      "action":               "$N对准$n的$l用力挥出一拳",
+        "damage_type":  "瘀伤",
+]),
+});
+
+如果技能里查询不到action或者是使用unarmed基本拳脚攻击就用这些action
