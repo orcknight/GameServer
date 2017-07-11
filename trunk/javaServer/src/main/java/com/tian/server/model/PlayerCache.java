@@ -145,7 +145,22 @@ public class PlayerCache implements Living {
         this.limb_damage.put("爪子", 40);
     }
 
+    public void addEnemy(Living enemy){
+
+        if(this.enemy == null){
+
+            this.enemy = new ArrayList<Living>();
+        }
+
+        this.enemy.add(enemy);
+    }
+
     public void heartBeat() {
+
+        if(enemy == null){
+
+            return;
+        }
 
         if (enemy.size() > 0) {
 

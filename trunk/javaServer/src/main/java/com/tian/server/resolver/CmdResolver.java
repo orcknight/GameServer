@@ -16,6 +16,7 @@ public class CmdResolver {
     "southeast", "southwest", "in", "out"};
     private String[] chatCmdArray = new String[] {"liaotian", "chat"};
     private String[] lookCmdArray = new String[] {"look", "open", "close"};
+    private String[] fightCmdArray = new String[] {"fight"};
 
     public CmdResolver(SocketIOClient server){
 
@@ -33,6 +34,7 @@ public class CmdResolver {
         Arrays.sort(moveCmdArray);
         Arrays.sort(chatCmdArray);
         Arrays.sort(lookCmdArray);
+        Arrays.sort(fightCmdArray);
 
         if(str.length() == 0){
 
@@ -50,6 +52,9 @@ public class CmdResolver {
         }else if(Arrays.binarySearch(lookCmdArray, str.split(" ")[0]) > -1){
 
             handlerStr = "Look";
+        }else if(Arrays.binarySearch(fightCmdArray, str.split(" ")[0]) > -1){
+
+            handlerStr = "Combat";
         }
 
         try {

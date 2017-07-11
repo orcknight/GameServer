@@ -62,7 +62,7 @@ public class DefaultService extends BaseService{
         }
 
         //初始完数据以后生成定时器
-       /Timer timer = new Timer();
+        Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             public void run() {
 
@@ -90,9 +90,12 @@ public class DefaultService extends BaseService{
                         continue;
                     }
 
+                    player.heartBeat();
+                    return;
+
                     //准备状态字符串，然后发送消息
-                    String msg = CmdUtil.getPlayerStatLine(player.getPlayer());
-                    client.sendEvent("stream", msg);
+                    /*String msg = CmdUtil.getPlayerStatLine(player.getPlayer());
+                    client.sendEvent("stream", msg);*/
                 }
 
             }
