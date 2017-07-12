@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by PPX on 2017/6/15.
  */
-public class RoomDao extends BaseDao{
+public class RoomDao extends BaseDao {
 
     public List<RoomEntity> getList(){
 

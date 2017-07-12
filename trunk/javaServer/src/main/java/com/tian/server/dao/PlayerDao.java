@@ -11,12 +11,12 @@ import java.util.List;
 /**
  * Created by PPX on 2017/6/9.
  */
-public class PlayerDao extends BaseDao{
+public class PlayerDao extends BaseDao {
 
     public void add(PlayerEntity player){
 
         Session session = SessionUtil.getSession();
-        Transaction transaction=session.getTransaction();
+        Transaction transaction = session.getTransaction();
         //开启事务
         transaction.begin();
         //插入数据

@@ -4,11 +4,9 @@ package com.tian.server.service;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.tian.server.dao.PlayerDao;
 import com.tian.server.dao.PlayerInfoDao;
+import com.tian.server.dao.PlayerSkillDao;
 import com.tian.server.dao.UserDao;
-import com.tian.server.entity.PlayerEntity;
-import com.tian.server.entity.PlayerInfoEntity;
-import com.tian.server.entity.RoomEntity;
-import com.tian.server.entity.UserEntity;
+import com.tian.server.entity.*;
 import com.tian.server.model.PlayerCache;
 import com.tian.server.model.PlayerLocation;
 import com.tian.server.model.RoomObjects;
@@ -73,6 +71,9 @@ public class UserService extends  BaseService{
         //获取玩家辅助信息并缓存
         PlayerInfoEntity playerInfo = playerInfoDao.getByPlayerId(player.getId());
         playerCache.setPlayerInfo(playerInfo);
+
+        //载入玩家技能
+        loadUserSkill(playerCache);
 
         //缓存玩家信息
         Map<String, RoomEntity> roomMap = UserCacheUtil.getMapCache();
@@ -321,5 +322,13 @@ public class UserService extends  BaseService{
     private void broadcastLogin(){
 
 
+    }
+
+    private void loadUserSkill(PlayerCache playerCache){
+
+        PlayerSkillDao playerSkillDao = new PlayerSkillDao();
+        List<PlayerSkillEntity> playerSkillEntitiesList = playerSkillDao.getListByPlayerId(playerCache.getPlayer().getId());
+
+        playerCache.initSkills(playerSkillEntitiesList);
     }
 }

@@ -33,9 +33,12 @@ public class PlayerCache implements Living {
 
     private List<Living> enemy;
 
-    private Map<String, PlayerSkillEntity> skills;
-
     private Race race;
+
+    private Map<String, Integer> skills; //存放的是 技能名：等级
+    private Map<String, Integer> learned; //存放的是玩家已经学习过的技能 技能名：等级
+    private Map<String, String> skillMap; //存放的连招 技能名：技能名
+    private Map<String, String> skillPrepare; //为基本武功设置激发武功 基本技能名字：技能名 如： prepare_skill("strike", "dragon-strike");
 
     Map<String, Integer> limb_damage;
 
@@ -115,8 +118,57 @@ public class PlayerCache implements Living {
         return this.enemy;
     }
 
+    public Map<String, Integer> getSkills(){
+
+        if(this.skills == null){
+
+            this.skills = new HashMap<String, Integer>();
+        }
+        return this.skills;
+    }
+
+    public Map<String, Integer> getLearned(){
+
+        if(this.learned == null){
+
+            this.learned = new HashMap<String, Integer>();
+        }
+        return this.learned;
+    }
+
+    public Map<String, String> getSkillMap(){
+
+        if(this.skillMap == null){
+
+            this.skillMap = new HashMap<String, String>();
+        }
+        return this.skillMap;
+    }
+
+    public Map<String, String> getSkillPrepare(){
+
+        if(this.skillPrepare == null){
+
+            this.skillPrepare = new HashMap<String, String>();
+        }
+        return this.skillPrepare;
+    }
+
+    public void initSkills(List<PlayerSkillEntity> playerSkillEntityList){
+
+        Map<String, Integer> refSkill = getSkills();
+        Map<String, Integer> refLearned = getLearned();
+        for(PlayerSkillEntity playerSkillEntity : playerSkillEntityList){
+
+            refSkill.put(playerSkillEntity.getSkillName(), playerSkillEntity.getLevel());
+            refLearned.put(playerSkillEntity.getSkillName(), playerSkillEntity.getLevel());
+        }
+
+    }
+
     public void initLimbDamage() {
 
+        this.limb_damage = new HashMap<String, Integer>();
         // 人类身体部位
         this.limb_damage.put("头部", 100);
         this.limb_damage.put("颈部", 90);
@@ -134,15 +186,6 @@ public class PlayerCache implements Living {
         this.limb_damage.put("右腿", 50);
         this.limb_damage.put("左脚", 35);
         this.limb_damage.put("右脚", 40);
-
-        //动物身体部位
-        this.limb_damage.put("身体", 80);
-        this.limb_damage.put("前脚", 40);
-        this.limb_damage.put("后脚", 50);
-        this.limb_damage.put("腿部", 40);
-        this.limb_damage.put("尾巴", 10);
-        this.limb_damage.put("翅膀", 50);
-        this.limb_damage.put("爪子", 40);
     }
 
     public void addEnemy(Living enemy){
@@ -166,7 +209,7 @@ public class PlayerCache implements Living {
 
 
             StringBuffer sb = new StringBuffer();
-            String result = "";
+            String result;
 
             //获取准备技能 prepare技能
 
@@ -222,6 +265,7 @@ public class PlayerCache implements Living {
 
             damage += (damageBonus + r.nextInt(damageBonus)) / 2;
 
+            initLimbDamage();
             damage += (damage * limb_damage.get(limb)) / 100;
 
             if (damage > 0) {
@@ -233,8 +277,10 @@ public class PlayerCache implements Living {
 
                 result = sb.toString();
 
-                result.replaceAll("$l", limb);
-                result.replaceAll("$w", "拳头");
+                result = result.replace("$l", limb);
+                result = result.replace("$w", "拳头");
+                result = result.replace("$N", player.getName());
+                result = result.replace("$n", ((PlayerCache) enemy.get(0)).getPlayer().getName());
 
                 System.out.println(result);
                 System.out.println(player.getName() + "对" + ((PlayerCache) enemy.get(0)).getPlayer().getName() + "造成" + damage + "点伤害");

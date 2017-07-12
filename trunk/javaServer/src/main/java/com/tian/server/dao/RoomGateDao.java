@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by PPX on 2017/7/3.
  */
-public class RoomGateDao extends BaseDao{
+public class RoomGateDao extends BaseDao {
 
     public List<RoomGateEntity> getList(){
 

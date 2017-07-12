@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by PPX on 2017/6/22.
  */
-public class ItemDao extends BaseDao{
+public class ItemDao extends BaseDao {
 
     public List<ItemEntity> getList(){
 

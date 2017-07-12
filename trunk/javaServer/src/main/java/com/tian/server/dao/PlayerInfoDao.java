@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by PPX on 2017/6/15.
  */
-public class PlayerInfoDao extends BaseDao{
+public class PlayerInfoDao extends BaseDao {
 
     public void add(PlayerInfoEntity playerInfo){
 

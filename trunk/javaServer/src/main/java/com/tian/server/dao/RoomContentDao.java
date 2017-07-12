@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by PPX on 2017/6/26.
  */
-public class RoomContentDao extends BaseDao{
+public class RoomContentDao extends BaseDao {
 
     public List<RoomContentEntity> getList(){
 

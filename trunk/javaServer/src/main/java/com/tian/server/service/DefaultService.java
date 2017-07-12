@@ -91,7 +91,6 @@ public class DefaultService extends BaseService{
                     }
 
                     player.heartBeat();
-                    return;
 
                     //准备状态字符串，然后发送消息
                     /*String msg = CmdUtil.getPlayerStatLine(player.getPlayer());

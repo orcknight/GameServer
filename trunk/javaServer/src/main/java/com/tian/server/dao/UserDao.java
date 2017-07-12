@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by PPX on 2017/6/9.
  */
-public class UserDao extends BaseDao{
+public class UserDao extends BaseDao {
 
     public UserEntity getByNameAndPassword(String name, String password){
 

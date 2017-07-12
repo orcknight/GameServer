@@ -9,6 +9,6 @@ import org.hibernate.service.ServiceRegistry;
 /**
  * Created by PPX on 2017/6/9.
  */
-public class BaseDao{
+public class BaseDao {
 
 }

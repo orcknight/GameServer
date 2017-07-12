@@ -31,8 +31,8 @@ public class CombatService extends  BaseService {
 
             if(player.getEuid().equals(euid)){
 
-                me.addEnemy(UserCacheUtil.getPlayerCache().get(player.getId()));
-                UserCacheUtil.getPlayerCache().get(player.getId()).addEnemy(me);
+                me.addEnemy(UserCacheUtil.getPlayerCache().get(player.getUserId()));
+                UserCacheUtil.getPlayerCache().get(player.getUserId()).addEnemy(me);
                 break;
             }
         }
