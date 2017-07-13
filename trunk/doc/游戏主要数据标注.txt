@@ -30,6 +30,36 @@ mapping valid_type = ([
 ]);
 
 
+mapping dict = ([
+        "axe"           :"斧",
+        "bow"           :"弓",
+        "sword"         :"剑",
+        "blade"         :"刀",
+        "club"          :"棍",
+        "dagger"        :"匕首",
+        "fork"          :"叉",
+        "hammer"        :"锤",
+        "staff"         :"杖",
+        "throwing"      :"暗器",
+        "whip"          :"鞭",
+        "xsword"        :"箫",
+        "head"          :"头盔",
+        "neck"          :"项链",
+        "cloth"         :"衣服",
+        "charm"         :"符文",
+        "rings"         :"戒指",
+        "armor"         :"护甲",
+        "surcoat"       :"披风",
+        "waist"         :"腰带",
+        "wrists"        :"护腕",
+        "shield"        :"盾甲",
+        "hands"         :"铁掌",
+        "boots"         :"靴子",
+        "finger"        :"指套",
+        "all"           :"所有类型",
+]);
+
+
 "add_skill"     : "所有技能",                   // weapon/rings 终极兵器
 "add_damage"    : "追加伤害",                   // weapon 终极兵器
 "reduce_damage" : "化解伤害",                   // armor 终极防具 

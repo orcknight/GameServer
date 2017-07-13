@@ -162,6 +162,8 @@ public class PlayerCache implements Living {
 
             refSkill.put(playerSkillEntity.getSkillName(), playerSkillEntity.getLevel());
             refLearned.put(playerSkillEntity.getSkillName(), playerSkillEntity.getLevel());
+
+            System.out.println(playerSkillEntity.getSkillName() + "-" + playerSkillEntity.getLevel());
         }
 
     }
