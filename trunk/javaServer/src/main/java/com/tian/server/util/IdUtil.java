@@ -5,26 +5,21 @@ package com.tian.server.util;
  */
 public class IdUtil {
 
-    private static byte[] idPool = new byte[3000];
+    private static CustomUUID customUUID = null;
+    public static CustomUUID getInstance(){
 
-    public static int getUnUsedId(){
+        if(customUUID == null){
 
-        idPool[0] =1;
-        for(int index = 0; index < 3000; index++){
-
-            if(idPool[index] == 0){
-
-                return index;
-            }
+            customUUID = new CustomUUID(1, 1);
         }
 
-        return 0;
+        return customUUID;
     }
 
-    public static void releaseId(int index){
+    public static long getUUID(){
 
-        idPool[index] = 0;
+        CustomUUID uuid = getInstance();
+        return uuid.generate();
     }
-
 
 }

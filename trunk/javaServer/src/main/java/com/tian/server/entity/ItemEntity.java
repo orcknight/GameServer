@@ -17,6 +17,7 @@ public class ItemEntity implements  Cloneable{
     private String desc;
     private String type;
     private String jsonAttr;
+    private Long uuid;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -166,5 +167,13 @@ public class ItemEntity implements  Cloneable{
         return item;
     }
 
+    @Basic
+    @Column(name = "uuid", nullable = true)
+    public Long getUuid() {
+        return uuid;
+    }
 
+    public void setUuid(Long uuid) {
+        this.uuid = uuid;
+    }
 }

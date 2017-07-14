@@ -3,6 +3,7 @@ package com.tian.test;
 import com.tian.server.common.EqptParts;
 import com.tian.server.dao.ItemDao;
 import com.tian.server.entity.ItemEntity;
+import com.tian.server.util.IdUtil;
 import junit.framework.TestCase;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -47,8 +48,10 @@ public class RoomDaoTest extends TestCase {
         String data = func1.call(LuaValue.valueOf("I'am from Java!")).toString();
         //打印lua函数回传的数据*/
 
-        System.out.println(EqptParts.HEAD.toInteger());
-        System.out.println(EqptParts.RIGHTHAND.toInteger());
+        //System.out.println(EqptParts.HEAD.toInteger());
+        //System.out.println(EqptParts.RIGHTHAND.toInteger());
+
+        System.out.println(IdUtil.getUUID());
 
 
 

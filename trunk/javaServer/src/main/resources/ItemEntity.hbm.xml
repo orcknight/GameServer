@@ -32,5 +32,8 @@
         <property name="jsonAttr">
             <column name="jsonAttr" sql-type="varchar(2048)" length="2048" not-null="true"/>
         </property>
+        <property name="uuid">
+            <column name="uuid" sql-type="bigint(64)" not-null="true"/>
+        </property>
     </class>
 </hibernate-mapping>

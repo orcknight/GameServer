@@ -10,7 +10,6 @@
         <property name="connection.username">bdm25683027</property>
         <property name="connection.password">aq123456</property>
 
-
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">false</property>

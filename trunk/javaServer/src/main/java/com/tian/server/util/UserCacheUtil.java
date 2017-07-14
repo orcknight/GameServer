@@ -63,7 +63,7 @@ public class UserCacheUtil {
             List<ItemEntity> savedItems = roomObjects.getItems();
 
             ItemEntity item = (ItemEntity)items.get(roomContent.getItemId()).clone();
-            item.setId(IdUtil.getUnUsedId());
+            item.setUuid(IdUtil.getUUID());
             savedItems.add(item);
             roomObjects.setItems(savedItems);
         }
