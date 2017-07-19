@@ -1,6 +1,7 @@
 package com.tian.server.model.Race;
 
 import com.tian.server.common.Race;
+import com.tian.server.model.Living;
 import com.tian.server.model.SkillAction;
 
 import java.util.ArrayList;
@@ -9,10 +10,10 @@ import java.util.List;
 /**
  * Created by PPX on 2017/7/11.
  */
-public class Beast implements Race {
+public class Beast extends Living implements Race {
 
     public static final Integer BASE_WEIGHT = 30000;
-    List<SkillAction> actions;
+    private static List<SkillAction> actions;
 
     public Beast(){
 

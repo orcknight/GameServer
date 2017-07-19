@@ -1,6 +1,7 @@
 package com.tian.server.model;
 
 import com.tian.server.entity.RoomEntity;
+import com.tian.server.entity.RoomGateEntity;
 
 /**
  * Created by PPX on 2017/6/16.
@@ -16,8 +17,10 @@ public class PlayerLocation {
     private RoomEntity southWest; //西南
     private RoomEntity northEast; //东北
     private RoomEntity northWest; //西北
-    private RoomEntity in; //入口
-    private RoomEntity out; //出口
+    private RoomEntity enter; //里面
+    private RoomEntity out; //外面
+    private RoomEntity up; //上面
+    private RoomEntity down; //下面
 
     public RoomEntity getLocation(){
 
@@ -109,14 +112,14 @@ public class PlayerLocation {
         this.northWest = northWest;
     }
 
-    public RoomEntity getIn(){
+    public RoomEntity getEnter(){
 
-        return this.in;
+        return this.enter;
     }
 
-    public void setIn(RoomEntity in){
+    public void setEnter(RoomEntity enter){
 
-        this.in = in;
+        this.enter = enter;
     }
 
     public RoomEntity getOut(){

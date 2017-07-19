@@ -1,7 +1,6 @@
 package com.tian.server.model.Race;
 
 import com.tian.server.common.Race;
-import com.tian.server.model.Living;
 import com.tian.server.model.SkillAction;
 
 import java.util.ArrayList;
@@ -9,14 +8,14 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Created by PPX on 2017/7/11.
+ * Created by PPX on 2017/7/19.
  */
-public class Human extends Living implements Race {
+public class Insect implements Race {
 
-    protected final Integer BASE_WEIGHT = 40000;
+    public static final Integer BASE_WEIGHT = 1;
     private static List<SkillAction> actions;
 
-    public Human(){
+    public Insect(){
 
         actions = new ArrayList<SkillAction>();
         actions.add(createAction("$N扑上来张嘴往$n的$l狠狠地一咬", "咬伤", 50));

@@ -226,90 +226,90 @@ public class UserService extends  BaseService{
         RoomEntity location = roomMap.get(roomName);
         playerLocation.setLocation(location);
 
-        if(location.getNname().length() > 0){
+        if(location.getNorth().length() > 0){
 
-            RoomEntity north = roomMap.get(location.getNname());
+            RoomEntity north = roomMap.get(location.getNorth());
             if(north != null){
 
                 playerLocation.setNorth(north);
             }
         }
 
-        if(location.getSname().length() > 0){
+        if(location.getSouth().length() > 0){
 
-            RoomEntity south = roomMap.get(location.getSname());
+            RoomEntity south = roomMap.get(location.getSouth());
             if(south != null){
 
                 playerLocation.setSouth(south);
             }
         }
 
-        if(location.getEname().length() > 0){
+        if(location.getEast().length() > 0){
 
-            RoomEntity east = roomMap.get(location.getEname());
+            RoomEntity east = roomMap.get(location.getEast());
             if(east != null){
 
                 playerLocation.setEast(east);
             }
         }
 
-        if(location.getWname().length() > 0){
+        if(location.getWest().length() > 0){
 
-            RoomEntity west = roomMap.get(location.getWname());
+            RoomEntity west = roomMap.get(location.getWest());
             if(west != null){
 
                 playerLocation.setWest(west);
             }
         }
 
-        if(location.getNename().length() > 0){
+        if(location.getNortheast().length() > 0){
 
-            RoomEntity northEast = roomMap.get(location.getNename());
+            RoomEntity northEast = roomMap.get(location.getNortheast());
             if(northEast != null){
 
                 playerLocation.setNorthEast(northEast);
             }
         }
 
-        if(location.getNwname().length() > 0){
+        if(location.getNorthwest().length() > 0){
 
-            RoomEntity northWest = roomMap.get(location.getNwname());
+            RoomEntity northWest = roomMap.get(location.getNorthwest());
             if(northWest != null){
 
                 playerLocation.setNorthWest(northWest);
             }
         }
 
-        if(location.getSename().length() > 0){
+        if(location.getSoutheast().length() > 0){
 
-            RoomEntity southEast = roomMap.get(location.getSename());
+            RoomEntity southEast = roomMap.get(location.getSoutheast());
             if(southEast != null){
 
                 playerLocation.setSouthEast(southEast);
             }
         }
 
-        if(location.getSwname().length() > 0){
+        if(location.getSouthwest().length() > 0){
 
-            RoomEntity southWest = roomMap.get(location.getSwname());
+            RoomEntity southWest = roomMap.get(location.getSouthwest());
             if(southWest != null){
 
                 playerLocation.setSouthWest(southWest);
             }
         }
 
-        if(location.getInname().length() > 0){
+        if(location.getEnter().length() > 0){
 
-            RoomEntity in = roomMap.get(location.getInname());
+            RoomEntity in = roomMap.get(location.getEnter());
             if(in != null){
 
-                playerLocation.setIn(in);
+                playerLocation.setEnter(in);
             }
         }
 
-        if(location.getOutname().length() > 0){
+        if(location.getOut().length() > 0){
 
-            RoomEntity out = roomMap.get(location.getInname());
+            RoomEntity out = roomMap.get(location.getOut());
             if(out != null){
 
                 playerLocation.setOut(out);

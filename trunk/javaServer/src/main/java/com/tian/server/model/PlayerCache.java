@@ -1,7 +1,6 @@
 package com.tian.server.model;
 
 import com.corundumstudio.socketio.SocketIOClient;
-import com.tian.server.common.Living;
 import com.tian.server.common.Race;
 import com.tian.server.entity.*;
 import com.tian.server.model.Race.Human;
@@ -11,7 +10,7 @@ import java.util.*;
 /**
  * Created by PPX on 2017/6/14.
  */
-public class PlayerCache implements Living {
+public class PlayerCache extends Living {
 
     //用户的socket client
     private SocketIOClient socketClient;
