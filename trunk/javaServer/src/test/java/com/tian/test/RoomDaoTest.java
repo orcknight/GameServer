@@ -3,6 +3,8 @@ package com.tian.test;
 import com.tian.server.common.EqptParts;
 import com.tian.server.dao.ItemDao;
 import com.tian.server.entity.ItemEntity;
+import com.tian.server.model.Race.Beast;
+import com.tian.server.model.SkillAction;
 import com.tian.server.util.IdUtil;
 import junit.framework.TestCase;
 import net.sf.json.JSONArray;
@@ -51,7 +53,17 @@ public class RoomDaoTest extends TestCase {
         //System.out.println(EqptParts.HEAD.toInteger());
         //System.out.println(EqptParts.RIGHTHAND.toInteger());
 
-        System.out.println(IdUtil.getUUID());
+        //System.out.println(IdUtil.getUUID());
+
+        Beast beast = new Beast();
+        SkillAction skillAction = beast.queryAction();
+        if(skillAction == null){
+
+            System.out.println("pid");
+        }else{
+            System.out.println("child");
+        }
+
 
 
 

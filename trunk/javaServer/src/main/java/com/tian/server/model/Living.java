@@ -21,6 +21,8 @@ public class Living {
     protected String longDesc; //描述
     protected String classStr; //身份 官差 和尚尼姑喇嘛等
     protected String attitude; //态度 和平好战还是别的
+    protected String unit; //单位: 只 个
+    protected Integer weight; //重量
 
     //基本属性
     protected Integer str; //膂力
@@ -49,6 +51,11 @@ public class Living {
     protected Map<String, String> skillMap; //存放的连招 技能名：技能名
     protected Map<String, String> skillPrepare; //为基本武功设置激发武功 基本技能名字：技能名 如： prepare_skill("strike", "dragon-strike");
 
-    protected void heartBeat() {}
+    //静态变量区域，主要是对象共享数据
+
+
+
+    public void heartBeat() {}
+    public SkillAction queryAction() { return null; } //创建这个函数，是为了通过Living实现多态调用
 
 }
