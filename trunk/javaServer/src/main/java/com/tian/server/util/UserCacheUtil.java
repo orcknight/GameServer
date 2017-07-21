@@ -2,6 +2,7 @@ package com.tian.server.util;
 
 import com.corundumstudio.socketio.SocketIOClient;
 import com.tian.server.entity.*;
+import com.tian.server.model.Living;
 import com.tian.server.model.PlayerCache;
 import com.tian.server.model.RoomObjects;
 
@@ -15,10 +16,15 @@ import java.util.Map;
  */
 public class UserCacheUtil {
 
-    private static Map<Integer, PlayerCache> playerCache = new HashMap<Integer, PlayerCache>();
+    //一个链接表，游戏中所有生物的链接，主键是唯一标识uuid
+    private static Map<Long, Living> allLivings = new HashMap<Long, Living>();
+
+
+    private static Map<Integer, Living> players = new HashMap<Integer, PlayerCache>();
     private static Map<SocketIOClient, Integer> socketCache = new HashMap<SocketIOClient, Integer>();
     private static Map<String, RoomEntity> mapCache = new HashMap<String, RoomEntity>();
     private static Map<String, RoomObjects> roomObjectsCache = new HashMap<String, RoomObjects>();
+
 
     public static Map<Integer, PlayerCache> getPlayerCache(){
 

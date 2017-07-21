@@ -14,14 +14,12 @@ import java.util.Random;
  */
 public class Monster extends Living implements Race {
 
-    private static List<SkillAction> actions;
-    private static List<String> limbs;
+    private static List<SkillAction> actions = new ArrayList<SkillAction>();
+    private static List<String> limbs = new ArrayList<String>();
 
     public Monster() {
 
         this.weight = 10000;
-
-        actions = new ArrayList<SkillAction>();
     }
 
     @Override

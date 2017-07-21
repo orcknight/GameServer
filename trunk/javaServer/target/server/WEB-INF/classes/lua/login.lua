@@ -10,7 +10,7 @@ end
 
 function luaPrint()
 
-    local logger = luajava.newInstance("com.tian.server.util.LuaTest")
+    local logger = luajava.newInstance("com.tian.server.util.LivingLuaAgent")
     --调用对象方法
     logger:info("Test call java in lua0")
 end

@@ -14,14 +14,13 @@ import java.util.Random;
  */
 public class Fish extends Living implements Race {
 
-    private static List<SkillAction> actions;
-    private static List<String> limbs;
+    private static List<SkillAction> actions = new ArrayList<SkillAction>();
+    private static List<String> limbs = new ArrayList<String>();
 
     public Fish(){
 
         this.weight = 40000;
 
-        actions = new ArrayList<SkillAction>();
         actions.add(createAction("$N扑上来张嘴往$n的$l狠狠地一咬", "咬伤", 50));
         actions.add(createAction("$N举起爪子往$n的$l抓了过去", "抓伤", 30));
         actions.add(createAction("$N跃起来用前掌往$n的$l猛地一拍", "瘀伤", 30));

@@ -14,14 +14,13 @@ import java.util.Random;
  */
 public class Snake extends Living implements Race {
 
-    private static List<SkillAction> actions;
-    private static List<String> limbs;
+    private static List<SkillAction> actions = new ArrayList<SkillAction>();
+    private static List<String> limbs = new ArrayList<String>();
 
     public Snake() {
 
         this.weight = 1;
 
-        actions = new ArrayList<SkillAction>();
         actions.add(createAction("$N爬上来张嘴往$n的$l狠狠地一咬", "咬伤", 30));
         actions.add(createAction("$N支起身猛地往$n的$l卷了上来", "瘀伤", 30));
         limbs.add(0, "头部");

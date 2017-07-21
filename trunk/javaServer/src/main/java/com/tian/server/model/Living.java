@@ -1,5 +1,6 @@
 package com.tian.server.model;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -7,6 +8,7 @@ import java.util.Map;
  */
 public class Living {
 
+    protected Long uuid; //实例在系统里的唯一标识
     //生物属性
     protected String name; //名字
     protected String title; //称号
@@ -17,6 +19,7 @@ public class Living {
     protected String bunchName; //帮派名称
     protected String cmdName; //命令名、英文名
     protected Integer age; //年龄
+    protected Integer ageModify; //年龄变化
     protected String gender; //性别
     protected String longDesc; //描述
     protected String classStr; //身份 官差 和尚尼姑喇嘛等
@@ -51,11 +54,15 @@ public class Living {
     protected Map<String, String> skillMap; //存放的连招 技能名：技能名
     protected Map<String, String> skillPrepare; //为基本武功设置激发武功 基本技能名字：技能名 如： prepare_skill("strike", "dragon-strike");
 
-    //静态变量区域，主要是对象共享数据
-
-
+    //按钮选项
+    protected Map<String, String> buttons; //功能按钮
 
     public void heartBeat() {}
+
     public SkillAction queryAction() { return null; } //创建这个函数，是为了通过Living实现多态调用
+
+    public void setButtons(List<String> names, List<String> cmds) {
+
+    }
 
 }

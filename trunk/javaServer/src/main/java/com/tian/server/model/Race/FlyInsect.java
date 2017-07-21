@@ -13,14 +13,13 @@ import java.util.Random;
  */
 public class FlyInsect extends Living implements Race {
 
-    private static List<SkillAction> actions;
-    private static List<String> limbs;
+    private static List<SkillAction> actions = new ArrayList<SkillAction>();
+    private static List<String> limbs = new ArrayList<String>();
 
     public FlyInsect() {
 
         this.weight = 1;
 
-        actions = new ArrayList<SkillAction>();
         actions.add(createAction("$N飞过来张嘴往$n的$l狠狠地一咬", "咬伤", 30));
         actions.add(createAction("$N飞上来猛地往$n的$l叮了一下", "刺伤", 10));
         actions.add(createAction("$N反转身用尾巴尖对准$n的$l一刺", "刺伤", 20));

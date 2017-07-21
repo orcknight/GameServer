@@ -15,6 +15,7 @@ import java.util.Map;
 public class RoomObjects {
 
     private List<PlayerEntity> players; //玩家列表
+    private List<Living> npcs; //npc列表
     private List<ItemEntity> items; //物品列表;
     private Map<String, RoomGateEntity> gates; //门
 

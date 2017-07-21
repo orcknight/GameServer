@@ -13,14 +13,13 @@ import java.util.Random;
  */
 public class Beast extends Living implements Race {
 
-    private static List<SkillAction> actions;
-    private static List<String> limbs;
+    private static List<SkillAction> actions= new ArrayList<SkillAction>();;
+    private static List<String> limbs = new ArrayList<String>();
 
     public Beast(){
 
         this.weight = 30000;
 
-        actions = new ArrayList<SkillAction>();
         actions.add(new SkillAction("$N扑上来张嘴往$n的$l狠狠地一咬", "瘀伤"));
         actions.add(new SkillAction("$N往$n的$l一抓", "抓伤"));
         actions.add(new SkillAction("$N往$n的$l狠狠地踢了一脚", "瘀伤"));

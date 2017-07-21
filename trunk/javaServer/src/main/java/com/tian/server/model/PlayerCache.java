@@ -45,8 +45,6 @@ public class PlayerCache extends Living {
 
     public PlayerCache() {
 
-        super.
-
         race = new Human();
     }
 

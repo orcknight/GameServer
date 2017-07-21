@@ -5,7 +5,9 @@ import com.tian.server.dao.ItemDao;
 import com.tian.server.entity.ItemEntity;
 import com.tian.server.model.Race.Beast;
 import com.tian.server.model.SkillAction;
+import com.tian.server.util.CombatUtil;
 import com.tian.server.util.IdUtil;
+import com.tian.server.util.LivingLuaAgent;
 import junit.framework.TestCase;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -55,15 +57,17 @@ public class RoomDaoTest extends TestCase {
 
         //System.out.println(IdUtil.getUUID());
 
-        Beast beast = new Beast();
+        /*Beast beast = new Beast();
         SkillAction skillAction = beast.queryAction();
         if(skillAction == null){
 
             System.out.println("pid");
         }else{
             System.out.println("child");
-        }
+        }*/
+        //System.out.println(CombatUtil.getDamageWithLimb("小腹"));
 
+        LivingLuaAgent.setButtons("[{\"tile\":\"偏属\", \"name\":\"偏属\"}]");
 
 
 

@@ -14,14 +14,13 @@ import java.util.Random;
  */
 public class Stock extends Living implements Race {
 
-    private static List<SkillAction> actions;
-    private static List<String> limbs;
+    private static List<SkillAction>  actions = new ArrayList<SkillAction>();
+    private static List<String> limbs = new ArrayList<String>();
 
     public Stock() {
 
         this.weight = 30000;
 
-        actions = new ArrayList<SkillAction>();
         actions.add(createAction("$N用后腿往$n的$l用力一蹬", "瘀伤", 30));
         actions.add(createAction("$N低下头往$n的$l猛地一撞", "瘀伤", 30));
         actions.add(createAction("$N抬起前腿往$n的$l狠狠地一踢", "瘀伤", 20));
