@@ -4,15 +4,75 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.tian.server.entity.PlayerEntity" table="player" schema="bdm25683027_db" dynamic-insert="true" dynamic-update="true">
+    <class name="com.tian.server.entity.PlayerEntity" table="player" schema="bdm25683027_db">
         <id name="id">
             <column name="id" sql-type="int(11)"/>
         </id>
         <property name="userId">
             <column name="userId" sql-type="int(11)" not-null="true"/>
         </property>
-        <property name="euid">
-            <column name="euid" sql-type="varchar(255)" not-null="true"/>
+        <property name="name">
+            <column name="name" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="sex">
+            <column name="sex" sql-type="varchar(32)" length="32" not-null="true"/>
+        </property>
+        <property name="character">
+            <column name="character" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="level">
+            <column name="level" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="str">
+            <column name="str" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="con">
+            <column name="con" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="dex">
+            <column name="dex" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="kar">
+            <column name="kar" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="per">
+            <column name="per" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="wux">
+            <column name="wux" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="maxQi">
+            <column name="maxQi" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="effQi">
+            <column name="effQi" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="qi">
+            <column name="qi" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="maxNeili">
+            <column name="maxNeili" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="effNeili">
+            <column name="effNeili" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="neili">
+            <column name="neili" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="maxJing">
+            <column name="maxJing" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="effJing">
+            <column name="effJing" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="jing">
+            <column name="jing" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="food">
+            <column name="food" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="water">
+            <column name="water" sql-type="int(11)" not-null="true"/>
         </property>
         <property name="title">
             <column name="title" sql-type="varchar(255)" not-null="true"/>
@@ -20,89 +80,41 @@
         <property name="nickname">
             <column name="nickname" sql-type="varchar(255)" not-null="true"/>
         </property>
-        <property name="name">
-            <column name="name" sql-type="varchar(255)" not-null="true"/>
-        </property>
         <property name="age">
             <column name="age" sql-type="int(11)" not-null="true"/>
         </property>
         <property name="ageModify">
             <column name="ageModify" sql-type="int(11)" not-null="true"/>
         </property>
-        <property name="sex">
-            <column name="sex" sql-type="varchar(32)" length="32" not-null="true"/>
-        </property>
-        <property name="character">
-            <column name="character" sql-type="varchar(255)" not-null="false"/>
-        </property>
-        <property name="level">
-            <column name="level" sql-type="int(11)" not-null="false"/>
-        </property>
-        <property name="str">
-            <column name="str" sql-type="int(11)" not-null="false"/>
-        </property>
-        <property name="con">
-            <column name="con" sql-type="int(11)" not-null="false"/>
-        </property>
-        <property name="dex">
-            <column name="dex" sql-type="int(11)" not-null="false"/>
-        </property>
-        <property name="kar">
-            <column name="kar" sql-type="int(11)" not-null="false"/>
-        </property>
-        <property name="per">
-            <column name="per" sql-type="int(11)" not-null="false"/>
-        </property>
-        <property name="wux">
-            <column name="wux" sql-type="int(11)" not-null="false"/>
-        </property>
-        <property name="maxQi">
-            <column name="maxQi" sql-type="int(11)" not-null="false"/>
-        </property>
-        <property name="effQi">
-            <column name="effQi" sql-type="int(11)" not-null="false"/>
-        </property>
-        <property name="qi">
-            <column name="qi" sql-type="int(11)" not-null="false"/>
-        </property>
-        <property name="maxNeili">
-            <column name="maxNeili" sql-type="int(11)" not-null="false"/>
-        </property>
-        <property name="effNeili">
-            <column name="effNeili" sql-type="int(11)" not-null="false"/>
-        </property>
-        <property name="neili">
-            <column name="neili" sql-type="int(11)" not-null="false"/>
-        </property>
-        <property name="maxJing">
-            <column name="maxJing" sql-type="int(11)" not-null="false"/>
-        </property>
-        <property name="effJing">
-            <column name="effJing" sql-type="int(11)" not-null="false"/>
-        </property>
-        <property name="jing">
-            <column name="jing" sql-type="int(11)" not-null="false"/>
-        </property>
         <property name="maxJingLi">
-            <column name="maxJingLi" sql-type="int(11)" not-null="false"/>
+            <column name="maxJingLi" sql-type="int(11)" not-null="true"/>
         </property>
         <property name="effJingLi">
-            <column name="effJingLi" sql-type="int(11)" not-null="false"/>
+            <column name="effJingLi" sql-type="int(11)" not-null="true"/>
         </property>
         <property name="jingLi">
-            <column name="jingLi" sql-type="int(11)" not-null="false"/>
-        </property>
-        <property name="food">
-            <column name="food" sql-type="int(11)" not-null="false"/>
-        </property>
-        <property name="water">
-            <column name="water" sql-type="int(11)" not-null="false"/>
+            <column name="JingLi" sql-type="int(11)" not-null="true"/>
         </property>
         <property name="combatExp">
-            <column name="combatExp" sql-type="int(11)" not-null="false"/>
+            <column name="combatExp" sql-type="int(11)" not-null="true"/>
         </property>
         <property name="isAlive">
-            <column name="isAlive" sql-type="tinyint(4)" not-null="false"/>
+            <column name="isAlive" sql-type="tinyint(4)" not-null="true"/>
+        </property>
+        <property name="bornFamily">
+            <column name="bornFamily" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="surname">
+            <column name="surname" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="familyName">
+            <column name="familyName" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="bunchName">
+            <column name="bunchName" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="cmdName">
+            <column name="cmdName" sql-type="varchar(255)" not-null="true"/>
         </property>
     </class>
 </hibernate-mapping>

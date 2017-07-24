@@ -6,8 +6,8 @@ import com.tian.server.dao.RoomContentDao;
 import com.tian.server.dao.RoomDao;
 import com.tian.server.dao.RoomGateDao;
 import com.tian.server.entity.*;
-import com.tian.server.model.PlayerCache;
-import com.tian.server.model.RoomObjects;
+import com.tian.server.model.Living;
+import com.tian.server.model.Player;
 import com.tian.server.util.CmdUtil;
 import com.tian.server.util.UserCacheUtil;
 
@@ -67,8 +67,8 @@ public class DefaultService extends BaseService{
             public void run() {
 
                 //获取player列表
-                Map<Integer, PlayerCache> playerCacheMap = UserCacheUtil.getPlayerCache();
-                Map<SocketIOClient, Integer> socketCache = UserCacheUtil.getSocketCache();
+                Map<Integer, Living> playerCacheMap = UserCacheUtil.getPlayers();
+                Map<SocketIOClient, Integer> socketCache = UserCacheUtil.getPlayerSockets();
                 if(socketCache.isEmpty()){
 
                     return;
@@ -80,7 +80,7 @@ public class DefaultService extends BaseService{
                     SocketIOClient client = entry.getKey();
 
                     //获取玩家信息并提取信息
-                    PlayerCache player = playerCacheMap.get(userId);
+                    Player player = (Player)playerCacheMap.get(userId);
                     if(player.getPlayer() == null){
 
                         continue;

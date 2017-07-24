@@ -2,7 +2,8 @@ package com.tian.server.service;
 
 import com.corundumstudio.socketio.SocketIOClient;
 import com.tian.server.entity.RoomGateEntity;
-import com.tian.server.model.PlayerCache;
+import com.tian.server.model.Living;
+import com.tian.server.model.Player;
 import com.tian.server.model.RoomObjects;
 import com.tian.server.util.CmdUtil;
 import com.tian.server.util.UserCacheUtil;
@@ -26,9 +27,9 @@ public class LookService extends BaseService{
         String id = msg.split("#")[1];
 
         //存储观察id
-        Map<Integer, PlayerCache> cacheMap = UserCacheUtil.getPlayerCache();
-        PlayerCache playerCache = cacheMap.get(this.userId);
-        playerCache.setLookId(new StringBuffer(msg).toString());
+        Map<Integer, Living> cacheMap = UserCacheUtil.getPlayers();
+        Player player = (Player)cacheMap.get(this.userId);
+        player.setLookId(new StringBuffer(msg).toString());
 
         if(type.equals("user")){
 
@@ -57,9 +58,9 @@ public class LookService extends BaseService{
 
     private String getLookGateStr(String name){
 
-        Map<Integer, PlayerCache> cacheMap = UserCacheUtil.getPlayerCache();
-        PlayerCache playerCache = cacheMap.get(this.userId);
-        String roomName = playerCache.getRoom().getName();
+        Map<Integer, Living> cacheMap = UserCacheUtil.getPlayers();
+        Player player = (Player)cacheMap.get(this.userId);
+        String roomName = player.getLocation().getName();
 
         Map<String, RoomObjects> roomObjectsCache = UserCacheUtil.getRoomObjectsCache();
         RoomObjects roomObjects = roomObjectsCache.get(roomName);
@@ -102,9 +103,9 @@ public class LookService extends BaseService{
 
     private void openOrCloseGate(String direction, String action){
 
-        Map<Integer, PlayerCache> cacheMap = UserCacheUtil.getPlayerCache();
-        PlayerCache playerCache = cacheMap.get(this.userId);
-        String roomName = playerCache.getRoom().getName();
+        Map<Integer, Living> cacheMap = UserCacheUtil.getPlayers();
+        Player player = (Player)cacheMap.get(this.userId);
+        String roomName = player.getLocation().getName();
 
         Map<String, RoomObjects> roomObjectsCache = UserCacheUtil.getRoomObjectsCache();
         RoomObjects roomObjects = roomObjectsCache.get(roomName);
@@ -121,10 +122,10 @@ public class LookService extends BaseService{
 
         sendMsg(CmdUtil.getScreenLine("你" + msg));
         Collection<SocketIOClient> cl = socketIOClient.getNamespace().getRoomOperations(gate.getEnterRoom()).getClients();
-        socketIOClient.getNamespace().getRoomOperations(playerCache.getRoom().getName()).sendEvent("stream", socketIOClient,
-                CmdUtil.getScreenLine(playerCache.getPlayer().getName() + msg));
+        socketIOClient.getNamespace().getRoomOperations(player.getLocation().getName()).sendEvent("stream", socketIOClient,
+                CmdUtil.getScreenLine(player.getPlayer().getName() + msg));
         socketIOClient.getNamespace().getRoomOperations(gate.getExitRoom()).sendEvent("stream", socketIOClient,
-                CmdUtil.getScreenLine(playerCache.getPlayer().getName() + msg));
+                CmdUtil.getScreenLine(player.getPlayer().getName() + msg));
 
         if(action.equals("打开")){
 

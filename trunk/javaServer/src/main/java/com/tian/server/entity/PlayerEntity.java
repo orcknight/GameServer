@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class PlayerEntity {
     private int id;
     private Integer userId;
+    private Long uuid;
     private String name;
     private String sex;
     private String character;
@@ -64,6 +65,16 @@ public class PlayerEntity {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    @Basic
+    @Column(name = "uuid", nullable = true)
+    public Long getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(Long uuid) {
+        this.uuid = uuid;
     }
 
     @Basic

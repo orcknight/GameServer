@@ -4,7 +4,8 @@ import com.corundumstudio.socketio.SocketIOClient;
 import com.tian.server.entity.PlayerEntity;
 import com.tian.server.entity.PlayerInfoEntity;
 import com.tian.server.entity.UserEntity;
-import com.tian.server.model.PlayerCache;
+import com.tian.server.model.Living;
+import com.tian.server.model.Player;
 import com.tian.server.util.CmdUtil;
 import com.tian.server.util.UserCacheUtil;
 
@@ -30,8 +31,8 @@ public class ChatService extends BaseService{
     public void chat(String msg){
 
         String chatChannel = getChatChannel();
-        Map<Integer, PlayerCache> cacheMap = UserCacheUtil.getPlayerCache();
-        PlayerCache playerCache = cacheMap.get(this.userId);
+        Map<Integer, Living> cacheMap = UserCacheUtil.getPlayers();
+        Player playerCache = (Player)cacheMap.get(this.userId);
         UserEntity user = playerCache.getUser();
         PlayerEntity player = playerCache.getPlayer();
         String retMsg = CmdUtil.getChatLine(chatChannel, user.getName(), player.getName(), msg);
@@ -40,9 +41,9 @@ public class ChatService extends BaseService{
 
     private String getChatChannel(){
 
-        Map<Integer, PlayerCache> cacheMap = UserCacheUtil.getPlayerCache();
-        PlayerCache playerCache = cacheMap.get(this.userId);
-        PlayerInfoEntity playerInfo = playerCache.getPlayerInfo();
+        Map<Integer, Living> cacheMap = UserCacheUtil.getPlayers();
+        Player player = (Player)cacheMap.get(this.userId);
+        PlayerInfoEntity playerInfo = player.getPlayerInfo();
         if(playerInfo == null){
 
             return "闲聊";

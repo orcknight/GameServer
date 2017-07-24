@@ -7,7 +7,8 @@ import com.tian.server.dao.PlayerInfoDao;
 import com.tian.server.dao.PlayerSkillDao;
 import com.tian.server.dao.UserDao;
 import com.tian.server.entity.*;
-import com.tian.server.model.PlayerCache;
+import com.tian.server.model.Living;
+import com.tian.server.model.Player;
 import com.tian.server.model.PlayerLocation;
 import com.tian.server.model.RoomObjects;
 import com.tian.server.util.CharUtil;
@@ -40,20 +41,20 @@ public class UserService extends  BaseService{
         }
 
         //检查用户是否已经登陆
-        Map<Integer, PlayerCache> cache = UserCacheUtil.getPlayerCache();
+        Map<Integer, Living> cache = UserCacheUtil.getPlayers();
         //如果已经登陆了，先踢用户下线，并重新设置用户信息
         if(cache.containsKey(user.getId())){
 
             //发送断开连接信息,并且断开连接，并重新缓存用户数据
-            PlayerCache playerCache = cache.get(user.getId());
-            sendKickOffMsg(playerCache.getSocketClient());
-            playerCache.getSocketClient().disconnect();
+            Player player = (Player)cache.get(user.getId());
+            sendKickOffMsg(player.getSocketClient());
+            player.getSocketClient().disconnect();
             cache.remove(user.getId());
         }
 
         //存储用户信息
         setSocketCache(user.getId());
-        PlayerCache playerCache = new PlayerCache();
+        Player playerCache = new Player();
         playerCache.setUser(user);
         playerCache.setSocketClient(socketIOClient);
         cache.put(user.getId(), playerCache);
@@ -77,7 +78,7 @@ public class UserService extends  BaseService{
 
         //缓存玩家信息
         Map<String, RoomEntity> roomMap = UserCacheUtil.getMapCache();
-        playerCache.setRoom(roomMap.get(playerInfo.getRoomName()));
+        playerCache.setLocation(roomMap.get(playerInfo.getRoomName()));
         socketIOClient.getNamespace().getRoomOperations(playerInfo.getRoomName()).sendEvent("stream", CmdUtil.getLoginBoradcastLine(player));
         socketIOClient.joinRoom(playerInfo.getRoomName());
 
@@ -152,15 +153,15 @@ public class UserService extends  BaseService{
         socketIOClient.joinRoom(playerInfo.getRoomName()); //玩家加入当前房间群组，为广播消息
 
         //存储用户的角色辅助信息
-        Map<Integer, PlayerCache> playerCacheMap = UserCacheUtil.getPlayerCache();
+        Map<Integer, Living> playerCacheMap = UserCacheUtil.getPlayers();
         if(playerCacheMap.containsKey(this.userId)){
 
-            PlayerCache playerCache = playerCacheMap.get(this.userId);
+            Player playerCache = (Player)playerCacheMap.get(this.userId);
             playerCache.setPlayerInfo(playerInfo);
 
             //缓存玩家信息
             Map<String, RoomEntity> roomMap = UserCacheUtil.getMapCache();
-            playerCache.setRoom(roomMap.get(playerInfo.getRoomName()));
+            playerCache.setLocation(roomMap.get(playerInfo.getRoomName()));
         }
 
         //先发送刷新界面命令
@@ -178,19 +179,19 @@ public class UserService extends  BaseService{
     public void logout(){
 
         //如果已经登陆了，发送下线消息然后
-        Map<Integer, PlayerCache> playerCacheMap = UserCacheUtil.getPlayerCache();
-        PlayerCache playerCache = playerCacheMap.get(this.userId);
+        Map<Integer, Living> playerCacheMap = UserCacheUtil.getPlayers();
+        Player player = (Player)playerCacheMap.get(this.userId);
 
-        if(playerCache != null) {
+        if(player != null) {
 
             //广播玩家离开的信息
-            socketIOClient.getNamespace().getRoomOperations(playerCache.getPlayerInfo().getRoomName()).sendEvent("stream",
-                    CmdUtil.getLogoutBoradcastLine(playerCache.getPlayer()));
+            socketIOClient.getNamespace().getRoomOperations(player.getPlayerInfo().getRoomName()).sendEvent("stream",
+                    CmdUtil.getLogoutBoradcastLine(player.getPlayer()));
 
             //清理缓存数据
-            UserCacheUtil.getSocketCache().remove(socketIOClient);
+            UserCacheUtil.getPlayerSockets().remove(socketIOClient);
             playerCacheMap.remove(this.userId);
-            UserCacheUtil.delPlayerFromRoom(playerCache.getPlayerInfo().getRoomName(), playerCache.getPlayer());
+            UserCacheUtil.delPlayerFromRoom(player.getPlayerInfo().getRoomName(), player.getPlayer());
         }
 
         //关闭连接
@@ -208,7 +209,7 @@ public class UserService extends  BaseService{
 
     private void setSocketCache(Integer userId){
 
-        Map<SocketIOClient, Integer> socketCache = UserCacheUtil.getSocketCache();
+        Map<SocketIOClient, Integer> socketCache = UserCacheUtil.getPlayerSockets();
         socketCache.put(this.socketIOClient, userId);
     }
 
@@ -324,11 +325,11 @@ public class UserService extends  BaseService{
 
     }
 
-    private void loadUserSkill(PlayerCache playerCache){
+    private void loadUserSkill(Player player){
 
         PlayerSkillDao playerSkillDao = new PlayerSkillDao();
-        List<PlayerSkillEntity> playerSkillEntitiesList = playerSkillDao.getListByPlayerId(playerCache.getPlayer().getId());
+        List<PlayerSkillEntity> playerSkillEntitiesList = playerSkillDao.getListByPlayerId(player.getPlayer().getId());
 
-        playerCache.initSkills(playerSkillEntitiesList);
+        player.initSkills(playerSkillEntitiesList);
     }
 }

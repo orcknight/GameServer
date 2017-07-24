@@ -21,10 +21,11 @@ public class Human extends Living implements Race {
 
         this.weight = 40000;
 
-        actions.add(createAction("$N扑上来张嘴往$n的$l狠狠地一咬", "咬伤", 50));
-        actions.add(createAction("$N举起爪子往$n的$l抓了过去", "抓伤", 30));
-        actions.add(createAction("$N跃起来用前掌往$n的$l猛地一拍", "瘀伤", 30));
-        actions.add(createAction("$N扑上来张嘴往$n的$l狠狠地一咬", "咬伤", 50));
+        actions.add(new SkillAction("$N挥拳攻击$n的$l", "瘀伤"));
+        actions.add(new SkillAction("$N往$n的$l一抓", "抓伤"));
+        actions.add(new SkillAction("$N往$n的$l狠狠地踢了一脚", "瘀伤"));
+        actions.add(new SkillAction("$N提起拳头往$n的$l捶去", "瘀伤"));
+        actions.add(new SkillAction("$N对准$n的$l用力挥出一拳", "瘀伤"));
         limbs.add(0, "头部");
         limbs.add(1, "颈部");
         limbs.add(2, "胸口");
@@ -60,6 +61,19 @@ public class Human extends Living implements Race {
         Random r = new Random();
         int randomIndex = r.nextInt(actions.size()-1);
         return actions.get(randomIndex);
+    }
+
+    @Override
+    public String getRandomLimb(){
+
+        if(actions.size() < 1){
+
+            return "";
+        }
+
+        Random r = new Random();
+        int randomIndex = r.nextInt(limbs.size()-1);
+        return limbs.get(randomIndex);
     }
 
     public SkillAction createAction(String action, String damageType, Integer damage){

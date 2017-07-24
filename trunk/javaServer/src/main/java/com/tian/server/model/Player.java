@@ -1,51 +1,76 @@
 package com.tian.server.model;
 
 import com.corundumstudio.socketio.SocketIOClient;
-import com.tian.server.common.Race;
 import com.tian.server.entity.*;
 import com.tian.server.model.Race.Human;
+import com.tian.server.service.CombatService;
+import com.tian.server.util.CombatUtil;
 
 import java.util.*;
 
 /**
  * Created by PPX on 2017/6/14.
  */
-public class PlayerCache extends Living {
+public class Player extends Human {
 
     //用户的socket client
     private SocketIOClient socketClient;
+    private Integer playerId;
+    private String character;
+    private Integer maxFood;
+    private Integer food;
+    private Integer maxWater;
+    private Integer water;
 
     //用户信息
     private UserEntity user;
 
-    //玩家信息
-    private PlayerEntity player;
-
     //玩家辅助信息
     private PlayerInfoEntity playerInfo;
-
-    //玩家当前位置
-    private RoomEntity room;
 
     //玩家当前观察的物品id
     private String lookId;
 
-    private List<Living> enemy;
+    public Player() {
 
-    private Race race;
+    }
 
-    private Map<String, Integer> skills; //存放的是 技能名：等级
-    private Map<String, Integer> learned; //存放的是玩家已经学习过的技能 技能名：等级
-    private Map<String, String> skillMap; //存放的连招 技能名：技能名
-    private Map<String, String> skillPrepare; //为基本武功设置激发武功 基本技能名字：技能名 如： prepare_skill("strike", "dragon-strike");
+    public void initInfo(PlayerEntity player){
 
-    Map<String, Integer> limb_damage;
+        setPlayerId(player.getId());
+        setCmdName(player.getCmdName());
+        setUuid(player.getUuid());
+        setTitle(player.getTitle());
+        setNickname(player.getNickname());
+        setName(player.getName());
+        setAge(player.getAge());
+        setAgeModify(player.getAgeModify());
+        setGender(player.getSex());
+        setCharacter(player.getCharacter());
+        setLevel(player.getLevel());
+        setStr(player.getStr());
+        setWux(player.getWux());
+        setCon(player.getCon());
+        setDex(player.getDex());
+        setKar(player.getKar());
+        setPer(player.getPer());
+        setMaxQi(player.getMaxQi());
+        setEffQi(player.getEffQi());
+        setQi(player.getQi());
+        setMaxNeili(player.getMaxNeili());
+        setEffNeili(player.getEffNeili());
+        setNeili(player.getNeili());
+        setMaxJing(player.getMaxJing());
+        setEffJing(player.getEffJing());
+        setCombatExp(player.getCombatExp());
+        setFood(player.getFood());
+        setWater(player.getWater());
+        setMaxFood(getMaxFoodCapacity());
+        setMaxWater(getMaxWaterCapacity());
+        setIsAlive(player.getIsAlive());
 
-    String[] danger_limbs = new String[]{"头部", "颈部", "胸口", "后心", "小腹",};
 
-    public PlayerCache() {
 
-        race = new Human();
     }
 
     public void setSocketClient(SocketIOClient socketClient) {
@@ -58,6 +83,54 @@ public class PlayerCache extends Living {
         return this.socketClient;
     }
 
+    public Integer getPlayerId() {
+        return playerId;
+    }
+
+    public void setPlayerId(Integer playerId) {
+        this.playerId = playerId;
+    }
+
+    public String getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(String character) {
+        this.character = character;
+    }
+
+    public Integer getMaxFood() {
+        return maxFood;
+    }
+
+    public void setMaxFood(Integer maxFood) {
+        this.maxFood = maxFood;
+    }
+
+    public Integer getFood() {
+        return food;
+    }
+
+    public void setFood(Integer food) {
+        this.food = food;
+    }
+
+    public Integer getMaxWater() {
+        return maxWater;
+    }
+
+    public void setMaxWater(Integer maxWater) {
+        this.maxWater = maxWater;
+    }
+
+    public Integer getWater() {
+        return water;
+    }
+
+    public void setWater(Integer water) {
+        this.water = water;
+    }
+
     public void setUser(UserEntity user) {
 
         this.user = user;
@@ -66,16 +139,6 @@ public class PlayerCache extends Living {
     public UserEntity getUser() {
 
         return this.user;
-    }
-
-    public void setPlayer(PlayerEntity player) {
-
-        this.player = player;
-    }
-
-    public PlayerEntity getPlayer() {
-
-        return this.player;
     }
 
     public void setPlayerInfo(PlayerInfoEntity playerInfo) {
@@ -88,14 +151,14 @@ public class PlayerCache extends Living {
         return this.playerInfo;
     }
 
-    public void setRoom(RoomEntity room) {
+    public void setLocation(RoomEntity location) {
 
-        this.room = room;
+        this.location = location;
     }
 
-    public RoomEntity getRoom() {
+    public RoomEntity getLocation() {
 
-        return this.room;
+        return this.location;
     }
 
     public void setLookId(String lookId) {
@@ -169,24 +232,6 @@ public class PlayerCache extends Living {
 
     public void initLimbDamage() {
 
-        this.limb_damage = new HashMap<String, Integer>();
-        // 人类身体部位
-        this.limb_damage.put("头部", 100);
-        this.limb_damage.put("颈部", 90);
-        this.limb_damage.put("胸口", 90);
-        this.limb_damage.put("后心", 80);
-        this.limb_damage.put("左肩", 50);
-        this.limb_damage.put("右肩", 55);
-        this.limb_damage.put("左臂", 40);
-        this.limb_damage.put("右臂", 45);
-        this.limb_damage.put("左手", 20);
-        this.limb_damage.put("右手", 30);
-        this.limb_damage.put("腰间", 60);
-        this.limb_damage.put("小腹", 70);
-        this.limb_damage.put("左腿", 40);
-        this.limb_damage.put("右腿", 50);
-        this.limb_damage.put("左脚", 35);
-        this.limb_damage.put("右脚", 40);
     }
 
     public void addEnemy(Living enemy){
@@ -218,9 +263,13 @@ public class PlayerCache extends Living {
             String attack_skill = "unarmed";
             //随机选择攻击身体的部位
 
-            SkillAction skillAction = race.queryAction();
+            SkillAction skillAction = this.queryAction();
+            if(skillAction != null){
 
-            sb.append(skillAction.getAction());
+                sb.append(skillAction.getAction());
+            }
+
+
 
 
             //计算ap
@@ -259,15 +308,14 @@ public class PlayerCache extends Living {
 
             }
 
-            String limb = "右肩";
+            String limb = getRandomLimb();
 
             int damage = 3 / 2;
             int damageBonus = 20; //臂力
 
             damage += (damageBonus + r.nextInt(damageBonus)) / 2;
 
-            initLimbDamage();
-            damage += (damage * limb_damage.get(limb)) / 100;
+            damage += (damage * CombatUtil.getDamageWithLimb(limb)) / 100;
 
             if (damage > 0) {
 
@@ -281,14 +329,25 @@ public class PlayerCache extends Living {
                 result = result.replace("$l", limb);
                 result = result.replace("$w", "拳头");
                 result = result.replace("$N", player.getName());
-                result = result.replace("$n", ((PlayerCache) enemy.get(0)).getPlayer().getName());
+                result = result.replace("$n", ((Player) enemy.get(0)).getPlayer().getName());
 
                 System.out.println(result);
-                System.out.println(player.getName() + "对" + ((PlayerCache) enemy.get(0)).getPlayer().getName() + "造成" + damage + "点伤害");
+                System.out.println(player.getName() + "对" + ((Player) enemy.get(0)).getPlayer().getName() + "造成" + damage + "点伤害");
             }
         }
 
     }
+
+    //获取食物的最大值
+    private Integer getMaxFoodCapacity() {
+        return getStr() * 10 + 100;
+    }
+
+    //获取水的最大值
+    private Integer getMaxWaterCapacity() {
+        return getStr() * 10 + 100;
+    }
+
 
 
     private String getDamageMsg(int damage, String type) {

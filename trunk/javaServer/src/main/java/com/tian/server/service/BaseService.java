@@ -14,9 +14,9 @@ public class BaseService {
     public BaseService(SocketIOClient socketIOClient){
 
         this.socketIOClient = socketIOClient;
-        if(UserCacheUtil.getSocketCache().containsKey(socketIOClient)){
+        if(UserCacheUtil.getPlayerSockets().containsKey(socketIOClient)){
 
-            this.userId = UserCacheUtil.getSocketCache().get(socketIOClient);
+            this.userId = UserCacheUtil.getPlayerSockets().get(socketIOClient);
         }else{
 
             this.userId = 0;

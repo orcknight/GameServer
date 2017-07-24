@@ -1,18 +1,16 @@
 package com.tian.server.service;
 
 import com.corundumstudio.socketio.SocketIOClient;
-import com.corundumstudio.socketio.SocketIONamespace;
 import com.tian.server.entity.PlayerEntity;
 import com.tian.server.entity.RoomEntity;
 import com.tian.server.entity.RoomGateEntity;
-import com.tian.server.model.PlayerCache;
+import com.tian.server.model.Living;
+import com.tian.server.model.Player;
 import com.tian.server.model.PlayerLocation;
 import com.tian.server.model.RoomObjects;
 import com.tian.server.util.CmdUtil;
 import com.tian.server.util.UserCacheUtil;
 
-import java.net.Socket;
-import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -77,7 +75,7 @@ public class MoveService extends BaseService{
     public void move(String direction){
 
         //检查用户是否已经登陆
-        Map<Integer, PlayerCache> playerCacheMap = UserCacheUtil.getPlayerCache();
+        Map<Integer, Living> playerCacheMap = UserCacheUtil.getPlayers();
         Map<String, RoomEntity> roomMap = UserCacheUtil.getMapCache();
         //登录了就进行移动操作
         if(playerCacheMap.containsKey(this.userId)){
@@ -88,8 +86,8 @@ public class MoveService extends BaseService{
             }
 
             //通过用户的移动方向，获取目标房间
-            PlayerCache playerCache = playerCacheMap.get(this.userId);
-            RoomEntity room = playerCache.getRoom();
+            Player player = (Player)playerCacheMap.get(this.userId);
+            RoomEntity room = player.getLocation();
             String destRoomName = "";
             if(direction == "east"){
                 destRoomName =  room.getEast();
@@ -127,20 +125,20 @@ public class MoveService extends BaseService{
             String destName = getDirectionCnName(direction);
             //广播玩家离开房间的信息
             socketIOClient.getNamespace().getRoomOperations(room.getName())
-                    .sendEvent("stream", CmdUtil.getLeaveRoomLine(roomMap.get(destRoomName).getShortDesc() + "("  + destName + ")", playerCache.getPlayer()));
+                    .sendEvent("stream", CmdUtil.getLeaveRoomLine(roomMap.get(destRoomName).getShortDesc() + "("  + destName + ")", player.getPlayer()));
 
             //广播玩家进入房间的信息
             socketIOClient.getNamespace().getRoomOperations(destRoomName)
-                    .sendEvent("stream", CmdUtil.getEnterRoomLine(playerCache.getPlayer().getName(), "金丝甲", playerCache.getPlayer()));
+                    .sendEvent("stream", CmdUtil.getEnterRoomLine(player.getPlayer().getName(), "金丝甲", player.getPlayer()));
 
             socketIOClient.joinRoom(destRoomName);
 
             //更新房间内玩家信息
-            UserCacheUtil.movePlayerToOtherRoom(room.getName(), destRoomName, playerCache.getPlayer());
-            loadItemsToRoom(destRoomName, playerCache.getPlayer());
+            UserCacheUtil.movePlayerToOtherRoom(room.getName(), destRoomName, player.getPlayer());
+            loadItemsToRoom(destRoomName, player.getPlayer());
 
             //缓存玩家信息
-            playerCache.setRoom(roomMap.get(destRoomName));
+            player.setLocation(roomMap.get(destRoomName));
         }
 
     }
@@ -299,9 +297,9 @@ public class MoveService extends BaseService{
         //检查下有没有门阻挡
 
         //检查用户是否已经登陆
-        Map<Integer, PlayerCache> playerCacheMap = UserCacheUtil.getPlayerCache();
-        PlayerCache playerCache = playerCacheMap.get(this.userId);
-        RoomEntity room = playerCache.getRoom();
+        Map<Integer, Living> playerCacheMap = UserCacheUtil.getPlayers();
+        Player player = (Player)playerCacheMap.get(this.userId);
+        RoomEntity room = player.getLocation();
         Map<String, RoomObjects> roomObjectsMap = UserCacheUtil.getRoomObjectsCache();
         RoomObjects roomObjects = roomObjectsMap.get(room.getName());
         if(roomObjects != null){
