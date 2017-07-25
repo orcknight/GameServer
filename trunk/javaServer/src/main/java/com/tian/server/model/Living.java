@@ -5,6 +5,7 @@ import com.tian.server.util.CmdUtil;
 import com.tian.server.util.StringUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,7 +34,7 @@ public class Living {
     protected String unit; //单位: 只 个
     protected Integer weight; //重量
 
-    protected boolean isAlive; //是否存活
+    protected Byte status; //玩家状态
 
     //基本属性
     protected Integer str; //膂力
@@ -57,14 +58,15 @@ public class Living {
     protected Integer combatExp; //实战经验
     protected Integer score; //功劳点
 
-    protected Map<String, Integer> skills; //存放的是 技能名：等级
-    protected Map<String, Integer> learned; //存放的是玩家已经学习过的技能 技能名：等级
-    protected Map<String, String> skillMap; //存放的连招 技能名：技能名
-    protected Map<String, String> skillPrepare; //为基本武功设置激发武功 基本技能名字：技能名 如： prepare_skill("strike", "dragon-strike");
+    protected Map<String, Integer> skills = new HashMap<String, Integer>(); //存放的是 技能名：等级
+    protected Map<String, Integer> learned = new HashMap<String, Integer>(); //存放的是玩家已经学习过的技能 技能名：等级
+    protected Map<String, String> skillMap = new HashMap<String, String>(); //存放的连招 技能名：技能名
+    protected Map<String, String> skillPrepare = new HashMap<String, String>(); //为基本武功设置激发武功 基本技能名字：技能名 如： prepare_skill("strike", "dragon-strike");
 
-    protected Map<String, String> buttons; //功能按钮
-    protected RoomEntity location; //位置
-    protected List<Living> enemy; //敌人列表
+    protected Map<String, String> buttons = new HashMap<String, String>(); //功能按钮
+    protected RoomEntity location;//位置
+    protected List<Living> enemy = new ArrayList<Living>(); //敌人列表
+    protected Map<String, Integer> apply = new HashMap<String, Integer>(); //存储附加属性
 
     //属性
     public Long getUuid() {
@@ -209,12 +211,12 @@ public class Living {
         this.weight = weight;
     }
 
-    public boolean getIsAlive() {
-        return this.isAlive;
+    public Byte getStatus() {
+        return this.status;
     }
 
-    public void setIsAlive(boolean isAlive) {
-        this.isAlive = isAlive;
+    public void setStatus(Byte status) {
+        this.status = status;
     }
 
     public Integer getStr() {
@@ -409,6 +411,25 @@ public class Living {
         this.location = location;
     }
 
+    public Map<String, Integer> getApply() {
+        return apply;
+    }
+
+    public void setApply(Map<String, Integer> apply) {
+        this.apply = apply;
+    }
+
+    public void setSkill(String skillName, Integer level) {
+        this.getSkills().put(skillName, level);
+    }
+
+    public void mapSkill(String skillName1, String skillName2){
+        this.getSkillMap().put(skillName1, skillName2);
+    }
+
+    public void prepareSkill(String baseSkill, String skillName){
+        this.getSkillPrepare().put(baseSkill, skillName);
+    }
 
     public String getRandomLimb(){
 
@@ -446,6 +467,11 @@ public class Living {
         }
 
         this.enemy.add(enemy);
+    }
+
+    public void setApplyValue(String key, Integer value){
+
+        getApply().put(key, value);
     }
 
 }

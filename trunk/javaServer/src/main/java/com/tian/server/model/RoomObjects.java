@@ -14,22 +14,22 @@ import java.util.Map;
  */
 public class RoomObjects {
 
-    private List<PlayerEntity> players; //玩家列表
+    private List<Player> players; //玩家列表
     private List<Living> npcs; //npc列表
     private List<ItemEntity> items; //物品列表;
     private Map<String, RoomGateEntity> gates; //门
 
-    public List<PlayerEntity> getPlayers(){
+    public List<Player> getPlayers(){
 
         if(this.players == null){
 
-            this.players = new ArrayList<PlayerEntity>();
+            this.players = new ArrayList<Player>();
         }
 
         return this.players;
     }
 
-    public void setPlayers(List<PlayerEntity> players){
+    public void setPlayers(List<Player> players){
 
         this.players = players;
     }

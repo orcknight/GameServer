@@ -40,7 +40,7 @@ public class PlayerEntity {
     private Integer effJingLi;
     private Integer jingLi;
     private Integer combatExp;
-    private Byte isAlive;
+    private Byte status;
     private String bornFamily;
     private String surname;
     private String familyName;
@@ -368,13 +368,13 @@ public class PlayerEntity {
     }
 
     @Basic
-    @Column(name = "isAlive", nullable = true)
-    public Byte getIsAlive() {
-        return isAlive;
+    @Column(name = "status", nullable = true)
+    public Byte getStatus() {
+        return status;
     }
 
-    public void setIsAlive(Byte isAlive) {
-        this.isAlive = isAlive;
+    public void setStatus(Byte isAlive) {
+        this.status = status;
     }
 
     @Basic
@@ -465,7 +465,7 @@ public class PlayerEntity {
         if (effJingLi != null ? !effJingLi.equals(that.effJingLi) : that.effJingLi != null) return false;
         if (jingLi != null ? !jingLi.equals(that.jingLi) : that.jingLi != null) return false;
         if (combatExp != null ? !combatExp.equals(that.combatExp) : that.combatExp != null) return false;
-        if (isAlive != null ? !isAlive.equals(that.isAlive) : that.isAlive != null) return false;
+        if (status != null ? !status.equals(that.status) : that.status != null) return false;
         if (bornFamily != null ? !bornFamily.equals(that.bornFamily) : that.bornFamily != null) return false;
         if (surname != null ? !surname.equals(that.surname) : that.surname != null) return false;
         if (familyName != null ? !familyName.equals(that.familyName) : that.familyName != null) return false;
@@ -508,7 +508,7 @@ public class PlayerEntity {
         result = 31 * result + (effJingLi != null ? effJingLi.hashCode() : 0);
         result = 31 * result + (jingLi != null ? jingLi.hashCode() : 0);
         result = 31 * result + (combatExp != null ? combatExp.hashCode() : 0);
-        result = 31 * result + (isAlive != null ? isAlive.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
         result = 31 * result + (bornFamily != null ? bornFamily.hashCode() : 0);
         result = 31 * result + (surname != null ? surname.hashCode() : 0);
         result = 31 * result + (familyName != null ? familyName.hashCode() : 0);

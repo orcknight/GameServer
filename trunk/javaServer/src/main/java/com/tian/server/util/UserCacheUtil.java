@@ -3,6 +3,7 @@ package com.tian.server.util;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.tian.server.entity.*;
 import com.tian.server.model.Living;
+import com.tian.server.model.Player;
 import com.tian.server.model.RoomObjects;
 
 import java.util.ArrayList;
@@ -22,6 +23,13 @@ public class UserCacheUtil {
     private static Map<String, RoomEntity> mapCache = new HashMap<String, RoomEntity>();
     private static Map<String, RoomObjects> roomObjectsCache = new HashMap<String, RoomObjects>();
 
+    public static Map<Long, Living> getAllLivings() {
+        return allLivings;
+    }
+
+    public static void setAllLivings(Map<Long, Living> allLivings) {
+        UserCacheUtil.allLivings = allLivings;
+    }
 
     public static Map<Integer, Living> getPlayers(){
 
@@ -100,11 +108,11 @@ public class UserCacheUtil {
         }
     }
 
-    public static void movePlayerToOtherRoom(String source, String dest, PlayerEntity player){
+    public static void movePlayerToOtherRoom(String source, String dest, Player player){
 
         //从之前的房间删除玩家
         RoomObjects sourceObjects = roomObjectsCache.get(source);
-        List<PlayerEntity> sourcePlayers = sourceObjects.getPlayers();
+        List<Player> sourcePlayers = sourceObjects.getPlayers();
         sourcePlayers.remove(player);
 
         //把玩家移动到新房间
@@ -112,18 +120,18 @@ public class UserCacheUtil {
         if(destObjects == null){
 
             destObjects = new RoomObjects();
-            destObjects.setPlayers(new ArrayList<PlayerEntity>());
+            destObjects.setPlayers(new ArrayList<Player>());
             roomObjectsCache.put(dest, destObjects);
         }
-        List<PlayerEntity> destPlayers = destObjects.getPlayers();
+        List<Player> destPlayers = destObjects.getPlayers();
         destPlayers.add(player);
         destObjects.setPlayers(destPlayers);
     }
 
-    public static void delPlayerFromRoom(String roomName, PlayerEntity player){
+    public static void delPlayerFromRoom(String roomName, Player player){
 
         RoomObjects sourceObjects = roomObjectsCache.get(roomName);
-        List<PlayerEntity> sourcePlayers = sourceObjects.getPlayers();
+        List<Player> sourcePlayers = sourceObjects.getPlayers();
         if(sourcePlayers == null){
 
             return;

@@ -2,6 +2,7 @@ package com.tian.server.util;
 
 import com.tian.server.entity.PlayerEntity;
 import com.tian.server.entity.RoomGateEntity;
+import com.tian.server.model.Player;
 import com.tian.server.model.PlayerLocation;
 import com.tian.server.model.RoomObjects;
 
@@ -137,20 +138,20 @@ public class CmdUtil {
         return msg;
     }
 
-    public static String getObjectsLine(RoomObjects roomObjects, PlayerEntity my){
+    public static String getObjectsLine(RoomObjects roomObjects, Player my){
 
         StringBuffer sb = new StringBuffer();
         String contact = "$zj#";
 
-        List<PlayerEntity> players = roomObjects.getPlayers();
+        List<Player> players = roomObjects.getPlayers();
         if(players.size() > 1){
 
             sb.append("\u001B005");
             int temp = 0;
 
-            for(PlayerEntity player : players){
+            for(Player player : players){
 
-                if(player.getId() == my.getId()){
+                if(player.getPlayerId() == my.getPlayerId()){
 
                     continue;
                 }
@@ -160,7 +161,7 @@ public class CmdUtil {
                     sb.append(contact);
                 }
                 sb.append(player.getName());
-                sb.append(":look /user/user#" + player.getId());
+                sb.append(":look /user/user#" + player.getUuid());
                 temp++;
             }
 
@@ -189,18 +190,18 @@ public class CmdUtil {
         return sb.toString();
     }
 
-    public static String getEnterRoomLine(String name, String eqpt, PlayerEntity player){
+    public static String getEnterRoomLine(String name, String eqpt, Player player){
 
         String eqptDesc = eqpt.length() == 0 ? "一丝不挂的" : "身着" + eqpt;
         String msg = name + eqptDesc + "走了过来。" + "\r\n" +
-                "\u001B005" + player.getName() + ":look /user/user#" + player.getId() + "\r\n";
+                "\u001B005" + player.getName() + ":look /user/user#" + player.getPlayerId() + "\r\n";
         return msg;
     }
 
-    public static String getLeaveRoomLine(String directionInfo, PlayerEntity player){
+    public static String getLeaveRoomLine(String directionInfo, Player player){
 
         String msg = player.getName() + "往" + directionInfo + "离开。\r\n" +
-                "\u001B905look /user/user#" + player.getId() + "\r\n";
+                "\u001B905look /user/user#" + player.getPlayerId() + "\r\n";
         return msg;
     }
 
@@ -211,10 +212,10 @@ public class CmdUtil {
         return msg;
     }
 
-    public static String getLogoutBoradcastLine(PlayerEntity player){
+    public static String getLogoutBoradcastLine(Player player){
 
         String msg = player.getName() + "离开了这个世界。\r\n" +
-                "\u001B905look /user/user#" + player.getId() + "\r\n";
+                "\u001B905look /user/user#" + player.getPlayerId() + "\r\n";
         return msg;
     }
 

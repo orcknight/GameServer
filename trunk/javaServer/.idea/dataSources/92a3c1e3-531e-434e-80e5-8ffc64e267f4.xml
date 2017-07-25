@@ -439,47 +439,47 @@
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="93" parent="9" name="isAlive">
-      <Position>34</Position>
-      <Comment>玩家角色是否存活 0：死亡 1：存活</Comment>
-      <DataType>tinyint(4)|0</DataType>
-      <DefaultExpression>&apos;1&apos;</DefaultExpression>
-    </column>
-    <column id="94" parent="9" name="bornFamily">
+    <column id="93" parent="9" name="bornFamily">
       <Position>35</Position>
       <Comment>出生家族</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="95" parent="9" name="surname">
+    <column id="94" parent="9" name="surname">
       <Position>36</Position>
       <Comment>名字前缀</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="96" parent="9" name="familyName">
+    <column id="95" parent="9" name="familyName">
       <Position>37</Position>
       <Comment>门派名称</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="97" parent="9" name="bunchName">
+    <column id="96" parent="9" name="bunchName">
       <Position>38</Position>
       <Comment>帮派名称</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="98" parent="9" name="cmdName">
+    <column id="97" parent="9" name="cmdName">
       <Position>3</Position>
       <Comment>人物英文名，命令名，这个字可以用来识别玩家</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="99" parent="9" name="uuid">
+    <column id="98" parent="9" name="uuid">
       <Position>4</Position>
       <Comment>全局通用标识</Comment>
       <DataType>bigint(19)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="99" parent="9" name="status">
+      <Position>34</Position>
+      <Comment>玩家角色是否存活 0：死亡 1：存活</Comment>
+      <DataType>tinyint(4)|0</DataType>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
     </column>
     <key id="100" parent="9" name="PRIMARY">
       <ColNames>id</ColNames>

@@ -125,17 +125,17 @@ public class MoveService extends BaseService{
             String destName = getDirectionCnName(direction);
             //广播玩家离开房间的信息
             socketIOClient.getNamespace().getRoomOperations(room.getName())
-                    .sendEvent("stream", CmdUtil.getLeaveRoomLine(roomMap.get(destRoomName).getShortDesc() + "("  + destName + ")", player.getPlayer()));
+                    .sendEvent("stream", CmdUtil.getLeaveRoomLine(roomMap.get(destRoomName).getShortDesc() + "("  + destName + ")", player));
 
             //广播玩家进入房间的信息
             socketIOClient.getNamespace().getRoomOperations(destRoomName)
-                    .sendEvent("stream", CmdUtil.getEnterRoomLine(player.getPlayer().getName(), "金丝甲", player.getPlayer()));
+                    .sendEvent("stream", CmdUtil.getEnterRoomLine(player.getName(), "金丝甲", player));
 
             socketIOClient.joinRoom(destRoomName);
 
             //更新房间内玩家信息
-            UserCacheUtil.movePlayerToOtherRoom(room.getName(), destRoomName, player.getPlayer());
-            loadItemsToRoom(destRoomName, player.getPlayer());
+            UserCacheUtil.movePlayerToOtherRoom(room.getName(), destRoomName, player);
+            loadItemsToRoom(destRoomName, player);
 
             //缓存玩家信息
             player.setLocation(roomMap.get(destRoomName));
@@ -245,7 +245,7 @@ public class MoveService extends BaseService{
         return playerLocation;
     }
 
-    private void loadItemsToRoom(String roomNames, PlayerEntity player){
+    private void loadItemsToRoom(String roomNames, Player player){
 
         //获取房间物品等信息
         Map<String, RoomObjects> roomObjectsMap = UserCacheUtil.getRoomObjectsCache();

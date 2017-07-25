@@ -67,19 +67,18 @@ public class Player extends Human {
         setWater(player.getWater());
         setMaxFood(getMaxFoodCapacity());
         setMaxWater(getMaxWaterCapacity());
-        setIsAlive(player.getIsAlive());
-
-
-
+        setStatus(player.getStatus());
+        setBornFamily(player.getBornFamily());
+        setSurname(player.getSurname());
+        setFamilyName(player.getFamilyName());
+        setBunchName(player.getBunchName());
     }
 
     public void setSocketClient(SocketIOClient socketClient) {
-
         this.socketClient = socketClient;
     }
 
     public SocketIOClient getSocketClient() {
-
         return this.socketClient;
     }
 
@@ -328,11 +327,11 @@ public class Player extends Human {
 
                 result = result.replace("$l", limb);
                 result = result.replace("$w", "拳头");
-                result = result.replace("$N", player.getName());
-                result = result.replace("$n", ((Player) enemy.get(0)).getPlayer().getName());
+                //result = result.replace("$N", player.getName());
+                //result = result.replace("$n", ((Player) enemy.get(0)).getPlayer().getName());
 
                 System.out.println(result);
-                System.out.println(player.getName() + "对" + ((Player) enemy.get(0)).getPlayer().getName() + "造成" + damage + "点伤害");
+                //System.out.println(player.getName() + "对" + ((Player) enemy.get(0)).getPlayer().getName() + "造成" + damage + "点伤害");
             }
         }
 

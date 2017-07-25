@@ -27,12 +27,12 @@ public class CombatService extends  BaseService {
 
         RoomObjects roomObjects = UserCacheUtil.getRoomObjectsCache().get(me.getPlayerInfo().getRoomName());
 
-        for(PlayerEntity player : roomObjects.getPlayers()){
+        for(Player player : roomObjects.getPlayers()){
 
             if(player.getCmdName().equals(euid)){
 
-                me.addEnemy(UserCacheUtil.getPlayers().get(player.getUserId()));
-                UserCacheUtil.getPlayers().get(player.getUserId()).addEnemy(me);
+                me.addEnemy(UserCacheUtil.getPlayers().get(player.getUser().getId()));
+                UserCacheUtil.getPlayers().get(player.getUser().getId()).addEnemy(me);
                 break;
             }
         }

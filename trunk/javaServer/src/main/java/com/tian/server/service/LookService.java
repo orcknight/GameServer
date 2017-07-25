@@ -123,9 +123,9 @@ public class LookService extends BaseService{
         sendMsg(CmdUtil.getScreenLine("你" + msg));
         Collection<SocketIOClient> cl = socketIOClient.getNamespace().getRoomOperations(gate.getEnterRoom()).getClients();
         socketIOClient.getNamespace().getRoomOperations(player.getLocation().getName()).sendEvent("stream", socketIOClient,
-                CmdUtil.getScreenLine(player.getPlayer().getName() + msg));
+                CmdUtil.getScreenLine(player.getName() + msg));
         socketIOClient.getNamespace().getRoomOperations(gate.getExitRoom()).sendEvent("stream", socketIOClient,
-                CmdUtil.getScreenLine(player.getPlayer().getName() + msg));
+                CmdUtil.getScreenLine(player.getName() + msg));
 
         if(action.equals("打开")){
 

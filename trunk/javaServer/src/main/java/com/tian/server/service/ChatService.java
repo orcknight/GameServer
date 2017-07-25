@@ -34,8 +34,7 @@ public class ChatService extends BaseService{
         Map<Integer, Living> cacheMap = UserCacheUtil.getPlayers();
         Player playerCache = (Player)cacheMap.get(this.userId);
         UserEntity user = playerCache.getUser();
-        PlayerEntity player = playerCache.getPlayer();
-        String retMsg = CmdUtil.getChatLine(chatChannel, user.getName(), player.getName(), msg);
+        String retMsg = CmdUtil.getChatLine(chatChannel, user.getName(), playerCache.getName(), msg);
         socketIOClient.getNamespace().getBroadcastOperations().sendEvent("stream", retMsg);
     }
 

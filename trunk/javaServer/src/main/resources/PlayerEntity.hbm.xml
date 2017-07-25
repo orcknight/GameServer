@@ -101,8 +101,8 @@
         <property name="combatExp">
             <column name="combatExp" sql-type="int(11)" not-null="true"/>
         </property>
-        <property name="isAlive">
-            <column name="isAlive" sql-type="tinyint(4)" not-null="true"/>
+        <property name="status">
+            <column name="status" sql-type="tinyint(4)" not-null="true"/>
         </property>
         <property name="bornFamily">
             <column name="bornFamily" sql-type="varchar(255)" not-null="true"/>

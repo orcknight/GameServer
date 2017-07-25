@@ -81,11 +81,11 @@ public class DefaultService extends BaseService{
 
                     //获取玩家信息并提取信息
                     Player player = (Player)playerCacheMap.get(userId);
-                    if(player.getPlayer() == null){
+                    if(player == null){
 
                         continue;
                     }
-                    if(player.getPlayer().getMaxQi() < 1){
+                    if(player.getMaxQi() < 1){
 
                         continue;
                     }

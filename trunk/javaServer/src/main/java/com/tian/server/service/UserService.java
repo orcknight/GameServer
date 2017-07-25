@@ -67,7 +67,7 @@ public class UserService extends  BaseService{
             return;
         }
         //缓存玩家信息
-        playerCache.setPlayer(player);
+        playerCache.initInfo(player);
 
         //获取玩家辅助信息并缓存
         PlayerInfoEntity playerInfo = playerInfoDao.getByPlayerId(player.getId());
@@ -98,16 +98,16 @@ public class UserService extends  BaseService{
         if(roomObjects == null) {
 
             roomObjects = new RoomObjects();
-            roomObjects.setPlayers(new ArrayList<PlayerEntity>());
+            roomObjects.setPlayers(new ArrayList<Player>());
         }
 
-        if(!roomObjects.getPlayers().contains(player)){
+        if(!roomObjects.getPlayers().contains(playerCache)){
 
-            roomObjects.getPlayers().add(player);
+            roomObjects.getPlayers().add(playerCache);
             roomObjectsMap.put(playerInfo.getRoomName(), roomObjects);
         }
 
-        String msg = CmdUtil.getObjectsLine(roomObjects, player);
+        String msg = CmdUtil.getObjectsLine(roomObjects, playerCache);
         sendMsg(msg);
     }
 
@@ -186,12 +186,12 @@ public class UserService extends  BaseService{
 
             //广播玩家离开的信息
             socketIOClient.getNamespace().getRoomOperations(player.getPlayerInfo().getRoomName()).sendEvent("stream",
-                    CmdUtil.getLogoutBoradcastLine(player.getPlayer()));
+                    CmdUtil.getLogoutBoradcastLine(player));
 
             //清理缓存数据
             UserCacheUtil.getPlayerSockets().remove(socketIOClient);
             playerCacheMap.remove(this.userId);
-            UserCacheUtil.delPlayerFromRoom(player.getPlayerInfo().getRoomName(), player.getPlayer());
+            UserCacheUtil.delPlayerFromRoom(player.getPlayerInfo().getRoomName(), player);
         }
 
         //关闭连接
@@ -328,7 +328,7 @@ public class UserService extends  BaseService{
     private void loadUserSkill(Player player){
 
         PlayerSkillDao playerSkillDao = new PlayerSkillDao();
-        List<PlayerSkillEntity> playerSkillEntitiesList = playerSkillDao.getListByPlayerId(player.getPlayer().getId());
+        List<PlayerSkillEntity> playerSkillEntitiesList = playerSkillDao.getListByPlayerId(player.getPlayerId());
 
         player.initSkills(playerSkillEntitiesList);
     }
