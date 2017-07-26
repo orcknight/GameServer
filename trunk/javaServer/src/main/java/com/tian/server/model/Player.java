@@ -3,7 +3,6 @@ package com.tian.server.model;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.tian.server.entity.*;
 import com.tian.server.model.Race.Human;
-import com.tian.server.service.CombatService;
 import com.tian.server.util.CombatUtil;
 
 import java.util.*;

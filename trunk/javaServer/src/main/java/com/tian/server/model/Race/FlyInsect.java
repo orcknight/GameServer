@@ -1,6 +1,5 @@
 package com.tian.server.model.Race;
 
-import com.tian.server.common.Race;
 import com.tian.server.model.Living;
 import com.tian.server.model.SkillAction;
 
@@ -11,7 +10,7 @@ import java.util.Random;
 /**
  * Created by PPX on 2017/7/20.
  */
-public class FlyInsect extends Living implements Race {
+public class FlyInsect extends Living {
 
     private static List<SkillAction> actions = new ArrayList<SkillAction>();
     private static List<String> limbs = new ArrayList<String>();

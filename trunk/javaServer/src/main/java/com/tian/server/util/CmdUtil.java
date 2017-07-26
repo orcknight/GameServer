@@ -2,6 +2,7 @@ package com.tian.server.util;
 
 import com.tian.server.entity.PlayerEntity;
 import com.tian.server.entity.RoomGateEntity;
+import com.tian.server.model.Living;
 import com.tian.server.model.Player;
 import com.tian.server.model.PlayerLocation;
 import com.tian.server.model.RoomObjects;
@@ -142,6 +143,26 @@ public class CmdUtil {
 
         StringBuffer sb = new StringBuffer();
         String contact = "$zj#";
+
+        List<Living> npcs = roomObjects.getNpcs();
+        if(npcs.size() > 1) {
+
+            sb.append("\u001B005");
+            int temp = 0;
+
+            for(Living npc : npcs){
+
+                if(temp > 0){
+
+                    sb.append(contact);
+                }
+                sb.append(npc.getName());
+                sb.append(":look /user/npc#" + npc.getUuid());
+                temp++;
+            }
+
+            sb.append("\r\n");
+        }
 
         List<Player> players = roomObjects.getPlayers();
         if(players.size() > 1){

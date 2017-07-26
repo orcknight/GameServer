@@ -7,7 +7,7 @@
 --
 function create(uuid)
 
-    local agent = luajava.newInstance("com.tian.server.util.LivingLuaAgent")
+    local agent = luajava.newInstance("com/tian/server/util/LivingLuaAgent")
     --调用对象方法
 
     agent:setName(uuid, "入赘假假")

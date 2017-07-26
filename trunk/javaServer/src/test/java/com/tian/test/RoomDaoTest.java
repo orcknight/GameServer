@@ -1,25 +1,11 @@
 package com.tian.test;
 
-import com.tian.server.common.EqptParts;
-import com.tian.server.dao.ItemDao;
-import com.tian.server.entity.ItemEntity;
-import com.tian.server.model.Race.Beast;
-import com.tian.server.model.SkillAction;
-import com.tian.server.util.CombatUtil;
-import com.tian.server.util.IdUtil;
 import com.tian.server.util.LivingLuaAgent;
 import junit.framework.TestCase;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 import org.junit.Test;
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.lib.jse.JsePlatform;
-
-import java.util.List;
-import java.util.Properties;
-import java.util.Set;
-import java.util.UUID;
 
 /**
  * Created by PPX on 2017/6/22.
@@ -37,12 +23,24 @@ public class RoomDaoTest extends TestCase {
     @Test
     public void testGetList() throws Exception {
 
-        /*String luaPath = this.getClass().getResource("/lua/login.lua").getPath();
-         //= "resources/lua/login.lua";   //lua脚本文件所在路径
-        Globals globals = JsePlatform.standardGlobals();
-        //加载脚本文件login.lua，并编译
-        globals.loadfile(luaPath).call();
-        //获取无参函数hello
+        try {
+
+            String luaPath = this.getClass().getResource("/lua/npc/register/ruzhui-jiajia.lua").getPath();
+            //= "resources/lua/login.lua";   //lua脚本文件所在路径
+            Globals globals = JsePlatform.standardGlobals();
+            //加载脚本文件login.lua，并编译
+            globals.loadfile(luaPath).call();
+
+            //获取带参函数create
+            LuaValue createFun = globals.get(LuaValue.valueOf("create"));
+            //执行方法初始化数据
+            createFun.call(LuaValue.valueOf("123456"));
+        }catch (Exception e){
+
+            e.printStackTrace();
+        }
+
+        /*//获取无参函数hello
         LuaValue func = globals.get(LuaValue.valueOf("luaPrint"));
         //执行hello方法
         func.call();

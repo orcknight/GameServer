@@ -34,6 +34,20 @@ public class RoomObjects {
         this.players = players;
     }
 
+    public List<Living> getNpcs() {
+
+        if(this.npcs == null){
+
+            this.npcs = new ArrayList<Living>();
+        }
+
+        return npcs;
+    }
+
+    public void setNpcs(List<Living> npcs) {
+        this.npcs = npcs;
+    }
+
     public List<ItemEntity> getItems(){
 
         return this.items;

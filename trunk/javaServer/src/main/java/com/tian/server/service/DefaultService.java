@@ -1,15 +1,16 @@
 package com.tian.server.service;
 
 import com.corundumstudio.socketio.SocketIOClient;
-import com.tian.server.dao.ItemDao;
-import com.tian.server.dao.RoomContentDao;
-import com.tian.server.dao.RoomDao;
-import com.tian.server.dao.RoomGateDao;
+import com.tian.server.dao.*;
 import com.tian.server.entity.*;
 import com.tian.server.model.Living;
 import com.tian.server.model.Player;
 import com.tian.server.util.CmdUtil;
+import com.tian.server.util.IdUtil;
 import com.tian.server.util.UserCacheUtil;
+import org.luaj.vm2.Globals;
+import org.luaj.vm2.LuaValue;
+import org.luaj.vm2.lib.jse.JsePlatform;
 
 import java.util.*;
 
@@ -50,10 +51,46 @@ public class DefaultService extends BaseService{
 
             RoomContentDao roomContentDao = new RoomContentDao();
             ItemDao itemDao = new ItemDao();
+            NpcDao npcDao = new NpcDao();
             List<RoomContentEntity> roomContents = roomContentDao.getList();
             List<ItemEntity> items = itemDao.getList();
+            List<NpcEntity> npcs = npcDao.getList();
 
-            UserCacheUtil.initRoomObjectsCache(roomContents, items);
+            for(NpcEntity npc : npcs) {
+
+                try {
+                    Class cls = Class.forName("com.tian.server.model.Race." + npc.getRace());
+                    Living living = (Living) cls.newInstance();
+
+                    Long uuid = IdUtil.getUUID();
+                    living.setUuid(uuid);
+
+                    //RoomObjects roomObjects = roomObjectsCache.get(roomContent.getRoomName());
+                    //if(roomObjects == null){
+
+                    //roomObjects = new RoomObjects();
+                    //}
+                    //}
+
+                    String luaPath = this.getClass().getResource("/lua/npc/register/ruzhui-jiajia.lua").getPath();
+                    //= "resources/lua/login.lua";   //lua脚本文件所在路径
+                    Globals globals = JsePlatform.standardGlobals();
+                    //加载脚本文件login.lua，并编译
+                    globals.loadfile(luaPath).call();
+
+                    //获取带参函数create
+                    LuaValue createFun = globals.get(LuaValue.valueOf("create"));
+                    //执行方法初始化数据
+                    createFun.call(LuaValue.valueOf("123456"));
+
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            //UserCacheUtil.initRoomObjectsCache(roomContents, items, npcs);
 
             //初始化门
             RoomGateDao roomGateDao = new RoomGateDao();

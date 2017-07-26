@@ -5,6 +5,9 @@ import com.tian.server.entity.*;
 import com.tian.server.model.Living;
 import com.tian.server.model.Player;
 import com.tian.server.model.RoomObjects;
+import org.luaj.vm2.Globals;
+import org.luaj.vm2.LuaValue;
+import org.luaj.vm2.lib.jse.JsePlatform;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -59,11 +62,40 @@ public class UserCacheUtil {
         return roomObjectsCache;
     }
 
-    public static void initRoomObjectsCache(List<RoomContentEntity> roomContents, List<ItemEntity> items){
+    public static void initRoomObjectsCache(List<RoomContentEntity> roomContents, List<ItemEntity> items, List<NpcEntity> npcs){
+
+        for(NpcEntity npc : npcs){
+
+            try {
+                Class cls = Class.forName("com.tian.server.model.Race." + npc.getRace());
+                Living living = (Living)cls.newInstance();
+
+                Long uuid = IdUtil.getUUID();
+                living.setUuid(uuid);
+
+                //RoomObjects roomObjects = roomObjectsCache.get(roomContent.getRoomName());
+                //if(roomObjects == null){
+
+                   //roomObjects = new RoomObjects();
+                //}
+                //}
+
+                getAllLivings().put(uuid, living);
+                String luaPath = UserCacheUtil.class.getResource(npc.getResource()).getPath();
+                Globals globals = JsePlatform.standardGlobals();
+                //加载脚本文件login.lua，并编译
+                globals.loadfile(luaPath).call();
+                //获取带参函数create
+                LuaValue createFun = globals.get(LuaValue.valueOf("create"));
+                //执行方法初始化数据
+                createFun.call(LuaValue.valueOf(uuid.toString()));
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
         for(RoomContentEntity roomContent : roomContents){
-
-            roomContent.hashCode();
 
             RoomObjects roomObjects = roomObjectsCache.get(roomContent.getRoomName());
             if(roomObjects == null){
@@ -73,7 +105,7 @@ public class UserCacheUtil {
 
             List<ItemEntity> savedItems = roomObjects.getItems();
 
-            ItemEntity item = (ItemEntity)items.get(roomContent.getItemId()).clone();
+            ItemEntity item = (ItemEntity)items.get(roomContent.getRefId()).clone();
             item.setUuid(IdUtil.getUUID());
             savedItems.add(item);
             roomObjects.setItems(savedItems);

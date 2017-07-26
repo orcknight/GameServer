@@ -1,18 +1,16 @@
 package com.tian.server.model.Race;
 
-import com.tian.server.common.Race;
 import com.tian.server.model.Living;
 import com.tian.server.model.SkillAction;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 /**
  * Created by PPX on 2017/7/11.
  */
-public class Human extends Living implements Race {
+public class Human extends Living {
 
     private static List<SkillAction> actions = new ArrayList<SkillAction>();
     private static List<String> limbs = new ArrayList<String>();
