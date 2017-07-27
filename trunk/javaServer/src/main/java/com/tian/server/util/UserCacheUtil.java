@@ -65,54 +65,32 @@ public class UserCacheUtil {
 
     public static void initRoomObjectsCache(List<RoomContentEntity> roomContents, List<ItemEntity> items, List<NpcEntity> npcs){
 
-        for(NpcEntity npc : npcs){
-
-            try {
-                Class cls = Class.forName("com.tian.server.model.Race." + npc.getRace());
-                Living living = (Living)cls.newInstance();
-
-                Long uuid = IdUtil.getUUID();
-                living.setUuid(uuid);
-
-                //RoomObjects roomObjects = roomObjectsCache.get(roomContent.getRoomName());
-                //if(roomObjects == null){
-
-                   //roomObjects = new RoomObjects();
-                //}
-                //}
-
-                getAllLivings().put(uuid, living);
-                LuaBridge bridge = new LuaBridge();
-                String luaPath = UserCacheUtil.class.getResource(npc.getResource()).getPath();
-                //= "resources/lua/login.lua";   //lua脚本文件所在路径
-                Globals globals = JsePlatform.standardGlobals();
-                //加载脚本文件login.lua，并编译
-                globals.loadfile(luaPath).call();
-
-                //获取带参函数create
-                LuaValue createFun = globals.get(LuaValue.valueOf("create"));
-                //执行方法初始化数据
-                createFun.call(CoerceJavaToLua.coerce(bridge), LuaValue.valueOf(uuid.toString()));
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
         for(RoomContentEntity roomContent : roomContents){
 
             RoomObjects roomObjects = roomObjectsCache.get(roomContent.getRoomName());
             if(roomObjects == null){
 
                 roomObjects = new RoomObjects();
+                roomObjectsCache.put(roomContent.getRoomName(), roomObjects);
             }
 
-            List<ItemEntity> savedItems = roomObjects.getItems();
+            //先处理npc
+            if(roomContent.getType().equals("npc")){
 
-            ItemEntity item = (ItemEntity)items.get(roomContent.getRefId()).clone();
-            item.setUuid(IdUtil.getUUID());
-            savedItems.add(item);
-            roomObjects.setItems(savedItems);
+                Integer npcIndex = getNpcIndex(npcs, roomContent.getRefId());
+                Living npc = initNpc(npcIndex, npcs);
+
+                //把npc放到对应的房间里
+                List<Living> roomNpcs = roomObjects.getNpcs();
+                roomNpcs.add(npc);
+            }else{
+
+                List<ItemEntity> savedItems = roomObjects.getItems();
+                ItemEntity item = (ItemEntity)items.get(roomContent.getRefId()).clone();
+                item.setUuid(IdUtil.getUUID());
+                savedItems.add(item);
+                roomObjects.setItems(savedItems);
+            }
         }
     }
 
@@ -173,6 +151,49 @@ public class UserCacheUtil {
             return;
         }
         sourcePlayers.remove(player);
+    }
+
+    private static Integer getNpcIndex(List<NpcEntity> list, Integer destId){
+
+        for(Integer i = 0; i < list.size(); i++){
+
+            if(list.get(i).getId() == destId){
+
+                return i;
+            }
+        }
+
+        return 0;
+    }
+
+    private static Living initNpc(Integer index, List<NpcEntity> list){
+
+        try {
+            NpcEntity npc = list.get(index);
+            Class cls = Class.forName("com.tian.server.model.Race." + npc.getRace());
+            Living living = (Living)cls.newInstance();
+
+            Long uuid = IdUtil.getUUID();
+            living.setUuid(uuid);
+
+            //缓存npc到生物列表
+            getAllLivings().put(uuid, living);
+
+            LuaBridge bridge = new LuaBridge();
+            String luaPath = UserCacheUtil.class.getResource(npc.getResource()).getPath();
+            Globals globals = JsePlatform.standardGlobals();
+            //加载脚本文件login.lua，并编译
+            globals.loadfile(luaPath).call();
+            //获取带参函数create
+            LuaValue createFun = globals.get(LuaValue.valueOf("create"));
+            //执行方法初始化数据
+            createFun.call(CoerceJavaToLua.coerce(bridge), LuaValue.valueOf(uuid.toString()));
+            return living;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 }

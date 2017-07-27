@@ -145,7 +145,7 @@ public class CmdUtil {
         String contact = "$zj#";
 
         List<Living> npcs = roomObjects.getNpcs();
-        if(npcs.size() > 1) {
+        if(npcs.size() > 0) {
 
             sb.append("\u001B005");
             int temp = 0;

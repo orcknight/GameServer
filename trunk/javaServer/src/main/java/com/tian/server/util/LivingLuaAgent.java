@@ -11,10 +11,6 @@ import java.util.Iterator;
  */
 public class LivingLuaAgent {
 
-    public LivingLuaAgent(){
-
-    }
-
     public static void info(String msg){
 
         System.out.println(msg);
@@ -40,125 +36,136 @@ public class LivingLuaAgent {
     }
 
     public static void setName(String uuid, String name){
-
-        System.out.println(uuid);
-
        Living living  = UserCacheUtil.getAllLivings().get(Long.valueOf(uuid));
-       if(living == null){
-
-           System.out.println("can not get living");
-           return;
+       if(living != null){
+           living.setName(name);
        }
-       living.setName(name);
     }
 
     public static void setCmdName(String uuid, String cmdName){
-
         Living living  = UserCacheUtil.getAllLivings().get(Long.valueOf(uuid));
-        living.setCmdName(cmdName);
+        if(living != null) {
+            living.setCmdName(cmdName);
+        }
     }
 
     public static void setGender(String uuid, String cmdName){
-
         Living living  = UserCacheUtil.getAllLivings().get(Long.valueOf(uuid));
-        living.setGender(cmdName);
+        if(living != null){
+            living.setGender(cmdName);
+        }
     }
 
     public static void setAge(String uuid, Integer age){
-
         Living living  = UserCacheUtil.getAllLivings().get(Long.valueOf(uuid));
-        living.setAge(age);
+        if(living != null){
+            living.setAge(age);
+        }
     }
 
     public static void setLongDesc(String uuid, String longDesc){
-
         Living living  = UserCacheUtil.getAllLivings().get(Long.valueOf(uuid));
-        living.setLongDesc(longDesc);
+        if(living != null){
+            living.setLongDesc(longDesc);
+        }
     }
 
     public static void setCombatExp(String uuid, Integer combatExp){
-
         Living living  = UserCacheUtil.getAllLivings().get(Long.valueOf(uuid));
-        living.setCombatExp(combatExp);
+        if(living != null){
+            living.setCombatExp(combatExp);
+        }
     }
 
     public static void setAttitude(String uuid, String attitude){
-
         Living living  = UserCacheUtil.getAllLivings().get(Long.valueOf(uuid));
-        living.setAttitude(attitude);
+        if(living != null){
+            living.setAttitude(attitude);
+        }
     }
 
     public static void setMaxNeili(String uuid, Integer maxNeili){
-
         Living living  = UserCacheUtil.getAllLivings().get(Long.valueOf(uuid));
-        living.setMaxNeili(maxNeili);
+        if(living != null){
+            living.setMaxNeili(maxNeili);
+        }
     }
 
     public static void setEffNeili(String uuid, Integer effNeili){
-
         Living living  = UserCacheUtil.getAllLivings().get(Long.valueOf(uuid));
-        living.setEffNeili(effNeili);
+        if(living != null){
+            living.setEffNeili(effNeili);
+        }
     }
 
     public static void setNeili(String uuid, Integer neili){
-
         Living living  = UserCacheUtil.getAllLivings().get(Long.valueOf(uuid));
-        living.setMaxNeili(neili);
+        if(living != null){
+            living.setMaxNeili(neili);
+        }
     }
 
     public static void setMaxQi(String uuid, Integer maxQi){
-
         Living living  = UserCacheUtil.getAllLivings().get(Long.valueOf(uuid));
-        living.setMaxNeili(maxQi);
+        if(living != null){
+            living.setMaxNeili(maxQi);
+        }
     }
 
     public static void setEffQi(String uuid, Integer effQi){
-
         Living living  = UserCacheUtil.getAllLivings().get(Long.valueOf(uuid));
-        living.setEffNeili(effQi);
+        if(living != null){
+            living.setEffNeili(effQi);
+        }
     }
 
     public static void setQi(String uuid, Integer qi){
-
         Living living  = UserCacheUtil.getAllLivings().get(Long.valueOf(uuid));
-        living.setQi(qi);
+        if(living != null){
+            living.setQi(qi);
+        }
     }
 
     public static void setMaxJing(String uuid, Integer maxJing){
-
         Living living  = UserCacheUtil.getAllLivings().get(Long.valueOf(uuid));
-        living.setMaxJing(maxJing);
+        if(living != null){
+            living.setMaxJing(maxJing);
+        }
     }
 
     public static void setEffJing(String uuid, Integer effJing){
-
         Living living  = UserCacheUtil.getAllLivings().get(Long.valueOf(uuid));
-        living.setEffJing(effJing);
+        if(living != null){
+            living.setEffJing(effJing);
+        }
     }
 
     public static void setJing(String uuid, Integer jing){
-
         Living living  = UserCacheUtil.getAllLivings().get(Long.valueOf(uuid));
-        living.setJing(jing);
+        if(living != null){
+            living.setJing(jing);
+        }
     }
 
     public static void setSkill(String uuid, String skillName, Integer level){
-
         Living living  = UserCacheUtil.getAllLivings().get(Long.valueOf(uuid));
-        living.setSkill(skillName, level);
+        if(living != null){
+            living.setSkill(skillName, level);
+        }
     }
 
     public static void setSkillMap(String uuid, String skillName1, String skillName2){
-
         Living living  = UserCacheUtil.getAllLivings().get(Long.valueOf(uuid));
-        living.mapSkill(skillName1, skillName2);
+        if(living != null){
+            living.mapSkill(skillName1, skillName2);
+        }
     }
 
     public static void setSkillPrepare(String uuid, String baseSkill, String skillName){
-
         Living living  = UserCacheUtil.getAllLivings().get(Long.valueOf(uuid));
-        living.prepareSkill(baseSkill, skillName);
+        if(living != null){
+            living.prepareSkill(baseSkill, skillName);
+        }
     }
-
 
 }
