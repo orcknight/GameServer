@@ -11,6 +11,10 @@ import java.util.Iterator;
  */
 public class LivingLuaAgent {
 
+    public LivingLuaAgent(){
+
+    }
+
     public static void info(String msg){
 
         System.out.println(msg);
@@ -37,7 +41,14 @@ public class LivingLuaAgent {
 
     public static void setName(String uuid, String name){
 
+        System.out.println(uuid);
+
        Living living  = UserCacheUtil.getAllLivings().get(Long.valueOf(uuid));
+       if(living == null){
+
+           System.out.println("can not get living");
+           return;
+       }
        living.setName(name);
     }
 

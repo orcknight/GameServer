@@ -7,6 +7,7 @@ import com.tian.server.model.Player;
 import com.tian.server.model.RoomObjects;
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaValue;
+import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 import org.luaj.vm2.lib.jse.JsePlatform;
 
 import java.util.ArrayList;
@@ -81,14 +82,17 @@ public class UserCacheUtil {
                 //}
 
                 getAllLivings().put(uuid, living);
+                LuaBridge bridge = new LuaBridge();
                 String luaPath = UserCacheUtil.class.getResource(npc.getResource()).getPath();
+                //= "resources/lua/login.lua";   //lua脚本文件所在路径
                 Globals globals = JsePlatform.standardGlobals();
                 //加载脚本文件login.lua，并编译
                 globals.loadfile(luaPath).call();
+
                 //获取带参函数create
                 LuaValue createFun = globals.get(LuaValue.valueOf("create"));
                 //执行方法初始化数据
-                createFun.call(LuaValue.valueOf(uuid.toString()));
+                createFun.call(CoerceJavaToLua.coerce(bridge), LuaValue.valueOf(uuid.toString()));
 
             } catch (Exception e) {
                 e.printStackTrace();

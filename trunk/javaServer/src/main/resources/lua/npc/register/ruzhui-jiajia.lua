@@ -5,11 +5,11 @@
 -- Time: 12:00
 -- To change this template use File | Settings | File Templates.
 --
-function create(uuid)
+function create(bridge, uuid)
 
-    local agent = luajava.newInstance("com/tian/server/util/LivingLuaAgent")
+    local agent = bridge:getClass("com.tian.server.util.LivingLuaAgent");
+
     --调用对象方法
-
     agent:setName(uuid, "入赘假假")
     agent:setCmdName(uuid, "ruzhui-jiajia")
     agent:setAge(uuid, 30);
@@ -17,7 +17,7 @@ function create(uuid)
     agent:setCombatExp(uuid, 1000);
     agent:setAttitude(uuid, "peaceful")
 
-    agent:setButton('[{"关于性格":"ask %s\n + " about character", "name":"偏属"}]')
+    --agent:setButton('[{"关于性格":"ask %s\n + " about character", "name":"偏属"}]')
 end
 
 
