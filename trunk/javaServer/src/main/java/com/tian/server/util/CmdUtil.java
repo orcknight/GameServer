@@ -157,7 +157,7 @@ public class CmdUtil {
                     sb.append(contact);
                 }
                 sb.append(npc.getName());
-                sb.append(":look /user/npc#" + npc.getUuid());
+                sb.append(":look /npc/npc#" + npc.getUuid());
                 temp++;
             }
 

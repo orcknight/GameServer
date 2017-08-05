@@ -77,7 +77,7 @@ public class UserService extends  BaseService{
         loadUserSkill(playerCache);
 
         //缓存玩家信息
-        Map<String, RoomEntity> roomMap = UserCacheUtil.getMapCache();
+        Map<String, RoomEntity> roomMap = UserCacheUtil.getAllMaps();
         playerCache.setLocation(roomMap.get(playerInfo.getRoomName()));
         socketIOClient.getNamespace().getRoomOperations(playerInfo.getRoomName()).sendEvent("stream", CmdUtil.getLoginBoradcastLine(player));
         socketIOClient.joinRoom(playerInfo.getRoomName());
@@ -160,7 +160,7 @@ public class UserService extends  BaseService{
             playerCache.setPlayerInfo(playerInfo);
 
             //缓存玩家信息
-            Map<String, RoomEntity> roomMap = UserCacheUtil.getMapCache();
+            Map<String, RoomEntity> roomMap = UserCacheUtil.getAllMaps();
             playerCache.setLocation(roomMap.get(playerInfo.getRoomName()));
         }
 
@@ -222,7 +222,7 @@ public class UserService extends  BaseService{
 
         PlayerLocation playerLocation = new PlayerLocation();
 
-        Map<String, RoomEntity> roomMap = UserCacheUtil.getMapCache();
+        Map<String, RoomEntity> roomMap = UserCacheUtil.getAllMaps();
 
         RoomEntity location = roomMap.get(roomName);
         playerLocation.setLocation(location);

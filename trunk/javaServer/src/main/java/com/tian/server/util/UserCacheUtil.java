@@ -24,7 +24,7 @@ public class UserCacheUtil {
     private static Map<Long, Living> allLivings = new HashMap<Long, Living>();
     private static Map<Integer, Living> players = new HashMap<Integer, Living>();
     private static Map<SocketIOClient, Integer> playerSockets = new HashMap<SocketIOClient, Integer>();
-    private static Map<String, RoomEntity> mapCache = new HashMap<String, RoomEntity>();
+    private static Map<String, RoomEntity> allMaps = new HashMap<String, RoomEntity>();
     private static Map<String, RoomObjects> roomObjectsCache = new HashMap<String, RoomObjects>();
 
     public static Map<Long, Living> getAllLivings() {
@@ -45,16 +45,16 @@ public class UserCacheUtil {
         return playerSockets;
     }
 
-    public static Map<String, RoomEntity> getMapCache(){
+    public static Map<String, RoomEntity> getAllMaps(){
 
-        return mapCache;
+        return allMaps;
     }
 
     public static void initMapCache(List<RoomEntity> list){
 
         for(RoomEntity entity : list){
 
-            mapCache.put(entity.getName(), entity);
+            allMaps.put(entity.getName(), entity);
         }
     }
 

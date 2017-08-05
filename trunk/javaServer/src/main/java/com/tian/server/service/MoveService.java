@@ -1,7 +1,6 @@
 package com.tian.server.service;
 
 import com.corundumstudio.socketio.SocketIOClient;
-import com.tian.server.entity.PlayerEntity;
 import com.tian.server.entity.RoomEntity;
 import com.tian.server.entity.RoomGateEntity;
 import com.tian.server.model.Living;
@@ -76,7 +75,7 @@ public class MoveService extends BaseService{
 
         //检查用户是否已经登陆
         Map<Integer, Living> playerCacheMap = UserCacheUtil.getPlayers();
-        Map<String, RoomEntity> roomMap = UserCacheUtil.getMapCache();
+        Map<String, RoomEntity> roomMap = UserCacheUtil.getAllMaps();
         //登录了就进行移动操作
         if(playerCacheMap.containsKey(this.userId)){
 
@@ -147,7 +146,7 @@ public class MoveService extends BaseService{
 
         PlayerLocation playerLocation = new PlayerLocation();
 
-        Map<String, RoomEntity> roomMap = UserCacheUtil.getMapCache();
+        Map<String, RoomEntity> roomMap = UserCacheUtil.getAllMaps();
 
         RoomEntity location = roomMap.get(roomName);
         playerLocation.setLocation(location);

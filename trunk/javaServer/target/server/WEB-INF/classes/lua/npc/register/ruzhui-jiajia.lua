@@ -13,7 +13,7 @@ function create(bridge, uuid)
     agent:setName(uuid, "入赘假假")
     agent:setCmdName(uuid, "ruzhui-jiajia")
     agent:setAge(uuid, 30);
-    agent:setLongDesc(uuid, "本是一个无知之辈，后入赘豪门捐了个官职；平生胆小懦弱，死后阎王看他可怜，赏他一个引路判官的官职。\n")
+    agent:setLongDesc(uuid, "本是一个无知之辈，后入赘豪门捐了个官职；平生胆小懦弱，死后阎王看他可怜，赏他一个引路判官的官职。")
     agent:setCombatExp(uuid, 1000);
     agent:setAttitude(uuid, "peaceful")
 

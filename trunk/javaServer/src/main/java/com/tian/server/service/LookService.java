@@ -4,6 +4,7 @@ import com.corundumstudio.socketio.SocketIOClient;
 import com.tian.server.entity.RoomGateEntity;
 import com.tian.server.model.Living;
 import com.tian.server.model.Player;
+import com.tian.server.model.Race.Human;
 import com.tian.server.model.RoomObjects;
 import com.tian.server.util.CmdUtil;
 import com.tian.server.util.UserCacheUtil;
@@ -34,6 +35,17 @@ public class LookService extends BaseService{
         if(type.equals("user")){
 
 
+        }else if(type.equals("npc")){
+
+            Map<Long, Living> allLivings = UserCacheUtil.getAllLivings();
+            Living npc = allLivings.get(Long.valueOf(id));
+            if(npc instanceof Human){
+
+                System.out.println("this is a human");
+            }
+            if(npc != null){
+                sendMsg(npc.getLookStr());
+            }
         }else if(type.equals("gate")){
 
             String retMsg = getLookGateStr(id);
@@ -134,6 +146,13 @@ public class LookService extends BaseService{
 
             gate.setStatus(Byte.valueOf("0"));
         }
+    }
+
+    private String getAct(Living me, Living target){
+
+        return "";
+
+
     }
 
 

@@ -67,6 +67,7 @@ public class Living {
     protected RoomEntity location;//位置
     protected List<Living> enemy = new ArrayList<Living>(); //敌人列表
     protected Map<String, Integer> apply = new HashMap<String, Integer>(); //存储附加属性
+    protected Map<String, Inquiry> inquirys = new HashMap<String, Inquiry>();
 
     //属性
     public Long getUuid() {
@@ -419,6 +420,14 @@ public class Living {
         this.apply = apply;
     }
 
+    public Map<String, Inquiry> getInquirys() {
+        return inquirys;
+    }
+
+    public void setInquirys(Map<String, Inquiry> inquirys) {
+        this.inquirys = inquirys;
+    }
+
     public void setSkill(String skillName, Integer level) {
         this.getSkills().put(skillName, level);
     }
@@ -444,7 +453,7 @@ public class Living {
 
         String contact = "$br#";
 
-        String desc = name + contact + longDesc;
+        String desc = name + contact + "一一一一一一一一一一一一一一一一一一一" + contact + longDesc + contact + "一一一一一一一一一一一一一一一一一一一" + contact;
         StringBuffer buttonStr = new StringBuffer();
         for (Map.Entry<String, String> entry : this.buttons.entrySet()) {
 
@@ -455,10 +464,6 @@ public class Living {
         return CmdUtil.getHuDongDescLine(desc) + CmdUtil.getHuDongButtonLine(button);
     }
 
-    public void setButtons(List<String> names, List<String> cmds) {
-
-    }
-
     public void addEnemy(Living enemy){
 
         if(this.enemy == null){
@@ -467,6 +472,16 @@ public class Living {
         }
 
         this.enemy.add(enemy);
+    }
+
+    public void addButton(String title, String cmd){
+
+        this.buttons.put(title, cmd);
+    }
+
+    public void addInquiry(String title, String type, String content){
+
+
     }
 
     public void setApplyValue(String key, Integer value){

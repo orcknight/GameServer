@@ -6,13 +6,7 @@ import com.tian.server.entity.*;
 import com.tian.server.model.Living;
 import com.tian.server.model.Player;
 import com.tian.server.util.CmdUtil;
-import com.tian.server.util.IdUtil;
-import com.tian.server.util.LuaBridge;
 import com.tian.server.util.UserCacheUtil;
-import org.luaj.vm2.Globals;
-import org.luaj.vm2.LuaValue;
-import org.luaj.vm2.lib.jse.CoerceJavaToLua;
-import org.luaj.vm2.lib.jse.JsePlatform;
 
 import java.util.*;
 
@@ -41,7 +35,7 @@ public class DefaultService extends BaseService{
 
     private void initData(){
 
-        if(UserCacheUtil.getMapCache().isEmpty()){
+        if(UserCacheUtil.getAllMaps().isEmpty()){
 
             RoomDao roomDao = new RoomDao();
             List<RoomEntity> list = roomDao.getList();

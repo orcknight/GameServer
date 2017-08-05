@@ -46,6 +46,14 @@ public class Human extends Living {
         limbs.add(19, "左脸");
         limbs.add(20, "左耳");
         limbs.add(21, "右耳");
+
+        addButton("给予", "give $ID");
+        addButton("查看技能", "skills $ID");
+        addButton("跟随", "follow $ID");
+        addButton("偷窃", "steal $ID");
+        addButton("切磋", "fight $ID");
+        addButton("偷袭", "touxi $ID");
+        addButton("杀死", "kill $ID");
     }
 
     @Override
