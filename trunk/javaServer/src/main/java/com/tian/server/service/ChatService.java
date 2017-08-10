@@ -1,13 +1,12 @@
 package com.tian.server.service;
 
 import com.corundumstudio.socketio.SocketIOClient;
-import com.tian.server.entity.PlayerEntity;
 import com.tian.server.entity.PlayerInfoEntity;
 import com.tian.server.entity.UserEntity;
 import com.tian.server.model.Living;
 import com.tian.server.model.Player;
-import com.tian.server.util.CmdUtil;
 import com.tian.server.util.UserCacheUtil;
+import com.tian.server.util.ZjMudUtil;
 
 import java.util.Map;
 
@@ -23,7 +22,7 @@ public class ChatService extends BaseService{
     public void writeChatWindow(){
 
         String chatChannel = getChatChannel();
-        String msg = CmdUtil.getSendChatLine(chatChannel);
+        String msg = ZjMudUtil.getSendChatLine(chatChannel);
         sendMsg(msg);
     }
 
@@ -34,7 +33,7 @@ public class ChatService extends BaseService{
         Map<Integer, Living> cacheMap = UserCacheUtil.getPlayers();
         Player playerCache = (Player)cacheMap.get(this.userId);
         UserEntity user = playerCache.getUser();
-        String retMsg = CmdUtil.getChatLine(chatChannel, user.getName(), playerCache.getName(), msg);
+        String retMsg = ZjMudUtil.getChatLine(chatChannel, user.getName(), playerCache.getName(), msg);
         socketIOClient.getNamespace().getBroadcastOperations().sendEvent("stream", retMsg);
     }
 

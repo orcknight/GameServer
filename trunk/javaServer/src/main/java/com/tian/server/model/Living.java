@@ -1,8 +1,8 @@
 package com.tian.server.model;
 
 import com.tian.server.entity.RoomEntity;
-import com.tian.server.util.CmdUtil;
 import com.tian.server.util.StringUtil;
+import com.tian.server.util.ZjMudUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * Created by PPX on 2017/7/19.
  */
-public class Living {
+public class Living extends MudObject{
 
     protected Long uuid; //实例在系统里的唯一标识
 
@@ -26,6 +26,7 @@ public class Living {
     protected String bunchName; //帮派名称
     protected String cmdName; //命令名、英文名
     protected Integer age; //年龄
+    protected Integer mudAge; //mod参数年龄
     protected Integer ageModify; //年龄变化
     protected String gender; //性别
     protected String longDesc; //描述
@@ -33,6 +34,8 @@ public class Living {
     protected String attitude; //态度 和平好战还是别的
     protected String unit; //单位: 只 个
     protected Integer weight; //重量
+    protected Byte shenType; //神的正负，如果没有set默认是1,用这个乘以exp/10得到神值
+    protected Integer shen; //神
 
     protected Byte status; //玩家状态
 
@@ -64,10 +67,11 @@ public class Living {
     protected Map<String, String> skillPrepare = new HashMap<String, String>(); //为基本武功设置激发武功 基本技能名字：技能名 如： prepare_skill("strike", "dragon-strike");
 
     protected Map<String, String> buttons = new HashMap<String, String>(); //功能按钮
-    protected RoomEntity location;//位置
+    protected RoomEntity location = new RoomEntity();//位置
     protected List<Living> enemy = new ArrayList<Living>(); //敌人列表
     protected Map<String, Integer> apply = new HashMap<String, Integer>(); //存储附加属性
     protected Map<String, Inquiry> inquirys = new HashMap<String, Inquiry>();
+    protected List<MudObject> vendorGoods = new ArrayList<MudObject>();
 
     //属性
     public Long getUuid() {
@@ -156,6 +160,14 @@ public class Living {
         this.age = age;
     }
 
+    public Integer getMudAge() {
+        return mudAge;
+    }
+
+    public void setMudAge(Integer mudAge) {
+        this.mudAge = mudAge;
+    }
+
     public Integer getAgeModify() {
         return ageModify;
     }
@@ -210,6 +222,22 @@ public class Living {
 
     public void setWeight(Integer weight) {
         this.weight = weight;
+    }
+
+    public Byte getShenType() {
+        return shenType;
+    }
+
+    public void setShenType(Byte shenType) {
+        this.shenType = shenType;
+    }
+
+    public Integer getShen() {
+        return shen;
+    }
+
+    public void setShen(Integer shen) {
+        this.shen = shen;
     }
 
     public Byte getStatus() {
@@ -428,6 +456,14 @@ public class Living {
         this.inquirys = inquirys;
     }
 
+    public List<MudObject> getVendorGoods() {
+        return vendorGoods;
+    }
+
+    public void setVendorGoods(List<MudObject> vendorGoods) {
+        this.vendorGoods = vendorGoods;
+    }
+
     public void setSkill(String skillName, Integer level) {
         this.getSkills().put(skillName, level);
     }
@@ -461,7 +497,7 @@ public class Living {
         }
         String button = StringUtil.rtrim(buttonStr.toString());
 
-        return CmdUtil.getHuDongDescLine(desc) + CmdUtil.getHuDongButtonLine(button);
+        return ZjMudUtil.getHuDongDescLine(desc);
     }
 
     public void addEnemy(Living enemy){
@@ -487,6 +523,25 @@ public class Living {
     public void setApplyValue(String key, Integer value){
 
         getApply().put(key, value);
+    }
+
+    protected Integer calcAge(Integer ageModify, Integer mudAge){
+
+        Integer age = ageModify + mudAge / 86400;
+        if (age > 118) {
+            age = 46 + (age - 118) / 4;
+        } else if (age > 28) {
+            age = 16 + (age - 28) / 3;
+        } else if (age > 4) {
+            age = 4  + (age - 4) / 2;
+        }
+        age += 14;
+        return age;
+    }
+
+    protected Integer calcShen(Byte shenType, Integer combatExp){
+
+        return shenType * combatExp / 10;
     }
 
 }

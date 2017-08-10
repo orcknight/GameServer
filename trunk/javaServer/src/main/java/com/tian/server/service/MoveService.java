@@ -7,8 +7,8 @@ import com.tian.server.model.Living;
 import com.tian.server.model.Player;
 import com.tian.server.model.PlayerLocation;
 import com.tian.server.model.RoomObjects;
-import com.tian.server.util.CmdUtil;
 import com.tian.server.util.UserCacheUtil;
+import com.tian.server.util.ZjMudUtil;
 
 import java.util.Map;
 
@@ -115,7 +115,7 @@ public class MoveService extends BaseService{
             }
 
             //获取地图字符串
-            String msg = CmdUtil.getLocationLine(getLocation(destRoomName));
+            String msg = ZjMudUtil.getLocationLine(getLocation(destRoomName));
             sendMsg(msg);
 
             //切换room并广播信息
@@ -124,11 +124,11 @@ public class MoveService extends BaseService{
             String destName = getDirectionCnName(direction);
             //广播玩家离开房间的信息
             socketIOClient.getNamespace().getRoomOperations(room.getName())
-                    .sendEvent("stream", CmdUtil.getLeaveRoomLine(roomMap.get(destRoomName).getShortDesc() + "("  + destName + ")", player));
+                    .sendEvent("stream", ZjMudUtil.getLeaveRoomLine(roomMap.get(destRoomName).getShortDesc() + "("  + destName + ")", player));
 
             //广播玩家进入房间的信息
             socketIOClient.getNamespace().getRoomOperations(destRoomName)
-                    .sendEvent("stream", CmdUtil.getEnterRoomLine(player.getName(), "金丝甲", player));
+                    .sendEvent("stream", ZjMudUtil.getEnterRoomLine(player.getName(), "金丝甲", player));
 
             socketIOClient.joinRoom(destRoomName);
 
@@ -254,7 +254,7 @@ public class MoveService extends BaseService{
             return;
         }
 
-        String msg = CmdUtil.getObjectsLine(roomObjects, player);
+        String msg = ZjMudUtil.getObjectsLine(roomObjects, player);
         sendMsg(msg);
     }
 
@@ -315,7 +315,7 @@ public class MoveService extends BaseService{
                     name = name.replaceAll("【", "");
                     name = name.replaceAll("】", "");
 
-                    sendMsg(CmdUtil.getScreenLine("你必须先把" + name + "打开！"));
+                    sendMsg(ZjMudUtil.getScreenLine("你必须先把" + name + "打开！"));
                     return false;
                 }
             }

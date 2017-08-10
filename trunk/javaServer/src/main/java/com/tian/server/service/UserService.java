@@ -12,8 +12,8 @@ import com.tian.server.model.Player;
 import com.tian.server.model.PlayerLocation;
 import com.tian.server.model.RoomObjects;
 import com.tian.server.util.CharUtil;
-import com.tian.server.util.CmdUtil;
 import com.tian.server.util.UserCacheUtil;
+import com.tian.server.util.ZjMudUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +63,7 @@ public class UserService extends  BaseService{
         if(player.getId() < 1){
 
             //如果没有角色，转到角色创建窗口。
-            sendMsg(CmdUtil.getEmptyLine() + CmdUtil.getCreatePlayerLine());
+            sendMsg(ZjMudUtil.getEmptyLine() + ZjMudUtil.getCreatePlayerLine());
             return;
         }
         //缓存玩家信息
@@ -75,20 +75,21 @@ public class UserService extends  BaseService{
 
         //载入玩家技能
         loadUserSkill(playerCache);
+        UserCacheUtil.getAllObjects().put(playerCache.getUuid(), playerCache);
 
         //缓存玩家信息
         Map<String, RoomEntity> roomMap = UserCacheUtil.getAllMaps();
         playerCache.setLocation(roomMap.get(playerInfo.getRoomName()));
-        socketIOClient.getNamespace().getRoomOperations(playerInfo.getRoomName()).sendEvent("stream", CmdUtil.getLoginBoradcastLine(player));
+        socketIOClient.getNamespace().getRoomOperations(playerInfo.getRoomName()).sendEvent("stream", ZjMudUtil.getLoginBoradcastLine(player));
         socketIOClient.joinRoom(playerInfo.getRoomName());
 
         //显示登陆信息以及房间信息
-        sendMsg(CmdUtil.getEmptyLine() +
-                CmdUtil.getMainMenuLine() +
-                CmdUtil.getLoginSuccessLine() +
-                CmdUtil.getScreenLine("目前权限：(player)") +
+        sendMsg(ZjMudUtil.getEmptyLine() +
+                ZjMudUtil.getMainMenuLine() +
+                ZjMudUtil.getLoginSuccessLine() +
+                ZjMudUtil.getScreenLine("目前权限：(player)") +
                 "你连线进入了金庸立志传[立志传一线]。\r\n" +
-                CmdUtil.getLocationLine(getLocation(playerInfo.getRoomName())));
+                ZjMudUtil.getLocationLine(getLocation(playerInfo.getRoomName())));
 
         //获取房间物品等信息
         Map<String, RoomObjects> roomObjectsMap = UserCacheUtil.getRoomObjectsCache();
@@ -107,7 +108,7 @@ public class UserService extends  BaseService{
             roomObjectsMap.put(playerInfo.getRoomName(), roomObjects);
         }
 
-        String msg = CmdUtil.getObjectsLine(roomObjects, playerCache);
+        String msg = ZjMudUtil.getObjectsLine(roomObjects, playerCache);
         sendMsg(msg);
     }
 
@@ -116,24 +117,24 @@ public class UserService extends  BaseService{
         //先检查用户登陆没有
         if(this.userId < 1){
 
-            sendMsg(CmdUtil.getEmptyLine() +
-                    CmdUtil.getScreenLine("您还没有登陆，请先登陆。"));
+            sendMsg(ZjMudUtil.getEmptyLine() +
+                    ZjMudUtil.getScreenLine("您还没有登陆，请先登陆。"));
             return;
         }
 
         //检查名字是否全部是中文
         if(!CharUtil.isChinese(name)){
 
-            sendMsg(CmdUtil.getEmptyLine() +
-                    CmdUtil.getScreenLine("对不起，请您用「中文」取名字(2-6个字)。"));
+            sendMsg(ZjMudUtil.getEmptyLine() +
+                    ZjMudUtil.getScreenLine("对不起，请您用「中文」取名字(2-6个字)。"));
             return;
         }
 
         //检查名字的长度
         if(name.length() < 2 || name.length() > 6){
 
-            sendMsg(CmdUtil.getEmptyLine() +
-                    CmdUtil.getScreenLine("对不起，你的中文姓名不能太长或太短(2-6个字)。"));
+            sendMsg(ZjMudUtil.getEmptyLine() +
+                    ZjMudUtil.getScreenLine("对不起，你的中文姓名不能太长或太短(2-6个字)。"));
             return;
         }
 
@@ -149,7 +150,7 @@ public class UserService extends  BaseService{
         playerInfo.setRoomName("register/shengmingzhigu");
         playerInfo.setPlayerId(player.getId());
         playerInfoDao.add(playerInfo);
-        socketIOClient.getNamespace().getRoomOperations(playerInfo.getRoomName()).sendEvent("stream", CmdUtil.getLoginBoradcastLine(player));
+        socketIOClient.getNamespace().getRoomOperations(playerInfo.getRoomName()).sendEvent("stream", ZjMudUtil.getLoginBoradcastLine(player));
         socketIOClient.joinRoom(playerInfo.getRoomName()); //玩家加入当前房间群组，为广播消息
 
         //存储用户的角色辅助信息
@@ -165,15 +166,15 @@ public class UserService extends  BaseService{
         }
 
         //先发送刷新界面命令
-        sendMsg(CmdUtil.getMainMenuLine());
+        sendMsg(ZjMudUtil.getMainMenuLine());
         //发送登陆信息
-        sendMsg(CmdUtil.getEmptyLine() +
-                CmdUtil.getScreenLine("时间过得真快，不知不觉你已经十四岁了，今年的运气不知道怎么样。") +
-                CmdUtil.getScreenLine("───────────────────────────────") +
-                CmdUtil.getScreenLine("你可以进入不同的方向选择品质和先天属性，然后就投胎做人了。") +
-                CmdUtil.getScreenLine("───────────────────────────────") +
-                CmdUtil.getScreenLine("你连线进入了金庸立志传[立志传一线]。") +
-                CmdUtil.getLocationLine(getLocation(playerInfo.getRoomName())));
+        sendMsg(ZjMudUtil.getEmptyLine() +
+                ZjMudUtil.getScreenLine("时间过得真快，不知不觉你已经十四岁了，今年的运气不知道怎么样。") +
+                ZjMudUtil.getScreenLine("───────────────────────────────") +
+                ZjMudUtil.getScreenLine("你可以进入不同的方向选择品质和先天属性，然后就投胎做人了。") +
+                ZjMudUtil.getScreenLine("───────────────────────────────") +
+                ZjMudUtil.getScreenLine("你连线进入了金庸立志传[立志传一线]。") +
+                ZjMudUtil.getLocationLine(getLocation(playerInfo.getRoomName())));
     }
 
     public void logout(){
@@ -186,7 +187,7 @@ public class UserService extends  BaseService{
 
             //广播玩家离开的信息
             socketIOClient.getNamespace().getRoomOperations(player.getPlayerInfo().getRoomName()).sendEvent("stream",
-                    CmdUtil.getLogoutBoradcastLine(player));
+                    ZjMudUtil.getLogoutBoradcastLine(player));
 
             //清理缓存数据
             UserCacheUtil.getPlayerSockets().remove(socketIOClient);
@@ -200,9 +201,9 @@ public class UserService extends  BaseService{
 
     private void sendKickOffMsg(SocketIOClient socketIOClient){
 
-        String msg = CmdUtil.getEmptyLine() +
-                CmdUtil.getScreenLine("你的账号在别处登录，你被迫下线了！") +
-                CmdUtil.getScreenLine("与服务器断开连接。");
+        String msg = ZjMudUtil.getEmptyLine() +
+                ZjMudUtil.getScreenLine("你的账号在别处登录，你被迫下线了！") +
+                ZjMudUtil.getScreenLine("与服务器断开连接。");
 
         socketIOClient.sendEvent("stream", msg);
     }

@@ -3,6 +3,7 @@ package com.tian.server.util;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.tian.server.entity.*;
 import com.tian.server.model.Living;
+import com.tian.server.model.MudObject;
 import com.tian.server.model.Player;
 import com.tian.server.model.RoomObjects;
 import org.luaj.vm2.Globals;
@@ -21,18 +22,18 @@ import java.util.Map;
 public class UserCacheUtil {
 
     //一个链接表，游戏中所有生物的链接，主键是唯一标识uuid
-    private static Map<Long, Living> allLivings = new HashMap<Long, Living>();
+    private static Map<Long, MudObject> allObjects = new HashMap<Long, MudObject>();
     private static Map<Integer, Living> players = new HashMap<Integer, Living>();
     private static Map<SocketIOClient, Integer> playerSockets = new HashMap<SocketIOClient, Integer>();
     private static Map<String, RoomEntity> allMaps = new HashMap<String, RoomEntity>();
     private static Map<String, RoomObjects> roomObjectsCache = new HashMap<String, RoomObjects>();
 
-    public static Map<Long, Living> getAllLivings() {
-        return allLivings;
+    public static Map<Long, MudObject> getAllObjects() {
+        return allObjects;
     }
 
-    public static void setAllLivings(Map<Long, Living> allLivings) {
-        UserCacheUtil.allLivings = allLivings;
+    public static void setAllObjects(Map<Long, Living> MudObject) {
+        UserCacheUtil.allObjects = allObjects;
     }
 
     public static Map<Integer, Living> getPlayers(){
@@ -79,6 +80,7 @@ public class UserCacheUtil {
 
                 Integer npcIndex = getNpcIndex(npcs, roomContent.getRefId());
                 Living npc = initNpc(npcIndex, npcs);
+                npc.setLocation(allMaps.get(roomContent.getRoomName()));
 
                 //把npc放到对应的房间里
                 List<Living> roomNpcs = roomObjects.getNpcs();
@@ -177,7 +179,7 @@ public class UserCacheUtil {
             living.setUuid(uuid);
 
             //缓存npc到生物列表
-            getAllLivings().put(uuid, living);
+            getAllObjects().put(uuid, living);
 
             LuaBridge bridge = new LuaBridge();
             String luaPath = UserCacheUtil.class.getResource(npc.getResource()).getPath();

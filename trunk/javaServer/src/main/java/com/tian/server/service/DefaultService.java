@@ -5,8 +5,8 @@ import com.tian.server.dao.*;
 import com.tian.server.entity.*;
 import com.tian.server.model.Living;
 import com.tian.server.model.Player;
-import com.tian.server.util.CmdUtil;
 import com.tian.server.util.UserCacheUtil;
+import com.tian.server.util.ZjMudUtil;
 
 import java.util.*;
 
@@ -21,7 +21,7 @@ public class DefaultService extends BaseService{
 
     public void checkVersion(){
 
-        String msg = CmdUtil.getScreenLine("版本验证成功");
+        String msg = ZjMudUtil.getScreenLine("版本验证成功");
         socketIOClient.sendEvent("stream", msg);
 
         //初始化数据

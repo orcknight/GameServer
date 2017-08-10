@@ -72,6 +72,8 @@ mapping dict = ([
   ５）基本手法 (hand)	     １２）基本杖法 (staff) 
   ６）基本掌法 (strike)	   １３）基本剑法 (sword) 
   ７）基本指法 (finger)	   １４）基本暗器 (throwing) 
+  
+  call d287364145->set_skill("pixie-jian", 100)
 
 
 游戏攻击实现路径

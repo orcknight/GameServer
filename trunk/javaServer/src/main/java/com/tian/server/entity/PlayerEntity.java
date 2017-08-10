@@ -34,7 +34,7 @@ public class PlayerEntity {
     private Integer water;
     private String title;
     private String nickname;
-    private Integer age;
+    private Integer mudAge;
     private Integer ageModify;
     private Integer maxJingLi;
     private Integer effJingLi;
@@ -46,6 +46,7 @@ public class PlayerEntity {
     private String familyName;
     private String bunchName;
     private String cmdName;
+    private Byte shenType;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -308,13 +309,13 @@ public class PlayerEntity {
     }
 
     @Basic
-    @Column(name = "age", nullable = true)
-    public Integer getAge() {
-        return age;
+    @Column(name = "mudAge", nullable = true)
+    public Integer getMudAge() {
+        return mudAge;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setMudAge(Integer mudAge) {
+        this.mudAge = mudAge;
     }
 
     @Basic
@@ -427,6 +428,16 @@ public class PlayerEntity {
         this.cmdName = cmdName;
     }
 
+    @Basic
+    @Column(name = "shenType", nullable = true)
+    public Byte getShenType() {
+        return shenType;
+    }
+
+    public void setShenType(Byte shenType) {
+        this.shenType = shenType;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -459,7 +470,7 @@ public class PlayerEntity {
         if (water != null ? !water.equals(that.water) : that.water != null) return false;
         if (title != null ? !title.equals(that.title) : that.title != null) return false;
         if (nickname != null ? !nickname.equals(that.nickname) : that.nickname != null) return false;
-        if (age != null ? !age.equals(that.age) : that.age != null) return false;
+        if (mudAge != null ? !mudAge.equals(that.mudAge) : that.mudAge != null) return false;
         if (ageModify != null ? !ageModify.equals(that.ageModify) : that.ageModify != null) return false;
         if (maxJingLi != null ? !maxJingLi.equals(that.maxJingLi) : that.maxJingLi != null) return false;
         if (effJingLi != null ? !effJingLi.equals(that.effJingLi) : that.effJingLi != null) return false;
@@ -502,7 +513,7 @@ public class PlayerEntity {
         result = 31 * result + (water != null ? water.hashCode() : 0);
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (nickname != null ? nickname.hashCode() : 0);
-        result = 31 * result + (age != null ? age.hashCode() : 0);
+        result = 31 * result + (mudAge != null ? mudAge.hashCode() : 0);
         result = 31 * result + (ageModify != null ? ageModify.hashCode() : 0);
         result = 31 * result + (maxJingLi != null ? maxJingLi.hashCode() : 0);
         result = 31 * result + (effJingLi != null ? effJingLi.hashCode() : 0);

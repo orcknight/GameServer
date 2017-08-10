@@ -34,6 +34,13 @@ public class Player extends Human {
 
     }
 
+    @Override
+    public String getLookStr(){
+
+        StringBuffer sb = new StringBuffer();
+        return "";
+    }
+
     public void initInfo(PlayerEntity player){
 
         setPlayerId(player.getId());
@@ -42,11 +49,14 @@ public class Player extends Human {
         setTitle(player.getTitle());
         setNickname(player.getNickname());
         setName(player.getName());
-        setAge(player.getAge());
+        setMudAge(player.getMudAge());
         setAgeModify(player.getAgeModify());
+        setAge(calcAge(player.getAgeModify(), player.getMudAge()));
         setGender(player.getSex());
         setCharacter(player.getCharacter());
         setLevel(player.getLevel());
+        setShenType(player.getShenType());
+        setShen(calcShen(player.getShenType(), player.getCombatExp()));
         setStr(player.getStr());
         setWux(player.getWux());
         setCon(player.getCon());
@@ -222,10 +232,8 @@ public class Player extends Human {
 
             refSkill.put(playerSkillEntity.getSkillName(), playerSkillEntity.getLevel());
             refLearned.put(playerSkillEntity.getSkillName(), playerSkillEntity.getLevel());
-
             System.out.println(playerSkillEntity.getSkillName() + "-" + playerSkillEntity.getLevel());
         }
-
     }
 
     public void initLimbDamage() {
@@ -250,7 +258,6 @@ public class Player extends Human {
         }
 
         if (enemy.size() > 0) {
-
 
             StringBuffer sb = new StringBuffer();
             String result;

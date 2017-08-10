@@ -1,5 +1,6 @@
 package com.tian.test;
 
+import com.tian.server.util.IdUtil;
 import com.tian.server.util.LivingLuaAgent;
 import junit.framework.TestCase;
 import org.junit.Test;
@@ -23,9 +24,9 @@ public class RoomDaoTest extends TestCase {
     @Test
     public void testGetList() throws Exception {
 
-        try {
+         /*try {
 
-            String luaPath = this.getClass().getResource("/lua/npc/register/ruzhui-jiajia.lua").getPath();
+           String luaPath = this.getClass().getResource("/lua/npc/register/ruzhui-jiajia.lua").getPath();
             //= "resources/lua/login.lua";   //lua脚本文件所在路径
             Globals globals = JsePlatform.standardGlobals();
             //加载脚本文件login.lua，并编译
@@ -38,7 +39,7 @@ public class RoomDaoTest extends TestCase {
         }catch (Exception e){
 
             e.printStackTrace();
-        }
+        }*/
 
         /*//获取无参函数hello
         LuaValue func = globals.get(LuaValue.valueOf("luaPrint"));
@@ -53,7 +54,7 @@ public class RoomDaoTest extends TestCase {
         //System.out.println(EqptParts.HEAD.toInteger());
         //System.out.println(EqptParts.RIGHTHAND.toInteger());
 
-        //System.out.println(IdUtil.getUUID());
+        System.out.println(IdUtil.getUUID());
 
         /*Beast beast = new Beast();
         SkillAction skillAction = beast.queryAction();
