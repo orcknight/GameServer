@@ -47,6 +47,7 @@ public class PlayerEntity {
     private String bunchName;
     private String cmdName;
     private Byte shenType;
+    private Integer coupleId;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -438,6 +439,16 @@ public class PlayerEntity {
         this.shenType = shenType;
     }
 
+    @Basic
+    @Column(name = "coupleId", nullable = true)
+    public Integer getCoupleId() {
+        return coupleId;
+    }
+
+    public void setCoupleId(Integer coupleId) {
+        this.coupleId = coupleId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -482,6 +493,7 @@ public class PlayerEntity {
         if (familyName != null ? !familyName.equals(that.familyName) : that.familyName != null) return false;
         if (bunchName != null ? !bunchName.equals(that.bunchName) : that.bunchName != null) return false;
         if (cmdName != null ? !cmdName.equals(that.cmdName) : that.cmdName != null) return false;
+        if (coupleId != null ? !coupleId.equals(that.coupleId) : that.coupleId != null) return false;
 
         return true;
     }
@@ -525,6 +537,7 @@ public class PlayerEntity {
         result = 31 * result + (familyName != null ? familyName.hashCode() : 0);
         result = 31 * result + (bunchName != null ? bunchName.hashCode() : 0);
         result = 31 * result + (cmdName != null ? cmdName.hashCode() : 0);
+        result = 31 * result + (coupleId != null ? coupleId.hashCode() : 0);
         return result;
     }
 }
