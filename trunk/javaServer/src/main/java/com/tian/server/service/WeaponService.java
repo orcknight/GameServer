@@ -144,7 +144,7 @@ public class WeaponService {
     {
         if (objectp(weapon))
         {
-            if ((int) weapon->query_amount() == 1)
+            if ((int)  == 1)
             {
                 weapon->unequip();
                 tell_object(me, "\n你的" + weapon->query("name") + "用完了！\n\n");

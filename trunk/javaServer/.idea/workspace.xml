@@ -73,14 +73,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WeaponService.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WeaponService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/service/WeaponService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="72" column="0" lean-forward="true" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+            <state relative-caret-position="170">
+              <caret line="146" column="22" lean-forward="false" selection-start-line="146" selection-start-column="22" selection-end-line="146" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#405#426#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Goods.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/model/Goods.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="12" column="41" lean-forward="true" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -276,11 +288,11 @@
         <option value="$PROJECT_DIR$/src/main/java/com/tian/server/common/EqptType.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tian/server/common/GoodsType.java" />
         <option value="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tian/server/model/Goods.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tian/server/model/Living.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tian/server/model/SkillAction.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tian/server/model/MudObject.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tian/server/service/WeaponService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tian/server/model/Goods.java" />
       </list>
     </option>
   </component>
@@ -1274,7 +1286,7 @@
       <workItem from="1502606906686" duration="7297000" />
       <workItem from="1502666017019" duration="30319000" />
       <workItem from="1502777015750" duration="14097000" />
-      <workItem from="1502860218991" duration="14757000" />
+      <workItem from="1502860218991" duration="16286000" />
     </task>
     <servers />
   </component>
@@ -1311,7 +1323,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="716022000" />
+    <option name="totallyTimeSpent" value="717551000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1324,7 +1336,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1448" height="856" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1761,14 +1773,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/model/Goods.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="46" lean-forward="false" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/model/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="151">
@@ -1862,11 +1866,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/service/WeaponService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="72" column="0" lean-forward="true" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+        <state relative-caret-position="170">
+          <caret line="146" column="22" lean-forward="false" selection-start-line="146" selection-start-column="22" selection-end-line="146" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#405#426#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/model/Goods.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="12" column="41" lean-forward="true" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
