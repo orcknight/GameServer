@@ -47,7 +47,7 @@ public class PlayerEntity {
     private String bunchName;
     private String cmdName;
     private Byte shenType;
-    private Integer coupleId;
+    private Long coupleId;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -441,11 +441,11 @@ public class PlayerEntity {
 
     @Basic
     @Column(name = "coupleId", nullable = true)
-    public Integer getCoupleId() {
+    public Long getCoupleId() {
         return coupleId;
     }
 
-    public void setCoupleId(Integer coupleId) {
+    public void setCoupleId(Long coupleId) {
         this.coupleId = coupleId;
     }
 

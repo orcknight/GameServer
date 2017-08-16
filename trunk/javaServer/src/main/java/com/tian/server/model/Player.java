@@ -57,6 +57,7 @@ public class Player extends Human {
         setLevel(player.getLevel());
         setShenType(player.getShenType());
         setShen(calcShen(player.getShenType(), player.getCombatExp()));
+        setCoupleId(player.getCoupleId());
         setStr(player.getStr());
         setWux(player.getWux());
         setCon(player.getCon());
@@ -222,6 +223,16 @@ public class Player extends Human {
             this.skillPrepare = new HashMap<String, String>();
         }
         return this.skillPrepare;
+    }
+
+    public Boolean isBorther(Player target){
+
+        if(query("brothers/" + target.getPlayerId()) == null){
+
+            return false;
+        }
+
+        return true;
     }
 
     public void initSkills(List<PlayerSkillEntity> playerSkillEntityList){

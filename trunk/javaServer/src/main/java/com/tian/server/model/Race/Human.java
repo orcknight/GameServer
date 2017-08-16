@@ -1,5 +1,6 @@
 package com.tian.server.model.Race;
 
+import com.tian.server.entity.PlayerFamilyEntity;
 import com.tian.server.model.Living;
 import com.tian.server.model.SkillAction;
 
@@ -14,6 +15,7 @@ public class Human extends Living {
 
     private static List<SkillAction> actions = new ArrayList<SkillAction>();
     private static List<String> limbs = new ArrayList<String>();
+    protected PlayerFamilyEntity family = new PlayerFamilyEntity();
 
     public Human(){
 
@@ -54,6 +56,14 @@ public class Human extends Living {
         addButton("切磋", "fight $ID");
         addButton("偷袭", "touxi $ID");
         addButton("杀死", "kill $ID");
+    }
+
+    public PlayerFamilyEntity getFamily() {
+        return family;
+    }
+
+    public void setFamily(PlayerFamilyEntity family) {
+        this.family = family;
     }
 
     @Override

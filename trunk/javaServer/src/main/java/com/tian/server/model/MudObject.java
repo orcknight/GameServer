@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public class MudObject {
 
-    public Map<String, Object> attributes = new HashMap<String, Object>();
+    public Map<String, Object> apply = new HashMap<String, Object>();
     public Map<String, Object> temp = new HashMap<String, Object>();
     protected Map<String, Object> apply = new HashMap<String, Object>();
 
@@ -21,6 +21,16 @@ public class MudObject {
 
     public Object query(String key){
 
-        return attributes.get(key);
+        return apply.get(key);
+    }
+
+    public void set(String key, Object value){
+
+        apply.put(key, value);
+    }
+
+    public void setTemp(String key, Object value){
+
+        temp.put(key, value);
     }
 }

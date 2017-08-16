@@ -1,7 +1,7 @@
 package com.tian.server.handler;
 
 import com.corundumstudio.socketio.SocketIOClient;
-import com.tian.server.service.LookService;
+import com.tian.server.bll.LookBll;
 
 /**
  * Created by PPX on 2017/6/29.
@@ -17,17 +17,17 @@ public class LookEventHandler implements CmdEventHandler{
             return;
         }
 
-        LookService lookService = new LookService(socketIOClient);
+        LookBll lookBll = new LookBll(socketIOClient);
 
         if(dataArray[0].equals("look")){
 
-            lookService.look(dataArray[1]);
+            lookBll.look(dataArray[1]);
         }else if(dataArray[0].equals("open")){
 
-            lookService.openGate(dataArray[1]);
+            lookBll.openGate(dataArray[1]);
         }else if(dataArray[0].equals("close")){
 
-            lookService.closeGate(dataArray[1]);
+            lookBll.closeGate(dataArray[1]);
         }
 
 

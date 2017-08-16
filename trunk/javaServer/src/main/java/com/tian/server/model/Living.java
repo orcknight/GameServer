@@ -36,6 +36,7 @@ public class Living extends MudObject{
     protected Integer weight; //重量
     protected Byte shenType; //神的正负，如果没有set默认是1,用这个乘以exp/10得到神值
     protected Integer shen; //神
+    protected Long coupleId; //夫妻id
 
     protected Byte status; //玩家状态
 
@@ -72,6 +73,7 @@ public class Living extends MudObject{
     protected Map<String, Integer> apply = new HashMap<String, Integer>(); //存储附加属性
     protected Map<String, Inquiry> inquirys = new HashMap<String, Inquiry>();
     protected List<MudObject> vendorGoods = new ArrayList<MudObject>();
+    protected List<Goods> packageList = new ArrayList<Goods>();
 
     //属性
     public Long getUuid() {
@@ -238,6 +240,14 @@ public class Living extends MudObject{
 
     public void setShen(Integer shen) {
         this.shen = shen;
+    }
+
+    public Long getCoupleId() {
+        return coupleId;
+    }
+
+    public void setCoupleId(Long coupleId) {
+        this.coupleId = coupleId;
     }
 
     public Byte getStatus() {
@@ -474,6 +484,14 @@ public class Living extends MudObject{
 
     public void prepareSkill(String baseSkill, String skillName){
         this.getSkillPrepare().put(baseSkill, skillName);
+    }
+
+    public List<Goods> getPackageList() {
+        return packageList;
+    }
+
+    public void setPackageList(List<Goods> packageList) {
+        this.packageList = packageList;
     }
 
     public String getRandomLimb(){

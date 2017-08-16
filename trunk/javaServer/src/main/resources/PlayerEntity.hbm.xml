@@ -123,7 +123,7 @@
             <column name="shenType" sql-type="tinyint(4)" not-null="true"/>
         </property>
         <property name="coupleId">
-            <column name="coupleId" sql-type="int(11)" not-null="true"/>
+            <column name="coupleId" sql-type="bigint(19)" not-null="true"/>
         </property>
     </class>
 </hibernate-mapping>

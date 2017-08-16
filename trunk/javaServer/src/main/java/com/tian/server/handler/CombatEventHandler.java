@@ -1,7 +1,7 @@
 package com.tian.server.handler;
 
 import com.corundumstudio.socketio.SocketIOClient;
-import com.tian.server.service.CombatService;
+import com.tian.server.bll.CombatBll;
 
 /**
  * Created by PPX on 2017/7/11.
@@ -17,11 +17,11 @@ public class CombatEventHandler implements CmdEventHandler {
             return;
         }
 
-        CombatService combatService = new CombatService(socketIOClient);
+        CombatBll combatBll = new CombatBll(socketIOClient);
 
         if(dataArray[0].equals("fight")){
 
-            combatService.handleFight(dataArray[1]);
+            combatBll.handleFight(dataArray[1]);
         }
 
     }

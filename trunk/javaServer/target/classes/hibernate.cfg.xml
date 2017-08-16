@@ -42,6 +42,10 @@
         <mapping class="com.tian.server.entity.SkillEntity"/>
         <mapping resource="SkillEntity.hbm.xml"/>
         <mapping resource="PlayerEntity.hbm.xml"/>
+        <mapping class="com.tian.server.entity.PlayerAttrEntity"/>
+        <mapping resource="PlayerAttrEntity.hbm.xml"/>
+        <mapping resource="PlayerFamilyEntity.hbm.xml"/>
+        <mapping class="com.tian.server.entity.PlayerFamilyEntity"/>
         <!-- <property name="connection.username"/> -->
         <!-- <property name="connection.password"/> -->
 
