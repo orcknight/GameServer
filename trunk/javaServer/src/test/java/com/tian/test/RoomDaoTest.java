@@ -51,8 +51,8 @@ public class RoomDaoTest extends TestCase {
         String data = func1.call(LuaValue.valueOf("I'am from Java!")).toString();
         //打印lua函数回传的数据*/
 
-        //System.out.println(EqptType.HEAD.toInteger());
-        //System.out.println(EqptType.RIGHTHAND.toInteger());
+        //System.out.println(EquipType.HEAD.toInteger());
+        //System.out.println(EquipType.RIGHTHAND.toInteger());
 
         System.out.println(IdUtil.getUUID());
 

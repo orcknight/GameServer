@@ -11,7 +11,7 @@ public class EquipmentEntity {
     private int id;
     private String name;
     private String cmdName;
-    private Byte clazz;
+    private Byte mainClass;
     private Byte subClass;
     private String props;
 
@@ -46,13 +46,13 @@ public class EquipmentEntity {
     }
 
     @Basic
-    @Column(name = "class", nullable = true)
-    public Byte getClazz() {
-        return clazz;
+    @Column(name = "mainClass", nullable = true)
+    public Byte getMainClass() {
+        return mainClass;
     }
 
-    public void setClazz(Byte clazz) {
-        this.clazz = clazz;
+    public void setMainClass(Byte mainClass) {
+        this.mainClass = mainClass;
     }
 
     @Basic
@@ -85,7 +85,7 @@ public class EquipmentEntity {
         if (id != that.id) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (cmdName != null ? !cmdName.equals(that.cmdName) : that.cmdName != null) return false;
-        if (clazz != null ? !clazz.equals(that.clazz) : that.clazz != null) return false;
+        if (mainClass != null ? !mainClass.equals(that.mainClass) : that.mainClass != null) return false;
         if (subClass != null ? !subClass.equals(that.subClass) : that.subClass != null) return false;
         if (props != null ? !props.equals(that.props) : that.props != null) return false;
 
@@ -97,7 +97,7 @@ public class EquipmentEntity {
         int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (cmdName != null ? cmdName.hashCode() : 0);
-        result = 31 * result + (clazz != null ? clazz.hashCode() : 0);
+        result = 31 * result + (mainClass != null ? mainClass.hashCode() : 0);
         result = 31 * result + (subClass != null ? subClass.hashCode() : 0);
         result = 31 * result + (props != null ? props.hashCode() : 0);
         return result;

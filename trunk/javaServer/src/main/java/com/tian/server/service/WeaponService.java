@@ -140,17 +140,18 @@ public class WeaponService {
         return weaponActions.get(verb);
     }
 
-    public void throwWeapon(Living me, Living victim, Goods weapon, Integer damage)
-    {
-        if (objectp(weapon))
+    public void throwWeapon(Living me, Living victim, Goods weapon, Integer damage) {
+
+        if(weapon == null){
+            return;
+        }getOwnerPackage
+
+        if (weapon.().getCount() == 1)
         {
-            if ((int)  == 1)
-            {
-                weapon->unequip();
-                tell_object(me, "\n你的" + weapon->query("name") + "用完了！\n\n");
-            }
-            weapon->add_amount(-1);
+            weapon->unequip();
+            tell_object(me, "\n你的" + weapon->query("name") + "用完了！\n\n");
         }
+        weapon->add_amount(-1);
     }
 
     public void bashWeapon(object me, object victim, object weapon, int damage)

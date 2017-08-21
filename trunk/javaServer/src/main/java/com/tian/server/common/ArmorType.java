@@ -23,7 +23,7 @@ public enum ArmorType {
     private int nCode;
 
     //构造函数传参
-    private ArmorType(int nCode){
+    ArmorType(int nCode){
 
         this.nCode = nCode;
     }
@@ -37,5 +37,38 @@ public enum ArmorType {
     public int toInteger(){
 
         return this.nCode;
+    }
+
+    public static ArmorType valueOf(int value) {    //手写的从int到enum的转换函数
+        switch (value) {
+            case 1:
+                return HEAD;
+            case 2:
+                return NECK;
+            case 3:
+                return CLOTH;
+            case 4:
+                return ARMOR;
+            case 5:
+                return SURCOAT;
+            case 6:
+                return WAIST;
+            case 7:
+                return WRISTS;
+            case 8:
+                return SHIELD;
+            case 9:
+                return FINGER;
+            case 10:
+                return HANDS;
+            case 11:
+                return BOOTS;
+            case 12:
+                return PANTS;
+            case 13:
+                return LEG;
+            default:
+                return null;
+        }
     }
 }

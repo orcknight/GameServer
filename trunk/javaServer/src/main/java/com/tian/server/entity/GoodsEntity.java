@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name = "goods", schema = "bdm25683027_db", catalog = "")
 public class GoodsEntity {
     private int id;
-    private String type;
+    private Byte type;
     private Integer refId;
     private String name;
     private String cmdName;
@@ -31,11 +31,11 @@ public class GoodsEntity {
 
     @Basic
     @Column(name = "type", nullable = true)
-    public String getType() {
+    public Byte getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Byte type) {
         this.type = type;
     }
 

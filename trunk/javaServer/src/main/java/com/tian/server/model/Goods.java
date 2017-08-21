@@ -9,9 +9,17 @@ import com.tian.server.entity.PlayerPackageEntity;
  */
 public class Goods extends MudObject {
 
-    private PlayerPackageEntity packageInfo; //包裹物品信息
+    private PlayerPackageEntity ownerPackage; //物品归属信息
     private GoodsEntity baseInfo; //物品基础类
     private Object refEntity;     //物品对应物品的实体类
+
+    public PlayerPackageEntity getOwnerPackage() {
+        return ownerPackage;
+    }
+
+    public void setOwnerPackage(PlayerPackageEntity ownerPackage) {
+        this.ownerPackage = ownerPackage;
+    }
 
     public GoodsEntity getBaseInfo() {
         return baseInfo;
