@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.tian.server.entity.PlayerSkillEntity" table="player_skill" schema="bdm25683027_db">
+        <id name="id">
+            <column name="id" sql-type="int(11)"/>
+        </id>
+        <property name="playerId">
+            <column name="playerId" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="skillName">
+            <column name="skillName" sql-type="varchar(128)" length="128" not-null="true"/>
+        </property>
+        <property name="level">
+            <column name="level" sql-type="int(11)" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

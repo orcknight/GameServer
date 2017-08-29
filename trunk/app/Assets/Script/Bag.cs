@@ -11,8 +11,6 @@ public class Bag : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-		NGUITools.AddChild
 		
 	}
 }

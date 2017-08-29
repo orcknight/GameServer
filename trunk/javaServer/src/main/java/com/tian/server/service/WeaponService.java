@@ -140,7 +140,7 @@ public class WeaponService {
         return weaponActions.get(verb);
     }
 
-    public void throwWeapon(Living me, Living victim, Goods weapon, Integer damage) {
+    /*public void throwWeapon(Living me, Living victim, Goods weapon, Integer damage) {
 
         if(weapon == null){
             return;
@@ -199,6 +199,6 @@ public class WeaponService {
                         + "相击，冒出点点的火星。\n", me, victim);
             }
         }
-    }
+    }*/
 
 }

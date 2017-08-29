@@ -1,0 +1,28 @@
+[ 2017-08-28T14:31:34+08:00 ] 127.0.0.1 /index.php/Home/ServerList/getServerList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.039002s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.009001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.010001s ]
+DEBUG: [ Jiechengkeji ] [ 14:31:34 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:31:34 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:31:34 ] [ execute ]getList()
+DEBUG: [ Jiechengkeji ] [ 14:31:34 ] [ execute ]getList()
+DEBUG: [ Jiechengkeji ] [ 14:31:34 ] [ querySql ]SELECT * FROM server_list ORDER BY id DESC
+SQL: SELECT * FROM server_list ORDER BY id DESC [ RunTime:0.0210s ]
+
+[ 2017-08-28T14:32:23+08:00 ] 127.0.0.1 /index.php/Home/ServerList/getServerList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+DEBUG: [ Jiechengkeji ] [ 14:32:23 ] [ initializing ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:32:23 ] [ initialized ]BaseController
+DEBUG: [ Jiechengkeji ] [ 14:32:23 ] [ execute ]getList()
+DEBUG: [ Jiechengkeji ] [ 14:32:23 ] [ execute ]getList()
+DEBUG: [ Jiechengkeji ] [ 14:32:23 ] [ querySql ]SELECT * FROM server_list ORDER BY id DESC
+SQL: SELECT * FROM server_list ORDER BY id DESC [ RunTime:0.0210s ]
+

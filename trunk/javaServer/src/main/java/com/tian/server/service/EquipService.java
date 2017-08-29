@@ -24,11 +24,11 @@ public class EquipService {
         }
 
         if(goods.query("no_identify") != null && (Boolean)goods.query("no_identify")){
-            return notify_fail(this_object()->name() + "需要鉴定后才可以使用。\n");
+            //return notify_fail(this_object()->name() + "需要鉴定后才可以使用。\n");
         }
 
         if((Integer)goods.query("consistence") < 1 ) {
-            return notify_fail(this_object()->name() + "现在损坏太严重了，不能继续穿戴了。\n");
+            //return notify_fail(this_object()->name() + "现在损坏太严重了，不能继续穿戴了。\n");
         }
 
         // If already worn, just recognize it.
@@ -41,7 +41,7 @@ public class EquipService {
 
         if(goods.getBaseInfo().getType().intValue() != GoodsType.EQPT.toInteger()
                 || ((EquipmentEntity)goods.getRefEntity()).getMainClass().intValue() != EquipType.ARMOR.toInteger()){
-            notify_fail("你只能穿戴可当作护具的东西。\n");
+            //notify_fail("你只能穿戴可当作护具的东西。\n");
             return 0;
         }
 
@@ -49,27 +49,27 @@ public class EquipService {
 
         // Check if we have "armor_prop" defined.
         if (equip.getSubClass().intValue() < 1){
-            notify_fail("你只能穿戴可当作护具的东西。\n");
+            //notify_fail("你只能穿戴可当作护具的东西。\n");
             return 0;
         }
 
         ArmorType armorType =  ArmorType.valueOf(equip.getSubClass().intValue());
 
         if( owner.queryTemp("armor/" + armorType.toString().toLowerCase()) != null ) {
-            return notify_fail("你已经穿戴了同类型的护具了。\n");
+            //return notify_fail("你已经穿戴了同类型的护具了。\n");
         }
 
 
         if(owner.queryTemp("weapon") != null && armorType.toString().toLowerCase().equals("hands")) {
 
-            return notify_fail("你手中拿着武器如何戴手套？\n");//by Ciwei@SJ
+            //return notify_fail("你手中拿着武器如何戴手套？\n");//by Ciwei@SJ
         }
 
 
 
 
 
-        if( query("broken") ) return notify_fail("这件防具已经损坏了。\n");
+        /*if( query("broken") ) return notify_fail("这件防具已经损坏了。\n");
 
 
 
@@ -105,7 +105,7 @@ public class EquipService {
         owner->set_temp("apply", applied_prop);
 
 
-        set("equipped", "worn");
+        set("equipped", "worn");*/
 
 
         return 1;
@@ -117,7 +117,7 @@ public class EquipService {
 
 
 
-    int wield()
+    /*int wield()
 
 
     {
@@ -636,7 +636,7 @@ public class EquipService {
         return 1;
 
 
-    }
+    }*/
 
 
 }

@@ -22,11 +22,17 @@ public class ChatInput : MonoBehaviour
 		mInput = GetComponent<UIInput>();
 		mInput.label.maxLineCount = 1;
 
+
+		textList.Add("[00FF00]" +
+			"欢迎登陆仗剑天涯！[-]");
+		textList.Add("[00FF00]" +
+			" 本服管理员QQ：407496032，有问题请联系管理员！[-]");
+
 		if (fillWithDummyData && textList != null)
 		{
 			for (int i = 0; i < 30; ++i)
 			{
-				textList.Add(((i % 2 == 0) ? "[FFFFFF]" : "[AAAAAA]") +
+				textList.Add("[00FF00]" +
 					"This is an example paragraph for the text list, testing line " + i + "[-]");
 			}
 		}

@@ -254,7 +254,7 @@ class UserController extends BaseController{
         $this->trackLog("name", $name);
         $this->trackLog("pass", $pass);
         if(empty($name)|| empty($pass)) {
-          $data['cod']  = 3;
+          $data['cod']  = 0;
           $data['sta']  = "argerr";
           $this->ajaxReturn($data, 'JSONP');
         }
@@ -264,20 +264,20 @@ class UserController extends BaseController{
         $this->trackLog("result", $result);
         if(!$result){
             $this->trackLog("iderr", "iderr");
-            $data['cod']  = 3;
+            $data['cod']  = 0;
             $data['sta']  = "iderr";
             $this->ajaxReturn($data, 'JSONP');
         }
         
         if(md5($pass) != $result[0]['password']){
             $this->trackLog("passerr", "passerr");
-            $data['cod']  = 3;
+            $data['cod']  = 0;
             $data['sta']  = "passerr";
             $this->ajaxReturn($data, 'JSONP');    
         }
 
         $this->trackLog("null", "null");
-        $data['cod']  = 3;
+        $data['cod']  = 1;
         $data['sta']  = getIPaddress() . "&null";
         $this->ajaxReturn($data, 'JSONP');
     }
@@ -300,7 +300,6 @@ class UserController extends BaseController{
         
         $userService = new UserService();
         $this->ajaxReturn($userService->signUp($args));
-        
     }
 
     //个人简介，直接从session里取得用户信息

@@ -304,7 +304,7 @@ public class LookBll extends BaseBll {
                 NOR "。\n";
         }*/
 
-        str += look_equiped(me, obj, pro);
+       /* str += look_equiped(me, obj, pro);
         str = replace_string(str,"\n",ZJBR);
         if(str[(strlen(str)-4)..(strlen(str)-1)]=="$br#")
         str = str[0..(strlen(str)-5)];
@@ -336,7 +336,7 @@ public class LookBll extends BaseBll {
             if (obj->query("total_hatred") > 4 * obj->query_skill("force") &&
                     ! wizardp(obj) && ! wizardp(me))
                 COMBAT_D->auto_fight(obj, me, "berserk");
-        }
+        }*/
 
         sb.append("\r\n");
         return sb.toString().replaceAll("\n", "\\" + ZjMudUtil.ZJ_JBR);
@@ -739,7 +739,7 @@ public class LookBll extends BaseBll {
         return "";
     }
 
-    String lookEquiped(object me, object obj, String pro)
+    /*String lookEquiped(object me, object obj, String pro)
     {
         mixed *inv;
         String str;
@@ -789,15 +789,15 @@ public class LookBll extends BaseBll {
                             : hob->query("unit")) +
                     hob->name() +
                             (mad ? "，疯了，一定是疯了！\n" : "。\n") + str;
-        }
+        }*/
 /*
 	if (playerp(obj) &&! objectp(obj->query_temp("armor/cloth")))
 	{
 		str = pro + "身上没有穿衣服啊！\n" + str;
 	}
 */
-        return str;
-    }
+    /*    return str;
+    }*/
 
 
 }

@@ -8,6 +8,7 @@ TagManager:
   - Cell
   - Coin
   - UIRoot
+  - ServerButton
   layers:
   - Default
   - TransparentFX

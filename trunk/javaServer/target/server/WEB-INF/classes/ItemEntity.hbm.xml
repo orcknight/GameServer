@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.tian.server.entity.ItemEntity" table="item" schema="bdm25683027_db">
+        <id name="id">
+            <column name="id" sql-type="int(11)"/>
+        </id>
+        <property name="cityName">
+            <column name="cityName" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="roomName">
+            <column name="roomName" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="tile">
+            <column name="tile" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="name">
+            <column name="name" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="cname">
+            <column name="cname" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="desc">
+            <column name="desc" sql-type="varchar(2048)" length="2048" not-null="true"/>
+        </property>
+        <property name="type">
+            <column name="type" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="jsonAttr">
+            <column name="jsonAttr" sql-type="varchar(2048)" length="2048" not-null="true"/>
+        </property>
+        <property name="uuid">
+            <column name="uuid" sql-type="bigint(64)" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>
