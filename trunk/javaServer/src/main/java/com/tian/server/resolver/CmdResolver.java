@@ -61,7 +61,7 @@ public class CmdResolver {
 
             Class cls = Class.forName("com.tian.server.handler." + handlerStr + "EventHandler");
             CmdEventHandler handler = (CmdEventHandler)cls.newInstance();
-            handler.handle(server, data);
+            handler.handle(server, "", null);
 
         } catch (Exception e) {
             e.printStackTrace();

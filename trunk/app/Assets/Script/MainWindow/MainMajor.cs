@@ -72,7 +72,25 @@ public class MainMajor : MonoBehaviour {
 	public void OnStatus(SocketIOEvent socketIoEvent){
 
 		JSONObject data = socketIoEvent.data;
-		data.GetField ("data");
+		JArray jlist = JArray.Parse(data.ToString()); //将pois部分视为一个JObject，JArray解析这个JObject的字符串 
+
+		for (int i = 0; i < jlist.Count; ++i) {  //遍历JArray  
+
+			HpBar tempBar = m_StatusBars [i].GetComponent<HpBar> ();
+
+			JObject item = JObject.Parse (jlist [i].ToString ()); 
+			tempBar.m_Max = int.Parse (item ["max"].ToString ());
+			tempBar.m_Eff = int.Parse (item ["eff"].ToString ());
+			tempBar.m_Cur = int.Parse(item["cur"].ToString());
+			tempBar.m_Desc = item ["value"].ToString ();
+
+			if (item ["color"] != null) {
+				
+				tempBar.m_ForeColor = int.Parse (item ["color"].ToString ());
+			}
+			tempBar.RedrawBar ();
+
+		}
 
 		Debug.Log (socketIoEvent.name);
 	}
@@ -80,7 +98,33 @@ public class MainMajor : MonoBehaviour {
 	public void OnStream(SocketIOEvent socketIoEvent){
 
 		JSONObject data = socketIoEvent.data;
-		data.GetField ("data");
+		JArray jlist = JArray.Parse(data.ToString()); //将pois部分视为一个JObject，JArray解析这个JObject的字符串
+
+		for (int i = 0; i < jlist.Count; ++i) {  //遍历JArray  
+
+			JObject item = JObject.Parse (jlist [i].ToString ()); 
+			string code = item ["code"].ToString ();
+			string msg = item ["msg"].ToString ();
+
+
+			if (code.Equals ("001")) {
+
+
+				string userName = PlayerPrefs.GetString ("userName");
+				string password = PlayerPrefs.GetString ("password");
+				JSONObject sendData = new JSONObject ();
+				sendData.AddField ("userName", userName);
+				sendData.AddField("password", password);
+
+				JSONObject jsonObject = new JSONObject ();
+				jsonObject.AddField ("cmd", "login");
+				jsonObject.AddField ("data", sendData);
+				m_Socket.Emit ("unity_stream", jsonObject);
+
+			}
+
+		}
+
 
 		Debug.Log (socketIoEvent.name);
 	}

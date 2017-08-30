@@ -2,13 +2,14 @@ package com.tian.server.handler;
 
 import com.corundumstudio.socketio.SocketIOClient;
 import com.tian.server.bll.MoveBll;
+import net.sf.json.JSONObject;
 
 /**
  * Created by PPX on 2017/6/16.
  */
 public class MoveEventHandler implements CmdEventHandler{
 
-    public void handle(SocketIOClient socketIOClient, String data) {
+    public void handle(SocketIOClient socketIOClient, String cmd, JSONObject data) {
 
         MoveBll moveBll = new MoveBll(socketIOClient);
         if(data.equals("east\n")){

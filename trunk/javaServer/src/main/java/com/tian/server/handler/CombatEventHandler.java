@@ -2,26 +2,26 @@ package com.tian.server.handler;
 
 import com.corundumstudio.socketio.SocketIOClient;
 import com.tian.server.bll.CombatBll;
+import net.sf.json.JSONObject;
 
 /**
  * Created by PPX on 2017/7/11.
  */
 public class CombatEventHandler implements CmdEventHandler {
 
-    public void handle(SocketIOClient socketIOClient, String data) {
+    public void handle(SocketIOClient socketIOClient, String cmd, JSONObject data) {
 
-        data = data.trim();
-        String[] dataArray = data.split(" ");
-        if(dataArray.length < 1){
+        String msg = data.getString("data");
+        if(msg == null){
 
             return;
         }
 
         CombatBll combatBll = new CombatBll(socketIOClient);
 
-        if(dataArray[0].equals("fight")){
+        if(cmd.equals("fight")){
 
-            combatBll.handleFight(dataArray[1]);
+            combatBll.handleFight(msg);
         }
 
     }

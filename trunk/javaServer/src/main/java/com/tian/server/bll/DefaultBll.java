@@ -5,8 +5,11 @@ import com.tian.server.dao.*;
 import com.tian.server.entity.*;
 import com.tian.server.model.Living;
 import com.tian.server.model.Player;
+import com.tian.server.util.UnityCmdUtil;
 import com.tian.server.util.UserCacheUtil;
 import com.tian.server.util.ZjMudUtil;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import java.util.List;
 import java.util.Map;
@@ -24,8 +27,10 @@ public class DefaultBll extends BaseBll {
 
     public void checkVersion(){
 
-        String msg = ZjMudUtil.getScreenLine("版本验证成功");
-        socketIOClient.sendEvent("stream", msg);
+        JSONArray jsonArray = new JSONArray();
+        JSONObject jsonObject = UnityCmdUtil.getCheckVersionRet("版本验证成功");
+        jsonArray.add(jsonObject);
+        socketIOClient.sendEvent("stream", jsonArray);
 
         //初始化数据
         initData();
@@ -125,10 +130,9 @@ public class DefaultBll extends BaseBll {
                     }
 
                     player.heartBeat();
-
                     //准备状态字符串，然后发送消息
-                    /*String msg = CmdUtil.getPlayerStatLine(player.getPlayer());
-                    client.sendEvent("stream", msg);*/
+                    JSONArray jArray = UnityCmdUtil.getPlayerStatus(player);
+                    client.sendEvent("status",  jArray);
                 }
 
             }

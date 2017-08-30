@@ -4,7 +4,7 @@ import com.corundumstudio.socketio.AckRequest;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.DataListener;
-import com.tian.server.resolver.CmdResolver;
+import com.tian.server.resolver.UnityCmdResolver;
 import net.sf.json.JSONObject;
 
 /**
@@ -25,8 +25,8 @@ public class StreamJsonListener implements DataListener<JSONObject> {
         System.out.println(data);
         System.out.println("get a message!");
 
-        CmdResolver resolver = new CmdResolver(socketIOClient);
-        // resolver.Resolver(data);
+        UnityCmdResolver resolver = new UnityCmdResolver(socketIOClient);
+        resolver.Resolver(data);
 
     }
 }

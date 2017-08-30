@@ -503,7 +503,8 @@ PlayerSettings:
   incrementalIl2cppBuild: {}
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 0
-  apiCompatibilityLevelPerPlatform: {}
+  apiCompatibilityLevelPerPlatform:
+    WebGL: 2
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: Mud

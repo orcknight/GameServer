@@ -2,6 +2,7 @@ package com.tian.server.handler;
 
 import com.corundumstudio.socketio.SocketIOClient;
 import com.tian.server.bll.DefaultBll;
+import net.sf.json.JSONObject;
 
 /**
  * Created by PPX on 2017/6/8.
@@ -9,10 +10,10 @@ import com.tian.server.bll.DefaultBll;
 public class DefaultEventHandler implements CmdEventHandler {
 
 
-    public void handle(SocketIOClient socketIOClient, String data) {
+    public void handle(SocketIOClient socketIOClient, String cmd, JSONObject data) {
 
         DefaultBll defaultBll = new DefaultBll(socketIOClient);
-        if(data.equals( "\n")){ //验证版本号
+        if(cmd.equals( "checkversion")){ //验证版本号
 
             defaultBll.checkVersion();
         }else{ //未定义消息不做回应

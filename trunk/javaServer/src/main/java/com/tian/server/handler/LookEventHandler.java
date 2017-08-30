@@ -2,32 +2,32 @@ package com.tian.server.handler;
 
 import com.corundumstudio.socketio.SocketIOClient;
 import com.tian.server.bll.LookBll;
+import net.sf.json.JSONObject;
 
 /**
  * Created by PPX on 2017/6/29.
  */
 public class LookEventHandler implements CmdEventHandler{
 
-    public void handle(SocketIOClient socketIOClient, String data) {
+    public void handle(SocketIOClient socketIOClient, String cmd, JSONObject data) {
 
-        data = data.trim();
-        String[] dataArray = data.split(" ");
-        if(dataArray.length < 1){
+        String msg = data.getString("data");
+        if(msg == null){
 
             return;
         }
 
         LookBll lookBll = new LookBll(socketIOClient);
 
-        if(dataArray[0].equals("look")){
+        if(cmd.equals("look")){
 
-            lookBll.look(dataArray[1]);
-        }else if(dataArray[0].equals("open")){
+            lookBll.look(msg);
+        }else if(cmd.equals("open")){
 
-            lookBll.openGate(dataArray[1]);
-        }else if(dataArray[0].equals("close")){
+            lookBll.openGate(msg);
+        }else if(cmd.equals("close")){
 
-            lookBll.closeGate(dataArray[1]);
+            lookBll.closeGate(msg);
         }
 
 

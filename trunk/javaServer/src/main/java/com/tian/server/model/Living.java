@@ -58,6 +58,9 @@ public class Living extends MudObject{
     protected Integer maxJing;
     protected Integer effJing;
     protected Integer jing;
+    protected Integer maxJingLi;
+    protected Integer effJingLi;
+    protected Integer jingLi;
     protected Integer level;
     protected Integer combatExp; //实战经验
     protected Integer score; //功劳点
@@ -376,6 +379,30 @@ public class Living extends MudObject{
 
     public void setJing(Integer jing) {
         this.jing = jing;
+    }
+
+    public Integer getMaxJingLi() {
+        return maxJingLi;
+    }
+
+    public void setMaxJingLi(Integer maxJingLi) {
+        this.maxJingLi = maxJingLi;
+    }
+
+    public Integer getEffJingLi() {
+        return effJingLi;
+    }
+
+    public void setEffJingLi(Integer effJingLi) {
+        this.effJingLi = effJingLi;
+    }
+
+    public Integer getJingLi() {
+        return jingLi;
+    }
+
+    public void setJingLi(Integer jingLi) {
+        this.jingLi = jingLi;
     }
 
     public Integer getLevel() {

@@ -72,6 +72,10 @@ public class Player extends Human {
         setNeili(player.getNeili());
         setMaxJing(player.getMaxJing());
         setEffJing(player.getEffJing());
+        setJing(player.getJing());
+        setMaxJingLi(player.getMaxJingLi());
+        setEffJingLi(player.getEffJingLi());
+        setJingLi(player.getJingLi());
         setCombatExp(player.getCombatExp());
         setFood(player.getFood());
         setWater(player.getWater());
