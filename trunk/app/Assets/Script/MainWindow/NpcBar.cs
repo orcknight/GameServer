@@ -10,7 +10,7 @@ public class NpcBar : MonoBehaviour {
 		Transform scrollView = this.transform.Find ("Scroll View");
 		Transform grid = scrollView.Find("UIGrid");
 
-		GameObject buttonPerfab = Resources.Load("Common/Item 0") as GameObject; 
+		GameObject buttonPerfab = Resources.Load("Common/NpcButton") as GameObject; 
 
 
 		GameObject signupObject = NGUITools.AddChild (grid.gameObject, buttonPerfab);;  
@@ -62,6 +62,71 @@ public class NpcBar : MonoBehaviour {
 		signupObject.SetActive (true);
 
 		signupObject = NGUITools.AddChild (grid.gameObject, buttonPerfab);;  
+		signupObject.transform.localScale = new Vector3 (1f, 1f, 1f);
+		signupObject.transform.localPosition = Vector3.zero; 
+		signupObject.tag = "ServerButton";
+		signupObject.SetActive (true);
+
+
+		signupObject = NGUITools.AddChild (grid.gameObject, buttonPerfab);;  
+		signupObject.transform.localScale = new Vector3 (1f, 1f, 1f);
+		signupObject.transform.localPosition = Vector3.zero; 
+		signupObject.tag = "ServerButton";
+		signupObject.SetActive (true);
+		signupObject = NGUITools.AddChild (grid.gameObject, buttonPerfab);;  
+		signupObject.transform.localScale = new Vector3 (1f, 1f, 1f);
+		signupObject.transform.localPosition = Vector3.zero; 
+		signupObject.tag = "ServerButton";
+		signupObject.SetActive (true);
+		signupObject = NGUITools.AddChild (grid.gameObject, buttonPerfab);;  
+		signupObject.transform.localScale = new Vector3 (1f, 1f, 1f);
+		signupObject.transform.localPosition = Vector3.zero; 
+		signupObject.tag = "ServerButton";
+		signupObject.SetActive (true);signupObject = NGUITools.AddChild (grid.gameObject, buttonPerfab);;  
+		signupObject.transform.localScale = new Vector3 (1f, 1f, 1f);
+		signupObject.transform.localPosition = Vector3.zero; 
+		signupObject.tag = "ServerButton";
+		signupObject.SetActive (true);signupObject = NGUITools.AddChild (grid.gameObject, buttonPerfab);;  
+		signupObject.transform.localScale = new Vector3 (1f, 1f, 1f);
+		signupObject.transform.localPosition = Vector3.zero; 
+		signupObject.tag = "ServerButton";
+		signupObject.SetActive (true);signupObject = NGUITools.AddChild (grid.gameObject, buttonPerfab);;  
+		signupObject.transform.localScale = new Vector3 (1f, 1f, 1f);
+		signupObject.transform.localPosition = Vector3.zero; 
+		signupObject.tag = "ServerButton";
+		signupObject.SetActive (true);signupObject = NGUITools.AddChild (grid.gameObject, buttonPerfab);;  
+		signupObject.transform.localScale = new Vector3 (1f, 1f, 1f);
+		signupObject.transform.localPosition = Vector3.zero; 
+		signupObject.tag = "ServerButton";
+		signupObject.SetActive (true);signupObject = NGUITools.AddChild (grid.gameObject, buttonPerfab);;  
+		signupObject.transform.localScale = new Vector3 (1f, 1f, 1f);
+		signupObject.transform.localPosition = Vector3.zero; 
+		signupObject.tag = "ServerButton";
+		signupObject.SetActive (true);signupObject = NGUITools.AddChild (grid.gameObject, buttonPerfab);;  
+		signupObject.transform.localScale = new Vector3 (1f, 1f, 1f);
+		signupObject.transform.localPosition = Vector3.zero; 
+		signupObject.tag = "ServerButton";
+		signupObject.SetActive (true);signupObject = NGUITools.AddChild (grid.gameObject, buttonPerfab);;  
+		signupObject.transform.localScale = new Vector3 (1f, 1f, 1f);
+		signupObject.transform.localPosition = Vector3.zero; 
+		signupObject.tag = "ServerButton";
+		signupObject.SetActive (true);signupObject = NGUITools.AddChild (grid.gameObject, buttonPerfab);;  
+		signupObject.transform.localScale = new Vector3 (1f, 1f, 1f);
+		signupObject.transform.localPosition = Vector3.zero; 
+		signupObject.tag = "ServerButton";
+		signupObject.SetActive (true);signupObject = NGUITools.AddChild (grid.gameObject, buttonPerfab);;  
+		signupObject.transform.localScale = new Vector3 (1f, 1f, 1f);
+		signupObject.transform.localPosition = Vector3.zero; 
+		signupObject.tag = "ServerButton";
+		signupObject.SetActive (true);signupObject = NGUITools.AddChild (grid.gameObject, buttonPerfab);;  
+		signupObject.transform.localScale = new Vector3 (1f, 1f, 1f);
+		signupObject.transform.localPosition = Vector3.zero; 
+		signupObject.tag = "ServerButton";
+		signupObject.SetActive (true);signupObject = NGUITools.AddChild (grid.gameObject, buttonPerfab);;  
+		signupObject.transform.localScale = new Vector3 (1f, 1f, 1f);
+		signupObject.transform.localPosition = Vector3.zero; 
+		signupObject.tag = "ServerButton";
+		signupObject.SetActive (true);signupObject = NGUITools.AddChild (grid.gameObject, buttonPerfab);;  
 		signupObject.transform.localScale = new Vector3 (1f, 1f, 1f);
 		signupObject.transform.localPosition = Vector3.zero; 
 		signupObject.tag = "ServerButton";

@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using SocketIO;
 using Newtonsoft.Json.Linq;
+using System.Threading;
 
 public class MainMajor : MonoBehaviour {
 
 	private GameObject m_SocketIo = null;
+	private SocketIOComponent m_Socket = null;
 
 	public GameObject[] m_StatusBars;
 
@@ -15,14 +17,14 @@ public class MainMajor : MonoBehaviour {
 	void Start () {
 
 		m_SocketIo = GameObject.Find("SocketIO");
-		SocketIOComponent socket = m_SocketIo.GetComponent<SocketIOComponent>();
-		socket.url = "ws://192.168.0.103:2020/socket.io/?EIO=4&transport=websocket";
-		socket.autoConnect = true;
-		socket.On ("connected", OnConnect);
-		socket.On ("status", OnStatus);
-		socket.On ("stream", OnStream);
-		socket.Start();
-		
+		m_Socket = m_SocketIo.GetComponent<SocketIOComponent>();
+		m_Socket.url = "ws://192.168.0.103:2020/socket.io/?EIO=4&transport=websocket";
+		m_Socket.autoConnect = true;
+		m_Socket.On ("connected", OnConnect);
+		m_Socket.On ("status", OnStatus);
+		m_Socket.On ("stream", OnStream);
+		m_Socket.Start();
+	
 	}
 	
 	// Update is called once per frame
@@ -31,6 +33,20 @@ public class MainMajor : MonoBehaviour {
 	}
 
 	public void OnConnect(SocketIOEvent socketIoEvent){
+
+		//连接以后发送版本验证请求
+		if (m_Socket == null) {
+			return;
+		}
+			
+		JSONObject jsonObject = new JSONObject ();
+		jsonObject.AddField ("cmd", "checkversion");
+		jsonObject.AddField ("data", "");
+		m_Socket.Emit ("unity_stream", jsonObject);
+		return;
+
+
+
 
 		JSONObject data = socketIoEvent.data;
 
@@ -41,11 +57,11 @@ public class MainMajor : MonoBehaviour {
 			HpBar tempBar = m_StatusBars [i].GetComponent<HpBar> ();
 
 			JObject item = JObject.Parse (jlist [i].ToString ()); 
-			tempBar.m_Max = int.Parse (item ["max"].ToString ());
-			tempBar.m_Eff = int.Parse (item ["eff"].ToString ());
-			tempBar.m_Cur = int.Parse(item["cur"].ToString());
+			tempBar.m_Max = 100;//int.Parse (item ["max"].ToString ());
+			tempBar.m_Eff = 50;//int.Parse (item ["eff"].ToString ());
+			tempBar.m_Cur = 40;//int.Parse(item["cur"].ToString());
 			tempBar.m_Desc = item ["value"].ToString ();
-			tempBar.m_ForeColor = 0xff0000;
+			tempBar.m_ForeColor = 0xffff00;
 			tempBar.RedrawBar ();
 
 		}

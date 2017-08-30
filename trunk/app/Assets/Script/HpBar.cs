@@ -7,11 +7,13 @@ public class HpBar : MonoBehaviour {
 	public int m_Max = 0; //最大值
 	public int m_Eff = 0; //有效值
 	public int m_Cur = 0; //当前值
-	public string m_Desc = ""; //描述字串
+	public string m_Desc = "杨威"; //描述字串
 	public int m_ForeColor = 0xD5D5D5; //前景颜色
 
 	// Use this for initialization
 	void Start () {
+
+		RedrawBar ();
 		
 	}
 	
