@@ -18,7 +18,7 @@ public class MainMajor : MonoBehaviour {
 
 		m_SocketIo = GameObject.Find("SocketIO");
 		m_Socket = m_SocketIo.GetComponent<SocketIOComponent>();
-		m_Socket.url = "ws://192.168.0.103:2020/socket.io/?EIO=4&transport=websocket";
+		m_Socket.url = "ws://27.203.13.183:2020/socket.io/?EIO=4&transport=websocket";
 		m_Socket.autoConnect = true;
 		m_Socket.On ("connected", OnConnect);
 		m_Socket.On ("status", OnStatus);
