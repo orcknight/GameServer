@@ -23,7 +23,7 @@ public class ZjMudUtil {
     public static final String ESA = "\u001B";
     public static final String ZJ_SEP = "$zj#"; //字串分隔符，比如向客户端发送场景中的多个npc信息，npc信息之间可用此分隔符连接
     public static final String ZJ_SP2 = "$z2#"; //菜单字串分隔符，一次向客户端发送多个菜单项，每项之间用此连接，菜单名字和关联命令之间用 '|' 连接
-    public static final String ZJ_JBR = "$br#"; //长描述换行符
+    public static final String ZJ_JBR = "\n"; //长描述换行符
 
 
     //定义此标志后文字的热点命令，点击此标志后直到 NOR 之前的文字 会触发 w 字串内包含的命令，

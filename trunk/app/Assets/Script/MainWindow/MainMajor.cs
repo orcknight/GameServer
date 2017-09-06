@@ -99,7 +99,7 @@ public class MainMajor : MonoBehaviour {
 
 		}
 
-		Debug.Log (socketIoEvent.name);
+		//Debug.Log (socketIoEvent.name);
 	}
 
 	public void OnStream(SocketIOEvent socketIoEvent){
@@ -179,7 +179,7 @@ public class MainMajor : MonoBehaviour {
 		}
 
 
-		Debug.Log (socketIoEvent.name);
+		//Debug.Log (socketIoEvent.name);
 	}
 
 	public void OnMoveClick(GameObject obj){
@@ -221,6 +221,27 @@ public class MainMajor : MonoBehaviour {
 		jsonObject.AddField ("cmd", cmdButtonItem.m_Cmd);
 		jsonObject.AddField ("data", sendData);
 		m_Socket.Emit ("unity_stream", jsonObject);
+	}
+
+	public void OnPopCmdButtonClick(GameObject obj){
+
+		CmdButtonItem cmdButtonItem = obj.transform.GetComponent<CmdButtonItem> ();
+
+		JSONObject sendData = new JSONObject ();
+		sendData.AddField ("target", cmdButtonItem.m_ObjId);
+		JSONObject jsonObject = new JSONObject ();
+		jsonObject.AddField ("cmd", cmdButtonItem.m_Cmd);
+		jsonObject.AddField ("data", sendData);
+		m_Socket.Emit ("unity_stream", jsonObject);
+
+		//关掉窗口
+		if (m_ObjectInfoPop == null) {
+
+			return;
+		}
+
+		m_ObjectInfoPop.transform.localPosition = new Vector3 (5000f, 0f, 0f);
+		m_ObjectInfoPop.SetActive (false);
 	}
 		
 	protected void OnReceiveQuitConfirmResult(MessageBox.Result result) {  
@@ -544,13 +565,16 @@ public class MainMajor : MonoBehaviour {
 
 		if (m_ObjectInfoPop == null) {
 
-			GameObject objectInfoPopPerfab = Resources.Load("PopDialog") as GameObject; 
-			m_ObjectInfoPop = GameObject.Instantiate(objectInfoPopPerfab) as GameObject;
+			GameObject objectInfoPopPerfab = Resources.Load ("MainWindow/PopDialog") as GameObject; 
+			m_ObjectInfoPop = GameObject.Instantiate (objectInfoPopPerfab) as GameObject;
+			m_ObjectInfoPop.GetComponent<ObjectInfoPopManger> ().closeCallback = OnObjectInfoPopQuitEventHandler;
 			m_ObjectInfoPop.transform.parent = this.transform;
 		}
 
+	
 		JObject jsonObject = JObject.Parse (msg);
-		string descs = jsonObject ["descs"].ToString();
+		string descs = jsonObject ["desc"].ToString();
+		descs = descs.Replace ("\\n", "\n");
 		string buttons = jsonObject ["buttons"].ToString();
 		JArray jArray = JArray.Parse (buttons);
 
@@ -558,33 +582,67 @@ public class MainMajor : MonoBehaviour {
 		Transform popScrollView = m_ObjectInfoPop.transform.Find ("PopScrollView");
 		Transform labelTrans = popScrollView.Find ("Label");
 		Transform gridTrans = popScrollView.Find ("Grid");
-		GameObject popCmdButtonPerfab = Resources.Load("PopCmdButton") as GameObject; 
+		ClearGridChilds (gridTrans);
+		GameObject popCmdButtonPerfab = Resources.Load("Common/PopCmdButton") as GameObject; 
 
 		//获取下面的label赋值
 		labelTrans.GetComponent<UILabel> ().text = descs;
+		float labelHeight = labelTrans.GetComponent<UIWidget> ().localSize.y;
+		float gridHeight = 80f * Mathf.Ceil(((float)jArray.Count) / 4f);
 
-		float x = labelTrans.GetComponent<UIWidget> ().localSize.y / 2f;
-		labelTrans.localPosition = new Vector3 (0f, x, 0f);
+		//计算弹出窗口的高度
+		int popHeight = (int)(labelHeight + gridHeight + 100f);
+		if (popHeight > 625) {
 
-		//获取grid列表添加按钮
-		foreach (JObject item in jArray) {
-
-			GameObject npcButton = GameObject.Instantiate(popCmdButtonPerfab) as GameObject;
-			
-			npcButton.GetComponent<CmdButtonItem> ().m_Cmd = item["cmd"].ToString();
-			npcButton.GetComponent<CmdButtonItem> ().m_ObjId = item["objId"].ToString();
-			npcButton.GetComponent<CmdButtonItem> ().m_DisplayName = item["displayName"].ToString();
-			npcButton.transform.parent = gridTrans;
-			npcButton.transform.localScale = new Vector3 (1f, 1f, 1f);
-			npcButton.transform.localPosition = Vector3.zero; 
-			npcButton.SetActive (true);
+			popHeight = 625;
 		}
 
+		float popY = (688f - (float)popHeight / 2f);
+		m_ObjectInfoPop.transform.GetComponent<UIWidget> ().height = popHeight;
+		m_ObjectInfoPop.transform.localPosition = new Vector3 (128f, popY, 0f);
+		m_ObjectInfoPop.transform.localScale = new Vector3 (1f, 1f, 1f);
+		m_ObjectInfoPop.SetActive (true);
+
+		float labelY = ((float)popHeight/2f - (float)labelHeight / 2f - 20f);
+		labelTrans.localPosition = new Vector3 (0f, labelY, 0f);
+
+		float gridY = ((float)popHeight/2f - (float)labelHeight - 40f - gridHeight/2f);
+
+		//获取grid列表添加按钮
+		for (int i = 0; i < jArray.Count; ++i) {
+
+			JObject item = JObject.Parse (jArray [i].ToString ()); 
+			GameObject popCmdButton = GameObject.Instantiate(popCmdButtonPerfab) as GameObject;
+			
+			popCmdButton.GetComponent<CmdButtonItem> ().m_Cmd = item["cmd"].ToString();
+			popCmdButton.GetComponent<CmdButtonItem> ().m_ObjId = item["objId"].ToString();
+			popCmdButton.GetComponent<CmdButtonItem> ().m_DisplayName = item["displayName"].ToString();
+			popCmdButton.transform.Find ("Label").GetComponent<UILabel> ().text = item ["displayName"].ToString ();
+			popCmdButton.transform.parent = gridTrans;
+			popCmdButton.transform.localScale = new Vector3 (1f, 1f, 1f);
+			popCmdButton.transform.localPosition = Vector3.zero; 
+			popCmdButton.SetActive (true);
+
+			UIEventListener.Get(popCmdButton).onClick = OnPopCmdButtonClick;  
+		}
+			
 		gridTrans.GetComponent<UIGrid> ().repositionNow = true;
 		gridTrans.GetComponent<UIGrid> ().Reposition ();
+		gridTrans.transform.localPosition = new Vector3 (gridTrans.transform.localPosition.x, gridY, 0f);
+		gridTrans.gameObject.SetActive (true);
+	}
 
-		m_ObjectInfoPop.transform.localScale = new Vector3 (1f, 1f, 1f);
-		m_ObjectInfoPop.transform.localPosition = new Vector3 (0f, 0f, 0f);
-		m_ObjectInfoPop.SetActive (true);	
+	private void ClearGridChilds(Transform gridTrans){
+
+		UIGrid uiGrid = gridTrans.GetComponent<UIGrid> ();
+		for(int k = 0;k<uiGrid.transform.childCount;k++)
+		{
+			GameObject go = uiGrid.transform.GetChild(k).gameObject;
+			Destroy(go);
+		}
+
+		// 这个标记会让元素立即重新排列。
+		uiGrid.repositionNow = true;
+		uiGrid.Reposition();
 	}
 }

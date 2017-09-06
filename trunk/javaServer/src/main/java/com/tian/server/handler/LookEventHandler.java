@@ -11,12 +11,7 @@ public class LookEventHandler implements CmdEventHandler{
 
     public void handle(SocketIOClient socketIOClient, String cmd, JSONObject data) {
 
-        String msg = data.getString("data");
-        if(msg == null){
-
-            return;
-        }
-
+        String msg = "";
         LookBll lookBll = new LookBll(socketIOClient);
 
         if(cmd.equals("look")){
@@ -24,11 +19,11 @@ public class LookEventHandler implements CmdEventHandler{
             String target = data.getString("target");
             lookBll.look(target);
         }else if(cmd.equals("open")){
-
-            lookBll.openGate(msg);
+            String direction = data.getString("target");
+            lookBll.openGate(direction);
         }else if(cmd.equals("close")){
-
-            lookBll.closeGate(msg);
+            String direction = data.getString("target");
+            lookBll.closeGate(direction);
         }
 
 

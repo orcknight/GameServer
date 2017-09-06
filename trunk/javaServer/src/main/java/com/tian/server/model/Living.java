@@ -532,17 +532,18 @@ public class Living extends MudObject{
 
     public String getLookStr(){
 
-        String contact = "$br#";
-
-        String desc = name + contact + "一一一一一一一一一一一一一一一一一一一" + contact + longDesc + contact + "一一一一一一一一一一一一一一一一一一一" + contact;
-        StringBuffer buttonStr = new StringBuffer();
+        String contact = "\\n";
+        String desc = name + contact + "一一一一一一一一一一一一一一一一一一一" + contact +
+                longDesc + contact + "一一一一一一一一一一一一一一一一一一一";
+        return desc;
+        /*StringBuffer buttonStr = new StringBuffer();
         for (Map.Entry<String, String> entry : this.buttons.entrySet()) {
 
             buttonStr.append(entry.getKey() + ":" + entry.getValue() + "$zj#");
         }
         String button = StringUtil.rtrim(buttonStr.toString());
 
-        return ZjMudUtil.getHuDongDescLine(desc);
+        return ZjMudUtil.getHuDongDescLine(desc);*/
     }
 
     public void addEnemy(Living enemy){

@@ -45,12 +45,21 @@ public class LookBll extends BaseBll {
         }
         player.setLookId(new StringBuffer(target).toString());
 
-
         if (type.equals("user")) {
 
             Map<Long, MudObject> allLivings = UserCacheUtil.getAllObjects();
             Living npc = (Living) allLivings.get(Long.valueOf(id));
-            sendMsg(lookLiving(getMe(), npc));
+            String desc = lookLiving(getMe(), npc);
+
+            if (npc != null) {
+
+                JSONArray jsonArray = new JSONArray();
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("desc", desc);
+                jsonObject.put("buttons", getAct(getMe(), npc));
+                jsonArray.add(UnityCmdUtil.getObjectInfoPopRet(jsonObject));
+                sendMsg(jsonArray);
+            }
             return;
             /*if (npc != null) {
                 sendMsg(npc.getLookStr() + getAct(getMe(), npc));
@@ -59,9 +68,30 @@ public class LookBll extends BaseBll {
 
             Map<Long, MudObject> allLivings = UserCacheUtil.getAllObjects();
             Living npc = (Living) allLivings.get(Long.valueOf(id));
+            String desc = lookLiving(getMe(), npc);
+
             if (npc != null) {
-                sendMsg(npc.getLookStr() + getAct(getMe(), npc));
+
+                JSONArray jsonArray = new JSONArray();
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("desc", desc);
+                jsonObject.put("buttons", getAct(getMe(), npc));
+                jsonArray.add(UnityCmdUtil.getObjectInfoPopRet(jsonObject));
+                sendMsg(jsonArray);
             }
+            return;
+
+            /*Map<Long, MudObject> allLivings = UserCacheUtil.getAllObjects();
+            Living npc = (Living) allLivings.get(Long.valueOf(id));
+            if (npc != null) {
+
+                JSONArray jsonArray = new JSONArray();
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("desc", npc.getLookStr());
+                jsonObject.put("buttons", getAct(getMe(), npc));
+                jsonArray.add(UnityCmdUtil.getObjectInfoPopRet(jsonObject));
+                sendMsg(jsonArray);
+            }*/
         } else if (type.equals("gate")) {
 
             JSONObject retMsg = getLookGateStr(id);
@@ -177,11 +207,11 @@ public class LookBll extends BaseBll {
             }
         }
 
-        sb.append(ZjMudUtil.getObjLong() + target.getName() + ZjMudUtil.ZJ_JBR);
-        sb.append("一一一一一一一一一一一一一一一一一一一一一一一" + ZjMudUtil.ZJ_JBR);
+        sb.append(target.getName() + ZjMudUtil.ZJ_JBR);
+        sb.append("一一一一一一一一一一一一一一一一一一一" + ZjMudUtil.ZJ_JBR);
         if(target.getLongDesc() != null && target.getLongDesc().length() > 0){
 
-            sb.append(target.getLongDesc());
+            sb.append(target.getLongDesc() + ZjMudUtil.ZJ_JBR);
         }
 
         if(target instanceof  Human){
@@ -358,9 +388,7 @@ public class LookBll extends BaseBll {
                     ! wizardp(obj) && ! wizardp(me))
                 COMBAT_D->auto_fight(obj, me, "berserk");
         }*/
-
-        sb.append("\r\n");
-        return sb.toString().replaceAll("\n", "\\" + ZjMudUtil.ZJ_JBR);
+        return sb.toString();
     }
 
     private void openOrCloseGate(String direction, String action) {
@@ -382,12 +410,19 @@ public class LookBll extends BaseBll {
         name = name.replaceAll("】", "");
         String msg = "将" + name + action + "。";
 
-        sendMsg(ZjMudUtil.getScreenLine("你" + msg));
+        //向自己发送打开门的讯息
+        JSONArray meJsonArray = new JSONArray();
+        meJsonArray.add(UnityCmdUtil.getInfoWindowRet("你" + msg));
+        sendMsg(meJsonArray);
+
+        //向门连接的两个房间，广播发送的信息
+        JSONArray boardCastJsonArray = new JSONArray();
+        boardCastJsonArray.add(UnityCmdUtil.getInfoWindowRet(player.getName() + msg));
         Collection<SocketIOClient> cl = socketIOClient.getNamespace().getRoomOperations(gate.getEnterRoom()).getClients();
         socketIOClient.getNamespace().getRoomOperations(player.getLocation().getName()).sendEvent("stream", socketIOClient,
-                ZjMudUtil.getScreenLine(player.getName() + msg));
+                boardCastJsonArray);
         socketIOClient.getNamespace().getRoomOperations(gate.getExitRoom()).sendEvent("stream", socketIOClient,
-                ZjMudUtil.getScreenLine(player.getName() + msg));
+                boardCastJsonArray);
 
         if (action.equals("打开")) {
 
@@ -398,7 +433,9 @@ public class LookBll extends BaseBll {
         }
     }
 
-    private String getAct(Living me, Living target) {
+    private JSONArray getAct(Living me, Living target) {
+
+        JSONArray jsonArray = new JSONArray();
 
         StringBuffer sb = new StringBuffer();
         if (!target.getInquirys().isEmpty()) {
@@ -408,28 +445,67 @@ public class LookBll extends BaseBll {
         }
 
         if (!target.getVendorGoods().isEmpty()) {
-            sb.append("购物:list" + +target.getUuid() + ZjMudUtil.ZJ_SEP);
+
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("cmd", "list");
+            jsonObject.put("objId", target.getUuid());
+            jsonObject.put("displayName", "购物");
+            jsonArray.add(jsonObject);
+            //sb.append("购物:list" + +target.getUuid() + ZjMudUtil.ZJ_SEP);
         }
 
         if (target.getLocation().getNoFight() != 1) {
 
-            sb.append("切磋:fight " + target.getUuid() + ZjMudUtil.ZJ_SEP);
-            sb.append("杀死:kill " + target.getUuid() + ZjMudUtil.ZJ_SEP);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("cmd", "fight");
+            jsonObject.put("objId", target.getUuid());
+            jsonObject.put("displayName", "切磋");
+            jsonArray.add(jsonObject);
+            jsonObject = new JSONObject();
+            jsonObject.put("cmd", "kill");
+            jsonObject.put("objId", target.getUuid());
+            jsonObject.put("displayName", "杀死");
+            jsonArray.add(jsonObject);
+            //sb.append("切磋:fight " + target.getUuid() + ZjMudUtil.ZJ_SEP);
+            //sb.append("杀死:kill " + target.getUuid() + ZjMudUtil.ZJ_SEP);
         }
 
-        sb.append("偷窃:steal " + target.getUuid() + ZjMudUtil.ZJ_SEP);
+        JSONObject stealObject = new JSONObject();
+        stealObject.put("cmd", "steal");
+        stealObject.put("objId", target.getUuid());
+        stealObject.put("displayName", "偷窃");
+        jsonArray.add(stealObject);
+        //sb.append("偷窃:steal " + target.getUuid() + ZjMudUtil.ZJ_SEP);
 
         if (target instanceof Human) {
-            sb.append("给予:give " + target.getUuid() + ZjMudUtil.ZJ_SEP);
+
+            JSONObject giveObject = new JSONObject();
+            giveObject.put("cmd", "give");
+            giveObject.put("objId", target.getUuid());
+            giveObject.put("displayName", "给予");
+            jsonArray.add(giveObject);
+            //sb.append("给予:give " + target.getUuid() + ZjMudUtil.ZJ_SEP);
         }
 
-        sb.append("跟随:follow " + target.getUuid());
+        JSONObject followObject = new JSONObject();
+        followObject.put("cmd", "follow");
+        followObject.put("objId", target.getUuid());
+        followObject.put("displayName", "跟随");
+        jsonArray.add(followObject);
+        //sb.append("跟随:follow " + target.getUuid());
+
         if (!target.getSkills().isEmpty()) {
-            sb.append(ZjMudUtil.ZJ_SEP + "查看技能:skills " + target.getUuid());
-        }
-        sb.append("\n");
 
-        return sb.toString();
+            JSONObject skillObject = new JSONObject();
+            skillObject.put("cmd", "skills");
+            skillObject.put("objId", target.getUuid());
+            skillObject.put("displayName", "查看技能");
+            jsonArray.add(skillObject);
+            //sb.append(ZjMudUtil.ZJ_SEP + "查看技能:skills " + target.getUuid());
+        }
+        //sb.append("\n");
+
+        return jsonArray;
     }
 
     private Living getMe() {

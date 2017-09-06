@@ -73,24 +73,24 @@ Minimum requirements for VT100 emulation:
 
      /*  Foreground Colors  */
 
-    public static final String BLK = ESC + "[30m"; /* Black    */
-    public static final String RED = ESC + "[31m"; /* Red      */
-    public static final String GRN = ESC + "[32m"; /* Green    */
-    public static final String YEL = ESC + "[33m"; /* Yellow   */
-    public static final String BLU = ESC + "[34m"; /* Blue     */
-    public static final String MAG = ESC + "[35m"; /* Magenta  */
-    public static final String CYN = ESC + "[36m"; /* Cyan     */
-    public static final String WHT = ESC + "[37m"; /* White    */
+    public static final String BLK = "[000000]"; /* Black    */
+    public static final String RED = "[FF0000]"; /* Red      */
+    public static final String GRN = "[00FF00]"; /* Green    */
+    public static final String YEL = "[FFFF00]"; /* Yellow   */
+    public static final String BLU = "[0000FF]"; /* Blue     */
+    public static final String MAG = "[FF00FF]"; /* Magenta  */
+    public static final String CYN = "[00FFFF]"; /* Cyan     */
+    public static final String WHT = "[FFFFFF]"; /* White    */
 
     /*   Hi Intensity Foreground Colors   */
-    public static final String HIK = ESC + "[1;30m"; /* Black    */
-    public static final String HIR = ESC + "[1;31m"; /* Red      */
-    public static final String HIG = ESC + "[1;32m"; /* Green    */
-    public static final String HIY = ESC + "[1;33m"; /* Yellow   */
-    public static final String HIB = ESC + "[1;34m"; /* Blue     */
-    public static final String HIM = ESC + "[1;35m"; /* Magenta  */
-    public static final String HIC = ESC + "[1;36m"; /* Cyan     */
-    public static final String HIW = ESC + "[1;37m"; /* White    */
+    public static final String HIK = "[000000]"; /* Black    */
+    public static final String HIR = "[FF0000]";   /* Red      */
+    public static final String HIG = "[00FF00]"; /* Green    */
+    public static final String HIY = "[FFFF00]"; /* Yellow   */
+    public static final String HIB = "[0000FF]"; /* Blue     */
+    public static final String HIM = "[FF00FF]"; /* Magenta  */
+    public static final String HIC = "[00FFFF]"; /* Cyan     */
+    public static final String HIW = "[FFFFFF]"; /* White    */
 
     /* High Intensity Background Colors  */
     public static final String HBBLK = ESC + "[40;1m"; /* 淡黑     */
@@ -157,7 +157,7 @@ Minimum requirements for VT100 emulation:
     public static final String BCYN = ESC + "[46m";          /* Cyan     */
     public static final String BWHT = ESC + "[47m";          /* White    */
 
-    public static final String NOR = ESC + "[2;37;0m";      /* Puts everything back to normal */
+    public static final String NOR = "[-]";      /* Puts everything back to normal */
 
     /* Additional ansi Esc codes added to ansi.h by Gothic  april 23,1993 */
     /* Note, these are Esc codes for VT100 terminals, and emmulators */
