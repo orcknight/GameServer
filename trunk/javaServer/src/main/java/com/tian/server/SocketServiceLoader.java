@@ -24,7 +24,7 @@ public class SocketServiceLoader implements ServletContextListener {
         try {
 
             Configuration config = new Configuration();
-            config.setHostname("::0");
+            config.setHostname("localhost");
             config.setPort(2020);
 
             server = new SocketIOServer(config);

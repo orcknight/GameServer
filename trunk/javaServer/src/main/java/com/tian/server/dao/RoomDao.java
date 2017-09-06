@@ -16,9 +16,10 @@ public class RoomDao extends BaseDao {
     public List<RoomEntity> getList(){
 
         String queryStr = "SELECT * FROM room";
-        Session session = SessionUtil.getSession();
+        Session session = SessionUtil.getDataSession();
         Query q = session.createNativeQuery(queryStr).addEntity(RoomEntity.class);
         List<RoomEntity> retList = q.getResultList();
+        session.close();
 
         return retList;
     }

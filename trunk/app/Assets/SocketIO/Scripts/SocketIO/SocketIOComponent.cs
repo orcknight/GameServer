@@ -91,6 +91,11 @@ namespace SocketIO
 
 		public void Awake()
 		{
+
+			if (string.IsNullOrEmpty (url)) {
+
+				return;
+			}
 			encoder = new Encoder();
 			decoder = new Decoder();
 			parser = new Parser();
@@ -126,6 +131,11 @@ namespace SocketIO
 
 		public void Update()
 		{
+			
+			if (eventQueue == null) {
+
+				return;
+			}
 			lock(eventQueueLock){ 
 				while(eventQueue.Count > 0){
 					EmitEvent(eventQueue.Dequeue());

@@ -16,7 +16,7 @@ public class CombatBll extends BaseBll {
 
     public void handleFight(String euid){
 
-        int userId = UserCacheUtil.getPlayerSockets().get(this.socketIOClient);
+        int userId = UserCacheUtil.getUserSockets().get(this.socketIOClient);
         if(userId  < 1){
 
             return;

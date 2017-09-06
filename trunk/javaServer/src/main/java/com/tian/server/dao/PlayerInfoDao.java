@@ -15,7 +15,7 @@ public class PlayerInfoDao extends BaseDao {
 
     public void add(PlayerInfoEntity playerInfo){
 
-        Session session = SessionUtil.getSession();
+        Session session = SessionUtil.getDataSession();
         Transaction transaction=session.getTransaction();
         //开启事务
         transaction.begin();
@@ -23,14 +23,16 @@ public class PlayerInfoDao extends BaseDao {
         session.save(playerInfo);
         //提交事务
         transaction.commit();
+        session.close();
     }
 
     public PlayerInfoEntity getByPlayerId(Integer playerId){
 
         String queryStr = "SELECT * FROM player_info WHERE playerId = " + playerId;
-        Session session = SessionUtil.getSession();
+        Session session = SessionUtil.getDataSession();
         Query q = session.createNativeQuery(queryStr).addEntity(PlayerInfoEntity.class);
         List<PlayerInfoEntity> retList = q.getResultList();
+        session.close();
 
         PlayerInfoEntity playerInfo;
         if(retList.isEmpty()){

@@ -157,6 +157,10 @@ public class ServerList : MonoBehaviour {
 		//保存这次登录的服务器
 		ServerItem serverItem = usedServer.GetComponent<ServerItem> ();
 		PlayerPrefs.SetString ("lastServerName", serverItem.m_ServerName);
+
+		//打开主窗口，销毁服务器选择窗口
+		LoadMainWindow();
+		Destroy (this.gameObject);
 	}
 
 
@@ -180,7 +184,7 @@ public class ServerList : MonoBehaviour {
 
 	private JArray getServerList(){
 
-		string uri = "http://game.gate.com/index.php/Home/ServerList/getServerList";
+		string uri = "http://bxu2359290536.my3w.com/index.php/Home/ServerList/getServerList";
 		string backMsg = "";
 		HttpWebRequest request = HttpWebRequest.Create(uri) as HttpWebRequest;
 		request.ContentType = "application/x-www-form-urlencoded;charset=UTF-8";
@@ -208,6 +212,16 @@ public class ServerList : MonoBehaviour {
 		JArray jlist = JArray.Parse(data); //将pois部分视为一个JObject，JArray解析这个JObject的字符串  
 
 		return jlist;
+	}
+
+	private void LoadMainWindow(){
+
+		GameObject mainWindowPerfab = Resources.Load("MainWindow") as GameObject; 
+		GameObject mainWindow = GameObject.Instantiate(mainWindowPerfab) as GameObject;  
+		mainWindow.transform.parent = this.transform.parent;
+		mainWindow.transform.localScale = new Vector3 (1f, 1f, 1f);
+		mainWindow.transform.localPosition = Vector3.zero; 
+		mainWindow.SetActive (true);
 	}
 
 

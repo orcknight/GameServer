@@ -14,56 +14,56 @@ import java.util.Map;
  */
 public class Living extends MudObject{
 
-    protected Long uuid; //实例在系统里的唯一标识
+    protected Long uuid = 0L; //实例在系统里的唯一标识
 
     //生物属性
-    protected String title; //称号
-    protected String nickname; //昵称
-    protected String name; //名字
-    protected String surname; //姓
-    protected String bornFamily; //出生世家
-    protected String familyName; //门派名称
-    protected String bunchName; //帮派名称
-    protected String cmdName; //命令名、英文名
-    protected Integer age; //年龄
-    protected Integer mudAge; //mod参数年龄
-    protected Integer ageModify; //年龄变化
-    protected String gender; //性别
-    protected String longDesc; //描述
-    protected String classStr; //身份 官差 和尚尼姑喇嘛等
-    protected String attitude; //态度 和平好战还是别的
-    protected String unit; //单位: 只 个
-    protected Integer weight; //重量
-    protected Byte shenType; //神的正负，如果没有set默认是1,用这个乘以exp/10得到神值
-    protected Integer shen; //神
-    protected Long coupleId; //夫妻id
+    protected String title = ""; //称号
+    protected String nickname = ""; //昵称
+    protected String name = ""; //名字
+    protected String surname = ""; //姓
+    protected String bornFamily = ""; //出生世家
+    protected String familyName = ""; //门派名称
+    protected String bunchName = ""; //帮派名称
+    protected String cmdName = ""; //命令名、英文名
+    protected Integer age = 0; //年龄
+    protected Integer mudAge = 0; //mod参数年龄
+    protected Integer ageModify = 0; //年龄变化
+    protected String gender = ""; //性别
+    protected String longDesc = ""; //描述
+    protected String classStr = ""; //身份 官差 和尚尼姑喇嘛等
+    protected String attitude = ""; //态度 和平好战还是别的
+    protected String unit = ""; //单位: 只 个
+    protected Integer weight = 0; //重量
+    protected Byte shenType = 0; //神的正负，如果没有set默认是1,用这个乘以exp/10得到神值
+    protected Integer shen = 0; //神
+    protected Long coupleId = 0L; //夫妻id
 
-    protected Byte status; //玩家状态
+    protected Byte status = 0; //玩家状态
 
     //基本属性
-    protected Integer str; //膂力
-    protected Integer wux; //悟性 //mud里用int由于与java关键字冲突改名
-    protected Integer con; //根骨
-    protected Integer dex; //身法
-    protected Integer kar; //福缘
-    protected Integer per; //容貌
+    protected Integer str = 0; //膂力
+    protected Integer wux = 0; //悟性 //mud里用int由于与java关键字冲突改名
+    protected Integer con = 0; //根骨
+    protected Integer dex = 0; //身法
+    protected Integer kar = 0; //福缘
+    protected Integer per = 0; //容貌
 
     //气血等信息
     protected Integer maxQi;
-    protected Integer effQi;
-    protected Integer qi;
-    protected Integer maxNeili;
-    protected Integer effNeili;
-    protected Integer neili;
-    protected Integer maxJing;
-    protected Integer effJing;
-    protected Integer jing;
-    protected Integer maxJingLi;
-    protected Integer effJingLi;
-    protected Integer jingLi;
-    protected Integer level;
-    protected Integer combatExp; //实战经验
-    protected Integer score; //功劳点
+    protected Integer effQi = 0;
+    protected Integer qi = 0;
+    protected Integer maxNeili = 0;
+    protected Integer effNeili = 0;
+    protected Integer neili = 0;
+    protected Integer maxJing = 0;
+    protected Integer effJing = 0;
+    protected Integer jing = 0;
+    protected Integer maxJingLi = 0;
+    protected Integer effJingLi = 0;
+    protected Integer jingLi = 0;
+    protected Integer level = 0;
+    protected Integer combatExp = 0; //实战经验
+    protected Integer score = 0; //功劳点
 
     protected Map<String, Integer> skills = new HashMap<String, Integer>(); //存放的是 技能名：等级
     protected Map<String, Integer> learned = new HashMap<String, Integer>(); //存放的是玩家已经学习过的技能 技能名：等级

@@ -11,8 +11,11 @@ import com.tian.server.model.Race.Human;
 import com.tian.server.model.RoomObjects;
 import com.tian.server.service.CombatService;
 import com.tian.server.util.ChineseUtil;
+import com.tian.server.util.UnityCmdUtil;
 import com.tian.server.util.UserCacheUtil;
 import com.tian.server.util.ZjMudUtil;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -29,10 +32,10 @@ public class LookBll extends BaseBll {
     }
 
 
-    public void look(String msg) {
+    public void look(String target) {
 
-        String type = msg.split("/")[1];
-        String id = msg.split("#")[1];
+        String type = target.split("/")[1];
+        String id = target.split("#")[1];
 
         //存储观察id
         Map<Integer, Living> cacheMap = UserCacheUtil.getPlayers();
@@ -40,7 +43,7 @@ public class LookBll extends BaseBll {
         if (player == null) {
             return;
         }
-        player.setLookId(new StringBuffer(msg).toString());
+        player.setLookId(new StringBuffer(target).toString());
 
 
         if (type.equals("user")) {
@@ -61,8 +64,10 @@ public class LookBll extends BaseBll {
             }
         } else if (type.equals("gate")) {
 
-            String retMsg = getLookGateStr(id);
-            sendMsg(retMsg);
+            JSONObject retMsg = getLookGateStr(id);
+            JSONArray retArray = new JSONArray();
+            retArray.add(retMsg);
+            sendMsg(retArray);
         }
     }
 
@@ -81,17 +86,20 @@ public class LookBll extends BaseBll {
         return null;
     }
 
-    private String getLookGateStr(String name) {
+    private JSONObject getLookGateStr(String name) {
 
         Map<Integer, Living> cacheMap = UserCacheUtil.getPlayers();
         Player player = (Player) cacheMap.get(this.userId);
         String roomName = player.getLocation().getName();
 
+        JSONObject gateObject = new JSONObject();
+        JSONArray buttonArray = new JSONArray();
+
         Map<String, RoomObjects> roomObjectsCache = UserCacheUtil.getRoomObjectsCache();
         RoomObjects roomObjects = roomObjectsCache.get(roomName);
         if (roomObjects == null) {
 
-            return "";
+            return null;
         }
 
         for (Map.Entry<String, RoomGateEntity> entry : roomObjects.getGates().entrySet()) {
@@ -108,22 +116,35 @@ public class LookBll extends BaseBll {
 
                 desc.append("这个" + name + "是");
 
+                JSONObject buttonObject = new JSONObject();
+
                 if (gate.getStatus() == 1) {
 
                     desc.append("开着的。");
-                    button.append("关门:close " + entry.getKey());
+                    buttonObject.put("cmd", "close");
+                    buttonObject.put("displayName", "关门");
+                    buttonObject.put("objId", entry.getKey());
                 } else {
 
                     desc.append("关着的。");
-                    button.append("开门:open " + entry.getKey());
+                    buttonObject.put("cmd", "open");
+                    buttonObject.put("displayName", "开门");
+                    buttonObject.put("objId", entry.getKey());
                 }
 
-                String msg = ZjMudUtil.getHuDongDescLine(desc.toString()) + ZjMudUtil.getHuDongButtonLine(button.toString());
-                return msg;
+                buttonArray.add(buttonObject);
+
+                gateObject.put("desc", desc.toString());
+                gateObject.put("buttons", buttonArray);
+
+                return UnityCmdUtil.getObjectInfoPopRet(gateObject);
+
+                //String msg = ZjMudUtil.getHuDongDescLine(desc.toString()) + ZjMudUtil.getHuDongButtonLine(button.toString());
+                //return msg;
             }
         }
 
-        return "";
+        return null;
     }
 
     private String lookLiving(Living me, Living target) {

@@ -7,9 +7,16 @@ import com.tian.server.model.Living;
 import com.tian.server.model.Player;
 import com.tian.server.model.PlayerLocation;
 import com.tian.server.model.RoomObjects;
+import com.tian.server.service.PlayerService;
+import com.tian.server.service.RoomService;
+import com.tian.server.util.UnityCmdUtil;
 import com.tian.server.util.UserCacheUtil;
 import com.tian.server.util.ZjMudUtil;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -73,6 +80,7 @@ public class MoveBll extends BaseBll {
 
     public void move(String direction){
 
+        JSONArray jsonArray = new JSONArray();
         //检查用户是否已经登陆
         Map<Integer, Living> playerCacheMap = UserCacheUtil.getPlayers();
         Map<String, RoomEntity> roomMap = UserCacheUtil.getAllMaps();
@@ -114,21 +122,36 @@ public class MoveBll extends BaseBll {
                 destRoomName =  room.getDown();
             }
 
+            if(destRoomName.length() < 1) {
+                return;
+            }
+
+            //发送信息，清除当前NPCBar列表
+            JSONObject jsonObject = new JSONObject();
+            jsonArray.add(UnityCmdUtil.getObjectClearRet(jsonObject));
+
+            RoomService roomService = new RoomService();
             //获取地图字符串
-            String msg = ZjMudUtil.getLocationLine(getLocation(destRoomName));
-            sendMsg(msg);
+            JSONArray roomJsonArray = roomService.getRoomDesc(getLocation(destRoomName));
+            jsonArray.addAll(JSONArray.toCollection(roomJsonArray));
+
+            sendMsg(jsonArray);
 
             //切换room并广播信息
             socketIOClient.leaveRoom(room.getName());
-
             String destName = getDirectionCnName(direction);
+
+            PlayerService playerService = new PlayerService();
+            JSONArray leaveObject = playerService.getLeaveRoomLine(roomMap.get(destRoomName).getShortDesc() + "("  + destName + ")", player);
+
             //广播玩家离开房间的信息
             socketIOClient.getNamespace().getRoomOperations(room.getName())
-                    .sendEvent("stream", ZjMudUtil.getLeaveRoomLine(roomMap.get(destRoomName).getShortDesc() + "("  + destName + ")", player));
+                    .sendEvent("stream", leaveObject);
 
             //广播玩家进入房间的信息
+            JSONArray enterObject = playerService.getEnterRoomLine("金丝甲", player);
             socketIOClient.getNamespace().getRoomOperations(destRoomName)
-                    .sendEvent("stream", ZjMudUtil.getEnterRoomLine(player.getName(), "金丝甲", player));
+                    .sendEvent("stream", enterObject);
 
             socketIOClient.joinRoom(destRoomName);
 
@@ -244,18 +267,54 @@ public class MoveBll extends BaseBll {
         return playerLocation;
     }
 
-    private void loadItemsToRoom(String roomNames, Player player){
+    private void loadItemsToRoom(String roomNames, Player me){
 
-        //获取房间物品等信息
+        //载入房间内的玩家和物品
         Map<String, RoomObjects> roomObjectsMap = UserCacheUtil.getRoomObjectsCache();
         //获取当前房间的物品
         RoomObjects roomObjects = roomObjectsMap.get(roomNames);
-        if(roomObjects == null){
-            return;
+
+        JSONArray jsonArray = new JSONArray();
+        PlayerService playerService = new PlayerService();
+        List<Living> npcs = roomObjects.getNpcs();
+        if(npcs.size() > 0){
+
+            JSONObject npcObject = playerService.getLookLivingProto(npcs, "npc");
+            jsonArray.add(npcObject);
         }
 
-        String msg = ZjMudUtil.getObjectsLine(roomObjects, player);
-        sendMsg(msg);
+        List<Player> players = roomObjects.getPlayers();
+        if(players.size() > 1){
+
+            List<Living> excludeMe = new ArrayList<Living>();
+            for(Player player : players){
+                if(player.getUuid() == me.getUuid()){
+                    continue;
+                }
+                excludeMe.add(player);
+            }
+
+            JSONObject userObject = playerService.getLookLivingProto(excludeMe, "user");
+            jsonArray.add(userObject);
+        }
+
+        Map<String, RoomGateEntity> roomGates = roomObjects.getGates();
+        if(roomGates.size() > 0){
+
+            JSONObject userObject = playerService.getLookLivingProto(roomGates, "gates");
+            jsonArray.add(userObject);
+        }
+
+        //获取房间物品等信息
+        //Map<String, RoomObjects> roomObjectsMap = UserCacheUtil.getRoomObjectsCache();
+        //获取当前房间的物品
+        //RoomObjects roomObjects = roomObjectsMap.get(roomNames);
+        //if(roomObjects == null){
+            //return;
+        //}
+
+        //String msg = ZjMudUtil.getObjectsLine(roomObjects, player);
+        sendMsg(jsonArray);
     }
 
     private String getDirectionCnName(String direction){
@@ -315,7 +374,10 @@ public class MoveBll extends BaseBll {
                     name = name.replaceAll("【", "");
                     name = name.replaceAll("】", "");
 
-                    sendMsg(ZjMudUtil.getScreenLine("你必须先把" + name + "打开！"));
+                    JSONArray jsonArray = new JSONArray();
+                    JSONObject jsonObject = UnityCmdUtil.getInfoWindowRet("你必须先把" + name + "打开！");
+                    jsonArray.add(jsonObject);
+                    sendMsg(jsonArray);
                     return false;
                 }
             }

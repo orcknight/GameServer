@@ -22,11 +22,13 @@ import java.util.Map;
 public class UserCacheUtil {
 
     //一个链接表，游戏中所有生物的链接，主键是唯一标识uuid
-    private static Map<Long, MudObject> allObjects = new HashMap<Long, MudObject>();
-    private static Map<Integer, Living> players = new HashMap<Integer, Living>();
-    private static Map<SocketIOClient, Integer> playerSockets = new HashMap<SocketIOClient, Integer>();
+    private static Map<Long, MudObject> allObjects = new HashMap<Long, MudObject>(); //所有物体的uuid和物体对象的映射表
+    private static Map<Integer, Living> players = new HashMap<Integer, Living>(); //用户id和玩家对象的映射表
+    private static Map<SocketIOClient, Integer> userSockets = new HashMap<SocketIOClient, Integer>(); //用户id和socketId的对应关系
     private static Map<String, RoomEntity> allMaps = new HashMap<String, RoomEntity>();
-    private static Map<String, RoomObjects> roomObjectsCache = new HashMap<String, RoomObjects>();
+    private static Map<String, RoomObjects> roomObjectsCache = new HashMap<String, RoomObjects>(); //房间名称和房间物品对象的映射表
+    private static Map<String, CityEntity> allCitys = new HashMap<String, CityEntity>();
+    private static Map<String, Map<String, RoomEntity>> cityedRooms = new HashMap<String, Map<String, RoomEntity>>();
 
     public static Map<Long, MudObject> getAllObjects() {
         return allObjects;
@@ -41,9 +43,9 @@ public class UserCacheUtil {
         return players;
     }
 
-    public static Map<SocketIOClient, Integer> getPlayerSockets(){
+    public static Map<SocketIOClient, Integer> getUserSockets(){
 
-        return playerSockets;
+        return userSockets;
     }
 
     public static Map<String, RoomEntity> getAllMaps(){
@@ -62,6 +64,22 @@ public class UserCacheUtil {
     public static Map<String, RoomObjects> getRoomObjectsCache(){
 
         return roomObjectsCache;
+    }
+
+    public static Map<String, CityEntity> getAllCitys() {
+        return allCitys;
+    }
+
+    public static void setAllCitys(Map<String, CityEntity> allCitys) {
+        UserCacheUtil.allCitys = allCitys;
+    }
+
+    public static Map<String, Map<String, RoomEntity>> getCityedRooms() {
+        return cityedRooms;
+    }
+
+    public static void setCityedRooms(Map<String, Map<String, RoomEntity>> cityedRooms) {
+        UserCacheUtil.cityedRooms = cityedRooms;
     }
 
     public static void initRoomObjectsCache(List<RoomContentEntity> roomContents, List<ItemEntity> items, List<NpcEntity> npcs){

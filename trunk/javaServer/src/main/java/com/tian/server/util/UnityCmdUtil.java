@@ -1,6 +1,7 @@
 package com.tian.server.util;
 
 import com.tian.server.model.Player;
+import com.tian.server.model.PlayerLocation;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -13,11 +14,75 @@ import java.awt.*;
 public class UnityCmdUtil {
 
     public static final String CHECK_VERSION_CODE = "001";
+    public static final String INFO_WINDOW_CODE = "015";
+    public static final String CREATE_ROLE_CODE = "0000008";
+    public static final String POP_WINDOW_CODE = "000100";
+    public static final String ROLE_CREATED_CODE = "0000007";
+    public static final String ROOM_SHORT_CODE = "002";
+    public static final String ROOM_ROAD_CODE = "003";
+    public static final String ROOM_LONG_CODE = "004";
+    public static final String OBJECT_ENTER_CODE = "005";
+    public static final String OBJECT_LEAVE_CODE = "905";
+    public static final String OBJECT_CLEAR_CODE = "906";
+    public static final String OBJECT_INFO_POP_CODE = "009";
 
+    public static JSONObject getCheckVersionRet(String msg) {
+        return getCodeMsgRet(CHECK_VERSION_CODE, msg);
+    }
 
-    public static JSONObject getCheckVersionRet(String msg){
+    //创建角色字符串
+    public static JSONObject getCreateRoleRet(String msg){
+        return getCodeMsgRet(CREATE_ROLE_CODE, msg);
+    }
+
+    public static JSONObject getPopWindowRet(String msg){
+        return getCodeMsgRet(POP_WINDOW_CODE, msg);
+    }
+
+    public static JSONObject getRoleCreatedRet(String msg){
+        return getCodeMsgRet(ROLE_CREATED_CODE, msg);
+    }
+
+    public static JSONObject getInfoWindowRet(String msg) {
+        return getCodeMsgRet(INFO_WINDOW_CODE, msg);
+    }
+
+    public static JSONObject getRoomShortRet(String msg){
+        return getCodeMsgRet(ROOM_SHORT_CODE, msg);
+    }
+
+    public static JSONObject getRoomLongRet(String msg){
+        return getCodeMsgRet(ROOM_LONG_CODE, msg);
+    }
+
+    public static JSONObject getRoomRoadRet(String msg){
+        return getCodeMsgRet(ROOM_ROAD_CODE, msg);
+    }
+
+    public static JSONObject getObjectEnterRet(JSONArray msg) {
+        return getCodeMsgRet(OBJECT_ENTER_CODE, msg);
+    }
+
+    public static JSONObject getObjectOutRet(JSONObject msg) {
+        return getCodeMsgRet(OBJECT_LEAVE_CODE, msg);
+    }
+
+    public static JSONObject getObjectClearRet(JSONObject msg){
+        return getCodeMsgRet(OBJECT_CLEAR_CODE, msg);
+    }
+
+    public static JSONObject getObjectInfoPopRet(JSONObject msg){
+        return getCodeMsgRet(OBJECT_INFO_POP_CODE, msg);
+    }
+
+    public static JSONObject getCodeMsgRet(String code, Object msg) {
+
+        if(msg instanceof  String){
+            msg = ((String)msg).replaceAll("\n", "\\\\n");
+        }
+
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("code", CHECK_VERSION_CODE);
+        jsonObject.put("code", code);
         jsonObject.put("msg", msg);
 
         return jsonObject;

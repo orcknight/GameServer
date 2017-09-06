@@ -16,14 +16,35 @@ public class UserDao extends BaseDao {
     public UserEntity getByNameAndPassword(String name, String password){
 
         String queryStr = "SELECT * FROM user WHERE name = '" + name + "' AND password = '" + MD5Util.getMd5(password) + "'";
-        Session session = SessionUtil.getSession();
+        Session session = SessionUtil.getUserSession();
         Query<UserEntity> q = session.createNativeQuery(queryStr, UserEntity.class);
         List<UserEntity> retList = q.getResultList();
+        session.close();
 
         UserEntity user;
         if(retList.isEmpty()){
 
-            user = new UserEntity();
+            user = null;
+        }else{
+
+            user = retList.get(0);
+        }
+
+        return user;
+    }
+
+    public UserEntity getById(Integer userId){
+
+        String queryStr = "SELECT * FROM user WHERE id = "  + userId;
+        Session session = SessionUtil.getUserSession();
+        Query<UserEntity> q = session.createNativeQuery(queryStr, UserEntity.class);
+        List<UserEntity> retList = q.getResultList();
+        session.close();
+
+        UserEntity user;
+        if(retList.isEmpty()){
+
+            user = null;
         }else{
 
             user = retList.get(0);

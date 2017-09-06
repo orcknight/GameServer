@@ -8,9 +8,12 @@ import com.tian.server.model.Living;
 import com.tian.server.model.Player;
 import com.tian.server.model.PlayerLocation;
 import com.tian.server.model.RoomObjects;
-import com.tian.server.util.CharUtil;
-import com.tian.server.util.UserCacheUtil;
-import com.tian.server.util.ZjMudUtil;
+import com.tian.server.service.PlayerService;
+import com.tian.server.service.RoomService;
+import com.tian.server.service.ServerInfoService;
+import com.tian.server.util.*;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,11 +59,13 @@ public class UserBll extends BaseBll {
         playerCache.setSocketClient(socketIOClient);
         cache.put(user.getId(), playerCache);
 
-        PlayerEntity player = playerDao.getById(user.getId());
+        PlayerEntity player = playerDao.getByUserId(user.getId());
         if(player.getId() < 1){
 
             //如果没有角色，转到角色创建窗口。
-            sendMsg(ZjMudUtil.getEmptyLine() + ZjMudUtil.getCreatePlayerLine());
+            JSONArray jsonArray = new JSONArray();
+            jsonArray.add(UnityCmdUtil.getCreateRoleRet(""));
+            sendMsg(jsonArray);
             return;
         }
         //缓存玩家信息
@@ -79,16 +84,21 @@ public class UserBll extends BaseBll {
         //缓存玩家信息
         Map<String, RoomEntity> roomMap = UserCacheUtil.getAllMaps();
         playerCache.setLocation(roomMap.get(playerInfo.getRoomName()));
-        socketIOClient.getNamespace().getRoomOperations(playerInfo.getRoomName()).sendEvent("stream", ZjMudUtil.getLoginBoradcastLine(player));
+        PlayerService playerService = new PlayerService();
+        socketIOClient.getNamespace().getRoomOperations(playerInfo.getRoomName()).sendEvent("stream", playerService.getLoginBoradcastLine(player));
         socketIOClient.joinRoom(playerInfo.getRoomName());
 
-        //显示登陆信息以及房间信息
-        sendMsg(ZjMudUtil.getEmptyLine() +
-                ZjMudUtil.getMainMenuLine() +
-                ZjMudUtil.getLoginSuccessLine() +
-                ZjMudUtil.getScreenLine("目前权限：(player)") +
-                "你连线进入了金庸立志传[立志传一线]。\r\n" +
-                ZjMudUtil.getLocationLine(getLocation(playerInfo.getRoomName())));
+        JSONArray jsonArray = new JSONArray();
+        //显示登陆信息
+        ServerInfoService serverInfoService = new ServerInfoService();
+        jsonArray.add(UnityCmdUtil.getInfoWindowRet(serverInfoService.getWelcomeInfo()));
+        //显示房间信息
+        RoomService roomService = new RoomService();
+        PlayerLocation playerLocation = getLocation(playerInfo.getRoomName());
+        JSONArray roomJsonArray = roomService.getRoomDesc(playerLocation);
+        jsonArray.addAll(JSONArray.toCollection(roomJsonArray));
+        sendMsg(jsonArray);
+                //ZjMudUtil.getLocationLine(getLocation(playerInfo.getRoomName());
 
         //获取房间物品等信息
         Map<String, RoomObjects> roomObjectsMap = UserCacheUtil.getRoomObjectsCache();
@@ -107,33 +117,42 @@ public class UserBll extends BaseBll {
             roomObjectsMap.put(playerInfo.getRoomName(), roomObjects);
         }
 
-        String msg = ZjMudUtil.getObjectsLine(roomObjects, playerCache);
-        sendMsg(msg);
+        //String msg = ZjMudUtil.getObjectsLine(roomObjects, playerCache);
+        sendMsg(loadObjects(roomObjects, playerCache));
     }
 
-    public void createRole(String name, String sex){
+    public void createRole(String name, String sex) {
 
+        JSONArray jsonArray = new JSONArray();
         //先检查用户登陆没有
-        if(this.userId < 1){
-
-            sendMsg(ZjMudUtil.getEmptyLine() +
-                    ZjMudUtil.getScreenLine("您还没有登陆，请先登陆。"));
+        if (this.userId < 1) {
+            jsonArray.add(UnityCmdUtil.getPopWindowRet("您还没有登陆，请先登陆。"));
+            sendMsg(jsonArray);
             return;
         }
 
         //检查名字是否全部是中文
-        if(!CharUtil.isChinese(name)){
+        if (!CharUtil.isChinese(name)) {
 
-            sendMsg(ZjMudUtil.getEmptyLine() +
-                    ZjMudUtil.getScreenLine("对不起，请您用「中文」取名字(2-6个字)。"));
+            jsonArray.add(UnityCmdUtil.getPopWindowRet("对不起，请您用「中文」取名字(2-6个字)。"));
+            sendMsg(jsonArray);
             return;
         }
 
         //检查名字的长度
-        if(name.length() < 2 || name.length() > 6){
+        if (name.length() < 2 || name.length() > 6) {
 
-            sendMsg(ZjMudUtil.getEmptyLine() +
-                    ZjMudUtil.getScreenLine("对不起，你的中文姓名不能太长或太短(2-6个字)。"));
+            jsonArray.add(UnityCmdUtil.getPopWindowRet("对不起，你的中文姓名不能太长或太短(2-6个字)。"));
+            sendMsg(jsonArray);
+            return;
+        }
+
+        //检查名字是否被别人占用
+        PlayerService playerService = new PlayerService();
+        if (playerService.isNameBeUsed(name)) {
+
+            jsonArray.add(UnityCmdUtil.getPopWindowRet("对不起，这个名字已经被其他人占用了。"));
+            sendMsg(jsonArray);
             return;
         }
 
@@ -141,22 +160,34 @@ public class UserBll extends BaseBll {
         PlayerEntity player = new PlayerEntity();
         player.setName(name);
         player.setSex(sex);
+        player.setCmdName(getUserName());
         player.setUserId(this.userId);
+        player.setUuid(IdUtil.getUUID());
         playerDao.add(player);
+        player = playerService.getPlayerById(player.getId());
 
         PlayerInfoEntity playerInfo = new PlayerInfoEntity();
-        playerInfo.setCityName("register");
-        playerInfo.setRoomName("register/shengmingzhigu");
+        playerInfo.setCityName("xinghuacun");
+        playerInfo.setRoomName("xinghuacun/guangchang");
         playerInfo.setPlayerId(player.getId());
         playerInfoDao.add(playerInfo);
-        socketIOClient.getNamespace().getRoomOperations(playerInfo.getRoomName()).sendEvent("stream", ZjMudUtil.getLoginBoradcastLine(player));
+
+        //登陆成功，先发送刷新界面命令
+        jsonArray.add(UnityCmdUtil.getRoleCreatedRet(""));
+        //然后发送欢迎信息
+        ServerInfoService serverInfoService = new ServerInfoService();
+        jsonArray.add(UnityCmdUtil.getInfoWindowRet(serverInfoService.getWelcomeInfo()));
+
+        socketIOClient.getNamespace().getRoomOperations(playerInfo.getRoomName()).sendEvent("stream", playerService.getLoginBoradcastLine(player));
         socketIOClient.joinRoom(playerInfo.getRoomName()); //玩家加入当前房间群组，为广播消息
 
         //存储用户的角色辅助信息
         Map<Integer, Living> playerCacheMap = UserCacheUtil.getPlayers();
-        if(playerCacheMap.containsKey(this.userId)){
+        Player playerCache = null;
+        if (playerCacheMap.containsKey(this.userId)) {
 
-            Player playerCache = (Player)playerCacheMap.get(this.userId);
+            playerCache = (Player) playerCacheMap.get(this.userId);
+            playerCache.initInfo(player);
             playerCache.setPlayerInfo(playerInfo);
 
             //缓存玩家信息
@@ -164,16 +195,27 @@ public class UserBll extends BaseBll {
             playerCache.setLocation(roomMap.get(playerInfo.getRoomName()));
         }
 
-        //先发送刷新界面命令
-        sendMsg(ZjMudUtil.getMainMenuLine());
+        //显示房间信息
+        RoomService roomService = new RoomService();
+        PlayerLocation playerLocation = getLocation(playerInfo.getRoomName());
+        JSONArray roomJsonArray = roomService.getRoomDesc(playerLocation);
+        jsonArray.addAll(JSONArray.toCollection(roomJsonArray));
         //发送登陆信息
-        sendMsg(ZjMudUtil.getEmptyLine() +
-                ZjMudUtil.getScreenLine("时间过得真快，不知不觉你已经十四岁了，今年的运气不知道怎么样。") +
-                ZjMudUtil.getScreenLine("───────────────────────────────") +
-                ZjMudUtil.getScreenLine("你可以进入不同的方向选择品质和先天属性，然后就投胎做人了。") +
-                ZjMudUtil.getScreenLine("───────────────────────────────") +
-                ZjMudUtil.getScreenLine("你连线进入了金庸立志传[立志传一线]。") +
-                ZjMudUtil.getLocationLine(getLocation(playerInfo.getRoomName())));
+        sendMsg(jsonArray);
+
+        //载入房间内的玩家和物品
+        Map<String, RoomObjects> roomObjectsMap = UserCacheUtil.getRoomObjectsCache();
+        //获取当前房间的物品
+        RoomObjects roomObjects = roomObjectsMap.get(playerInfo.getRoomName());
+        //检查自己是否在房间内，如果不在添加进去
+        if(roomObjects == null) {
+
+            roomObjects = new RoomObjects();
+            roomObjects.setPlayers(new ArrayList<Player>());
+        }
+        if(playerCache != null) {
+            loadObjects(roomObjects, playerCache);
+        }
     }
 
     public void logout(){
@@ -185,11 +227,13 @@ public class UserBll extends BaseBll {
         if(player != null) {
 
             //广播玩家离开的信息
+            PlayerService playerService = new PlayerService();
+
             socketIOClient.getNamespace().getRoomOperations(player.getPlayerInfo().getRoomName()).sendEvent("stream",
-                    ZjMudUtil.getLogoutBoradcastLine(player));
+                    playerService.getLogoutBoradcastLine(player));
 
             //清理缓存数据
-            UserCacheUtil.getPlayerSockets().remove(socketIOClient);
+            UserCacheUtil.getUserSockets().remove(socketIOClient);
             playerCacheMap.remove(this.userId);
             UserCacheUtil.delPlayerFromRoom(player.getPlayerInfo().getRoomName(), player);
         }
@@ -209,7 +253,7 @@ public class UserBll extends BaseBll {
 
     private void setSocketCache(Integer userId){
 
-        Map<SocketIOClient, Integer> socketCache = UserCacheUtil.getPlayerSockets();
+        Map<SocketIOClient, Integer> socketCache = UserCacheUtil.getUserSockets();
         socketCache.put(this.socketIOClient, userId);
     }
 
@@ -360,4 +404,54 @@ public class UserBll extends BaseBll {
 
         player.setFamily(family);
     }
+
+    private String getUserName(){
+
+        Integer userId = UserCacheUtil.getUserSockets().get(socketIOClient);
+        UserEntity userEntity = userDao.getById(userId);
+        if(userEntity == null){
+
+            return "";
+        }
+
+        return userEntity.getName();
+    }
+
+    public JSONArray loadObjects(RoomObjects roomObjects, Player me){
+
+        JSONArray jsonArray = new JSONArray();
+        PlayerService playerService = new PlayerService();
+        List<Living> npcs = roomObjects.getNpcs();
+        if(npcs.size() > 0){
+
+            JSONObject npcObject = playerService.getLookLivingProto(npcs, "npc");
+            jsonArray.add(npcObject);
+        }
+
+        List<Player> players = roomObjects.getPlayers();
+        if(players.size() > 1){
+
+            List<Living> excludeMe = new ArrayList<Living>();
+            for(Player player : players){
+                if(player.getUuid() == me.getUuid()){
+                    continue;
+                }
+                excludeMe.add(player);
+            }
+
+            JSONObject userObject = playerService.getLookLivingProto(excludeMe, "user");
+            jsonArray.add(userObject);
+        }
+
+        Map<String, RoomGateEntity> roomGates = roomObjects.getGates();
+        if(roomGates.size() > 0){
+
+            JSONObject userObject = playerService.getLookLivingProto(roomGates, "gates");
+            jsonArray.add(userObject);
+        }
+
+        return jsonArray;
+    }
+
+
 }

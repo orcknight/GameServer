@@ -14,20 +14,6 @@ public class InfoWindow : MonoBehaviour {
 
 			return;
 		}
-
-		m_TextList.Add("[00FF00]" +
-			"欢迎登陆仗剑天涯！[-]");
-		m_TextList.Add("[00FF00]" +
-			"本服管理员QQ：407496032，有问题请联系管理员！[-]");
-
-		if (m_TextList != null)
-		{
-			for (int i = 0; i < 30; ++i)
-			{
-				m_TextList.Add("[00FF00]" +
-					"This is an example paragraph for the text list, testing line " + i + "[-]");
-			}
-		}
 		
 	}
 	

@@ -33,14 +33,8 @@ C:\Users\PPX\Documents\Mud\obj\Debug\Assembly-CSharp.csprojResolveAssemblyRefere
 F:\jiecheng\GameServer\trunk\app\Temp\bin\Debug\Assembly-CSharp.dll
 F:\jiecheng\GameServer\trunk\app\Temp\bin\Debug\Assembly-CSharp.pdb
 F:\jiecheng\GameServer\trunk\app\Temp\bin\Debug\Newtonsoft.Json.dll
-F:\jiecheng\GameServer\trunk\app\Temp\bin\Debug\nunit.framework.dll
 F:\jiecheng\GameServer\trunk\app\Temp\bin\Debug\UnityEditor.dll
-F:\jiecheng\GameServer\trunk\app\Temp\bin\Debug\UnityEngine.Analytics.dll
 F:\jiecheng\GameServer\trunk\app\Temp\bin\Debug\UnityEngine.dll
-F:\jiecheng\GameServer\trunk\app\Temp\bin\Debug\UnityEngine.HoloLens.dll
-F:\jiecheng\GameServer\trunk\app\Temp\bin\Debug\UnityEngine.Networking.dll
-F:\jiecheng\GameServer\trunk\app\Temp\bin\Debug\UnityEngine.TestRunner.dll
-F:\jiecheng\GameServer\trunk\app\Temp\bin\Debug\UnityEngine.Timeline.dll
 F:\jiecheng\GameServer\trunk\app\Temp\bin\Debug\UnityEngine.UI.dll
 F:\jiecheng\GameServer\trunk\app\Temp\bin\Debug\Mono.Cecil.dll
 F:\jiecheng\GameServer\trunk\app\Temp\bin\Debug\Unity.SerializationLogic.dll
@@ -54,12 +48,6 @@ F:\jiecheng\GameServer\trunk\app\Temp\bin\Debug\Mono.Cecil.Mdb.dll
 F:\jiecheng\GameServer\trunk\app\Temp\bin\Debug\UnityEngine.xml
 F:\jiecheng\GameServer\trunk\app\Temp\bin\Debug\UnityEditor.xml
 F:\jiecheng\GameServer\trunk\app\Temp\bin\Debug\UnityEngine.UI.xml
-F:\jiecheng\GameServer\trunk\app\Temp\bin\Debug\UnityEngine.Networking.xml
-F:\jiecheng\GameServer\trunk\app\Temp\bin\Debug\UnityEngine.TestRunner.xml
-F:\jiecheng\GameServer\trunk\app\Temp\bin\Debug\nunit.framework.xml
-F:\jiecheng\GameServer\trunk\app\Temp\bin\Debug\UnityEngine.Timeline.xml
-F:\jiecheng\GameServer\trunk\app\Temp\bin\Debug\UnityEngine.Analytics.xml
-F:\jiecheng\GameServer\trunk\app\Temp\bin\Debug\UnityEngine.HoloLens.xml
 F:\jiecheng\GameServer\trunk\app\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 F:\jiecheng\GameServer\trunk\app\obj\Debug\Assembly-CSharp.dll
 F:\jiecheng\GameServer\trunk\app\obj\Debug\Assembly-CSharp.pdb

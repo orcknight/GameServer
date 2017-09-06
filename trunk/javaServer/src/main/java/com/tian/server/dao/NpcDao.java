@@ -16,9 +16,10 @@ public class NpcDao extends BaseDao {
     public List<NpcEntity> getList(){
 
         String queryStr = "SELECT * FROM npc";
-        Session session = SessionUtil.getSession();
+        Session session = SessionUtil.getDataSession();
         Query q = session.createNativeQuery(queryStr).addEntity(NpcEntity.class);
         List<NpcEntity> retList = q.getResultList();
+        session.close();
 
         return retList;
     }

@@ -58,7 +58,7 @@ public class Login : MonoBehaviour {
 		PlayerPrefs.SetString("userName", m_UserName.value);
 		PlayerPrefs.SetString("password", m_Password.value);
 
-		string uri = "http://game.gate.com/index.php/Home/User/login";
+		string uri = "http://bxu2359290536.my3w.com/index.php/Home/User/login";
 		string param = "id=" + m_UserName.value + "&pass=" + m_Password.value;
 		string backMsg = "";
 		HttpWebRequest request = HttpWebRequest.Create(uri + "?" + param) as HttpWebRequest;

@@ -4,6 +4,7 @@ import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.protocol.Packet;
 import com.corundumstudio.socketio.protocol.PacketType;
 import com.tian.server.util.UserCacheUtil;
+import net.sf.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -20,13 +21,18 @@ public class BaseBll {
     public BaseBll(SocketIOClient socketIOClient){
 
         this.socketIOClient = socketIOClient;
-        if(UserCacheUtil.getPlayerSockets().containsKey(socketIOClient)){
+        if(UserCacheUtil.getUserSockets().containsKey(socketIOClient)){
 
-            this.userId = UserCacheUtil.getPlayerSockets().get(socketIOClient);
+            this.userId = UserCacheUtil.getUserSockets().get(socketIOClient);
         }else{
 
             this.userId = 0;
         }
+    }
+
+    protected void sendMsg(JSONArray jsonArray){
+
+        socketIOClient.sendEvent("stream", jsonArray);
     }
 
     protected void sendMsg(String msg){

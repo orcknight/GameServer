@@ -15,9 +15,10 @@ public class PlayerFamilyDao extends BaseDao {
     public PlayerFamilyEntity getByPlayerId(Integer playerId){
 
         String queryStr = "SELECT * FROM player_family WHERE playerId = " + playerId;
-        Session session = SessionUtil.getSession();
+        Session session = SessionUtil.getDataSession();
         Query q = session.createNativeQuery(queryStr).addEntity(PlayerFamilyEntity.class);
         List<PlayerFamilyEntity> retList = q.getResultList();
+        session.close();
 
         PlayerFamilyEntity family;
         if(retList.isEmpty()){

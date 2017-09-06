@@ -20,7 +20,7 @@ public class UserEventHandler implements CmdEventHandler {
             userBll.login(name, password);
         }else if(cmd.equals("createrole")){ //创建角色
 
-            String mySex        = data.getString("sex");
+            String mySex        = data.getString("gender");
             String myName       = data.getString("name");
             userBll.createRole(myName, mySex);
         }else if(cmd.equals("quit")){ //退出游戏

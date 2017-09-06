@@ -21,7 +21,8 @@ public class LookEventHandler implements CmdEventHandler{
 
         if(cmd.equals("look")){
 
-            lookBll.look(msg);
+            String target = data.getString("target");
+            lookBll.look(target);
         }else if(cmd.equals("open")){
 
             lookBll.openGate(msg);

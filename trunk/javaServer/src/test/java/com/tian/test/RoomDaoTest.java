@@ -3,6 +3,8 @@ package com.tian.test;
 import com.tian.server.util.IdUtil;
 import com.tian.server.util.LivingLuaAgent;
 import junit.framework.TestCase;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.junit.Test;
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaValue;
@@ -54,7 +56,26 @@ public class RoomDaoTest extends TestCase {
         //System.out.println(EquipType.HEAD.toInteger());
         //System.out.println(EquipType.RIGHTHAND.toInteger());
 
-        System.out.println(IdUtil.getUUID());
+        JSONArray jlist = new JSONArray();
+        JSONArray jArray = new JSONArray();
+
+        JSONObject j1 = new JSONObject();
+        JSONObject j2 = new JSONObject();
+        JSONObject j3 = new JSONObject();
+        j1.put("code", 1);
+        j1.put("msg", "1");
+        j2.put("code", 2);
+        j2.put("code", "2");
+        j3.put("code", 3);
+        j3.put("code", "3");
+        jlist.add(j1);
+        jlist.add(j2);
+
+        jArray.add(j3);
+        jArray.addAll(JSONArray.toCollection(jlist));
+
+        System.out.println("");
+        //System.out.println(IdUtil.getUUID());
 
         /*Beast beast = new Beast();
         SkillAction skillAction = beast.queryAction();
@@ -66,7 +87,7 @@ public class RoomDaoTest extends TestCase {
         }*/
         //System.out.println(CombatUtil.getDamageWithLimb("小腹"));
 
-        LivingLuaAgent.setButtons("[{\"tile\":\"偏属\", \"name\":\"偏属\"}]");
+        //LivingLuaAgent.setButtons("[{\"tile\":\"偏属\", \"name\":\"偏属\"}]");
 
 
 

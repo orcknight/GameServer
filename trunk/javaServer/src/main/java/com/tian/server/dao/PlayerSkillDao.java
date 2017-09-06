@@ -15,9 +15,10 @@ public class PlayerSkillDao extends BaseDao {
     public List<PlayerSkillEntity> getListByPlayerId(Integer playerId){
 
         String queryStr = "SELECT * FROM player_skill WHERE playerId = " + playerId;
-        Session session = SessionUtil.getSession();
+        Session session = SessionUtil.getDataSession();
         Query q = session.createNativeQuery(queryStr).addEntity(PlayerSkillEntity.class);
         List<PlayerSkillEntity> retList = q.getResultList();
+        session.close();
 
         return retList;
     }

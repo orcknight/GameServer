@@ -183,6 +183,7 @@ d60cfed92c065c256e997a80b2a1f66f Assembly-CSharp.dll:.MainMajor
 7a616dbce92f73c40a3ca496077d8b39 Assembly-CSharp.dll:.ChatInput
 e83a9e5a848f2a14d2ba02d4208df41c Assembly-CSharp.dll:.UITooltip
 d416213fcbdab9c579b1328ce6f00d1a Assembly-CSharp.dll:.UIInput
+e03037f8187bf8168019f511f7e1618f Assembly-CSharp.dll:.CmdButtonItem
 3de465526050d8c52418b7a22cbcc972 Assembly-CSharp.dll:.Spin
 d32dd1e592cd63449e0027069541b421 Assembly-CSharp.dll:.UIPlaySound
 d78403ea814ebb39fb992bd3488f0709 Assembly-CSharp.dll:.TweenTransform
@@ -201,6 +202,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 73843688b51256aed059f049c540bca8 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
 98ce35ef9c1f13fba8f06e5c6d8aafed Assembly-CSharp.dll:.MessageBox111
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.CreateRole
 d146d3d8148b2f35a8c7980d63a88f0e Assembly-CSharp.dll:.UICursor
 154a7d6ef9630ee69cfa42695dd50703 Assembly-CSharp.dll:.TweenRotation
 e568ac27d5617cc8aba0434496cfdd33 Assembly-CSharp.dll:.UIPopupList

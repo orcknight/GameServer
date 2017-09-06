@@ -5,9 +5,10 @@ import com.tian.server.dao.*;
 import com.tian.server.entity.*;
 import com.tian.server.model.Living;
 import com.tian.server.model.Player;
+import com.tian.server.service.CityService;
+import com.tian.server.service.RoomService;
 import com.tian.server.util.UnityCmdUtil;
 import com.tian.server.util.UserCacheUtil;
-import com.tian.server.util.ZjMudUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -43,11 +44,16 @@ public class DefaultBll extends BaseBll {
 
     private void initData(){
 
+        if(UserCacheUtil.getAllCitys().isEmpty()) {
+
+            CityService cityService = new CityService();
+            cityService.initCityCache();
+        }
+
         if(UserCacheUtil.getAllMaps().isEmpty()){
 
-            RoomDao roomDao = new RoomDao();
-            List<RoomEntity> list = roomDao.getList();
-            UserCacheUtil.initMapCache(list);
+            RoomService roomService = new RoomService();
+            roomService.initRoomCache();
         }
 
         //初始化房间内物品
@@ -107,7 +113,7 @@ public class DefaultBll extends BaseBll {
 
                 //获取player列表
                 Map<Integer, Living> playerCacheMap = UserCacheUtil.getPlayers();
-                Map<SocketIOClient, Integer> socketCache = UserCacheUtil.getPlayerSockets();
+                Map<SocketIOClient, Integer> socketCache = UserCacheUtil.getUserSockets();
                 if(socketCache.isEmpty()){
 
                     return;
@@ -124,10 +130,10 @@ public class DefaultBll extends BaseBll {
 
                         continue;
                     }
-                    if(player.getMaxQi() < 1){
+                    /*if(player.getMaxQi() == null || player.getMaxQi() < 1){
 
                         continue;
-                    }
+                    }*/
 
                     player.heartBeat();
                     //准备状态字符串，然后发送消息
