@@ -13,6 +13,7 @@ public class MainMajor : MonoBehaviour {
 	private CommonUIManager m_CommonUIManager = null;
 	private GameObject m_CreateRoleWindow = null;
 	private GameObject m_ObjectInfoPop = null;
+	private GameObject m_TaskBar = null;
 	public GameObject[] m_StatusBars;
 
 	// Use this for initialization
@@ -260,6 +261,74 @@ public class MainMajor : MonoBehaviour {
 
 		m_ObjectInfoPop.transform.localPosition = new Vector3 (5000f, 0f, 0f);
 		m_ObjectInfoPop.SetActive (false);
+	}
+
+	//监听手势信息
+	void OnSwipe( SwipeGesture gesture ) 
+	{
+		// Total swipe vector (from start to end position)
+		Vector2 move = gesture.Move;
+
+		// Instant gesture velocity in screen units per second
+		float velocity = gesture.Velocity;
+		if (gesture.Direction == FingerGestures.SwipeDirection.Left) {
+
+			if (Mathf.Abs (move.x) > 100) {
+				Debug.Log ("left swipe");
+
+				if (m_TaskBar == null) {
+
+					GameObject taskBarPerfab = Resources.Load ("MainWindow/TaskBar") as GameObject; 
+					m_TaskBar = GameObject.Instantiate (taskBarPerfab) as GameObject;
+					m_TaskBar.transform.parent = this.transform;
+					m_TaskBar.SetActive (false);
+				}
+
+				if (m_TaskBar.activeSelf == false) {
+
+					m_TaskBar.transform.localScale = new Vector3 (1f, 1f, 1f);
+					m_TaskBar.GetComponent<TweenTransform> ().from = GameObject.Find ("RightCenterAnchor").transform;
+					m_TaskBar.GetComponent<TweenTransform> ().to = m_InfoWindowTrans;
+					m_TaskBar.GetComponent<TweenTransform> ().PlayForward();
+					m_TaskBar.SetActive (true);
+				}
+			}
+		} else if (gesture.Direction == FingerGestures.SwipeDirection.Right) {
+
+			if (m_TaskBar == null) {
+
+				GameObject taskBarPerfab = Resources.Load ("MainWindow/TaskBar") as GameObject; 
+				m_TaskBar = GameObject.Instantiate (taskBarPerfab) as GameObject;
+				m_TaskBar.transform.parent = this.transform;
+			}
+
+			if (m_TaskBar.activeSelf == true) {
+
+				m_TaskBar.transform.localScale = new Vector3 (1f, 1f, 1f);
+				m_TaskBar.transform.localPosition = new Vector3 (5000f, 0f, 0f);
+				m_TaskBar.SetActive (false);
+			}
+		}
+	}
+
+	public void OnBottomBarClick(GameObject obj){
+
+		if (m_TaskBar == null) {
+
+			GameObject taskBarPerfab = Resources.Load ("MainWindow/TaskBar") as GameObject; 
+			m_TaskBar = GameObject.Instantiate (taskBarPerfab) as GameObject;
+			m_TaskBar.transform.parent = this.transform;
+			m_TaskBar.SetActive (false);
+		}
+
+		if (m_TaskBar.activeSelf == false) {
+
+			m_TaskBar.transform.localScale = new Vector3 (1f, 1f, 1f);
+			m_TaskBar.GetComponent<TweenTransform> ().from = GameObject.Find ("RightCenterAnchor").transform;
+			m_TaskBar.GetComponent<TweenTransform> ().to = m_InfoWindowTrans;
+			m_TaskBar.GetComponent<TweenTransform> ().PlayForward();
+			m_TaskBar.SetActive (true);
+		}
 	}
 		
 	private void AddMsgToInfoWindow(string msg){

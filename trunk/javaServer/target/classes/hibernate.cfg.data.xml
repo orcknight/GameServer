@@ -63,6 +63,10 @@
         <mapping resource="GoodsEntity.hbm.xml"/>
         <mapping class="com.tian.server.entity.PlayerPackageEntity"/>
         <mapping resource="PlayerPackageEntity.hbm.xml"/>
+        <mapping class="com.tian.server.entity.PlayerTrackEntity"/>
+        <mapping resource="PlayerTrackEntity.hbm.xml"/>
+        <mapping class="com.tian.server.entity.PlayerTrackActionEntity"/>
+        <mapping resource="PlayerTrackActionEntity.hbm.xml"/>
         <!-- <property name="connection.username"/> -->
         <!-- <property name="connection.password"/> -->
 

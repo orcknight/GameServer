@@ -119,3 +119,5 @@ F:\jiecheng\GameServer\trunk\app\Temp\bin\Debug\UnityEditor.VR.xml
 F:\jiecheng\GameServer\trunk\app\obj\Debug\Assembly-CSharp-Editor.csprojResolveAssemblyReference.cache
 F:\jiecheng\GameServer\trunk\app\obj\Debug\Assembly-CSharp-Editor.dll
 F:\jiecheng\GameServer\trunk\app\obj\Debug\Assembly-CSharp-Editor.pdb
+F:\jiecheng\GameServer\trunk\app\Temp\bin\Debug\Assembly-CSharp-firstpass.pdb
+F:\jiecheng\GameServer\trunk\app\Temp\bin\Debug\Assembly-CSharp-Editor-firstpass.pdb

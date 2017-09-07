@@ -20,1064 +20,1052 @@
     <table id="14" parent="2" name="player_info"/>
     <table id="15" parent="2" name="player_package"/>
     <table id="16" parent="2" name="player_skill"/>
-    <table id="17" parent="2" name="room"/>
-    <table id="18" parent="2" name="room_content"/>
-    <table id="19" parent="2" name="room_gate"/>
-    <table id="20" parent="2" name="server_info"/>
-    <table id="21" parent="2" name="server_list"/>
-    <table id="22" parent="2" name="skill"/>
-    <table id="23" parent="2" name="user"/>
-    <column id="24" parent="4" name="name">
+    <table id="17" parent="2" name="player_track"/>
+    <table id="18" parent="2" name="player_track_action"/>
+    <table id="19" parent="2" name="room"/>
+    <table id="20" parent="2" name="room_content"/>
+    <table id="21" parent="2" name="room_gate"/>
+    <table id="22" parent="2" name="server_info"/>
+    <table id="23" parent="2" name="server_list"/>
+    <table id="24" parent="2" name="skill"/>
+    <table id="25" parent="2" name="user"/>
+    <column id="26" parent="4" name="name">
       <Position>2</Position>
       <Comment>城市命令名</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="25" parent="4" name="cname">
+    <column id="27" parent="4" name="cname">
       <Position>3</Position>
       <Comment>中文名字</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="26" parent="4" name="id">
+    <column id="28" parent="4" name="id">
       <Position>1</Position>
       <DataType>int(11) unsigned|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <key id="27" parent="4" name="PRIMARY">
+    <key id="29" parent="4" name="PRIMARY">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="28" parent="5" name="id">
+    <column id="30" parent="5" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="29" parent="5" name="name">
+    <column id="31" parent="5" name="name">
       <Position>2</Position>
       <Comment>名称</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="30" parent="5" name="cmdName">
+    <column id="32" parent="5" name="cmdName">
       <Position>3</Position>
       <Comment>命令名</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="31" parent="5" name="subClass">
+    <column id="33" parent="5" name="subClass">
       <Position>5</Position>
       <Comment>子类别</Comment>
       <DataType>tinyint(4)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="32" parent="5" name="props">
+    <column id="34" parent="5" name="props">
       <Position>6</Position>
       <Comment>JSON属性串</Comment>
       <DataType>varchar(2048)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="33" parent="5" name="mainClass">
+    <column id="35" parent="5" name="mainClass">
       <Position>4</Position>
       <Comment>类别</Comment>
       <DataType>tinyint(4)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <key id="34" parent="5" name="PRIMARY">
+    <key id="36" parent="5" name="PRIMARY">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="35" parent="6" name="id">
+    <column id="37" parent="6" name="id">
       <Position>1</Position>
       <Comment>系统总的物品表,玩家包裹通过关联到这个表，再关联到具体的物品</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="36" parent="6" name="type">
+    <column id="38" parent="6" name="type">
       <Position>2</Position>
       <Comment>物品类型，关联到下级表格</Comment>
       <DataType>tinyint(4)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="37" parent="6" name="refId">
+    <column id="39" parent="6" name="refId">
       <Position>3</Position>
       <Comment>关联表的id</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="38" parent="6" name="name">
+    <column id="40" parent="6" name="name">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="39" parent="6" name="cmdName">
+    <column id="41" parent="6" name="cmdName">
       <Position>5</Position>
       <Comment>英文名字，命令名称</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="40" parent="6" name="weight">
+    <column id="42" parent="6" name="weight">
       <Position>6</Position>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="41" parent="6" name="unit">
+    <column id="43" parent="6" name="unit">
       <Position>7</Position>
       <DataType>varchar(64)|0</DataType>
     </column>
-    <column id="42" parent="6" name="value">
+    <column id="44" parent="6" name="value">
       <Position>8</Position>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="43" parent="6" name="material">
+    <column id="45" parent="6" name="material">
       <Position>9</Position>
       <DataType>varchar(64)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="44" parent="6" name="longDesc">
+    <column id="46" parent="6" name="longDesc">
       <Position>10</Position>
       <DataType>varchar(2048)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <key id="45" parent="6" name="PRIMARY">
+    <key id="47" parent="6" name="PRIMARY">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="46" parent="7" name="id">
+    <column id="48" parent="7" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="47" parent="7" name="cityName">
+    <column id="49" parent="7" name="cityName">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="48" parent="7" name="roomName">
+    <column id="50" parent="7" name="roomName">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="49" parent="7" name="tile">
+    <column id="51" parent="7" name="tile">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="50" parent="7" name="name">
+    <column id="52" parent="7" name="name">
       <Position>6</Position>
       <Comment>物品名称</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="51" parent="7" name="cname">
+    <column id="53" parent="7" name="cname">
       <Position>7</Position>
       <Comment>物品命令名称</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="52" parent="7" name="desc">
+    <column id="54" parent="7" name="desc">
       <Position>8</Position>
       <Comment>描述或者对话</Comment>
       <DataType>varchar(2048)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="53" parent="7" name="type">
+    <column id="55" parent="7" name="type">
       <Position>9</Position>
       <Comment>类型</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="54" parent="7" name="jsonAttr">
+    <column id="56" parent="7" name="jsonAttr">
       <Position>10</Position>
       <Comment>属性用json数据存储</Comment>
       <DataType>varchar(2048)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="55" parent="7" name="uuid">
+    <column id="57" parent="7" name="uuid">
       <Position>2</Position>
       <Comment>物品克隆以后的全局统一标识</Comment>
       <DataType>bigint(64)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <key id="56" parent="7" name="PRIMARY">
+    <key id="58" parent="7" name="PRIMARY">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="57" parent="8" name="id">
+    <column id="59" parent="8" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="58" parent="8" name="name">
+    <column id="60" parent="8" name="name">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="59" parent="8" name="isForce">
+    <column id="61" parent="8" name="isForce">
       <Position>3</Position>
       <Comment>是否可激发内功</Comment>
       <DataType>tinyint(4)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="60" parent="8" name="isUnarmed">
+    <column id="62" parent="8" name="isUnarmed">
       <Position>4</Position>
       <Comment>能否激发掌法</Comment>
       <DataType>tinyint(4)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="61" parent="8" name="isStrike">
+    <column id="63" parent="8" name="isStrike">
       <Position>5</Position>
       <Comment>能否激发掌法</Comment>
       <DataType>tinyint(4)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="62" parent="8" name="isDodge">
+    <column id="64" parent="8" name="isDodge">
       <Position>6</Position>
       <Comment>能否激发躲闪</Comment>
       <DataType>tinyint(4)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="63" parent="8" name="isParry">
+    <column id="65" parent="8" name="isParry">
       <Position>7</Position>
       <Comment>是否能激发招架</Comment>
       <DataType>tinyint(4)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="64" parent="8" name="isSword">
+    <column id="66" parent="8" name="isSword">
       <Position>8</Position>
       <Comment>是否激发剑法</Comment>
       <DataType>tinyint(4)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="65" parent="8" name="isLiterate">
+    <column id="67" parent="8" name="isLiterate">
       <Position>9</Position>
       <Comment>是否激发读书写字</Comment>
       <DataType>tinyint(4)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="66" parent="8" name="isQimen">
+    <column id="68" parent="8" name="isQimen">
       <Position>10</Position>
       <Comment>是否激发奇门遁甲</Comment>
       <DataType>tinyint(4)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <key id="67" parent="8" name="PRIMARY">
+    <key id="69" parent="8" name="PRIMARY">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="68" parent="9" name="id">
+    <column id="70" parent="9" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="69" parent="9" name="name">
+    <column id="71" parent="9" name="name">
       <Position>2</Position>
       <Comment>npc名字</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="70" parent="9" name="cmdName">
+    <column id="72" parent="9" name="cmdName">
       <Position>3</Position>
       <Comment>npc英文名字 命令名</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="71" parent="9" name="resource">
+    <column id="73" parent="9" name="resource">
       <Position>5</Position>
       <Comment>脚本文件位置</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="72" parent="9" name="race">
+    <column id="74" parent="9" name="race">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <key id="73" parent="9" name="PRIMARY">
+    <key id="75" parent="9" name="PRIMARY">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="74" parent="10" name="id">
+    <column id="76" parent="10" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="75" parent="10" name="userId">
+    <column id="77" parent="10" name="userId">
       <Position>2</Position>
       <Comment>用户id</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="76" parent="10" name="name">
+    <column id="78" parent="10" name="name">
       <Position>7</Position>
       <Comment>玩家名字</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="77" parent="10" name="sex">
+    <column id="79" parent="10" name="sex">
       <Position>10</Position>
       <Comment>性别</Comment>
       <DataType>varchar(32)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="78" parent="10" name="character">
+    <column id="80" parent="10" name="character">
       <Position>11</Position>
       <Comment>性格</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="79" parent="10" name="level">
+    <column id="81" parent="10" name="level">
       <Position>12</Position>
       <Comment>等级</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;1&apos;</DefaultExpression>
     </column>
-    <column id="80" parent="10" name="str">
+    <column id="82" parent="10" name="str">
       <Position>13</Position>
       <Comment>膂力</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="81" parent="10" name="con">
+    <column id="83" parent="10" name="con">
       <Position>15</Position>
       <Comment>根骨</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="82" parent="10" name="dex">
+    <column id="84" parent="10" name="dex">
       <Position>16</Position>
       <Comment>身法</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="83" parent="10" name="kar">
+    <column id="85" parent="10" name="kar">
       <Position>17</Position>
       <Comment>福缘</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="84" parent="10" name="per">
+    <column id="86" parent="10" name="per">
       <Position>18</Position>
       <Comment>容貌</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="85" parent="10" name="wux">
+    <column id="87" parent="10" name="wux">
       <Position>14</Position>
       <Comment>悟性</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="86" parent="10" name="maxQi">
+    <column id="88" parent="10" name="maxQi">
       <Position>19</Position>
       <Comment>最大气血</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="87" parent="10" name="effQi">
+    <column id="89" parent="10" name="effQi">
       <Position>20</Position>
       <Comment>当前状态下最大气血</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="88" parent="10" name="qi">
+    <column id="90" parent="10" name="qi">
       <Position>21</Position>
       <Comment>当前气血值</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="89" parent="10" name="maxNeili">
+    <column id="91" parent="10" name="maxNeili">
       <Position>22</Position>
       <Comment>最大内力值</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="90" parent="10" name="effNeili">
+    <column id="92" parent="10" name="effNeili">
       <Position>23</Position>
       <Comment>当前状态下的最大内力值</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="91" parent="10" name="neili">
+    <column id="93" parent="10" name="neili">
       <Position>24</Position>
       <Comment>内力值</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="92" parent="10" name="maxJing">
+    <column id="94" parent="10" name="maxJing">
       <Position>25</Position>
       <Comment>最大精神值</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="93" parent="10" name="effJing">
+    <column id="95" parent="10" name="effJing">
       <Position>26</Position>
       <Comment>当前状态下的最大精神值</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="94" parent="10" name="jing">
+    <column id="96" parent="10" name="jing">
       <Position>27</Position>
       <Comment>当前精神值</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="95" parent="10" name="food">
+    <column id="97" parent="10" name="food">
       <Position>31</Position>
       <Comment>食物数量</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="96" parent="10" name="water">
+    <column id="98" parent="10" name="water">
       <Position>32</Position>
       <Comment>水数量</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="97" parent="10" name="title">
+    <column id="99" parent="10" name="title">
       <Position>5</Position>
       <Comment>称号</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="98" parent="10" name="nickname">
+    <column id="100" parent="10" name="nickname">
       <Position>6</Position>
       <Comment>绰号</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="99" parent="10" name="ageModify">
+    <column id="101" parent="10" name="ageModify">
       <Position>9</Position>
+      <Comment>年龄更改</Comment>
       <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="100" parent="10" name="maxJingLi">
+    <column id="102" parent="10" name="maxJingLi">
       <Position>28</Position>
       <Comment>最大精力值</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="101" parent="10" name="effJingLi">
+    <column id="103" parent="10" name="effJingLi">
       <Position>29</Position>
       <Comment>当前状态下的最大精力值</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="102" parent="10" name="JingLi">
+    <column id="104" parent="10" name="JingLi">
       <Position>30</Position>
       <Comment>当前精力值</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="103" parent="10" name="combatExp">
+    <column id="105" parent="10" name="combatExp">
       <Position>33</Position>
       <Comment>实战经验</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="104" parent="10" name="bornFamily">
+    <column id="106" parent="10" name="bornFamily">
       <Position>35</Position>
       <Comment>出生家族</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="105" parent="10" name="surname">
+    <column id="107" parent="10" name="surname">
       <Position>36</Position>
       <Comment>名字前缀</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="106" parent="10" name="familyName">
+    <column id="108" parent="10" name="familyName">
       <Position>37</Position>
       <Comment>门派名称</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="107" parent="10" name="bunchName">
+    <column id="109" parent="10" name="bunchName">
       <Position>38</Position>
       <Comment>帮派名称</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="108" parent="10" name="cmdName">
+    <column id="110" parent="10" name="cmdName">
       <Position>3</Position>
       <Comment>人物英文名，命令名，这个字可以用来识别玩家</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="109" parent="10" name="uuid">
+    <column id="111" parent="10" name="uuid">
       <Position>4</Position>
       <Comment>全局通用标识</Comment>
       <DataType>bigint(19)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="110" parent="10" name="status">
+    <column id="112" parent="10" name="status">
       <Position>34</Position>
       <Comment>玩家角色是否存活 0：死亡 1：存活</Comment>
       <DataType>tinyint(4)|0</DataType>
       <DefaultExpression>&apos;1&apos;</DefaultExpression>
     </column>
-    <column id="111" parent="10" name="mudAge">
+    <column id="113" parent="10" name="mudAge">
       <Position>8</Position>
       <Comment>人物的年龄</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="112" parent="10" name="shenType">
+    <column id="114" parent="10" name="shenType">
       <Position>39</Position>
       <Comment>//神的正负，如果没有set默认是1,用这个乘以exp/10得到神值</Comment>
       <DataType>tinyint(4)|0</DataType>
       <DefaultExpression>&apos;1&apos;</DefaultExpression>
     </column>
-    <column id="113" parent="10" name="coupleId">
+    <column id="115" parent="10" name="coupleId">
       <Position>40</Position>
       <Comment>夫妻id</Comment>
       <DataType>bigint(19)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="114" parent="10" name="potential">
+    <column id="116" parent="10" name="potential">
       <Position>41</Position>
       <Comment>潜能</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <key id="115" parent="10" name="PRIMARY">
+    <key id="117" parent="10" name="PRIMARY">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="116" parent="11" name="playerId">
+    <column id="118" parent="11" name="playerId">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="117" parent="11" name="type">
+    <column id="119" parent="11" name="type">
       <Position>2</Position>
       <Comment>属性类型：couple, brother, league等单属性内容</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="118" parent="11" name="value">
+    <column id="120" parent="11" name="value">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <key id="119" parent="11" name="PRIMARY">
+    <key id="121" parent="11" name="PRIMARY">
       <ColNames>playerId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="120" parent="12" name="id">
+    <column id="122" parent="12" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="121" parent="12" name="playerId">
+    <column id="123" parent="12" name="playerId">
       <Position>2</Position>
       <Comment>玩家ID</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="122" parent="12" name="parts">
+    <column id="124" parent="12" name="parts">
       <Position>4</Position>
       <Comment>装备部位</Comment>
       <DataType>tinyint(4)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="123" parent="12" name="packageId">
+    <column id="125" parent="12" name="packageId">
       <Position>3</Position>
       <Comment>装备所在的包裹id</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <key id="124" parent="12" name="PRIMARY">
+    <key id="126" parent="12" name="PRIMARY">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="125" parent="13" name="playerId">
+    <column id="127" parent="13" name="playerId">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="126" parent="13" name="name">
+    <column id="128" parent="13" name="name">
       <Position>2</Position>
       <Comment>门派名称</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="127" parent="13" name="masterId">
+    <column id="129" parent="13" name="masterId">
       <Position>3</Position>
       <Comment>师傅ID</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="128" parent="13" name="masterName">
+    <column id="130" parent="13" name="masterName">
       <Position>4</Position>
       <Comment>师傅名字</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="129" parent="13" name="generation">
+    <column id="131" parent="13" name="generation">
       <Position>5</Position>
       <Comment>代</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="130" parent="13" name="title">
+    <column id="132" parent="13" name="title">
       <Position>6</Position>
       <Comment>标题 如开山祖师、弟子等</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="131" parent="13" name="privs">
+    <column id="133" parent="13" name="privs">
       <Position>7</Position>
       <Comment>权限</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="132" parent="13" name="desc">
+    <column id="134" parent="13" name="desc">
       <Position>8</Position>
       <Comment>描述</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="133" parent="13" name="enterTime">
+    <column id="135" parent="13" name="enterTime">
       <Position>9</Position>
       <Comment>加入时间</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <key id="134" parent="13" name="PRIMARY">
+    <key id="136" parent="13" name="PRIMARY">
       <ColNames>playerId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="135" parent="14" name="playerId">
+    <column id="137" parent="14" name="playerId">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="136" parent="14" name="isLine">
+    <column id="138" parent="14" name="isLine">
       <Position>2</Position>
       <Comment>是否在线</Comment>
       <DataType>tinyint(4)|0</DataType>
       <DefaultExpression>&apos;1&apos;</DefaultExpression>
     </column>
-    <column id="137" parent="14" name="ip">
+    <column id="139" parent="14" name="ip">
       <Position>3</Position>
       <Comment>上次登陆的ip</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="138" parent="14" name="loginTime">
+    <column id="140" parent="14" name="loginTime">
       <Position>4</Position>
       <Comment>上次登陆的时间</Comment>
       <DataType>timestamp|0</DataType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
     </column>
-    <column id="139" parent="14" name="cityName">
+    <column id="141" parent="14" name="cityName">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="140" parent="14" name="roomName">
+    <column id="142" parent="14" name="roomName">
       <Position>6</Position>
       <Comment>瓦片名称</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="141" parent="14" name="chatChannel">
+    <column id="143" parent="14" name="chatChannel">
       <Position>7</Position>
       <Comment>当前的聊天频道</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <key id="142" parent="14" name="PRIMARY">
+    <key id="144" parent="14" name="PRIMARY">
       <ColNames>playerId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="143" parent="15" name="id">
+    <column id="145" parent="15" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="144" parent="15" name="playerId">
+    <column id="146" parent="15" name="playerId">
       <Position>2</Position>
       <Comment>玩家id</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="145" parent="15" name="type">
+    <column id="147" parent="15" name="type">
       <Position>5</Position>
       <Comment>物品类型</Comment>
       <DataType>varchar(64)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="146" parent="15" name="count">
+    <column id="148" parent="15" name="count">
       <Position>6</Position>
       <Comment>数量</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;1&apos;</DefaultExpression>
     </column>
-    <column id="147" parent="15" name="goodsId">
+    <column id="149" parent="15" name="goodsId">
       <Position>3</Position>
       <Comment>物品id关联到物品表</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="148" parent="15" name="goodsUUID">
+    <column id="150" parent="15" name="goodsUUID">
       <Position>4</Position>
       <Comment>复制该物品以后的唯一系统标识</Comment>
       <DataType>bigint(19)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <key id="149" parent="15" name="PRIMARY">
+    <key id="151" parent="15" name="PRIMARY">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="150" parent="16" name="id">
+    <column id="152" parent="16" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="151" parent="16" name="playerId">
+    <column id="153" parent="16" name="playerId">
       <Position>2</Position>
       <Comment>玩家id</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="152" parent="16" name="skillName">
+    <column id="154" parent="16" name="skillName">
       <Position>3</Position>
       <Comment>武功id</Comment>
       <DataType>varchar(128)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="153" parent="16" name="level">
+    <column id="155" parent="16" name="level">
       <Position>4</Position>
       <Comment>功夫等级</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <key id="154" parent="16" name="PRIMARY">
+    <key id="156" parent="16" name="PRIMARY">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="155" parent="17" name="id">
+    <column id="157" parent="17" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="156" parent="17" name="name">
+    <column id="158" parent="17" name="playerId">
+      <Position>2</Position>
+      <Comment>玩家ID</Comment>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="159" parent="17" name="lineId">
+      <Position>3</Position>
+      <Comment>主线任务的id: 1:主线</Comment>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+    </column>
+    <column id="160" parent="17" name="trackId">
+      <Position>4</Position>
+      <Comment>任务id</Comment>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="161" parent="17" name="step">
+      <Position>5</Position>
+      <Comment>当前任务进行到第几步也就是第几个actionId</Comment>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+    </column>
+    <column id="162" parent="17" name="status">
+      <Position>6</Position>
+      <Comment>整个任务的状态</Comment>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <key id="163" parent="17" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="164" parent="18" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="165" parent="18" name="pid">
+      <Position>2</Position>
+      <Comment>player_track的id</Comment>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="166" parent="18" name="actionId">
+      <Position>3</Position>
+      <Comment>当前action的id也就是他的step步数</Comment>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="167" parent="18" name="status">
+      <Position>5</Position>
+      <Comment>当前活动的</Comment>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="168" parent="18" name="createTime">
+      <Position>6</Position>
+      <DataType>timestamp|0</DataType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <column id="169" parent="18" name="finishTime">
+      <Position>7</Position>
+      <DataType>timestamp|0</DataType>
+    </column>
+    <column id="170" parent="18" name="progress">
+      <Position>4</Position>
+      <Comment>游戏进度，一些杀怪任务，采集任务的当前任务数量</Comment>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <key id="171" parent="18" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="172" parent="19" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="173" parent="19" name="name">
       <Position>2</Position>
       <Comment>(英文名)命令名</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="157" parent="17" name="pname">
+    <column id="174" parent="19" name="pname">
       <Position>3</Position>
       <Comment>父亲名，城市名</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="158" parent="17" name="shortDesc">
+    <column id="175" parent="19" name="shortDesc">
       <Position>4</Position>
       <Comment>房间的短描述（房间名等）</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="159" parent="17" name="longDesc">
+    <column id="176" parent="19" name="longDesc">
       <Position>5</Position>
       <Comment>房间的长描述</Comment>
       <DataType>varchar(2048)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="160" parent="17" name="noFight">
+    <column id="177" parent="19" name="noFight">
       <Position>18</Position>
       <Comment>是否禁止战斗 0：可以战斗 1：不可以战斗</Comment>
       <DataType>int(4)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="161" parent="17" name="noMagic">
+    <column id="178" parent="19" name="noMagic">
       <Position>19</Position>
       <Comment>是否禁止施法 0：不禁止 1：禁止</Comment>
       <DataType>int(4)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="162" parent="17" name="outdoors">
+    <column id="179" parent="19" name="outdoors">
       <Position>20</Position>
       <Comment>户外，如果是空就是室内如果是户外填写城市名称</Comment>
       <DataType>varchar(64)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="163" parent="17" name="isStartRoom">
+    <column id="180" parent="19" name="isStartRoom">
       <Position>21</Position>
       <Comment>是否是默认房间</Comment>
       <DataType>tinyint(4)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="164" parent="17" name="east">
+    <column id="181" parent="19" name="east">
       <Position>6</Position>
       <Comment>东方瓦片名字</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="165" parent="17" name="west">
+    <column id="182" parent="19" name="west">
       <Position>7</Position>
       <Comment>西部瓦片名字</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="166" parent="17" name="south">
+    <column id="183" parent="19" name="south">
       <Position>8</Position>
       <Comment>南部瓦片名字</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="167" parent="17" name="north">
+    <column id="184" parent="19" name="north">
       <Position>9</Position>
       <Comment>北部瓦片名字</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="168" parent="17" name="northwest">
+    <column id="185" parent="19" name="northwest">
       <Position>10</Position>
       <Comment>西北瓦片</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="169" parent="17" name="northeast">
+    <column id="186" parent="19" name="northeast">
       <Position>11</Position>
       <Comment>东北瓦片</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="170" parent="17" name="southwest">
+    <column id="187" parent="19" name="southwest">
       <Position>12</Position>
       <Comment>西南瓦片</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="171" parent="17" name="southeast">
+    <column id="188" parent="19" name="southeast">
       <Position>13</Position>
       <Comment>东南瓦片</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="172" parent="17" name="enter">
+    <column id="189" parent="19" name="enter">
       <Position>14</Position>
       <Comment>里面</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="173" parent="17" name="out">
+    <column id="190" parent="19" name="out">
       <Position>15</Position>
       <Comment>外面</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="174" parent="17" name="up">
+    <column id="191" parent="19" name="up">
       <Position>16</Position>
       <Comment>上面</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="175" parent="17" name="down">
+    <column id="192" parent="19" name="down">
       <Position>17</Position>
       <Comment>下面</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <key id="176" parent="17" name="PRIMARY">
+    <key id="193" parent="19" name="PRIMARY">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="177" parent="18" name="id">
+    <column id="194" parent="20" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="178" parent="18" name="roomName">
+    <column id="195" parent="20" name="roomName">
       <Position>2</Position>
       <Comment>房间名称</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="179" parent="18" name="count">
+    <column id="196" parent="20" name="count">
       <Position>5</Position>
       <Comment>数量</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;1&apos;</DefaultExpression>
     </column>
-    <column id="180" parent="18" name="type">
+    <column id="197" parent="20" name="type">
       <Position>4</Position>
       <Comment>类型：npc 或者是goods</Comment>
       <DataType>varchar(64)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="181" parent="18" name="refId">
+    <column id="198" parent="20" name="refId">
       <Position>3</Position>
       <Comment>物品ID</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <key id="182" parent="18" name="PRIMARY">
+    <key id="199" parent="20" name="PRIMARY">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="183" parent="19" name="id">
+    <column id="200" parent="21" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="184" parent="19" name="name">
+    <column id="201" parent="21" name="name">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="185" parent="19" name="enterRoom">
+    <column id="202" parent="21" name="enterRoom">
       <Position>3</Position>
       <Comment>入口所在房间</Comment>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="186" parent="19" name="enterDirection">
+    <column id="203" parent="21" name="enterDirection">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="187" parent="19" name="exitRoom">
+    <column id="204" parent="21" name="exitRoom">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="188" parent="19" name="exitDirection">
+    <column id="205" parent="21" name="exitDirection">
       <Position>6</Position>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="189" parent="19" name="status">
+    <column id="206" parent="21" name="status">
       <Position>7</Position>
       <Comment>0: 关闭 1：打开</Comment>
       <DataType>tinyint(4)|0</DataType>
       <DefaultExpression>&apos;1&apos;</DefaultExpression>
     </column>
-    <key id="190" parent="19" name="PRIMARY">
+    <key id="207" parent="21" name="PRIMARY">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="191" parent="20" name="name">
+    <column id="208" parent="22" name="name">
       <Position>1</Position>
       <DataType>varchar(256)|0</DataType>
       <NotNull>1</NotNull>
-      <DefaultExpression>&apos;&apos;</DefaultExpression>
-    </column>
-    <key id="192" parent="20" name="PRIMARY">
-      <ColNames>name</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="193" parent="21" name="id">
-      <Position>1</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-    </column>
-    <column id="194" parent="21" name="name">
-      <Position>2</Position>
-      <Comment>服务器名称</Comment>
-      <DataType>varchar(255)|0</DataType>
-      <DefaultExpression>&apos;&apos;</DefaultExpression>
-    </column>
-    <column id="195" parent="21" name="value">
-      <Position>3</Position>
-      <Comment>服务器内容</Comment>
-      <DataType>varchar(255)|0</DataType>
-      <DefaultExpression>&apos;&apos;</DefaultExpression>
-    </column>
-    <column id="196" parent="21" name="url">
-      <Position>4</Position>
-      <Comment>服务器连接地址</Comment>
-      <DataType>varchar(255)|0</DataType>
-      <DefaultExpression>&apos;&apos;</DefaultExpression>
-    </column>
-    <column id="197" parent="21" name="isHot">
-      <Position>5</Position>
-      <Comment>是否热门推荐服务器</Comment>
-      <DataType>tinyint(4)|0</DataType>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-    </column>
-    <key id="198" parent="21" name="PRIMARY">
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="199" parent="22" name="name">
-      <Position>1</Position>
-      <Comment>技能名称</Comment>
-      <DataType>varchar(128)|0</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;&apos;</DefaultExpression>
-    </column>
-    <column id="200" parent="22" name="china">
-      <Position>2</Position>
-      <Comment>中文名</Comment>
-      <DataType>varchar(255)|0</DataType>
-      <DefaultExpression>&apos;&apos;</DefaultExpression>
-    </column>
-    <column id="201" parent="22" name="attack">
-      <Position>3</Position>
-      <Comment>攻击</Comment>
-      <DataType>int(11)|0</DataType>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-    </column>
-    <column id="202" parent="22" name="dodge">
-      <Position>4</Position>
-      <Comment>躲闪</Comment>
-      <DataType>int(11)|0</DataType>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-    </column>
-    <column id="203" parent="22" name="parry">
-      <Position>5</Position>
-      <Comment>招架</Comment>
-      <DataType>int(11)|0</DataType>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-    </column>
-    <column id="204" parent="22" name="damage">
-      <Position>6</Position>
-      <Comment>伤害</Comment>
-      <DataType>int(11)|0</DataType>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-    </column>
-    <column id="205" parent="22" name="force2">
-      <Position>7</Position>
-      <Comment>内功</Comment>
-      <DataType>int(11)|0</DataType>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-    </column>
-    <column id="206" parent="22" name="difficult">
-      <Position>8</Position>
-      <Comment>难度</Comment>
-      <DataType>int(11)|0</DataType>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-    </column>
-    <column id="207" parent="22" name="level">
-      <Position>9</Position>
-      <Comment>级别</Comment>
-      <DataType>varchar(64)|0</DataType>
-      <DefaultExpression>&apos;&apos;</DefaultExpression>
-    </column>
-    <column id="208" parent="22" name="attr">
-      <Position>10</Position>
-      <Comment>属性，属于门派武学还是公共武学</Comment>
-      <DataType>varchar(64)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
     <key id="209" parent="22" name="PRIMARY">
@@ -1092,35 +1080,134 @@
     </column>
     <column id="211" parent="23" name="name">
       <Position>2</Position>
+      <Comment>服务器名称</Comment>
+      <DataType>varchar(255)|0</DataType>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+    </column>
+    <column id="212" parent="23" name="value">
+      <Position>3</Position>
+      <Comment>服务器内容</Comment>
+      <DataType>varchar(255)|0</DataType>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+    </column>
+    <column id="213" parent="23" name="url">
+      <Position>4</Position>
+      <Comment>服务器连接地址</Comment>
+      <DataType>varchar(255)|0</DataType>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+    </column>
+    <column id="214" parent="23" name="isHot">
+      <Position>5</Position>
+      <Comment>是否热门推荐服务器</Comment>
+      <DataType>tinyint(4)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <key id="215" parent="23" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="216" parent="24" name="name">
+      <Position>1</Position>
+      <Comment>技能名称</Comment>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+    </column>
+    <column id="217" parent="24" name="china">
+      <Position>2</Position>
+      <Comment>中文名</Comment>
+      <DataType>varchar(255)|0</DataType>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+    </column>
+    <column id="218" parent="24" name="attack">
+      <Position>3</Position>
+      <Comment>攻击</Comment>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="219" parent="24" name="dodge">
+      <Position>4</Position>
+      <Comment>躲闪</Comment>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="220" parent="24" name="parry">
+      <Position>5</Position>
+      <Comment>招架</Comment>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="221" parent="24" name="damage">
+      <Position>6</Position>
+      <Comment>伤害</Comment>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="222" parent="24" name="force2">
+      <Position>7</Position>
+      <Comment>内功</Comment>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="223" parent="24" name="difficult">
+      <Position>8</Position>
+      <Comment>难度</Comment>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="224" parent="24" name="level">
+      <Position>9</Position>
+      <Comment>级别</Comment>
+      <DataType>varchar(64)|0</DataType>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+    </column>
+    <column id="225" parent="24" name="attr">
+      <Position>10</Position>
+      <Comment>属性，属于门派武学还是公共武学</Comment>
+      <DataType>varchar(64)|0</DataType>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+    </column>
+    <key id="226" parent="24" name="PRIMARY">
+      <ColNames>name</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="227" parent="25" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="228" parent="25" name="name">
+      <Position>2</Position>
       <Comment>用户名</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="212" parent="23" name="password">
+    <column id="229" parent="25" name="password">
       <Position>3</Position>
       <Comment>密码</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="213" parent="23" name="phone">
+    <column id="230" parent="25" name="phone">
       <Position>4</Position>
       <Comment>手机</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="214" parent="23" name="email">
+    <column id="231" parent="25" name="email">
       <Position>5</Position>
       <Comment>邮箱</Comment>
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="215" parent="23" name="createTime">
+    <column id="232" parent="25" name="createTime">
       <Position>6</Position>
       <Comment>创建时间</Comment>
       <DataType>timestamp|0</DataType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
     </column>
-    <key id="216" parent="23" name="PRIMARY">
+    <key id="233" parent="25" name="PRIMARY">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>

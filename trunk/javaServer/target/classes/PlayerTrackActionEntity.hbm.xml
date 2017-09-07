@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.tian.server.entity.PlayerTrackActionEntity" table="player_track_action" schema="bdm25683027_db">
+        <id name="id">
+            <column name="id" sql-type="int(11)"/>
+        </id>
+        <property name="pid">
+            <column name="pid" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="actionId">
+            <column name="actionId" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="progress">
+            <column name="progress" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="status">
+            <column name="status" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="createTime">
+            <column name="createTime" sql-type="timestamp" not-null="true"/>
+        </property>
+        <property name="finishTime">
+            <column name="finishTime" sql-type="timestamp" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

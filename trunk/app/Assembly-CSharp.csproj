@@ -209,6 +209,7 @@
      <Compile Include="Assets\Script\MainWindow\MainMajor.cs" />
      <Compile Include="Assets\Script\MainWindow\NpcBar.cs" />
      <Compile Include="Assets\Script\MainWindow\ObjectInfoPopManger.cs" />
+     <Compile Include="Assets\Script\MainWindow\TaskBar.cs" />
      <Compile Include="Assets\Script\Major.cs" />
      <Compile Include="Assets\Script\Model\CmdButtonItem.cs" />
      <Compile Include="Assets\Script\Model\ServerItem.cs" />
@@ -311,6 +312,7 @@
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored 2.shader" />
      <None Include="Assets\NGUI\Examples\Shaders\Unlit - Masked Colored.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 3.shader" />
+     <None Include="Assets\Plugins\FingerGestures\Readme.txt" />
      <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo18.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (TextureClip).shader" />
      <None Include="Assets\NGUI\Examples\Atlases\SciFi\SciFi Font - Header.txt" />
@@ -363,6 +365,10 @@
  <Reference Include="Newtonsoft.Json">
  <HintPath>F:/jiecheng/GameServer/trunk/app/Assets/UnityPackages/JsonNet/Newtonsoft.Json.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{60A12DFC-5F29-B5C1-CCAC-9A1546E066EB}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

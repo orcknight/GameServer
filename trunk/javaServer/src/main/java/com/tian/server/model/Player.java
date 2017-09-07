@@ -27,6 +27,9 @@ public class Player extends Human {
     //玩家辅助信息
     private PlayerInfoEntity playerInfo;
 
+    //玩家当前任务信息列表
+    private List<PlayerTask> taskList = new ArrayList<PlayerTask>();
+
     //玩家当前观察的物品id
     private String lookId;
 

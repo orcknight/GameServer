@@ -63,3 +63,4 @@ F:\jiecheng\GameServer\trunk\app\Temp\bin\Debug\UnityEngine.HoloLens.xml
 F:\jiecheng\GameServer\trunk\app\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 F:\jiecheng\GameServer\trunk\app\obj\Debug\Assembly-CSharp.dll
 F:\jiecheng\GameServer\trunk\app\obj\Debug\Assembly-CSharp.pdb
+F:\jiecheng\GameServer\trunk\app\Temp\bin\Debug\Assembly-CSharp-firstpass.pdb
