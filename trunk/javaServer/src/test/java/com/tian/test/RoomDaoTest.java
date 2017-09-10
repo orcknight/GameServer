@@ -2,6 +2,7 @@ package com.tian.test;
 
 import com.tian.server.util.IdUtil;
 import com.tian.server.util.LivingLuaAgent;
+import com.tian.server.util.XmlUtil;
 import junit.framework.TestCase;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -55,6 +56,8 @@ public class RoomDaoTest extends TestCase {
 
         //System.out.println(EquipType.HEAD.toInteger());
         //System.out.println(EquipType.RIGHTHAND.toInteger());
+
+        XmlUtil.parseXmlToTask();
 
         JSONArray jlist = new JSONArray();
         JSONArray jArray = new JSONArray();

@@ -2,10 +2,7 @@ package com.tian.server.util;
 
 import com.corundumstudio.socketio.SocketIOClient;
 import com.tian.server.entity.*;
-import com.tian.server.model.Living;
-import com.tian.server.model.MudObject;
-import com.tian.server.model.Player;
-import com.tian.server.model.RoomObjects;
+import com.tian.server.model.*;
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.lib.jse.CoerceJavaToLua;
@@ -29,6 +26,8 @@ public class UserCacheUtil {
     private static Map<String, RoomObjects> roomObjectsCache = new HashMap<String, RoomObjects>(); //房间名称和房间物品对象的映射表
     private static Map<String, CityEntity> allCitys = new HashMap<String, CityEntity>();
     private static Map<String, Map<String, RoomEntity>> cityedRooms = new HashMap<String, Map<String, RoomEntity>>();
+    private static Map<Integer, TaskTrack> taskTrackMap = new HashMap<Integer, TaskTrack>(); //任务列表，任务id
+    private static Map<Integer, TaskReward> taskRewardMap = new HashMap<Integer, TaskReward>(); //任务奖励，奖励id
 
     public static Map<Long, MudObject> getAllObjects() {
         return allObjects;
@@ -53,11 +52,35 @@ public class UserCacheUtil {
         return allMaps;
     }
 
+    public static Map<Integer, TaskTrack> getTaskTrackMap() {
+        return taskTrackMap;
+    }
+
+    public static void setTaskTrackMap(Map<Integer, TaskTrack> taskTrackMap) {
+        UserCacheUtil.taskTrackMap = taskTrackMap;
+    }
+
+    public static Map<Integer, TaskReward> getTaskRewardMap() {
+        return taskRewardMap;
+    }
+
+    public static void setTaskRewardMap(Map<Integer, TaskReward> taskRewardMap) {
+        UserCacheUtil.taskRewardMap = taskRewardMap;
+    }
+
     public static void initMapCache(List<RoomEntity> list){
 
         for(RoomEntity entity : list){
 
             allMaps.put(entity.getName(), entity);
+        }
+    }
+
+    public static void initTaskTrackMap(List<TaskTrack> taskTrackList){
+
+        for(TaskTrack taskTrack : taskTrackList){
+
+            taskTrackMap.put(taskTrack.getId(), taskTrack);
         }
     }
 
@@ -195,6 +218,7 @@ public class UserCacheUtil {
 
             Long uuid = IdUtil.getUUID();
             living.setUuid(uuid);
+            living.setId(npc.getId());
 
             //缓存npc到生物列表
             getAllObjects().put(uuid, living);

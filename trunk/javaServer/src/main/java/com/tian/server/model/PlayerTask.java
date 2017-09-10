@@ -8,6 +8,22 @@ import com.tian.server.entity.PlayerTrackEntity;
  */
 public class PlayerTask {
 
-    PlayerTrackEntity track;
-    PlayerTrackActionEntity action;
+    private PlayerTrackEntity track;
+    private PlayerTrackActionEntity action;
+
+    public PlayerTrackEntity getTrack() {
+        return track;
+    }
+
+    public void setTrack(PlayerTrackEntity track) {
+        this.track = track;
+    }
+
+    public PlayerTrackActionEntity getAction() {
+        return action;
+    }
+
+    public void setAction(PlayerTrackActionEntity action) {
+        this.action = action;
+    }
 }

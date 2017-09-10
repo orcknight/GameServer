@@ -2,13 +2,12 @@ package com.tian.server.bll;
 
 import com.corundumstudio.socketio.SocketIOClient;
 import com.tian.server.common.Ansi;
+import com.tian.server.common.TaskActionType;
 import com.tian.server.entity.PlayerFamilyEntity;
+import com.tian.server.entity.PlayerTrackEntity;
 import com.tian.server.entity.RoomGateEntity;
-import com.tian.server.model.Living;
-import com.tian.server.model.MudObject;
-import com.tian.server.model.Player;
+import com.tian.server.model.*;
 import com.tian.server.model.Race.Human;
-import com.tian.server.model.RoomObjects;
 import com.tian.server.service.CombatService;
 import com.tian.server.util.ChineseUtil;
 import com.tian.server.util.UnityCmdUtil;
@@ -69,6 +68,29 @@ public class LookBll extends BaseBll {
             Map<Long, MudObject> allLivings = UserCacheUtil.getAllObjects();
             Living npc = (Living) allLivings.get(Long.valueOf(id));
             String desc = lookLiving(getMe(), npc);
+
+            if(player.getTalkTaskCount() > 0){
+
+                List<PlayerTask> playerTasks = player.getTaskList();
+
+                for(PlayerTask playerTask : playerTasks){
+
+                    TaskTrack taskTrack = UserCacheUtil.getTaskTrackMap().get(playerTask.getTrack().getTrackId());
+
+                    TaskTrackAction taskTrackAction = taskTrack.getTrackActions().get(playerTask.getAction().getActionId()-1);
+                    if(!taskTrackAction.getActionType().equals(TaskActionType.TALK)){
+                        continue;
+                    }
+
+                    if(taskTrackAction.getTargetId().equals(npc.getId())){
+
+                        //Todo:
+                        return;
+                    }
+
+
+                }
+            }
 
             if (npc != null) {
 

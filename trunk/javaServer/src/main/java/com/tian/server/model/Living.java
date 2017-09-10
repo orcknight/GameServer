@@ -15,6 +15,7 @@ import java.util.Map;
 public class Living extends MudObject{
 
     protected Long uuid = 0L; //实例在系统里的唯一标识
+    protected Integer id = 0; //标识号，同种物品共享一个id
 
     //生物属性
     protected String title = ""; //称号
@@ -84,6 +85,14 @@ public class Living extends MudObject{
     }
     public void setUuid(Long uuid) {
         this.uuid = uuid;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {

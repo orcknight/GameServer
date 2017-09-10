@@ -11,6 +11,7 @@ import com.tian.server.model.RoomObjects;
 import com.tian.server.service.PlayerService;
 import com.tian.server.service.RoomService;
 import com.tian.server.service.ServerInfoService;
+import com.tian.server.service.TaskService;
 import com.tian.server.util.*;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -76,6 +77,10 @@ public class UserBll extends BaseBll {
         //获取玩家辅助信息并缓存
         PlayerInfoEntity playerInfo = playerInfoDao.getByPlayerId(player.getId());
         playerCache.setPlayerInfo(playerInfo);
+
+        //载入玩家的任务信息
+        TaskService taskService = new TaskService();
+        taskService.loadTaskInfo(playerCache);
 
         //载入玩家技能
         loadUserSkill(playerCache);

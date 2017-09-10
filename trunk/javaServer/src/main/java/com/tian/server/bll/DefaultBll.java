@@ -9,6 +9,7 @@ import com.tian.server.service.CityService;
 import com.tian.server.service.RoomService;
 import com.tian.server.util.UnityCmdUtil;
 import com.tian.server.util.UserCacheUtil;
+import com.tian.server.util.XmlUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -54,6 +55,11 @@ public class DefaultBll extends BaseBll {
 
             RoomService roomService = new RoomService();
             roomService.initRoomCache();
+        }
+
+        if(UserCacheUtil.getTaskTrackMap().isEmpty()){
+
+            UserCacheUtil.initTaskTrackMap(XmlUtil.parseXmlToTask());
         }
 
         //初始化房间内物品

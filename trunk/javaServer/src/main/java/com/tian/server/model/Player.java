@@ -29,6 +29,9 @@ public class Player extends Human {
 
     //玩家当前任务信息列表
     private List<PlayerTask> taskList = new ArrayList<PlayerTask>();
+    private Integer talkTaskCount = 0;
+    private Integer killTaskCount = 0;
+
 
     //玩家当前观察的物品id
     private String lookId;
@@ -270,6 +273,30 @@ public class Player extends Human {
             this.skillPrepare = new HashMap<String, String>();
         }
         return this.skillPrepare;
+    }
+
+    public List<PlayerTask> getTaskList() {
+        return taskList;
+    }
+
+    public void setTaskList(List<PlayerTask> taskList) {
+        this.taskList = taskList;
+    }
+
+    public Integer getTalkTaskCount() {
+        return talkTaskCount;
+    }
+
+    public void setTalkTaskCount(Integer talkTaskCount) {
+        this.talkTaskCount = talkTaskCount;
+    }
+
+    public Integer getKillTaskCount() {
+        return killTaskCount;
+    }
+
+    public void setKillTaskCount(Integer killTaskCount) {
+        this.killTaskCount = killTaskCount;
     }
 
     public Boolean isBorther(Player target){
