@@ -92,6 +92,11 @@ public class MainMajor : MonoBehaviour {
 			tempBar.m_Cur = int.Parse(item["cur"].ToString());
 			tempBar.m_Desc = item ["value"].ToString ();
 
+            if (i == 0) {
+
+                PlayerPrefs.SetString("playerName", item["value"].ToString());
+            }
+
 			if (item ["color"] != null) {
 				
 				tempBar.m_ForeColor = int.Parse (item ["color"].ToString ());
@@ -171,6 +176,9 @@ public class MainMajor : MonoBehaviour {
 				break;
 			case ProtoCode.OBJECT_INFO_POP_CODE:
 				PopObjectInfoWindow (msg);
+				break;
+			case ProtoCode.GAME_STORY_CODE:
+				EnterStroyMode (msg);
 				break;
 			default:
 				break;
@@ -713,5 +721,56 @@ public class MainMajor : MonoBehaviour {
 		// 这个标记会让元素立即重新排列。
 		uiGrid.repositionNow = true;
 		uiGrid.Reposition();
+	}
+
+	private void EnterStroyMode(string msg){
+
+        JObject taskStory = JObject.Parse(msg);
+
+        int trackId = int.Parse(taskStory["trackId"].ToString());
+        int trackActionId = int.Parse(taskStory["trackId"].ToString());
+        int rewardId = int.Parse(taskStory["rewardId"].ToString());
+
+        List<Story> stories = new List<Story> ();
+		JArray jlist = JArray.Parse (taskStory["stories"].ToString()); 
+		for (int i = 0; i < jlist.Count; ++i) {
+
+			Story story = new Story ();
+			JObject item = JObject.Parse (jlist [i].ToString ()); 
+
+			JToken idToken = null;
+			JToken typeToken = null;
+			JToken nameToken = null;
+			JToken saidToken = null;
+			if (item.TryGetValue ("id", out idToken)) {
+				story.Id = int.Parse(idToken.ToString ());
+			}
+			if (item.TryGetValue ("type", out typeToken)) {
+				story.Type = typeToken.ToString ();
+			}
+			if (item.TryGetValue ("name", out nameToken)) {
+				story.Name = nameToken.ToString ();
+			}
+			if (item.TryGetValue ("said", out saidToken)) {
+				story.Said = saidToken.ToString ();
+			}
+			stories.Add (story);
+		}
+
+		Transform npcTalkWindow = this.transform.Find ("NpcTalkWindow");
+        npcTalkWindow.GetComponent<NpcTaskWindow>().stories = stories;
+        npcTalkWindow.GetComponent<NpcTaskWindow>().CurrentId = 1;
+        npcTalkWindow.GetComponent<NpcTaskWindow>().TrackId = trackId;
+        npcTalkWindow.GetComponent<NpcTaskWindow>().TrackActionId = trackActionId;
+        npcTalkWindow.GetComponent<NpcTaskWindow>().RewardId = rewardId;
+        npcTalkWindow.GetComponent<NpcTaskWindow>().DispalyContent();
+        npcTalkWindow.localPosition = new Vector3(0f, 65f, 0f);
+        npcTalkWindow.localScale = new Vector3(1f, 1f, 1f);
+        if (npcTalkWindow.gameObject.activeSelf == false) {
+            npcTalkWindow.gameObject.SetActive(true);
+        }
+
+        return;
+
 	}
 }

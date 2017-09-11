@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Dialog>
+    <Round id="1">
+        <type>npc</type>
+        <name>老村长</name>
+        <said>年轻人欢迎来到江湖mud的世界，在这个世界里有四种属性：臂力、</said>
+    </Round>
+    <Round id="2">
+        <type>player</type>
+        <name></name>
+        <said>我有些话想要说</said>
+    </Round>
+    <Round id="3">
+        <type>npc</type>
+        <name>Remilia</name>
+        <said>我有些话想要说</said>
+    </Round>
+    <Round id="4">
+        <type>player</type>
+        <name></name>
+        <said>我有些话想要说</said>
+    </Round>
+</Dialog>

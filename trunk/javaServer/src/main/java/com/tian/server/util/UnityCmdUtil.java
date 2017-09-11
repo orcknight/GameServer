@@ -25,6 +25,7 @@ public class UnityCmdUtil {
     public static final String OBJECT_LEAVE_CODE = "905";
     public static final String OBJECT_CLEAR_CODE = "906";
     public static final String OBJECT_INFO_POP_CODE = "009";
+    public static final String GAME_STORY_CODE = "0010";
 
     public static JSONObject getCheckVersionRet(String msg) {
         return getCodeMsgRet(CHECK_VERSION_CODE, msg);
@@ -73,6 +74,10 @@ public class UnityCmdUtil {
 
     public static JSONObject getObjectInfoPopRet(JSONObject msg){
         return getCodeMsgRet(OBJECT_INFO_POP_CODE, msg);
+    }
+
+    public static JSONObject getGameStoryRet(JSONObject msg) {
+        return getCodeMsgRet(GAME_STORY_CODE, msg);
     }
 
     public static JSONObject getCodeMsgRet(String code, Object msg) {

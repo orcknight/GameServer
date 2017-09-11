@@ -1,14 +1,13 @@
 package com.tian.server.util;
 
 import com.tian.server.common.TaskActionType;
+import com.tian.server.model.TaskStory;
 import com.tian.server.model.TaskTrack;
 import com.tian.server.model.TaskTrackAction;
-import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
-import org.omg.CORBA.TRANSACTION_MODE;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -63,7 +62,6 @@ public class XmlUtil {
                         TaskTrackAction trackAction = new TaskTrackAction();
                         Element action = (Element) actionIt.next();
 
-
                         String act = action.attributeValue("act", "");
                         String mapName = action.attributeValue("mapName", "");
                         Integer npcId = Integer.parseInt(action.attributeValue("npcId", "0"));
@@ -106,6 +104,56 @@ public class XmlUtil {
         }
 
         return taskTracks;
+    }
+
+    public static List<TaskStory> loadStoriesFromXml(String storyId){
+
+        List<TaskStory> taskStories = new ArrayList<TaskStory>();
+        String fileName = "/task/story/Story_" + storyId + ".xml";
+        String filePath = XmlUtil.class.getResource(fileName).getPath();
+        // 创建SAXReader的对象reader
+        SAXReader reader = new SAXReader();
+        try {
+            // 通过reader对象的read方法加载Story_xxxx.xml文件,获取docuemnt对象。
+            Document document = reader.read(new File(filePath));
+            // 通过document对象获取根节点Dialog
+            Element Dialog = document.getRootElement();
+            // 通过element对象的elementIterator方法获取迭代器
+            Iterator it = Dialog.elementIterator();
+            // 遍历迭代器，获取根节点中的信息
+            while (it.hasNext()) {
+                System.out.println("=====开始遍历某个Round=====");
+
+                TaskStory taskStory = new TaskStory();
+                Element round = (Element) it.next();
+
+                Integer roundId = Integer.parseInt(round.attributeValue("id", "0"));
+                taskStory.setId(roundId);
+
+                Iterator itt = round.elementIterator();
+                while (itt.hasNext()) {
+                    System.out.println("=====开始遍历某个Round=====");
+
+                    Element item = (Element) itt.next();
+
+                    if(item.getName().equals("type")){
+                        taskStory.setType(item.getText());
+                    }else if(item.getName().equals("name")){
+                        taskStory.setName(item.getText());
+                    }else if(item.getName().equals("said")){
+                        taskStory.setSaid(item.getText());
+                    }
+                }
+
+                taskStories.add(taskStory);
+                System.out.println("=====结束遍历某一Dialog=====");
+            }
+
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+
+        return taskStories;
     }
 
 }

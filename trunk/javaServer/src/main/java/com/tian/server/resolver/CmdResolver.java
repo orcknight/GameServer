@@ -17,6 +17,7 @@ public class CmdResolver {
     private String[] chatCmdArray = new String[] {"liaotian", "chat"};
     private String[] lookCmdArray = new String[] {"look", "open", "close"};
     private String[] fightCmdArray = new String[] {"fight"};
+    private String[] taskCmdArray = new String[] {"reward"};
 
     public CmdResolver(SocketIOClient server){
 
@@ -55,6 +56,9 @@ public class CmdResolver {
         }else if(Arrays.binarySearch(fightCmdArray, str.split(" ")[0]) > -1){
 
             handlerStr = "Combat";
+        }else if(Arrays.binarySearch(taskCmdArray, str.split(" ")[0]) > -1){
+
+            handlerStr = "Task";
         }
 
         try {

@@ -9,10 +9,7 @@ import com.tian.server.entity.RoomGateEntity;
 import com.tian.server.model.*;
 import com.tian.server.model.Race.Human;
 import com.tian.server.service.CombatService;
-import com.tian.server.util.ChineseUtil;
-import com.tian.server.util.UnityCmdUtil;
-import com.tian.server.util.UserCacheUtil;
-import com.tian.server.util.ZjMudUtil;
+import com.tian.server.util.*;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -85,6 +82,23 @@ public class LookBll extends BaseBll {
                     if(taskTrackAction.getTargetId().equals(npc.getId())){
 
                         //Todo:
+                        JSONArray retArray = new JSONArray();
+                        JSONArray storiesArray = new JSONArray();
+                        JSONObject dataObject = new JSONObject();
+
+                        dataObject.put("trackId", taskTrack.getId());
+                        dataObject.put("trackActionId", taskTrackAction.getId());
+                        dataObject.put("rewardId", taskTrackAction.getRewardId());
+
+                        List<TaskStory> taskStories = XmlUtil.loadStoriesFromXml(taskTrackAction.getStoryId().toString());
+                        for(TaskStory story : taskStories){
+
+                            storiesArray.add(JSONObject.fromObject(story));
+                        }
+
+                        dataObject.put("stories", storiesArray);
+                        retArray.add(UnityCmdUtil.getGameStoryRet(dataObject));
+                        sendMsg(retArray);
                         return;
                     }
 
