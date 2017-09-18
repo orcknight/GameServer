@@ -39,7 +39,7 @@ public class EquipService {
             owner.deleteTemp("handing");
         }
 
-        if(goods.getBaseInfo().getType().intValue() != GoodsType.EQPT.toInteger()
+        /*if(goods.getBaseInfo().getType().intValue() != GoodsType.EQPT.toInteger()
                 || ((EquipmentEntity)goods.getRefEntity()).getMainClass().intValue() != EquipType.ARMOR.toInteger()){
             //notify_fail("你只能穿戴可当作护具的东西。\n");
             return 0;
@@ -63,7 +63,7 @@ public class EquipService {
         if(owner.queryTemp("weapon") != null && armorType.toString().toLowerCase().equals("hands")) {
 
             //return notify_fail("你手中拿着武器如何戴手套？\n");//by Ciwei@SJ
-        }
+        }*/
 
 
 

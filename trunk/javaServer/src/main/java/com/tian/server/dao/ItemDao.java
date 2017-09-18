@@ -15,10 +15,8 @@ public class ItemDao extends BaseDao {
     public List<ItemEntity> getList(){
 
         String queryStr = "SELECT * FROM item";
-        Session session = SessionUtil.getDataSession();
-        Query q = session.createNativeQuery(queryStr).addEntity(ItemEntity.class);
+        Query q = getSession().createNativeQuery(queryStr).addEntity(ItemEntity.class);
         List<ItemEntity> list = q.getResultList();
-        session.close();
 
         return list;
     }

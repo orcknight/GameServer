@@ -1,5 +1,6 @@
 package com.tian.test;
 
+import com.tian.server.service.TaskService;
 import com.tian.server.util.IdUtil;
 import com.tian.server.util.LivingLuaAgent;
 import com.tian.server.util.XmlUtil;
@@ -7,14 +8,13 @@ import junit.framework.TestCase;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.junit.Test;
-import org.luaj.vm2.Globals;
-import org.luaj.vm2.LuaValue;
-import org.luaj.vm2.lib.jse.JsePlatform;
 
 /**
  * Created by PPX on 2017/6/22.
  */
+
 public class RoomDaoTest extends TestCase {
+
     public void setUp() throws Exception {
         super.setUp();
 
@@ -29,7 +29,7 @@ public class RoomDaoTest extends TestCase {
 
          /*try {
 
-           String luaPath = this.getClass().getResource("/lua/npc/register/ruzhui-jiajia.lua").getPath();
+           String luaPath = this.getClass().getResource("/lua/npc/xinghuacun/mengyi.lua").getPath();
             //= "resources/lua/login.lua";   //lua脚本文件所在路径
             Globals globals = JsePlatform.standardGlobals();
             //加载脚本文件login.lua，并编译
@@ -57,7 +57,7 @@ public class RoomDaoTest extends TestCase {
         //System.out.println(EquipType.HEAD.toInteger());
         //System.out.println(EquipType.RIGHTHAND.toInteger());
 
-        XmlUtil.parseXmlToTask();
+        XmlUtil.loadRewardFromXml("1001");
 
         JSONArray jlist = new JSONArray();
         JSONArray jArray = new JSONArray();

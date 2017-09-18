@@ -3,14 +3,13 @@ package com.tian.server.entity;
 import javax.persistence.*;
 
 /**
- * Created by PPX on 2017/8/16.
+ * Created by PPX on 2017/9/18.
  */
 @Entity
 @Table(name = "goods", schema = "bdm25683027_db", catalog = "")
 public class GoodsEntity {
     private int id;
     private Byte type;
-    private Integer refId;
     private String name;
     private String cmdName;
     private Integer weight;
@@ -18,6 +17,10 @@ public class GoodsEntity {
     private Integer value;
     private String material;
     private String longDesc;
+    private String resource;
+    private String pathName;
+    private Byte stackable;
+    private Integer deadline;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -37,16 +40,6 @@ public class GoodsEntity {
 
     public void setType(Byte type) {
         this.type = type;
-    }
-
-    @Basic
-    @Column(name = "refId", nullable = true)
-    public Integer getRefId() {
-        return refId;
-    }
-
-    public void setRefId(Integer refId) {
-        this.refId = refId;
     }
 
     @Basic
@@ -119,6 +112,46 @@ public class GoodsEntity {
         this.longDesc = longDesc;
     }
 
+    @Basic
+    @Column(name = "resource", nullable = true, length = 255)
+    public String getResource() {
+        return resource;
+    }
+
+    public void setResource(String resource) {
+        this.resource = resource;
+    }
+
+    @Basic
+    @Column(name = "pathName", nullable = true, length = 255)
+    public String getPathName() {
+        return pathName;
+    }
+
+    public void setPathName(String pathName) {
+        this.pathName = pathName;
+    }
+
+    @Basic
+    @Column(name = "stackable", nullable = true)
+    public Byte getStackable() {
+        return stackable;
+    }
+
+    public void setStackable(Byte stackable) {
+        this.stackable = stackable;
+    }
+
+    @Basic
+    @Column(name = "deadline", nullable = true)
+    public Integer getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(Integer deadline) {
+        this.deadline = deadline;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -128,7 +161,6 @@ public class GoodsEntity {
 
         if (id != that.id) return false;
         if (type != null ? !type.equals(that.type) : that.type != null) return false;
-        if (refId != null ? !refId.equals(that.refId) : that.refId != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (cmdName != null ? !cmdName.equals(that.cmdName) : that.cmdName != null) return false;
         if (weight != null ? !weight.equals(that.weight) : that.weight != null) return false;
@@ -136,6 +168,10 @@ public class GoodsEntity {
         if (value != null ? !value.equals(that.value) : that.value != null) return false;
         if (material != null ? !material.equals(that.material) : that.material != null) return false;
         if (longDesc != null ? !longDesc.equals(that.longDesc) : that.longDesc != null) return false;
+        if (resource != null ? !resource.equals(that.resource) : that.resource != null) return false;
+        if (pathName != null ? !pathName.equals(that.pathName) : that.pathName != null) return false;
+        if (stackable != null ? !stackable.equals(that.stackable) : that.stackable != null) return false;
+        if (deadline != null ? !deadline.equals(that.deadline) : that.deadline != null) return false;
 
         return true;
     }
@@ -144,7 +180,6 @@ public class GoodsEntity {
     public int hashCode() {
         int result = id;
         result = 31 * result + (type != null ? type.hashCode() : 0);
-        result = 31 * result + (refId != null ? refId.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (cmdName != null ? cmdName.hashCode() : 0);
         result = 31 * result + (weight != null ? weight.hashCode() : 0);
@@ -152,6 +187,10 @@ public class GoodsEntity {
         result = 31 * result + (value != null ? value.hashCode() : 0);
         result = 31 * result + (material != null ? material.hashCode() : 0);
         result = 31 * result + (longDesc != null ? longDesc.hashCode() : 0);
+        result = 31 * result + (resource != null ? resource.hashCode() : 0);
+        result = 31 * result + (pathName != null ? pathName.hashCode() : 0);
+        result = 31 * result + (stackable != null ? stackable.hashCode() : 0);
+        result = 31 * result + (deadline != null ? deadline.hashCode() : 0);
         return result;
     }
 }

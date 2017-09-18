@@ -4,9 +4,10 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.tian.server.entity.PlayerTrackEntity" table="player_track" schema="bdm25683027_db">
+    <class name="com.tian.server.entity.PlayerTrackEntity" table="player_track" schema="bdm25683027_db" dynamic-insert="true" dynamic-update="true">
         <id name="id">
             <column name="id" sql-type="int(11)"/>
+            <generator class="identity" />
         </id>
         <property name="playerId">
             <column name="playerId" sql-type="int(11)" not-null="true"/>

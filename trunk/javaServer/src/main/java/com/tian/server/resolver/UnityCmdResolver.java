@@ -21,6 +21,7 @@ public class UnityCmdResolver {
     private String[] chatCmdArray = new String[] {"liaotian", "chat"};
     private String[] lookCmdArray = new String[] {"look", "open", "close"};
     private String[] fightCmdArray = new String[] {"fight"};
+    private String[] taskCmdArray = new String[] {"reward"};
 
     public UnityCmdResolver(SocketIOClient server){
 
@@ -61,6 +62,9 @@ public class UnityCmdResolver {
         }else if(Arrays.binarySearch(fightCmdArray, cmd) > -1){
 
             handlerStr = "Combat";
+        }else if(Arrays.binarySearch(taskCmdArray, cmd) > -1){
+
+            handlerStr = "Task";
         }
 
         try {

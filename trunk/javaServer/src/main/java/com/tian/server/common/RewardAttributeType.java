@@ -5,6 +5,7 @@ package com.tian.server.common;
  */
 public enum RewardAttributeType {
 
+    NONE("none"), //空值
     MONEY("money"), //金钱
     EXP("exp"), //经验
     QI("qi"),   //气血

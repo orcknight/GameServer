@@ -1,5 +1,7 @@
 package com.tian.server.entity;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 
 /**
@@ -7,6 +9,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "player", schema = "bdm25683027_db", catalog = "")
+@DynamicUpdate(true)
 public class PlayerEntity {
     private int id;
     private Integer userId;
@@ -48,6 +51,8 @@ public class PlayerEntity {
     private String cmdName;
     private Byte shenType;
     private Long coupleId;
+    private Long money;
+    private Integer ticket;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -375,7 +380,7 @@ public class PlayerEntity {
         return status;
     }
 
-    public void setStatus(Byte isAlive) {
+    public void setStatus(Byte status) {
         this.status = status;
     }
 
@@ -449,6 +454,26 @@ public class PlayerEntity {
         this.coupleId = coupleId;
     }
 
+    @Basic
+    @Column(name = "money", nullable = true)
+    public Long getMoney() {
+        return money;
+    }
+
+    public void setMoney(Long money) {
+        this.money = money;
+    }
+
+    @Basic
+    @Column(name = "ticket", nullable = true)
+    public Integer getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(Integer ticket) {
+        this.ticket = ticket;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -494,6 +519,8 @@ public class PlayerEntity {
         if (bunchName != null ? !bunchName.equals(that.bunchName) : that.bunchName != null) return false;
         if (cmdName != null ? !cmdName.equals(that.cmdName) : that.cmdName != null) return false;
         if (coupleId != null ? !coupleId.equals(that.coupleId) : that.coupleId != null) return false;
+        if (money != null ? !money.equals(that.money) : that.money != null) return false;
+        if (ticket != null ? !ticket.equals(that.ticket) : that.ticket != null) return false;
 
         return true;
     }
@@ -538,6 +565,8 @@ public class PlayerEntity {
         result = 31 * result + (bunchName != null ? bunchName.hashCode() : 0);
         result = 31 * result + (cmdName != null ? cmdName.hashCode() : 0);
         result = 31 * result + (coupleId != null ? coupleId.hashCode() : 0);
+        result = 31 * result + (money != null ? money.hashCode() : 0);
+        result = 31 * result + (ticket != null ? ticket.hashCode() : 0);
         return result;
     }
 }

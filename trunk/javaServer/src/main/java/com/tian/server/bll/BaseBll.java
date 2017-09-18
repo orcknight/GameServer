@@ -3,8 +3,10 @@ package com.tian.server.bll;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.protocol.Packet;
 import com.corundumstudio.socketio.protocol.PacketType;
+import com.tian.server.util.SessionUtil;
 import com.tian.server.util.UserCacheUtil;
 import net.sf.json.JSONArray;
+import org.hibernate.Session;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,6 +20,8 @@ public class BaseBll {
     protected SocketIOClient socketIOClient;
     protected Integer userId;
 
+    protected Session session = null;
+
     public BaseBll(SocketIOClient socketIOClient){
 
         this.socketIOClient = socketIOClient;
@@ -28,6 +32,15 @@ public class BaseBll {
 
             this.userId = 0;
         }
+    }
+
+    protected Session getSession(){
+
+        if(session == null){
+
+            session = SessionUtil.getDataSession();
+        }
+        return session;
     }
 
     protected void sendMsg(JSONArray jsonArray){

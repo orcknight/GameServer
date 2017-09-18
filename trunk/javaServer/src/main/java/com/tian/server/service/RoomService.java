@@ -23,28 +23,6 @@ import java.util.Map;
  */
 public class RoomService {
 
-    private RoomDao roomDao = new RoomDao();
-
-    public void initRoomCache() {
-
-        List<RoomEntity> list = roomDao.getList();
-        Map<String, RoomEntity> rooms = UserCacheUtil.getAllMaps();
-        Map<String, Map<String, RoomEntity>> cityedRooms = UserCacheUtil.getCityedRooms();
-
-        for (RoomEntity item : list) {
-
-            rooms.put(item.getName(), item);
-            Map<String, RoomEntity> cityed = cityedRooms.get(item.getPname());
-            if (cityed == null) {
-
-                cityed = new HashMap<String, RoomEntity>();
-                cityedRooms.put(item.getPname(), cityed);
-            }
-
-            cityed.put(item.getName(), item);
-        }
-    }
-
     public JSONArray getRoomDesc(PlayerLocation pl) {
 
         JSONArray jsonArray = new JSONArray();

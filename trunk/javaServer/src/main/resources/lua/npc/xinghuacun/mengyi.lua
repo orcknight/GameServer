@@ -10,10 +10,11 @@ function create(bridge, uuid)
     local agent = bridge:getClass("com.tian.server.util.LivingLuaAgent");
 
     --调用对象方法
-    agent:setName(uuid, "入赘假假")
-    agent:setCmdName(uuid, "ruzhui-jiajia")
+    agent:setName(uuid, "梦一")
+    agent:setCmdName(uuid, "mengyi")
+    agent:setNickname(uuid, "新手导师")
     agent:setAge(uuid, 30);
-    agent:setLongDesc(uuid, "本是一个无知之辈，后入赘豪门捐了个官职；平生胆小懦弱，死后阎王看他可怜，赏他一个引路判官的官职。")
+    agent:setLongDesc(uuid, "一见梦一误终身，不见梦一终身误。我就是潇洒风流的新手导师梦一。")
     agent:setCombatExp(uuid, 1000);
     agent:setAttitude(uuid, "peaceful")
 

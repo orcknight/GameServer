@@ -14,25 +14,19 @@ import java.util.List;
 public class PlayerDao extends BaseDao {
 
     public void add(PlayerEntity player){
-
-        Session session = SessionUtil.getDataSession();
-        Transaction transaction = session.getTransaction();
-        //开启事务
-        transaction.begin();
         //插入数据
-        session.save(player);
-        //提交事务
-        transaction.commit();
-        session.close();
+        getSession().save(player);
+    }
+
+    public void update(PlayerEntity player){
+        getSession().update(player);
     }
 
     public PlayerEntity getById(int id){
 
         String queryStr = "SELECT * FROM player WHERE id = " + id;
-        Session session = SessionUtil.getDataSession();
-        Query q = session.createNativeQuery(queryStr).addEntity(PlayerEntity.class);
+        Query q = getSession().createNativeQuery(queryStr).addEntity(PlayerEntity.class);
         List<PlayerEntity> retList = q.getResultList();
-        session.close();
 
         PlayerEntity player;
         if(retList.isEmpty()){
@@ -49,10 +43,8 @@ public class PlayerDao extends BaseDao {
     public PlayerEntity getByUserId(int userId){
 
         String queryStr = "SELECT * FROM player WHERE userId = " + userId;
-        Session session = SessionUtil.getDataSession();
-        Query q = session.createNativeQuery(queryStr).addEntity(PlayerEntity.class);
+        Query q = getSession().createNativeQuery(queryStr).addEntity(PlayerEntity.class);
         List<PlayerEntity> retList = q.getResultList();
-        session.close();
 
         PlayerEntity player;
         if(retList.isEmpty()){
@@ -69,10 +61,8 @@ public class PlayerDao extends BaseDao {
     public PlayerEntity getByName(String name){
 
         String queryStr = "SELECT * FROM player WHERE name = '" + name + "'";
-        Session session = SessionUtil.getDataSession();
-        Query q = session.createNativeQuery(queryStr).addEntity(PlayerEntity.class);
+        Query q = getSession().createNativeQuery(queryStr).addEntity(PlayerEntity.class);
         List<PlayerEntity> retList = q.getResultList();
-        session.close();
 
         PlayerEntity player;
         if(retList.isEmpty()){

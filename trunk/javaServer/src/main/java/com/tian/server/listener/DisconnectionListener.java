@@ -16,7 +16,6 @@ import java.util.Map;
 public class DisconnectionListener implements DisconnectListener {
 
     public void onDisconnect(SocketIOClient socketIOClient) {
-
         removeUser(socketIOClient);
         socketIOClient.disconnect();
     }
@@ -66,9 +65,6 @@ public class DisconnectionListener implements DisconnectListener {
        if(allObjects.containsKey(uuid)){
            allObjects.remove(uuid);
        }
-
-        //关闭连接
-        socketIOClient.disconnect();
     }
 
 }

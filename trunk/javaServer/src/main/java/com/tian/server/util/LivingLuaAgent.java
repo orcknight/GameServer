@@ -42,6 +42,13 @@ public class LivingLuaAgent {
        }
     }
 
+    public static void setNickname(String uuid, String nickname){
+        Living living  = (Living)UserCacheUtil.getAllObjects().get(Long.valueOf(uuid));
+        if(living != null){
+            living.setNickname(nickname);
+        }
+    }
+
     public static void setCmdName(String uuid, String cmdName){
         Living living  = (Living)UserCacheUtil.getAllObjects().get(Long.valueOf(uuid));
         if(living != null) {

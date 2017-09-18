@@ -5,6 +5,7 @@ package com.tian.server.common;
  */
 public enum TaskRewardType {
 
+    NONE("none"), //空值
     ATTRIBUTE("attribute"), //增加属性
     GOODS("goods"); //获取物品
 
@@ -20,4 +21,5 @@ public enum TaskRewardType {
     public String toString(){
         return this.nCode;
     }
+
 }

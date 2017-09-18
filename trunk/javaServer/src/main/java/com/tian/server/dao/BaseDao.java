@@ -1,14 +1,27 @@
 package com.tian.server.dao;
 
+import com.tian.server.util.SessionUtil;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
 
 /**
  * Created by PPX on 2017/6/9.
  */
 public class BaseDao {
+
+    //从session管理器获取的session实体
+    protected Session session = null;
+
+    protected Session getSession(){
+
+        //如果没传递session过来从SessionUtil类获取一个
+        if(session == null){
+
+            session =  SessionUtil.getDataSession();
+        }
+
+        return session;
+    }
+
+
 
 }

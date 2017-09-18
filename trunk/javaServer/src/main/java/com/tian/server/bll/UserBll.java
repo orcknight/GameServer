@@ -2,19 +2,19 @@ package com.tian.server.bll;
 
 
 import com.corundumstudio.socketio.SocketIOClient;
+import com.corundumstudio.socketio.protocol.Packet;
+import com.corundumstudio.socketio.protocol.PacketType;
+import com.tian.server.common.TaskActionType;
 import com.tian.server.dao.*;
 import com.tian.server.entity.*;
-import com.tian.server.model.Living;
-import com.tian.server.model.Player;
-import com.tian.server.model.PlayerLocation;
-import com.tian.server.model.RoomObjects;
+import com.tian.server.model.*;
 import com.tian.server.service.PlayerService;
 import com.tian.server.service.RoomService;
-import com.tian.server.service.ServerInfoService;
 import com.tian.server.service.TaskService;
 import com.tian.server.util.*;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import org.hibernate.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +28,7 @@ public class UserBll extends BaseBll {
     private UserDao userDao = new UserDao();
     private PlayerDao playerDao = new PlayerDao();
     private PlayerInfoDao playerInfoDao = new PlayerInfoDao();
+    private ServerInfoDao serverInfoDao = new ServerInfoDao();
 
     public UserBll(SocketIOClient socketIOClient) {
         super(socketIOClient);
@@ -35,9 +36,12 @@ public class UserBll extends BaseBll {
 
     public void login(String name, String password){
 
+        JSONArray jsonArray = new JSONArray();
+
         UserEntity user =  userDao.getByNameAndPassword(name, password);
         if(user.getId() < 1){
-            sendEmpty();
+            jsonArray.add(UnityCmdUtil.getEmptyRet());
+            sendMsg(jsonArray);
             return;
         }
 
@@ -49,8 +53,14 @@ public class UserBll extends BaseBll {
             //发送断开连接信息,并且断开连接，并重新缓存用户数据
             Player player = (Player)cache.get(user.getId());
             sendKickOffMsg(player.getSocketClient());
+            player.getSocketClient().leaveRoom(player.getPlayerInfo().getRoomName());
             player.getSocketClient().disconnect();
+            Packet packet = new Packet(PacketType.CLOSE);
+            packet.setSubType(PacketType.DISCONNECT);
+            player.getSocketClient().send(packet);
             cache.remove(user.getId());
+
+            UserCacheUtil.getUserSockets().remove(player.getSocketClient());
         }
 
         //存储用户信息
@@ -64,7 +74,6 @@ public class UserBll extends BaseBll {
         if(player.getId() < 1){
 
             //如果没有角色，转到角色创建窗口。
-            JSONArray jsonArray = new JSONArray();
             jsonArray.add(UnityCmdUtil.getCreateRoleRet(""));
             sendMsg(jsonArray);
             return;
@@ -80,7 +89,7 @@ public class UserBll extends BaseBll {
 
         //载入玩家的任务信息
         TaskService taskService = new TaskService();
-        taskService.loadTaskInfo(playerCache);
+        loadTaskInfo(playerCache);
 
         //载入玩家技能
         loadUserSkill(playerCache);
@@ -93,10 +102,9 @@ public class UserBll extends BaseBll {
         socketIOClient.getNamespace().getRoomOperations(playerInfo.getRoomName()).sendEvent("stream", playerService.getLoginBoradcastLine(player));
         socketIOClient.joinRoom(playerInfo.getRoomName());
 
-        JSONArray jsonArray = new JSONArray();
         //显示登陆信息
-        ServerInfoService serverInfoService = new ServerInfoService();
-        jsonArray.add(UnityCmdUtil.getInfoWindowRet(serverInfoService.getWelcomeInfo()));
+        jsonArray.add(UnityCmdUtil.getClearScreenRet()); //首先清屏
+        jsonArray.add(UnityCmdUtil.getInfoWindowRet(serverInfoDao.getServerInfo().getName()));
         //显示房间信息
         RoomService roomService = new RoomService();
         PlayerLocation playerLocation = getLocation(playerInfo.getRoomName());
@@ -154,34 +162,45 @@ public class UserBll extends BaseBll {
 
         //检查名字是否被别人占用
         PlayerService playerService = new PlayerService();
-        if (playerService.isNameBeUsed(name)) {
+        if (isNameBeUsed(name)) {
 
             jsonArray.add(UnityCmdUtil.getPopWindowRet("对不起，这个名字已经被其他人占用了。"));
             sendMsg(jsonArray);
             return;
         }
 
-        //创建角色
-        PlayerEntity player = new PlayerEntity();
-        player.setName(name);
-        player.setSex(sex);
-        player.setCmdName(getUserName());
-        player.setUserId(this.userId);
-        player.setUuid(IdUtil.getUUID());
-        playerDao.add(player);
-        player = playerService.getPlayerById(player.getId());
 
+        //创建角色
+        Transaction transaction = getSession().getTransaction();
+
+        PlayerEntity player = new PlayerEntity();
         PlayerInfoEntity playerInfo = new PlayerInfoEntity();
-        playerInfo.setCityName("xinghuacun");
-        playerInfo.setRoomName("xinghuacun/guangchang");
-        playerInfo.setPlayerId(player.getId());
-        playerInfoDao.add(playerInfo);
+
+        try {
+            transaction.begin();
+            player.setName(name);
+            player.setSex(sex);
+            player.setCmdName(getUserName());
+            player.setUserId(this.userId);
+            player.setUuid(IdUtil.getUUID());
+            playerDao.add(player);
+            player = playerDao.getById(player.getId());
+
+            playerInfo.setCityName("xinghuacun");
+            playerInfo.setRoomName("xinghuacun/guangchang");
+            playerInfo.setPlayerId(player.getId());
+            playerInfoDao.add(playerInfo);
+            transaction.commit();
+        }catch(Exception e){
+            transaction.rollback();
+        }
 
         //登陆成功，先发送刷新界面命令
         jsonArray.add(UnityCmdUtil.getRoleCreatedRet(""));
+        //发送清屏信息
+        jsonArray.add(UnityCmdUtil.getClearScreenRet());
         //然后发送欢迎信息
-        ServerInfoService serverInfoService = new ServerInfoService();
-        jsonArray.add(UnityCmdUtil.getInfoWindowRet(serverInfoService.getWelcomeInfo()));
+        jsonArray.add(UnityCmdUtil.getInfoWindowRet(serverInfoDao.getServerInfo().getName()));
 
         socketIOClient.getNamespace().getRoomOperations(playerInfo.getRoomName()).sendEvent("stream", playerService.getLoginBoradcastLine(player));
         socketIOClient.joinRoom(playerInfo.getRoomName()); //玩家加入当前房间群组，为广播消息
@@ -219,7 +238,7 @@ public class UserBll extends BaseBll {
             roomObjects.setPlayers(new ArrayList<Player>());
         }
         if(playerCache != null) {
-            loadObjects(roomObjects, playerCache);
+            sendMsg(loadObjects(roomObjects, playerCache));
         }
     }
 
@@ -249,11 +268,11 @@ public class UserBll extends BaseBll {
 
     private void sendKickOffMsg(SocketIOClient socketIOClient){
 
-        String msg = ZjMudUtil.getEmptyLine() +
-                ZjMudUtil.getScreenLine("你的账号在别处登录，你被迫下线了！") +
-                ZjMudUtil.getScreenLine("与服务器断开连接。");
+        JSONArray jsonArray = new JSONArray();
+        JSONObject jsonObject = UnityCmdUtil.getInfoWindowRet("你的账号在别处登录，你被迫下线了！\n与服务器断开连接。");
+        jsonArray.add(jsonObject);
 
-        socketIOClient.sendEvent("stream", msg);
+        socketIOClient.sendEvent("stream", jsonArray);
     }
 
     private void setSocketCache(Integer userId){
@@ -402,7 +421,7 @@ public class UserBll extends BaseBll {
     private void initPlayerFamily(Player player){
 
         PlayerFamilyDao dao = new PlayerFamilyDao();
-        PlayerFamilyEntity family = dao.getByPlayerId(player.getPlayerId());
+            PlayerFamilyEntity family = dao.getByPlayerId(player.getPlayerId());
         if(family == null){
             return;
         }
@@ -422,7 +441,7 @@ public class UserBll extends BaseBll {
         return userEntity.getName();
     }
 
-    public JSONArray loadObjects(RoomObjects roomObjects, Player me){
+    private JSONArray loadObjects(RoomObjects roomObjects, Player me){
 
         JSONArray jsonArray = new JSONArray();
         PlayerService playerService = new PlayerService();
@@ -457,6 +476,43 @@ public class UserBll extends BaseBll {
 
         return jsonArray;
     }
+
+    private Boolean isNameBeUsed(String name) {
+
+        if(playerDao.getByName(name) == null){
+
+            return false;
+        }
+
+        return true;
+    }
+
+    public void loadTaskInfo(Player player){
+
+        PlayerTrackDao playerTrackDao = new PlayerTrackDao();
+        PlayerTrackActionDao playerTrackActionDao = new PlayerTrackActionDao();
+
+        List<PlayerTask> playerTasks = player.getTaskList();
+        List<PlayerTrackEntity> playerTrackEntityList = playerTrackDao.getDoingTaskByPlayerId(player.getPlayerId());
+        for(PlayerTrackEntity playerTrackEntity : playerTrackEntityList){
+
+            TaskTrack taskTrack = UserCacheUtil.getTaskTrackMap().get(playerTrackEntity.getTrackId());
+
+            if(taskTrack.getTrackActions().get(playerTrackEntity.getStep()-1).getActionType().equals(TaskActionType.TALK)){
+
+                player.setTalkTaskCount(player.getTalkTaskCount() + 1);
+            }else if(taskTrack.getTrackActions().get(playerTrackEntity.getStep()-1).getActionType().equals(TaskActionType.KILL)){
+
+                player.setKillTaskCount(player.getKillTaskCount() + 1);
+            }
+
+            PlayerTask playerTask = new PlayerTask();
+            playerTask.setTrack(playerTrackEntity);
+            playerTask.setAction(playerTrackActionDao.getDoingTrackActionByTrackId(playerTrackEntity.getId()));
+            playerTasks.add(playerTask);
+        }
+    }
+
 
 
 }

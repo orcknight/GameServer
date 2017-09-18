@@ -22,7 +22,7 @@ public class ConnectionListener implements ConnectListener {
         outData.put("max", 100);
         outData.put("eff", 70);
         outData.put("cur", 50);
-        jArray.add(outData);*/
+        jArray.addOrUpdate(outData);*/
         client.sendEvent("connected");
     }
 

@@ -125,7 +125,7 @@ public class LookBll extends BaseBll {
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put("desc", npc.getLookStr());
                 jsonObject.put("buttons", getAct(getMe(), npc));
-                jsonArray.add(UnityCmdUtil.getObjectInfoPopRet(jsonObject));
+                jsonArray.addOrUpdate(UnityCmdUtil.getObjectInfoPopRet(jsonObject));
                 sendMsg(jsonArray);
             }*/
         } else if (type.equals("gate")) {

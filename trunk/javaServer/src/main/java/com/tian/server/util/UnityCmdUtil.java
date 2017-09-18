@@ -14,6 +14,8 @@ import java.awt.*;
 public class UnityCmdUtil {
 
     public static final String CHECK_VERSION_CODE = "001";
+    public static final String CLEAR_SCREEN_CODE = "0002"; //清屏代码
+    public static final String EMPTY_CODE = "0003"; //什么都不做的代码
     public static final String INFO_WINDOW_CODE = "015";
     public static final String CREATE_ROLE_CODE = "0000008";
     public static final String POP_WINDOW_CODE = "000100";
@@ -29,6 +31,15 @@ public class UnityCmdUtil {
 
     public static JSONObject getCheckVersionRet(String msg) {
         return getCodeMsgRet(CHECK_VERSION_CODE, msg);
+    }
+
+    //清空屏幕
+    public static JSONObject getClearScreenRet(){
+        return getCodeMsgRet(CLEAR_SCREEN_CODE, "");
+    }
+
+    public static JSONObject getEmptyRet(){
+        return getCodeMsgRet(EMPTY_CODE, "");
     }
 
     //创建角色字符串

@@ -5,7 +5,6 @@ import com.tian.server.dao.*;
 import com.tian.server.entity.*;
 import com.tian.server.model.Living;
 import com.tian.server.model.Player;
-import com.tian.server.service.CityService;
 import com.tian.server.service.RoomService;
 import com.tian.server.util.UnityCmdUtil;
 import com.tian.server.util.UserCacheUtil;
@@ -13,10 +12,7 @@ import com.tian.server.util.XmlUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 /**
  * Created by PPX on 2017/6/15.
@@ -47,14 +43,12 @@ public class DefaultBll extends BaseBll {
 
         if(UserCacheUtil.getAllCitys().isEmpty()) {
 
-            CityService cityService = new CityService();
-            cityService.initCityCache();
+            initCityCache();
         }
 
         if(UserCacheUtil.getAllMaps().isEmpty()){
 
-            RoomService roomService = new RoomService();
-            roomService.initRoomCache();
+            initRoomCache();
         }
 
         if(UserCacheUtil.getTaskTrackMap().isEmpty()){
@@ -144,11 +138,44 @@ public class DefaultBll extends BaseBll {
                     player.heartBeat();
                     //准备状态字符串，然后发送消息
                     JSONArray jArray = UnityCmdUtil.getPlayerStatus(player);
-                    client.sendEvent("status",  jArray);
+                    //client.sendEvent("status",  jArray);
                 }
 
             }
         }, 2 * 1000, 2 * 1000);
+    }
+
+
+    private void initCityCache(){
+
+        CityDao cityDao = new CityDao();
+        List<CityEntity> list = cityDao.getList();
+        Map<String, CityEntity> cityMaps = UserCacheUtil.getAllCitys();
+        for(CityEntity item : list) {
+
+            cityMaps.put(item.getName(), item);
+        }
+    }
+
+    private void initRoomCache() {
+
+        RoomDao roomDao = new RoomDao();
+        List<RoomEntity> list = roomDao.getList();
+        Map<String, RoomEntity> rooms = UserCacheUtil.getAllMaps();
+        Map<String, Map<String, RoomEntity>> cityedRooms = UserCacheUtil.getCityedRooms();
+
+        for (RoomEntity item : list) {
+
+            rooms.put(item.getName(), item);
+            Map<String, RoomEntity> cityed = cityedRooms.get(item.getPname());
+            if (cityed == null) {
+
+                cityed = new HashMap<String, RoomEntity>();
+                cityedRooms.put(item.getPname(), cityed);
+            }
+
+            cityed.put(item.getName(), item);
+        }
     }
 
 }

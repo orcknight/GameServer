@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Reward>
-    <line id="1" name ="主线任务">
-        <track id ="101" needLv="1" desc = "了解人物属性">
-            <action act="talk" mapName="xinghuacun/guangchang"  npcId="1" storyId="1" desc="去杏花村-广场找新手指导员，了解属性的相关信息" reward="2001"/>
-        </track>
-    </line>
-</Reward>

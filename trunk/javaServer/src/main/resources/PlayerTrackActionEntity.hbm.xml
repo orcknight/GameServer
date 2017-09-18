@@ -4,9 +4,10 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.tian.server.entity.PlayerTrackActionEntity" table="player_track_action" schema="bdm25683027_db">
+    <class name="com.tian.server.entity.PlayerTrackActionEntity" table="player_track_action" schema="bdm25683027_db" dynamic-insert="true" dynamic-update="true">
         <id name="id">
             <column name="id" sql-type="int(11)"/>
+            <generator class="identity" />
         </id>
         <property name="pid">
             <column name="pid" sql-type="int(11)" not-null="true"/>
@@ -15,7 +16,7 @@
             <column name="actionId" sql-type="int(11)" not-null="true"/>
         </property>
         <property name="progress">
-            <column name="progress" sql-type="int(11)" not-null="true"/>
+            <column name="progress" sql-type="int(11)" not-null="false"/>
         </property>
         <property name="status">
             <column name="status" sql-type="int(11)" not-null="true"/>

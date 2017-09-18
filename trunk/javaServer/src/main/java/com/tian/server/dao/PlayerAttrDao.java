@@ -15,10 +15,8 @@ public class PlayerAttrDao extends BaseDao {
     public List<PlayerAttrEntity> getListByPlayerId(Integer playerId){
 
         String queryStr = "SELECT * FROM player_attr WHERE playerId = " + playerId;
-        Session session = SessionUtil.getDataSession();
-        Query q = session.createNativeQuery(queryStr).addEntity(PlayerAttrEntity.class);
+        Query q = getSession().createNativeQuery(queryStr).addEntity(PlayerAttrEntity.class);
         List<PlayerAttrEntity> retList = q.getResultList();
-        session.close();
 
         return retList;
     }

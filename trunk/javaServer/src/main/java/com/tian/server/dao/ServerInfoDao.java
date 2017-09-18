@@ -15,10 +15,8 @@ public class ServerInfoDao extends BaseDao {
     public ServerInfoEntity getServerInfo() {
 
         String queryStr = "SELECT * FROM server_info";
-        Session session = SessionUtil.getDataSession();
-        Query q = session.createNativeQuery(queryStr).addEntity(ServerInfoEntity.class);
+        Query q = getSession().createNativeQuery(queryStr).addEntity(ServerInfoEntity.class);
         List<ServerInfoEntity> list = q.getResultList();
-        session.close();
 
         ServerInfoEntity serverInfo;
         if(list.isEmpty()){

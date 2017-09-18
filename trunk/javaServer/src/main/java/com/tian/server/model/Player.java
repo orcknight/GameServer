@@ -4,6 +4,7 @@ import com.corundumstudio.socketio.SocketIOClient;
 import com.tian.server.entity.*;
 import com.tian.server.model.Race.Human;
 import com.tian.server.util.CombatUtil;
+import javassist.bytecode.stackmap.TypeData;
 
 import java.util.*;
 
@@ -334,6 +335,55 @@ public class Player extends Human {
 
         this.enemy.add(enemy);
     }
+
+    public PlayerEntity  packagePlayerEntity(){
+
+        PlayerEntity playerEntity = new PlayerEntity();
+
+        playerEntity.setId(this.getPlayerId());
+        playerEntity.setUserId(this.getUser().getId());
+        playerEntity.setUuid(this.uuid);
+        playerEntity.setName(this.name);
+        playerEntity.setSex(this.gender);
+        playerEntity.setCharacter(this.character);
+        playerEntity.setLevel(this.level);
+        playerEntity.setStr(this.str);
+        playerEntity.setCon(this.con);
+        playerEntity.setDex(this.dex);
+        playerEntity.setKar(this.kar);
+        playerEntity.setPer(this.per);
+        playerEntity.setWux(this.wux);
+        playerEntity.setMaxQi(this.maxQi);
+        playerEntity.setEffQi(this.effQi);
+        playerEntity.setQi(this.qi);
+        playerEntity.setMaxNeili(this.maxNeili);
+        playerEntity.setEffNeili(this.effNeili);
+        playerEntity.setNeili(this.neili);
+        playerEntity.setMaxJing(this.maxJing);
+        playerEntity.setEffJing(this.effJing);
+        playerEntity.setJing(this.jing);
+        playerEntity.setFood(this.food);
+        playerEntity.setWater(this.water);
+        playerEntity.setTitle(this.title);
+        playerEntity.setNickname(this.nickname);
+        playerEntity.setMudAge(this.mudAge);
+        playerEntity.setAgeModify(this.ageModify);
+        playerEntity.setMaxJingLi(this.maxJingLi);
+        playerEntity.setEffJingLi(this.effJingLi);
+        playerEntity.setJingLi(this.jingLi);
+        playerEntity.setCombatExp(this.combatExp);
+        playerEntity.setStatus(this.status);
+        playerEntity.setBornFamily(this.bornFamily);
+        playerEntity.setSurname(this.surname);
+        playerEntity.setFamilyName(this.familyName);
+        playerEntity.setBunchName(this.bunchName);
+        playerEntity.setCmdName(this.cmdName);
+        playerEntity.setShenType(this.shenType);
+        playerEntity.setCoupleId(this.coupleId);
+
+        return playerEntity;
+    }
+
 
     public void heartBeat() {
 

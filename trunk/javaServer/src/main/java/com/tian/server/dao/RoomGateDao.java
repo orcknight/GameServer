@@ -15,10 +15,8 @@ public class RoomGateDao extends BaseDao {
     public List<RoomGateEntity> getList(){
 
         String queryStr = "SELECT * FROM room_gate";
-        Session session = SessionUtil.getDataSession();
-        Query q = session.createNativeQuery(queryStr).addEntity(RoomGateEntity.class);
+        Query q = getSession().createNativeQuery(queryStr).addEntity(RoomGateEntity.class);
         List<RoomGateEntity> retList = q.getResultList();
-        session.close();
 
         return retList;
 

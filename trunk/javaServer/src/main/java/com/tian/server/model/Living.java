@@ -14,9 +14,6 @@ import java.util.Map;
  */
 public class Living extends MudObject{
 
-    protected Long uuid = 0L; //实例在系统里的唯一标识
-    protected Integer id = 0; //标识号，同种物品共享一个id
-
     //生物属性
     protected String title = ""; //称号
     protected String nickname = ""; //昵称
@@ -34,7 +31,6 @@ public class Living extends MudObject{
     protected String classStr = ""; //身份 官差 和尚尼姑喇嘛等
     protected String attitude = ""; //态度 和平好战还是别的
     protected String unit = ""; //单位: 只 个
-    protected Integer weight = 0; //重量
     protected Byte shenType = 0; //神的正负，如果没有set默认是1,用这个乘以exp/10得到神值
     protected Integer shen = 0; //神
     protected Long coupleId = 0L; //夫妻id
@@ -78,22 +74,6 @@ public class Living extends MudObject{
     protected Map<String, Inquiry> inquirys = new HashMap<String, Inquiry>();
     protected List<MudObject> vendorGoods = new ArrayList<MudObject>();
     protected List<Goods> packageList = new ArrayList<Goods>();
-
-    //属性
-    public Long getUuid() {
-        return this.uuid;
-    }
-    public void setUuid(Long uuid) {
-        this.uuid = uuid;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getName() {
         return this.name;
@@ -228,14 +208,6 @@ public class Living extends MudObject{
 
     public void setUnit(String unit) {
         this.unit = unit;
-    }
-
-    public Integer getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Integer weight) {
-        this.weight = weight;
     }
 
     public Byte getShenType() {

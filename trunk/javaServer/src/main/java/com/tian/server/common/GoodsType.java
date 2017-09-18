@@ -5,9 +5,10 @@ package com.tian.server.common;
  */
 public enum GoodsType {
 
-    EQPT(1), //装备
-    FOOD(2), //食物
-    WATER(3); //饮水
+    MONEY(1), //货币
+    EQPT(2), //装备
+    FOOD(3), //食物
+    WATER(4); //饮水
 
     //私有变量，用来存储分配的值
     private int nCode;

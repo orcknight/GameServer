@@ -1,39 +1,110 @@
 package com.tian.server.model;
 
 import com.tian.server.common.GoodsType;
-import com.tian.server.entity.GoodsEntity;
-import com.tian.server.entity.PlayerPackageEntity;
 
 /**
  * Created by PPX on 2017/8/16.
  */
 public class Goods extends MudObject {
 
-    private PlayerPackageEntity ownerPackage; //物品归属信息
-    private GoodsEntity baseInfo; //物品基础类
-    private Object refEntity;     //物品对应物品的实体类
+    protected GoodsType type;
+    protected String name;
+    protected String cmdName;
+    protected String unit;
+    protected GoodsPrice price; //价格
+    protected String material; //材料
+    protected String longDesc; //描述
+    protected String resource; //脚本文件路径
+    protected String pathName; //路径标识的全局唯一名称
+    protected Boolean stackable; //是否可以叠加，药品类等物品可以，装备类无法叠加
+    protected Integer deadline; //限时时间
+    protected Integer amount; //数量
 
-    public PlayerPackageEntity getOwnerPackage() {
-        return ownerPackage;
+    public GoodsType getType() {
+        return type;
     }
 
-    public void setOwnerPackage(PlayerPackageEntity ownerPackage) {
-        this.ownerPackage = ownerPackage;
+    public void setType(GoodsType type) {
+        this.type = type;
     }
 
-    public GoodsEntity getBaseInfo() {
-        return baseInfo;
+    public String getName() {
+        return name;
     }
 
-    public void setBaseInfo(GoodsEntity baseInfo) {
-        this.baseInfo = baseInfo;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Object getRefEntity() {
-        return refEntity;
+    public String getCmdName() {
+        return cmdName;
     }
 
-    public void setRefEntity(Object refEntity) {
-        this.refEntity = refEntity;
+    public void setCmdName(String cmdName) {
+        this.cmdName = cmdName;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public GoodsPrice getPrice() {
+        return price;
+    }
+
+    public void setPrice(GoodsPrice price) {
+        this.price = price;
+    }
+
+    public String getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(String material) {
+        this.material = material;
+    }
+
+    public String getLongDesc() {
+        return longDesc;
+    }
+
+    public void setLongDesc(String longDesc) {
+        this.longDesc = longDesc;
+    }
+
+    public String getResource() {
+        return resource;
+    }
+
+    public void setResource(String resource) {
+        this.resource = resource;
+    }
+
+    public String getPathName() {
+        return pathName;
+    }
+
+    public void setPathName(String pathName) {
+        this.pathName = pathName;
+    }
+
+    public Boolean getStackable() {
+        return stackable;
+    }
+
+    public void setStackable(Boolean stackable) {
+        this.stackable = stackable;
+    }
+
+    public Integer getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(Integer deadline) {
+        this.deadline = deadline;
     }
 }

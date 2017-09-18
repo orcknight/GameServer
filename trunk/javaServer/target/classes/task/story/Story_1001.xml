@@ -2,22 +2,37 @@
 <Dialog>
     <Round id="1">
         <type>npc</type>
-        <name>老村长</name>
-        <said>年轻人欢迎来到江湖mud的世界，在这个世界里有四种属性：臂力、</said>
+        <name>梦一</name>
+        <said>年轻人欢迎来到江湖mud的世界，在这个世界里有四种属性：臂力、悟性、根骨、身法</said>
     </Round>
     <Round id="2">
-        <type>player</type>
-        <name></name>
-        <said>我有些话想要说</said>
+        <type>npc</type>
+        <name>梦一</name>
+        <said>臂力：影响物理命中，臂力越大，物理命中越高；臂力还影响你的饭量和水量；臂力还影响人物的负重，臂力越高负重越大。</said>
     </Round>
     <Round id="3">
         <type>npc</type>
-        <name>Remilia</name>
-        <said>我有些话想要说</said>
+        <name>梦一</name>
+        <said>悟性：影响学习（包括读书读石壁等）以及修炼特殊内功的效率，悟性越高，学习越快。</said>
     </Round>
     <Round id="4">
-        <type>player</type>
-        <name></name>
-        <said>我有些话想要说</said>
+        <type>npc</type>
+        <name>梦一</name>
+        <said>根骨：影响升级时加的气血多少，气血恢复速度，修炼特殊内功时的效率以及速度等。</said>
+    </Round>
+    <Round id="5">
+        <type>npc</type>
+        <name>梦一</name>
+        <said>身法：影响普通攻击速度，普通攻击格挡率，普通攻击命中（影响较小），影响技能命中率。</said>
+    </Round>
+    <Round id="5">
+        <type>npc</type>
+        <name>梦一</name>
+        <said>身法：影响普通攻击速度，普通攻击格挡率，普通攻击命中（影响较小），影响技能命中率。</said>
+    </Round>
+    <Round id="6">
+        <type>npc</type>
+        <name>梦一</name>
+        <said>出生时候的总计80点先天分配值，大家可以点击最下方综合属性菜单，进行分配，如果后期需要修改，可以到我这里进行洗点。</said>
     </Round>
 </Dialog>

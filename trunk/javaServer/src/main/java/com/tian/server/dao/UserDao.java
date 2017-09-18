@@ -10,8 +10,9 @@ import java.util.List;
 
 /**
  * Created by PPX on 2017/6/9.
+ * User类由于特殊是访问的logingate数据库，因此不继承BaseDao
  */
-public class UserDao extends BaseDao {
+public class UserDao {
 
     public UserEntity getByNameAndPassword(String name, String password){
 
@@ -19,7 +20,6 @@ public class UserDao extends BaseDao {
         Session session = SessionUtil.getUserSession();
         Query<UserEntity> q = session.createNativeQuery(queryStr, UserEntity.class);
         List<UserEntity> retList = q.getResultList();
-        session.close();
 
         UserEntity user;
         if(retList.isEmpty()){
@@ -39,7 +39,6 @@ public class UserDao extends BaseDao {
         Session session = SessionUtil.getUserSession();
         Query<UserEntity> q = session.createNativeQuery(queryStr, UserEntity.class);
         List<UserEntity> retList = q.getResultList();
-        session.close();
 
         UserEntity user;
         if(retList.isEmpty()){

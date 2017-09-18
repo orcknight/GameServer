@@ -18,23 +18,6 @@ import java.util.Map;
  */
 public class PlayerService {
 
-    private PlayerDao playerDao = new PlayerDao();
-
-    public Boolean isNameBeUsed(String name) {
-
-        if(playerDao.getByName(name) == null){
-
-            return false;
-        }
-
-        return true;
-    }
-
-    public PlayerEntity getPlayerById(Integer id){
-
-        return playerDao.getById(id);
-    }
-
     public JSONArray getLoginBoradcastLine(PlayerEntity player){
 
         JSONArray jsonArray = new JSONArray();
@@ -80,7 +63,7 @@ public class PlayerService {
 
             JSONObject msgObject = new JSONObject();
             msgObject.put("cmd", "look");
-            msgObject.put("displayName", living.getName());
+            msgObject.put("displayName", living.getNickname() + "\n" + living.getName());
             msgObject.put("objId", "/" + livingType + "/" + livingType + "#" + living.getUuid());
             livingArrays.add(msgObject);
         }

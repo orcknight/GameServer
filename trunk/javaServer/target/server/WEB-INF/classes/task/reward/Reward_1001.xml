@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Reward id = "1001" desc = "xx">
+    <item type="attribute" desc="获得一百点经验" subType="exp" count="100" goodsId="0" />
+</Reward>
