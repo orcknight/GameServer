@@ -11,9 +11,6 @@
         <property name="type">
             <column name="type" sql-type="tinyint(4)" not-null="true"/>
         </property>
-        <property name="refId">
-            <column name="refId" sql-type="int(11)" not-null="true"/>
-        </property>
         <property name="name">
             <column name="name" sql-type="varchar(255)" not-null="true"/>
         </property>
@@ -34,6 +31,18 @@
         </property>
         <property name="longDesc">
             <column name="longDesc" sql-type="varchar(2048)" length="2048" not-null="true"/>
+        </property>
+        <property name="resource">
+            <column name="resource" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="pathName">
+            <column name="pathName" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="stackable">
+            <column name="stackable" sql-type="tinyint(1)" not-null="true"/>
+        </property>
+        <property name="deadline">
+            <column name="deadline" sql-type="int(11)" not-null="true"/>
         </property>
     </class>
 </hibernate-mapping>
