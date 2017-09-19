@@ -2,6 +2,9 @@ package com.tian.server.model;
 
 import com.tian.server.common.GoodsType;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by PPX on 2017/8/16.
  */
@@ -19,6 +22,8 @@ public class Goods extends MudObject {
     protected Boolean stackable; //是否可以叠加，药品类等物品可以，装备类无法叠加
     protected Integer deadline; //限时时间
     protected Integer amount; //数量
+
+    protected Map<String ,String> actions = new HashMap<String, String>();
 
     public GoodsType getType() {
         return type;
