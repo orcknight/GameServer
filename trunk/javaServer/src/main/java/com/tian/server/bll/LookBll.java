@@ -134,6 +134,12 @@ public class LookBll extends BaseBll {
             JSONArray retArray = new JSONArray();
             retArray.add(retMsg);
             sendMsg(retArray);
+        } else if(type.equals("goods")) {
+
+            JSONObject retMsg = getLookGoodsStr(id);
+            JSONArray retArray = new JSONArray();
+            retArray.add(retMsg);
+            sendMsg(retArray);
         }
     }
 
@@ -211,6 +217,38 @@ public class LookBll extends BaseBll {
         }
 
         return null;
+    }
+
+    private JSONObject getLookGoodsStr(String id) {
+
+        Map<Long, MudObject> allObjects = UserCacheUtil.getAllObjects();
+        GoodsContainer goodsContainer = (GoodsContainer) allObjects.get(Long.valueOf(id));
+        if (goodsContainer == null) {
+
+            return null;
+        }
+
+        JSONObject buttonObject = new JSONObject();
+        JSONArray buttonArray = new JSONArray();
+        StringBuffer desc = new StringBuffer();
+        StringBuffer button = new StringBuffer();
+
+        desc.append("这是" + goodsContainer.getCount().toString() +
+                goodsContainer.getGoodsEntity().getUnit() + goodsContainer.getGoodsEntity().getName());
+
+        if(goodsContainer.getBelongsId() < 1 && goodsContainer.getGoodsEntity().getPickable()){
+
+            JSONObject buttonItemObject = new JSONObject();
+            buttonItemObject.put("cmd", "get");
+            buttonItemObject.put("displayName", "拾取");
+            buttonItemObject.put("objId", "/goods/goods#" + goodsContainer.getUuid());
+            buttonArray.add(buttonItemObject);
+        }
+
+        buttonObject.put("desc", desc.toString());
+        buttonObject.put("buttons", buttonArray);
+
+        return UnityCmdUtil.getObjectInfoPopRet(buttonObject);
     }
 
     private String lookLiving(Living me, Living target) {

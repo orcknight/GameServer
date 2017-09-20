@@ -30,8 +30,9 @@ public class MainMajor : MonoBehaviour {
 		m_Socket.On ("connected", OnConnect);
 		m_Socket.On ("status", OnStatus);
 		m_Socket.On ("stream", OnStream);
+		m_Socket.On ("close", OnDisconnect);
 
-		m_Socket.Start();
+        m_Socket.Start();
 	
 	}
 	
@@ -52,9 +53,6 @@ public class MainMajor : MonoBehaviour {
 		jsonObject.AddField ("data", "");
 		m_Socket.Emit ("unity_stream", jsonObject);
 		return;
-
-
-
 
 		JSONObject data = socketIoEvent.data;
 
@@ -77,7 +75,13 @@ public class MainMajor : MonoBehaviour {
 		Debug.Log (socketIoEvent.name);
 	}
 
-	public void OnStatus(SocketIOEvent socketIoEvent){
+    public void OnDisconnect(SocketIOEvent socketIoEvent) {
+
+        Debug.Log(socketIoEvent.name);
+		m_Socket.Close ();
+    }
+
+    public void OnStatus(SocketIOEvent socketIoEvent){
 
 		JSONObject data = socketIoEvent.data;
 		JArray jlist = JArray.Parse(data.ToString()); //将pois部分视为一个JObject，JArray解析这个JObject的字符串 
@@ -133,6 +137,10 @@ public class MainMajor : MonoBehaviour {
 				jsonObject.AddField ("data", sendData);
 				m_Socket.Emit ("unity_stream", jsonObject);
 				break;
+            case ProtoCode.CLEAR_SCREEN_CODE:
+                break;
+            case ProtoCode.EMPTY_CODE:
+                break;
 			case ProtoCode.INFO_WINDOW_CODE:
 				AddMsgToInfoWindow (msg);
 				break;
@@ -512,6 +520,7 @@ public class MainMajor : MonoBehaviour {
 			npcButton.GetComponent<CmdButtonItem> ().m_Cmd = cmd;
 			npcButton.GetComponent<CmdButtonItem> ().m_ObjId = objId;
 			npcButton.GetComponent<CmdButtonItem> ().m_DisplayName = displayName;
+			npcButton.name = objId;
 			npcButton.transform.parent = gridTrans;
 			npcButton.transform.localScale = new Vector3 (1f, 1f, 1f);
 			npcButton.transform.localPosition = Vector3.zero; 
@@ -566,16 +575,19 @@ public class MainMajor : MonoBehaviour {
 			}
 		}
 
-		if (transform == null) {
+		if (targetTrans == null) {
 
 			return;
 		}
 
-		gridList.Remove (targetTrans);
+		gridTrans.gameObject.SetActive (false);
+		gridTrans.GetComponent<UIGrid> ().RemoveChild (targetTrans);
 		Destroy (targetTrans.gameObject);
 		gridTrans.GetComponent<UIGrid> ().pivot = UIWidget.Pivot.TopLeft;
 		gridTrans.GetComponent<UIGrid> ().repositionNow = true;
-		gridTrans.GetComponent<UIGrid> ().Reposition ();
+		gridTrans.gameObject.SetActive (true);
+		//scrollViewTrans.GetComponent<UIScrollView> ().contentPivot = UIWidget.Pivot.TopLeft;
+		//scrollViewTrans.GetComponent<UIScrollView> ().ResetPosition ();
 	}
 
 	private void ClearNpcBar(){
@@ -728,7 +740,7 @@ public class MainMajor : MonoBehaviour {
         JObject taskStory = JObject.Parse(msg);
 
         int trackId = int.Parse(taskStory["trackId"].ToString());
-        int trackActionId = int.Parse(taskStory["trackId"].ToString());
+        int trackActionId = int.Parse(taskStory["trackActionId"].ToString());
         int rewardId = int.Parse(taskStory["rewardId"].ToString());
 
         List<Story> stories = new List<Story> ();

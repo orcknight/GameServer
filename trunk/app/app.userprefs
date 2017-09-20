@@ -2,9 +2,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\MainWindow\MainMajor.cs">
     <Files>
-      <File FileName="Assets\Script\Model\Story.cs" Line="10" Column="5" />
-      <File FileName="Assets\Script\MainWindow\NpcTaskWindow.cs" Line="7" Column="41" />
-      <File FileName="Assets\Script\MainWindow\MainMajor.cs" Line="751" Column="3" />
+      <File FileName="Assets\Script\MainWindow\MainMajor.cs" Line="583" Column="42" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -16,11 +14,11 @@
       <Breakpoint file="F:\jiecheng\GameServer\trunk\app\Assets\SocketIO\WebsocketSharp\WebSocket.cs" line="1405" column="20" />
       <Breakpoint file="F:\jiecheng\GameServer\trunk\app\Assets\SocketIO\WebsocketSharp\WebSocket.cs" line="1410" column="18" />
       <Breakpoint file="F:\jiecheng\GameServer\trunk\app\Assets\SocketIO\WebsocketSharp\WebSocket.cs" line="1424" column="22" />
-      <Breakpoint file="F:\jiecheng\GameServer\trunk\app\Assets\Script\MainWindow\MainMajor.cs" line="232" column="1" />
       <Breakpoint file="F:\jiecheng\GameServer\trunk\app\Assets\Script\MainWindow\ObjectInfoPopManger.cs" line="22" column="1" />
-      <Breakpoint file="F:\jiecheng\GameServer\trunk\app\Assets\Script\MainWindow\MainMajor.cs" line="640" column="1" />
-      <Breakpoint file="F:\jiecheng\GameServer\trunk\app\Assets\Script\MainWindow\MainMajor.cs" line="686" column="1" />
-      <Breakpoint file="F:\jiecheng\GameServer\trunk\app\Assets\Script\MainWindow\MainMajor.cs" line="753" column="10" />
+      <Breakpoint file="F:\jiecheng\GameServer\trunk\app\Assets\Script\MainWindow\MainMajor.cs" line="646" column="1" />
+      <Breakpoint file="F:\jiecheng\GameServer\trunk\app\Assets\Script\MainWindow\MainMajor.cs" line="692" column="1" />
+      <Breakpoint file="F:\jiecheng\GameServer\trunk\app\Assets\Script\MainWindow\MainMajor.cs" line="759" column="10" />
+      <Breakpoint file="F:\jiecheng\GameServer\trunk\app\Assets\Script\MainWindow\MainMajor.cs" line="189" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

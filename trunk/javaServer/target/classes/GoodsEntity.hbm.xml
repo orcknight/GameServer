@@ -44,5 +44,14 @@
         <property name="deadline">
             <column name="deadline" sql-type="int(11)" not-null="true"/>
         </property>
+        <property name="droppable">
+            <column name="droppable" sql-type="tinyint(1)" not-null="true"/>
+        </property>
+        <property name="pickable">
+            <column name="pickable" sql-type="tinyint(1)" not-null="true"/>
+        </property>
+        <property name="shopable">
+            <column name="shopable" sql-type="tinyint(1)" not-null="true"/>
+        </property>
     </class>
 </hibernate-mapping>

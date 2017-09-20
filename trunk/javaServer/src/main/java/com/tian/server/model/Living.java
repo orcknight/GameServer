@@ -73,7 +73,7 @@ public class Living extends MudObject{
     protected Map<String, Integer> apply = new HashMap<String, Integer>(); //存储附加属性
     protected Map<String, Inquiry> inquirys = new HashMap<String, Inquiry>();
     protected List<MudObject> vendorGoods = new ArrayList<MudObject>();
-    protected List<Goods> packageList = new ArrayList<Goods>();
+    protected List<GoodsContainer> packageList = new ArrayList<GoodsContainer>();
 
     public String getName() {
         return this.name;
@@ -494,11 +494,11 @@ public class Living extends MudObject{
         this.getSkillPrepare().put(baseSkill, skillName);
     }
 
-    public List<Goods> getPackageList() {
+    public List<GoodsContainer> getPackageList() {
         return packageList;
     }
 
-    public void setPackageList(List<Goods> packageList) {
+    public void setPackageList(List<GoodsContainer> packageList) {
         this.packageList = packageList;
     }
 

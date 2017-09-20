@@ -199,7 +199,7 @@ MonoBehaviour:
   mGradientTop: {r: 1, g: 1, b: 1, a: 1}
   mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
   mSpacingX: 0
-  mSpacingY: 0
+  mSpacingY: 5
   mUseFloatSpacing: 0
   mFloatSpacingX: 0
   mFloatSpacingY: 0

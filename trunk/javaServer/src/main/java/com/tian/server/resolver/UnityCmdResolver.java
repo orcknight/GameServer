@@ -22,6 +22,7 @@ public class UnityCmdResolver {
     private String[] lookCmdArray = new String[] {"look", "open", "close"};
     private String[] fightCmdArray = new String[] {"fight"};
     private String[] taskCmdArray = new String[] {"reward"};
+    private String[] getCmdArray = new String[] {"get"};
 
     public UnityCmdResolver(SocketIOClient server){
 
@@ -43,6 +44,8 @@ public class UnityCmdResolver {
         Arrays.sort(chatCmdArray);
         Arrays.sort(lookCmdArray);
         Arrays.sort(fightCmdArray);
+        Arrays.sort(taskCmdArray);
+        Arrays.sort(getCmdArray);
 
         if(cmd.equals("checkversion")){
 
@@ -65,6 +68,9 @@ public class UnityCmdResolver {
         }else if(Arrays.binarySearch(taskCmdArray, cmd) > -1){
 
             handlerStr = "Task";
+        }else if(Arrays.binarySearch(getCmdArray, cmd) > -1){
+
+            handlerStr = "Get";
         }
 
         try {

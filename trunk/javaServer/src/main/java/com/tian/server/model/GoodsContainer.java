@@ -12,6 +12,8 @@ public class GoodsContainer extends MudObject {
 
     private GoodsEntity goodsEntity; //物品对应的
     private Integer count;
+    private Integer belongsId; //所有人ID
+
 
     protected Map<String ,String> actions = new HashMap<String, String>(); //动作
 
@@ -37,5 +39,13 @@ public class GoodsContainer extends MudObject {
 
     public void setActions(Map<String, String> actions) {
         this.actions = actions;
+    }
+
+    public Integer getBelongsId() {
+        return belongsId;
+    }
+
+    public void setBelongsId(Integer belongsId) {
+        this.belongsId = belongsId;
     }
 }

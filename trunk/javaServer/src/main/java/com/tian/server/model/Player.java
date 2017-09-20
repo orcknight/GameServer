@@ -21,6 +21,8 @@ public class Player extends Human {
     private Integer food = 0;
     private Integer maxWater = 0;
     private Integer water = 0;
+    private Long money = 0L;
+    private Integer ticket = 0;
 
     //用户信息
     private UserEntity user;
@@ -89,6 +91,8 @@ public class Player extends Human {
         String surname = player.getSurname() == null ? "" : player.getSurname();
         String familyName = player.getFamilyName() == null ? "" : player.getFamilyName();
         String bunchName = player.getBunchName() == null ? "" : player.getBunchName();
+        Long money = player.getMoney() == null ? 0L : player.getMoney();
+        Integer ticket = player.getTicket() == null ? 0 : player.getTicket();
 
         setPlayerId(playerId);
         setCmdName(cmdName);
@@ -133,6 +137,8 @@ public class Player extends Human {
         setSurname(surname);
         setFamilyName(familyName);
         setBunchName(bunchName);
+        setMoney(money);
+        setTicket(ticket);
     }
 
     public void setSocketClient(SocketIOClient socketClient) {
@@ -189,6 +195,22 @@ public class Player extends Human {
 
     public void setWater(Integer water) {
         this.water = water;
+    }
+
+    public Long getMoney() {
+        return money;
+    }
+
+    public void setMoney(Long money) {
+        this.money = money;
+    }
+
+    public Integer getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(Integer ticket) {
+        this.ticket = ticket;
     }
 
     public void setUser(UserEntity user) {

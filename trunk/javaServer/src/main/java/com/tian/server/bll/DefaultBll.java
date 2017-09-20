@@ -5,7 +5,9 @@ import com.tian.server.dao.*;
 import com.tian.server.entity.*;
 import com.tian.server.model.Living;
 import com.tian.server.model.Player;
+import com.tian.server.resolver.UnityCmdResolver;
 import com.tian.server.service.RoomService;
+import com.tian.server.util.GoodsManager;
 import com.tian.server.util.UnityCmdUtil;
 import com.tian.server.util.UserCacheUtil;
 import com.tian.server.util.XmlUtil;
@@ -60,11 +62,14 @@ public class DefaultBll extends BaseBll {
         if(UserCacheUtil.getRoomObjectsCache().isEmpty()){
 
             RoomContentDao roomContentDao = new RoomContentDao();
-            ItemDao itemDao = new ItemDao();
+            GoodsDao goodsDao = new GoodsDao();
             NpcDao npcDao = new NpcDao();
             List<RoomContentEntity> roomContents = roomContentDao.getList();
-            List<ItemEntity> items = itemDao.getList();
+            List<GoodsEntity> goodsEntities = goodsDao.getList();
             List<NpcEntity> npcs = npcDao.getList();
+
+            GoodsManager goodsManager = new GoodsManager();
+            goodsManager.initData(goodsEntities);
 
             /*for(NpcEntity npc : npcs) {
 
@@ -98,7 +103,7 @@ public class DefaultBll extends BaseBll {
                 }
             }*/
 
-            UserCacheUtil.initRoomObjectsCache(roomContents, items, npcs);
+            UserCacheUtil.initRoomObjectsCache(roomContents, npcs);
 
             //初始化门
             RoomGateDao roomGateDao = new RoomGateDao();

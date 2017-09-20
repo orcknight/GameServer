@@ -5,6 +5,8 @@ using UnityEngine;
 public class ProtoCode {
 
 	public const string CHECK_VERSION_CODE = "001"; //验证版本成功
+    public const string CLEAR_SCREEN_CODE = "0002"; //清屏代码,清空infowindow和npc等窗口
+    public const string EMPTY_CODE = "0003"; //空动作，啥都不做
 	public const string INFO_WINDOW_CODE = "015"; //发送消息到信息主窗口
 	public const string CREATE_ROLE_CODE = "0000008"; //打开创建角色窗口
 	public const string POP_WINDOW_CODE = "000100"; //弹出对话框

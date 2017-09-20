@@ -28,7 +28,7 @@ public class GoodsManager {
         }
     }
 
-    public GoodsContainer createById(Integer id, Integer count){
+    public GoodsContainer createById(Integer id, Integer count, Integer belongsId){
 
         GoodsEntity goodsEntity = goodsEntityMap.get(id);
         if(goodsEntity == null){
@@ -36,11 +36,11 @@ public class GoodsManager {
             return null;
         }
 
-        return createGoodsContainer(goodsEntity, count);
+        return createGoodsContainer(goodsEntity, count, belongsId);
 
     }
 
-    public GoodsContainer createByPathName(String pathName, Integer count){
+    public GoodsContainer createByPathName(String pathName, Integer count, Integer belongsId){
 
         GoodsEntity goodsEntity = goodsPathMap.get(pathName);
         if(goodsEntity == null){
@@ -48,14 +48,15 @@ public class GoodsManager {
             return null;
         }
 
-        return createGoodsContainer(goodsEntity, count);
+        return createGoodsContainer(goodsEntity, count, belongsId);
     }
 
-    private GoodsContainer createGoodsContainer(GoodsEntity goodsEntity, Integer count){
+    private GoodsContainer createGoodsContainer(GoodsEntity goodsEntity, Integer count, Integer belongsId){
 
         GoodsContainer goodsContainer = new GoodsContainer();
         goodsContainer.setUuid(IdUtil.getUUID());
         goodsContainer.setCount(count);
+        goodsContainer.setBelongsId(belongsId);
         goodsContainer.setGoodsEntity(goodsEntity);
         //放到物品缓存中
         UserCacheUtil.getAllObjects().put(goodsContainer.getUuid(), goodsContainer);

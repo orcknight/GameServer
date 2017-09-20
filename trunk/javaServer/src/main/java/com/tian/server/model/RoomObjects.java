@@ -1,5 +1,6 @@
 package com.tian.server.model;
 
+import com.tian.server.entity.GoodsEntity;
 import com.tian.server.entity.ItemEntity;
 import com.tian.server.entity.PlayerEntity;
 import com.tian.server.entity.RoomGateEntity;
@@ -16,7 +17,7 @@ public class RoomObjects {
 
     private List<Player> players; //玩家列表
     private List<Living> npcs; //npc列表
-    private List<ItemEntity> items; //物品列表;
+    private List<GoodsContainer> goods; //物品列表;
     private Map<String, RoomGateEntity> gates; //门
 
     public List<Player> getPlayers(){
@@ -48,14 +49,18 @@ public class RoomObjects {
         this.npcs = npcs;
     }
 
-    public List<ItemEntity> getItems(){
+    public List<GoodsContainer> getGoods(){
 
-        return this.items;
+        if(this.goods == null){
+            this.goods = new ArrayList<GoodsContainer>();
+        }
+
+        return this.goods;
     }
 
-    public void setItems(List<ItemEntity> items){
+    public void setGoods(List<GoodsContainer> goods){
 
-        this.items = items;
+        this.goods = goods;
     }
 
     public Map<String, RoomGateEntity> getGates(){

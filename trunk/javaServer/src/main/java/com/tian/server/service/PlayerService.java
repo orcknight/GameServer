@@ -3,6 +3,7 @@ package com.tian.server.service;
 import com.tian.server.dao.PlayerDao;
 import com.tian.server.entity.PlayerEntity;
 import com.tian.server.entity.RoomGateEntity;
+import com.tian.server.model.GoodsContainer;
 import com.tian.server.model.Living;
 import com.tian.server.model.MudObject;
 import com.tian.server.model.Player;
@@ -61,9 +62,11 @@ public class PlayerService {
         JSONArray livingArrays = new JSONArray();
         for(Living living : livingList) {
 
+            String displayName = living.getNickname().length() > 0 ?
+                    (living.getNickname() + "\n" + living.getName()) : (living.getName());
             JSONObject msgObject = new JSONObject();
             msgObject.put("cmd", "look");
-            msgObject.put("displayName", living.getNickname() + "\n" + living.getName());
+            msgObject.put("displayName", displayName);
             msgObject.put("objId", "/" + livingType + "/" + livingType + "#" + living.getUuid());
             livingArrays.add(msgObject);
         }
@@ -80,10 +83,11 @@ public class PlayerService {
         }
 
         JSONArray livingArrays = new JSONArray();
-
         JSONObject msgObject = new JSONObject();
+        String displayName = living.getNickname().length() > 0 ?
+                (living.getNickname() + "\n" + living.getName()) : (living.getName());
         msgObject.put("cmd", "look");
-        msgObject.put("displayName", living.getName());
+        msgObject.put("displayName", displayName);
         msgObject.put("objId", "/" + livingType + "/" + livingType + "#" + living.getUuid());
         livingArrays.add(msgObject);
 
@@ -109,6 +113,23 @@ public class PlayerService {
         }
 
         JSONObject enterObject = UnityCmdUtil.getObjectEnterRet(livingArrays);
+        return enterObject;
+    }
+
+    public JSONObject getLookGoodsProto(List<GoodsContainer> goodsContainerList){
+
+        JSONArray goodsArrays = new JSONArray();
+        JSONObject msgObject = new JSONObject();
+        String goodsType = "goods";
+        for(GoodsContainer goodsContainer : goodsContainerList) {
+
+            msgObject.put("cmd", "look");
+            msgObject.put("displayName", goodsContainer.getGoodsEntity().getName());
+            msgObject.put("objId", "/" + goodsType + "/" + goodsType + "#" + goodsContainer.getUuid());
+            goodsArrays.add(msgObject);
+        }
+
+        JSONObject enterObject = UnityCmdUtil.getObjectEnterRet(goodsArrays);
         return enterObject;
     }
 

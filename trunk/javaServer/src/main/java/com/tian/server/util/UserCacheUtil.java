@@ -105,7 +105,7 @@ public class UserCacheUtil {
         UserCacheUtil.cityedRooms = cityedRooms;
     }
 
-    public static void initRoomObjectsCache(List<RoomContentEntity> roomContents, List<ItemEntity> items, List<NpcEntity> npcs){
+    public static void initRoomObjectsCache(List<RoomContentEntity> roomContents, List<NpcEntity> npcs){
 
         for(RoomContentEntity roomContent : roomContents){
 
@@ -128,11 +128,11 @@ public class UserCacheUtil {
                 roomNpcs.add(npc);
             }else{
 
-                List<ItemEntity> savedItems = roomObjects.getItems();
-                ItemEntity item = (ItemEntity)items.get(roomContent.getRefId()).clone();
-                item.setUuid(IdUtil.getUUID());
-                savedItems.add(item);
-                roomObjects.setItems(savedItems);
+                GoodsManager goodsManager = new GoodsManager();
+                List<GoodsContainer> savedGoods = roomObjects.getGoods();
+                GoodsContainer goodsContainer = goodsManager.createById(roomContent.getRefId(), roomContent.getCount(), 0);
+                savedGoods.add(goodsContainer);
+                roomObjects.setGoods(savedGoods);
             }
         }
     }

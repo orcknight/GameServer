@@ -29,9 +29,9 @@ public class GameCamera : MonoBehaviour {
 			orthographicSize = devWidth / (2 * aspectRatio);
 			Debug.Log ("new orthographicSize = " + orthographicSize);
 			this.GetComponent<Camera>().orthographicSize = orthographicSize;
-		}*/
+		}
 
-		/*int ManualWidth = 1080;
+		int ManualWidth = 1080;
 		int ManualHeight = 1920;
 		int manualHeight;
 		if (System.Convert.ToSingle(Screen.height) / Screen.width > System.Convert.ToSingle(ManualHeight) / ManualWidth)

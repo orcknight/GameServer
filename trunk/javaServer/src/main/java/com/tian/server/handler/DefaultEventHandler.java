@@ -9,7 +9,6 @@ import net.sf.json.JSONObject;
  */
 public class DefaultEventHandler implements CmdEventHandler {
 
-
     public void handle(SocketIOClient socketIOClient, String cmd, JSONObject data) {
 
         DefaultBll defaultBll = new DefaultBll(socketIOClient);

@@ -467,6 +467,13 @@ public class UserBll extends BaseBll {
             jsonArray.add(userObject);
         }
 
+        List<GoodsContainer> goodsContainers = roomObjects.getGoods();
+        if(goodsContainers.size() > 0){
+
+            JSONObject goodsObject = playerService.getLookGoodsProto(goodsContainers);
+            jsonArray.add(goodsObject);
+        }
+
         Map<String, RoomGateEntity> roomGates = roomObjects.getGates();
         if(roomGates.size() > 0){
 

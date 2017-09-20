@@ -12,7 +12,7 @@ public class GoodsDao extends BaseDao {
 
     public List<GoodsEntity> getList(){
 
-        String queryStr = "SELECT * FROM city";
+        String queryStr = "SELECT * FROM goods";
         Query q = getSession().createNativeQuery(queryStr).addEntity(GoodsEntity.class);
         List<GoodsEntity> list = q.getResultList();
 

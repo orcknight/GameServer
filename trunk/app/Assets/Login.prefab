@@ -55,7 +55,7 @@ MonoBehaviour:
   mSprites:
   - name: 01-Clean-Minimalistic_Home
     x: 0
-    y: 215
+    y: 1509
     width: 2048
     height: 1293
     borderLeft: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: Add-User-Icon-Small
     x: 3169
-    y: 3052
+    y: 2997
     width: 49
     height: 43
     borderLeft: 0
@@ -79,9 +79,22 @@ MonoBehaviour:
     paddingRight: 3
     paddingTop: 2
     paddingBottom: 2
+  - name: Bag-Cell-Icon
+    x: 2664
+    y: 2683
+    width: 36
+    height: 36
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: BlueDark-Button-Outline
-    x: 2617
-    y: 2821
+    x: 901
+    y: 114
     width: 348
     height: 100
     borderLeft: 0
@@ -107,9 +120,9 @@ MonoBehaviour:
     paddingBottom: 0
   - name: Blue-Rect-Outline
     x: 1242
-    y: 25
-    width: 284
-    height: 88
+    y: 23
+    width: 286
+    height: 90
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -146,7 +159,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: Dark-Skin-Background
     x: 0
-    y: 1509
+    y: 215
     width: 2048
     height: 1293
     borderLeft: 0
@@ -171,7 +184,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Gray-Rect-Outline
-    x: 2893
+    x: 2617
     y: 3023
     width: 275
     height: 135
@@ -184,8 +197,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Green-Button
-    x: 901
-    y: 114
+    x: 2617
+    y: 2720
     width: 348
     height: 100
     borderLeft: 0
@@ -223,8 +236,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Lock-Icon-Small
-    x: 3204
-    y: 2970
+    x: 394
+    y: 36
     width: 34
     height: 40
     borderLeft: 0
@@ -263,7 +276,7 @@ MonoBehaviour:
     paddingBottom: 3
   - name: Orange-Button
     x: 2617
-    y: 2922
+    y: 2821
     width: 348
     height: 100
     borderLeft: 0
@@ -302,7 +315,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: Red-Button-Outline
     x: 2617
-    y: 2720
+    y: 2922
     width: 348
     height: 100
     borderLeft: 0
@@ -314,7 +327,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Red-Rect-Outline
-    x: 2617
+    x: 2893
     y: 3023
     width: 275
     height: 135
@@ -326,9 +339,22 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: Smartphone-Icon
+  - name: Slot-layout
     x: 3169
-    y: 2991
+    y: 3041
+    width: 54
+    height: 54
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Smartphone-Icon
+    x: 318
+    y: 16
     width: 34
     height: 60
     borderLeft: 0
@@ -366,8 +392,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: User-Icon-Small
-    x: 3204
-    y: 3011
+    x: 353
+    y: 36
     width: 40
     height: 40
     borderLeft: 0

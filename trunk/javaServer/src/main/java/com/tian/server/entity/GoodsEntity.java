@@ -19,8 +19,11 @@ public class GoodsEntity {
     private String longDesc;
     private String resource;
     private String pathName;
-    private Byte stackable;
+    private Boolean stackable;
     private Integer deadline;
+    private Boolean droppable;
+    private Boolean pickable;
+    private Boolean shopable;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -134,11 +137,11 @@ public class GoodsEntity {
 
     @Basic
     @Column(name = "stackable", nullable = true)
-    public Byte getStackable() {
+    public Boolean getStackable() {
         return stackable;
     }
 
-    public void setStackable(Byte stackable) {
+    public void setStackable(Boolean stackable) {
         this.stackable = stackable;
     }
 
@@ -150,6 +153,36 @@ public class GoodsEntity {
 
     public void setDeadline(Integer deadline) {
         this.deadline = deadline;
+    }
+
+    @Basic
+    @Column(name = "droppable", nullable = true)
+    public Boolean getDroppable() {
+        return droppable;
+    }
+
+    public void setDroppable(Boolean droppable) {
+        this.droppable = droppable;
+    }
+
+    @Basic
+    @Column(name = "pickable", nullable = true)
+    public Boolean getPickable() {
+        return pickable;
+    }
+
+    public void setPickable(Boolean pickable) {
+        this.pickable = pickable;
+    }
+
+    @Basic
+    @Column(name = "shopable", nullable = true)
+    public Boolean getShopable() {
+        return shopable;
+    }
+
+    public void setShopable(Boolean shopable) {
+        this.shopable = shopable;
     }
 
     @Override
