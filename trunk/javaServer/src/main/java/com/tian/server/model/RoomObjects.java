@@ -16,7 +16,9 @@ import java.util.Map;
 public class RoomObjects {
 
     private List<Player> players; //玩家列表
-    private List<Living> npcs; //npc列表
+
+    private Map<Integer, Living> npcs;
+    //private List<Living> npcs; //npc列表
     private List<GoodsContainer> goods; //物品列表;
     private Map<String, RoomGateEntity> gates; //门
 
@@ -35,17 +37,17 @@ public class RoomObjects {
         this.players = players;
     }
 
-    public List<Living> getNpcs() {
+    public Map<Integer, Living> getNpcs() {
 
         if(this.npcs == null){
 
-            this.npcs = new ArrayList<Living>();
+            this.npcs = new HashMap<Integer, Living>();
         }
 
         return npcs;
     }
 
-    public void setNpcs(List<Living> npcs) {
+    public void setNpcs(Map<Integer, Living> npcs) {
         this.npcs = npcs;
     }
 

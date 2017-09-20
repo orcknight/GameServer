@@ -276,7 +276,7 @@ public class MoveBll extends BaseBll {
 
         JSONArray jsonArray = new JSONArray();
         PlayerService playerService = new PlayerService();
-        List<Living> npcs = roomObjects.getNpcs();
+        Map<Integer, Living> npcs = roomObjects.getNpcs();
         if(npcs.size() > 0){
 
             JSONObject npcObject = playerService.getLookLivingProto(npcs, "npc");
@@ -301,7 +301,7 @@ public class MoveBll extends BaseBll {
         Map<String, RoomGateEntity> roomGates = roomObjects.getGates();
         if(roomGates.size() > 0){
 
-            JSONObject userObject = playerService.getLookLivingProto(roomGates, "gates");
+            JSONObject userObject = playerService.getLookGateProto(roomGates, "gates");
             jsonArray.add(userObject);
         }
 

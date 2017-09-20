@@ -60,7 +60,32 @@ public class PlayerService {
         }
 
         JSONArray livingArrays = new JSONArray();
-        for(Living living : livingList) {
+
+        for (Living living : livingList) {
+
+            String displayName = living.getNickname().length() > 0 ?
+                    (living.getNickname() + "\n" + living.getName()) : (living.getName());
+            JSONObject msgObject = new JSONObject();
+            msgObject.put("cmd", "look");
+            msgObject.put("displayName", displayName);
+            msgObject.put("objId", "/" + livingType + "/" + livingType + "#" + living.getUuid());
+            livingArrays.add(msgObject);
+        }
+
+        JSONObject enterObject = UnityCmdUtil.getObjectEnterRet(livingArrays);
+        return enterObject;
+    }
+
+    public JSONObject getLookLivingProto(Map<Integer, Living> livingList, String livingType){
+
+        if(livingType == null || livingType.length() < 1){
+
+            livingType = "user";
+        }
+
+        JSONArray livingArrays = new JSONArray();
+
+        for (Living living : livingList.values()) {
 
             String displayName = living.getNickname().length() > 0 ?
                     (living.getNickname() + "\n" + living.getName()) : (living.getName());
@@ -95,7 +120,7 @@ public class PlayerService {
         return enterObject;
     }
 
-    public JSONObject getLookLivingProto(Map<String, RoomGateEntity> roomGates, String livingType){
+    public JSONObject getLookGateProto(Map<String, RoomGateEntity> roomGates, String livingType){
 
         if(livingType == null || livingType.length() < 1){
 

@@ -124,8 +124,8 @@ public class UserCacheUtil {
                 npc.setLocation(allMaps.get(roomContent.getRoomName()));
 
                 //把npc放到对应的房间里
-                List<Living> roomNpcs = roomObjects.getNpcs();
-                roomNpcs.add(npc);
+                Map<Integer, Living> roomNpcs = roomObjects.getNpcs();
+                roomNpcs.put(npc.getId(), npc);
             }else{
 
                 GoodsManager goodsManager = new GoodsManager();

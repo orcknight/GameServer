@@ -301,13 +301,13 @@ public class ZjMudUtil {
         StringBuffer sb = new StringBuffer();
         String contact = "$zj#";
 
-        List<Living> npcs = roomObjects.getNpcs();
+        Map<Integer, Living> npcs = roomObjects.getNpcs();
         if(npcs.size() > 0) {
 
             sb.append("\u001B005");
             int temp = 0;
 
-            for(Living npc : npcs){
+            for(Living npc : npcs.values()){
 
                 if(temp > 0){
 
