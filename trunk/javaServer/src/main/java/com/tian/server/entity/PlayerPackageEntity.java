@@ -10,10 +10,10 @@ import javax.persistence.*;
 public class PlayerPackageEntity {
     private int id;
     private Integer playerId;
-    private String type;
     private Integer count;
     private Integer goodsId;
     private Long goodsUuid;
+    private String goodsAttr;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -33,16 +33,6 @@ public class PlayerPackageEntity {
 
     public void setPlayerId(Integer playerId) {
         this.playerId = playerId;
-    }
-
-    @Basic
-    @Column(name = "type", nullable = true, length = 64)
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     @Basic
@@ -75,6 +65,16 @@ public class PlayerPackageEntity {
         this.goodsUuid = goodsUuid;
     }
 
+    @Basic
+    @Column(name = "goodsAttr", nullable = true, length = 1024)
+    public String getGoodsAttr() {
+        return goodsAttr;
+    }
+
+    public void setGoodsAttr(String goodsAttr) {
+        this.goodsAttr = goodsAttr;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -84,7 +84,6 @@ public class PlayerPackageEntity {
 
         if (id != that.id) return false;
         if (playerId != null ? !playerId.equals(that.playerId) : that.playerId != null) return false;
-        if (type != null ? !type.equals(that.type) : that.type != null) return false;
         if (count != null ? !count.equals(that.count) : that.count != null) return false;
         if (goodsId != null ? !goodsId.equals(that.goodsId) : that.goodsId != null) return false;
         if (goodsUuid != null ? !goodsUuid.equals(that.goodsUuid) : that.goodsUuid != null) return false;
@@ -96,7 +95,6 @@ public class PlayerPackageEntity {
     public int hashCode() {
         int result = id;
         result = 31 * result + (playerId != null ? playerId.hashCode() : 0);
-        result = 31 * result + (type != null ? type.hashCode() : 0);
         result = 31 * result + (count != null ? count.hashCode() : 0);
         result = 31 * result + (goodsId != null ? goodsId.hashCode() : 0);
         result = 31 * result + (goodsUuid != null ? goodsUuid.hashCode() : 0);

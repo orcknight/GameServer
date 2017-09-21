@@ -1,6 +1,7 @@
 package com.tian.server.util;
 
 import com.tian.server.entity.GoodsEntity;
+import com.tian.server.entity.PlayerPackageEntity;
 import com.tian.server.model.GoodsContainer;
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaValue;
@@ -28,7 +29,7 @@ public class GoodsManager {
         }
     }
 
-    public GoodsContainer createById(Integer id, Integer count, Integer belongsId){
+    public GoodsContainer createById(Integer id, Integer count, PlayerPackageEntity belongsInfo){
 
         GoodsEntity goodsEntity = goodsEntityMap.get(id);
         if(goodsEntity == null){
@@ -36,11 +37,23 @@ public class GoodsManager {
             return null;
         }
 
-        return createGoodsContainer(goodsEntity, count, belongsId);
+        return createGoodsContainer(goodsEntity, count, belongsInfo);
 
     }
 
-    public GoodsContainer createByPathName(String pathName, Integer count, Integer belongsId){
+    public GoodsContainer createById(Integer id, Long uuid, Integer count, PlayerPackageEntity belongsInfo){
+
+        GoodsEntity goodsEntity = goodsEntityMap.get(id);
+        if(goodsEntity == null){
+
+            return null;
+        }
+
+        return createGoodsContainer(goodsEntity, uuid, count, belongsInfo);
+
+    }
+
+    public GoodsContainer createByPathName(String pathName, Integer count, PlayerPackageEntity belongsInfo){
 
         GoodsEntity goodsEntity = goodsPathMap.get(pathName);
         if(goodsEntity == null){
@@ -48,15 +61,31 @@ public class GoodsManager {
             return null;
         }
 
-        return createGoodsContainer(goodsEntity, count, belongsId);
+        return createGoodsContainer(goodsEntity, count, belongsInfo);
     }
 
-    private GoodsContainer createGoodsContainer(GoodsEntity goodsEntity, Integer count, Integer belongsId){
+    public GoodsContainer createByPathName(String pathName, Long uuid, Integer count, PlayerPackageEntity belongsInfo){
+
+        GoodsEntity goodsEntity = goodsPathMap.get(pathName);
+        if(goodsEntity == null){
+
+            return null;
+        }
+
+        return createGoodsContainer(goodsEntity, uuid, count, belongsInfo);
+    }
+
+    private GoodsContainer createGoodsContainer(GoodsEntity goodsEntity, Integer count, PlayerPackageEntity belongsInfo){
+
+        return createGoodsContainer(goodsEntity, IdUtil.getUUID(), count, belongsInfo) ;
+    }
+
+    private GoodsContainer createGoodsContainer(GoodsEntity goodsEntity, Long uuid, Integer count, PlayerPackageEntity belongsInfo){
 
         GoodsContainer goodsContainer = new GoodsContainer();
-        goodsContainer.setUuid(IdUtil.getUUID());
+        goodsContainer.setUuid(uuid);
         goodsContainer.setCount(count);
-        goodsContainer.setBelongsId(belongsId);
+        goodsContainer.setBelongsInfo(belongsInfo);
         goodsContainer.setGoodsEntity(goodsEntity);
         //放到物品缓存中
         UserCacheUtil.getAllObjects().put(goodsContainer.getUuid(), goodsContainer);

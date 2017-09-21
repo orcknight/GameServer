@@ -5,11 +5,13 @@ import com.tian.server.common.GoodsType;
 import com.tian.server.dao.PlayerDao;
 import com.tian.server.dao.PlayerPackageDao;
 import com.tian.server.entity.PlayerEntity;
+import com.tian.server.entity.PlayerPackageEntity;
 import com.tian.server.model.*;
 import com.tian.server.util.UnityCmdUtil;
 import com.tian.server.util.UserCacheUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import org.hibernate.Transaction;
 
 import java.util.List;
 import java.util.Map;
@@ -54,52 +56,128 @@ public class GetBll extends BaseBll {
                 Integer amount = goodsContainer.getGoodsEntity().getValue() * goodsContainer.getCount();
                 player.setMoney(player.getMoney() + amount);
 
-                //持久化金钱
-                PlayerDao playerDao = new PlayerDao();
-                PlayerEntity playerEntity = playerDao.getById(player.getPlayerId());
-                playerEntity.setMoney(player.getMoney());
-                playerDao.update(playerEntity);
+                Transaction transaction = getSession().getTransaction();
+                try {
+                    transaction.begin();
+                    //持久化金钱
+                    PlayerDao playerDao = new PlayerDao();
+                    PlayerEntity playerEntity = playerDao.getById(player.getPlayerId());
+                    playerEntity.setMoney(player.getMoney());
+                    playerDao.update(playerEntity);
+                    transaction.commit();
+                }catch (Exception e){
 
-                //把物品从房间移除
-                RoomObjects roomObjects = UserCacheUtil.getRoomObjectsCache().get(player.getLocation().getName());
-                if(roomObjects != null){
-
-                    roomObjects.getGoods().remove(goodsContainer);
+                    transaction.rollback();
                 }
 
-                String msg = "你捡起了" + goodsContainer.getCount().toString() +
-                        goodsContainer.getGoodsEntity().getUnit() + goodsContainer.getGoodsEntity().getName();
 
-                JSONObject infoObject = UnityCmdUtil.getInfoWindowRet(msg);
-                JSONObject msgObject = new JSONObject();
-                msgObject.put("cmd", "look");
-                msgObject.put("displayName", goodsContainer.getGoodsEntity().getName());
-                msgObject.put("objId", "/goods/goods#" + goodsContainer.getUuid());
-
-                JSONObject outObject = UnityCmdUtil.getObjectOutRet(msgObject);
-                jsonArray.add(infoObject);
-                jsonArray.add(outObject);
-                //发送移除物品的命令
-                sendMsg(jsonArray);
-
-                //把物品从AllObjects移除
-                allObjects.remove(goodsContainer);
-                return;
 
             }else{
 
+                //如果是物品
                 //把物品赋值给用户
                 if(goodsContainer.getGoodsEntity().getStackable()){
 
                     List<GoodsContainer> goodsContainerList = player.getPackageList();
+                    GoodsContainer existGoodsContainer = null;
+                    for(GoodsContainer goodsContainer1 : goodsContainerList) {
 
+                        if (goodsContainer1.getGoodsEntity().getId() == goodsContainer.getGoodsEntity().getId()) {
+
+                            existGoodsContainer = goodsContainer1;
+                            break;
+                        }
+                    }
+
+                    if(existGoodsContainer == null){
+
+                        Transaction transaction = getSession().getTransaction();
+
+                        try{
+                            transaction.begin();
+                            PlayerPackageEntity playerPackageEntity = new PlayerPackageEntity();
+                            playerPackageEntity.setGoodsId(goodsContainer.getGoodsEntity().getId());
+                            playerPackageEntity.setPlayerId(player.getPlayerId());
+                            playerPackageEntity.setCount(goodsContainer.getCount());
+                            playerPackageEntity.setGoodsUuid(goodsContainer.getUuid());
+                            playerPackageEntity.setGoodsAttr(goodsContainer.getAttr().toString());
+                            playerPackageDao.add(playerPackageEntity);
+                            transaction.commit();
+
+                            goodsContainer.setBelongsInfo(playerPackageEntity);
+                            goodsContainerList.add(goodsContainer);
+                        }catch(Exception e){
+
+                            transaction.rollback();
+                        }
+                    }else{
+                        //update
+                        existGoodsContainer.setCount(existGoodsContainer.getCount() + goodsContainer.getCount());
+                        existGoodsContainer.getBelongsInfo().setCount(existGoodsContainer.getCount());
+                        Transaction transaction = getSession().getTransaction();
+
+                        try {
+                            transaction.begin();
+                            playerPackageDao.update(existGoodsContainer.getBelongsInfo());
+                            transaction.commit();
+                        } catch (Exception e) {
+                            transaction.rollback();
+                        }
+
+                    }
 
                 }else{
+
+                    Transaction transaction = getSession().getTransaction();
+
+                    try{
+                        transaction.begin();
+                        PlayerPackageEntity playerPackageEntity = new PlayerPackageEntity();
+                        playerPackageEntity.setGoodsId(goodsContainer.getGoodsEntity().getId());
+                        playerPackageEntity.setPlayerId(player.getPlayerId());
+                        playerPackageEntity.setCount(goodsContainer.getCount());
+                        playerPackageEntity.setGoodsUuid(goodsContainer.getUuid());
+                        playerPackageEntity.setGoodsAttr(goodsContainer.getAttr().toString());
+                        playerPackageDao.add(playerPackageEntity);
+                        transaction.commit();
+
+                        goodsContainer.setBelongsInfo(playerPackageEntity);
+                        List<GoodsContainer> goodsContainerList = player.getPackageList();
+                        goodsContainerList.add(goodsContainer);
+                    }catch(Exception e){
+
+                        transaction.rollback();
+                    }
 
 
                 }
 
             }
+
+            //把物品从房间移除
+            RoomObjects roomObjects = UserCacheUtil.getRoomObjectsCache().get(player.getLocation().getName());
+            if(roomObjects != null){
+
+                roomObjects.getGoods().remove(goodsContainer.getUuid());
+            }
+
+            String msg = "你捡起了" + goodsContainer.getCount().toString() +
+                    goodsContainer.getGoodsEntity().getUnit() + goodsContainer.getGoodsEntity().getName();
+
+            JSONObject infoObject = UnityCmdUtil.getInfoWindowRet(msg);
+            JSONObject msgObject = new JSONObject();
+            msgObject.put("cmd", "look");
+            msgObject.put("displayName", goodsContainer.getGoodsEntity().getName());
+            msgObject.put("objId", "/goods/goods#" + goodsContainer.getUuid());
+
+            JSONObject outObject = UnityCmdUtil.getObjectOutRet(msgObject);
+            jsonArray.add(infoObject);
+            jsonArray.add(outObject);
+            //发送移除物品的命令
+            sendMsg(jsonArray);
+
+            //把物品从AllObjects移除
+            allObjects.remove(goodsContainer.getUuid());
         }
 
 

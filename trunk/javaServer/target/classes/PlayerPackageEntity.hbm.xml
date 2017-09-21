@@ -4,15 +4,13 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.tian.server.entity.PlayerPackageEntity" table="player_package" schema="bdm25683027_db">
+    <class name="com.tian.server.entity.PlayerPackageEntity" table="player_package" schema="bdm25683027_db" dynamic-insert="true" dynamic-update="true">
         <id name="id">
             <column name="id" sql-type="int(11)"/>
+            <generator class="identity" />
         </id>
         <property name="playerId">
             <column name="playerId" sql-type="int(11)" not-null="true"/>
-        </property>
-        <property name="type">
-            <column name="type" sql-type="varchar(64)" length="64" not-null="true"/>
         </property>
         <property name="count">
             <column name="count" sql-type="int(11)" not-null="true"/>
@@ -22,6 +20,9 @@
         </property>
         <property name="goodsUuid">
             <column name="goodsUUID" sql-type="bigint(19)" not-null="true"/>
+        </property>
+        <property name="goodsAttr">
+            <column name="goodsAttr" sql-type="varchar(1024)" length="1024" not-null="true"/>
         </property>
     </class>
 </hibernate-mapping>

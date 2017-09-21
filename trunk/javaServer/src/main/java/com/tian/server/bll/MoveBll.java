@@ -3,10 +3,7 @@ package com.tian.server.bll;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.tian.server.entity.RoomEntity;
 import com.tian.server.entity.RoomGateEntity;
-import com.tian.server.model.Living;
-import com.tian.server.model.Player;
-import com.tian.server.model.PlayerLocation;
-import com.tian.server.model.RoomObjects;
+import com.tian.server.model.*;
 import com.tian.server.service.PlayerService;
 import com.tian.server.service.RoomService;
 import com.tian.server.util.UnityCmdUtil;
@@ -276,7 +273,7 @@ public class MoveBll extends BaseBll {
 
         JSONArray jsonArray = new JSONArray();
         PlayerService playerService = new PlayerService();
-        Map<Integer, Living> npcs = roomObjects.getNpcs();
+        Map<Long, Living> npcs = roomObjects.getNpcs();
         if(npcs.size() > 0){
 
             JSONObject npcObject = playerService.getLookLivingProto(npcs, "npc");
@@ -296,6 +293,13 @@ public class MoveBll extends BaseBll {
 
             JSONObject userObject = playerService.getLookLivingProto(excludeMe, "user");
             jsonArray.add(userObject);
+        }
+
+        Map<Long, GoodsContainer> goodsContainers = roomObjects.getGoods();
+        if(goodsContainers.size() > 0){
+
+            JSONObject goodsObject = playerService.getLookGoodsProto(goodsContainers);
+            jsonArray.add(goodsObject);
         }
 
         Map<String, RoomGateEntity> roomGates = roomObjects.getGates();

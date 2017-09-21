@@ -21,4 +21,23 @@ public class NpcDao extends BaseDao {
 
         return retList;
     }
+
+    public NpcEntity getById(int id){
+
+        String queryStr = "SELECT * FROM npc WHERE id = " + id;
+        Query q = getSession().createNativeQuery(queryStr).addEntity(NpcEntity.class);
+        List<NpcEntity> retList = q.getResultList();
+
+        NpcEntity npcEntity;
+        if(retList.isEmpty()){
+
+            return null;
+        }else{
+
+            npcEntity = retList.get(0);
+        }
+
+        return npcEntity;
+    }
+
 }

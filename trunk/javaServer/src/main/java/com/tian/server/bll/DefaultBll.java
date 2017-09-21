@@ -3,8 +3,7 @@ package com.tian.server.bll;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.tian.server.dao.*;
 import com.tian.server.entity.*;
-import com.tian.server.model.Living;
-import com.tian.server.model.Player;
+import com.tian.server.model.*;
 import com.tian.server.resolver.UnityCmdResolver;
 import com.tian.server.service.RoomService;
 import com.tian.server.util.GoodsManager;
@@ -148,6 +147,75 @@ public class DefaultBll extends BaseBll {
 
             }
         }, 2 * 1000, 2 * 1000);
+
+
+        //刷新npc,物品等，正常15分钟刷新一次，这里为了测试暂时定为20秒一次
+        Timer refreshTimer = new Timer();
+        refreshTimer.schedule(new TimerTask() {
+            public void run() {
+
+                Map<Long, MudObject> allObjects = UserCacheUtil.getAllObjects();
+                Map<String, RoomEntity> allMaps = UserCacheUtil.getAllMaps();
+                RoomContentDao roomContentDao = new RoomContentDao();
+                GoodsDao goodsDao = new GoodsDao();
+                NpcDao npcDao = new NpcDao();
+                List<RoomContentEntity> roomContents = roomContentDao.getList();
+                //List<GoodsEntity> goodsEntities = goodsDao.getList();
+                //List<NpcEntity> npcs = npcDao.getList();
+                Map<String, RoomObjects> roomObjectsCache = UserCacheUtil.getRoomObjectsCache();
+
+                Map<Integer, Long> roomContentMap = UserCacheUtil.getRoomContentMap();
+                for(RoomContentEntity roomContent : roomContents){
+
+                    Long itemUuid = roomContentMap.get(roomContent.getId());
+                    RoomObjects roomObjects = roomObjectsCache.get(roomContent.getRoomName());
+                    if(roomObjects == null){
+
+                        roomObjects = new RoomObjects();
+                        roomObjectsCache.put(roomContent.getRoomName(), roomObjects);
+                    }else{
+
+                        MudObject mudObject = allObjects.get(itemUuid);
+                        if(mudObject == null){
+
+                            //先处理npc
+                            if(roomContent.getType().equals("npc")){
+
+                                NpcEntity npcEntity = npcDao.getById(roomContent.getRefId());
+                                Living npc = UserCacheUtil.initNpc(npcEntity);
+                                npc.setLocation(allMaps.get(roomContent.getRoomName()));
+
+                                //把npc放到对应的房间里
+                                Map<Long, Living> roomNpcs = roomObjects.getNpcs();
+                                roomNpcs.put(npc.getUuid(), npc);
+                                roomContentMap.put(roomContent.getId(), npc.getUuid());
+                                allObjects.put(npc.getUuid(), npc);
+                            }else{
+
+                                GoodsManager goodsManager = new GoodsManager();
+                                Map<Long, GoodsContainer> savedGoods = roomObjects.getGoods();
+                                GoodsContainer goodsContainer = goodsManager.createById(roomContent.getRefId(), roomContent.getCount(), null);
+                                savedGoods.put(goodsContainer.getUuid(), goodsContainer);
+                                roomObjects.setGoods(savedGoods);
+                                roomContentMap.put(roomContent.getId(), goodsContainer.getUuid());
+                                allObjects.put(goodsContainer.getUuid(), goodsContainer);
+                            }
+
+
+                        }
+
+
+                    }
+
+
+                }
+
+
+
+
+
+            }
+        }, 20 * 1000, 20 * 1000);
     }
 
 

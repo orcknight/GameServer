@@ -28,6 +28,7 @@ public class UserCacheUtil {
     private static Map<String, Map<String, RoomEntity>> cityedRooms = new HashMap<String, Map<String, RoomEntity>>();
     private static Map<Integer, TaskTrack> taskTrackMap = new HashMap<Integer, TaskTrack>(); //任务列表，任务id
     private static Map<Integer, TaskReward> taskRewardMap = new HashMap<Integer, TaskReward>(); //任务奖励，奖励id
+    private static Map<Integer, Long> roomContentMap = new HashMap<Integer, Long>(); //room_content id和对应的uuid的映射表
 
     public static Map<Long, MudObject> getAllObjects() {
         return allObjects;
@@ -105,8 +106,17 @@ public class UserCacheUtil {
         UserCacheUtil.cityedRooms = cityedRooms;
     }
 
+    public static Map<Integer, Long> getRoomContentMap() {
+        return roomContentMap;
+    }
+
+    public static void setRoomContentMap(Map<Integer, Long> roomContentMap) {
+        UserCacheUtil.roomContentMap = roomContentMap;
+    }
+
     public static void initRoomObjectsCache(List<RoomContentEntity> roomContents, List<NpcEntity> npcs){
 
+        Map<Integer, Long> roomContentMap = UserCacheUtil.getRoomContentMap();
         for(RoomContentEntity roomContent : roomContents){
 
             RoomObjects roomObjects = roomObjectsCache.get(roomContent.getRoomName());
@@ -120,19 +130,24 @@ public class UserCacheUtil {
             if(roomContent.getType().equals("npc")){
 
                 Integer npcIndex = getNpcIndex(npcs, roomContent.getRefId());
-                Living npc = initNpc(npcIndex, npcs);
+                NpcEntity npcEntity = npcs.get(npcIndex);
+                Living npc = initNpc(npcEntity);
                 npc.setLocation(allMaps.get(roomContent.getRoomName()));
 
                 //把npc放到对应的房间里
-                Map<Integer, Living> roomNpcs = roomObjects.getNpcs();
-                roomNpcs.put(npc.getId(), npc);
+                Map<Long, Living> roomNpcs = roomObjects.getNpcs();
+                roomNpcs.put(npc.getUuid(), npc);
+                roomContentMap.put(roomContent.getId(), npc.getUuid());
+                allObjects.put(npc.getUuid(), npc);
             }else{
 
                 GoodsManager goodsManager = new GoodsManager();
-                List<GoodsContainer> savedGoods = roomObjects.getGoods();
-                GoodsContainer goodsContainer = goodsManager.createById(roomContent.getRefId(), roomContent.getCount(), 0);
-                savedGoods.add(goodsContainer);
+                Map<Long, GoodsContainer> savedGoods = roomObjects.getGoods();
+                GoodsContainer goodsContainer = goodsManager.createById(roomContent.getRefId(), roomContent.getCount(), null);
+                savedGoods.put(goodsContainer.getUuid(), goodsContainer);
                 roomObjects.setGoods(savedGoods);
+                roomContentMap.put(roomContent.getId(), goodsContainer.getUuid());
+                allObjects.put(goodsContainer.getUuid(), goodsContainer);
             }
         }
     }
@@ -209,10 +224,9 @@ public class UserCacheUtil {
         return 0;
     }
 
-    private static Living initNpc(Integer index, List<NpcEntity> list){
+    public static Living initNpc(NpcEntity npc){
 
         try {
-            NpcEntity npc = list.get(index);
             Class cls = Class.forName("com.tian.server.model.Race." + npc.getRace());
             Living living = (Living)cls.newInstance();
 

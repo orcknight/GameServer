@@ -18,4 +18,15 @@ public class PlayerPackageDao extends BaseDao {
 
         return retList;
     }
+
+    public void add(PlayerPackageEntity playerPackageEntity){
+
+        getSession().save(playerPackageEntity);
+    }
+
+    public void update(PlayerPackageEntity playerPackageEntity){
+
+        getSession().update(playerPackageEntity);
+    }
+
 }

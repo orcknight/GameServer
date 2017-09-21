@@ -93,6 +93,7 @@ public class UserBll extends BaseBll {
 
         //载入玩家技能
         loadUserSkill(playerCache);
+        loadUserPackage(playerCache);
         UserCacheUtil.getAllObjects().put(playerCache.getUuid(), playerCache);
 
         //缓存玩家信息
@@ -401,6 +402,22 @@ public class UserBll extends BaseBll {
         player.initSkills(playerSkillEntitiesList);
     }
 
+    private void loadUserPackage(Player player){
+
+        PlayerPackageDao playerPackageDao = new PlayerPackageDao();
+        List<PlayerPackageEntity> playerPackageEntities = playerPackageDao.getListByPlayerId(player.getPlayerId());
+
+        List<GoodsContainer> goodsContainers = player.getPackageList();
+        GoodsManager goodsManager = new GoodsManager();
+        for(PlayerPackageEntity playerPackageEntity : playerPackageEntities){
+
+            GoodsContainer goodsContainer = goodsManager.createById(playerPackageEntity.getGoodsId(), playerPackageEntity.getGoodsUuid(),
+                    playerPackageEntity.getCount(), playerPackageEntity);
+            player.setEncumbrance(player.getEncumbrance() + goodsContainer.getGoodsEntity().getWeight());
+            goodsContainers.add(goodsContainer);
+        }
+    }
+
     private void initPlayerAttr(Player player){
 
         PlayerAttrDao dao = new PlayerAttrDao();
@@ -445,7 +462,7 @@ public class UserBll extends BaseBll {
 
         JSONArray jsonArray = new JSONArray();
         PlayerService playerService = new PlayerService();
-        Map<Integer, Living> npcs = roomObjects.getNpcs();
+        Map<Long, Living> npcs = roomObjects.getNpcs();
         if(npcs.size() > 0){
 
             JSONObject npcObject = playerService.getLookLivingProto(npcs, "npc");
@@ -467,7 +484,7 @@ public class UserBll extends BaseBll {
             jsonArray.add(userObject);
         }
 
-        List<GoodsContainer> goodsContainers = roomObjects.getGoods();
+        Map<Long, GoodsContainer> goodsContainers = roomObjects.getGoods();
         if(goodsContainers.size() > 0){
 
             JSONObject goodsObject = playerService.getLookGoodsProto(goodsContainers);

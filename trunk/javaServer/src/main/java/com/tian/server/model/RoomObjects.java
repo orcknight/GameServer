@@ -17,9 +17,9 @@ public class RoomObjects {
 
     private List<Player> players; //玩家列表
 
-    private Map<Integer, Living> npcs;
+    private Map<Long, Living> npcs;
     //private List<Living> npcs; //npc列表
-    private List<GoodsContainer> goods; //物品列表;
+    private Map<Long, GoodsContainer> goods; //物品列表;
     private Map<String, RoomGateEntity> gates; //门
 
     public List<Player> getPlayers(){
@@ -37,30 +37,30 @@ public class RoomObjects {
         this.players = players;
     }
 
-    public Map<Integer, Living> getNpcs() {
+    public Map<Long, Living> getNpcs() {
 
         if(this.npcs == null){
 
-            this.npcs = new HashMap<Integer, Living>();
+            this.npcs = new HashMap<Long, Living>();
         }
 
         return npcs;
     }
 
-    public void setNpcs(Map<Integer, Living> npcs) {
+    public void setNpcs(Map<Long, Living> npcs) {
         this.npcs = npcs;
     }
 
-    public List<GoodsContainer> getGoods(){
+    public Map<Long, GoodsContainer> getGoods(){
 
         if(this.goods == null){
-            this.goods = new ArrayList<GoodsContainer>();
+            this.goods = new HashMap<Long, GoodsContainer>();
         }
 
         return this.goods;
     }
 
-    public void setGoods(List<GoodsContainer> goods){
+    public void setGoods(Map<Long, GoodsContainer> goods){
 
         this.goods = goods;
     }

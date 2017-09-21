@@ -76,7 +76,7 @@ public class PlayerService {
         return enterObject;
     }
 
-    public JSONObject getLookLivingProto(Map<Integer, Living> livingList, String livingType){
+    public JSONObject getLookLivingProto(Map<Long, Living> livingList, String livingType){
 
         if(livingType == null || livingType.length() < 1){
 
@@ -141,12 +141,12 @@ public class PlayerService {
         return enterObject;
     }
 
-    public JSONObject getLookGoodsProto(List<GoodsContainer> goodsContainerList){
+    public JSONObject getLookGoodsProto(Map<Long, GoodsContainer> goodsContainerList){
 
         JSONArray goodsArrays = new JSONArray();
         JSONObject msgObject = new JSONObject();
         String goodsType = "goods";
-        for(GoodsContainer goodsContainer : goodsContainerList) {
+        for(GoodsContainer goodsContainer : goodsContainerList.values()) {
 
             msgObject.put("cmd", "look");
             msgObject.put("displayName", goodsContainer.getGoodsEntity().getName());
@@ -196,8 +196,56 @@ public class PlayerService {
         return jsonArray;
     }
 
+    public Integer getMaxEncumbrance(Player player){
 
+        //Todo:判断是否是会员，这里暂时不不判断　
+        // ob->set_max_encumbrance(80000 + ob->query("str") * 8000 + ob->query_str() * 1200);
+        Integer base = 40000;
+        Integer innate = player.getStr() * 4000;
+        Integer postnatal = queryStr(player) * 600;
 
+        return base + innate + postnatal;
+    }
+
+    private Integer queryStr(Player player)
+    {
+
+        int str;
+        int improve = 0;
+        int lx;
+        str = player.getStr();
+        Map<String, Integer> skills = player.getSkills();
+        if (skills.size() < 1) {
+            return str;
+        }
+
+        if( player.query("jingmai/finish") != null ) {
+            //Todo:周天加成效果，后续再添加
+            //str += ZHOUTIAN_D -> query_jingmai_effect("str");
+        }
+        str += Integer.parseInt(player.query("jingmai/str") == null ? "0" : player.query("jingmai/str").toString());
+        str += Integer.parseInt(player.query("apply/str") == null ? "0" : player.query("apply/str").toString());
+
+        improve += (skills.get("unarmed") == null ? 0 : skills.get("unarmed"))/30;
+        improve += (skills.get("cuff") == null ? 0 : skills.get("cuff"))/30;
+        improve += (skills.get("finger") == null ? 0 : skills.get("finger"))/30;
+        improve += (skills.get("strike") == null ? 0 : skills.get("strike"))/30;
+        improve += (skills.get("hand") == null ? 0 : skills.get("hand"))/30;
+        improve += (skills.get("claw") == null ? 0 : skills.get("claw"))/30;
+        improve += Integer.parseInt(player.queryTemp("suit_skill/unarmed") == null ? "0" : player.queryTemp("suit_skill/unarmed").toString()) / 30; //套装技能加成
+        improve += Integer.parseInt(player.queryTemp("suit_skill/cuff") == null ? "0" : player.queryTemp("suit_skill/cuff").toString()) / 30;
+        improve += Integer.parseInt(player.queryTemp("suit_skill/finger") == null ? "0" : player.queryTemp("suit_skill/finger").toString()) / 30;
+        improve += Integer.parseInt(player.queryTemp("suit_skill/strike") == null ? "0" : player.queryTemp("suit_skill/strike").toString()) / 30;
+        improve += Integer.parseInt(player.queryTemp("suit_skill/hand") == null ? "0" : player.queryTemp("suit_skill/hand").toString()) / 30;
+        improve += Integer.parseInt(player.queryTemp("suit_skill/claw") == null ? "0" : player.queryTemp("suit_skill/claw").toString()) / 30;
+        lx = (skills.get("longxiang") == null ? 0 : skills.get("claw"))/30;
+        if (lx >= 13) lx = 15;
+
+        Integer strength = Integer.parseInt(player.queryTemp("suit_eff/strength") == null ? "0" : player.queryTemp("suit_eff/strength").toString());
+        Integer applyStr =Integer.parseInt(player.query("apply/str") == null ? "0" : player.query("apply/str").toString());
+        return str + improve + lx + strength + applyStr;
+
+    }
 
 
 }

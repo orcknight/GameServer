@@ -236,7 +236,7 @@ public class LookBll extends BaseBll {
         desc.append("这是" + goodsContainer.getCount().toString() +
                 goodsContainer.getGoodsEntity().getUnit() + goodsContainer.getGoodsEntity().getName());
 
-        if(goodsContainer.getBelongsId() < 1 && goodsContainer.getGoodsEntity().getPickable()){
+        if(goodsContainer.getBelongsInfo() == null && goodsContainer.getGoodsEntity().getPickable()){
 
             JSONObject buttonItemObject = new JSONObject();
             buttonItemObject.put("cmd", "get");

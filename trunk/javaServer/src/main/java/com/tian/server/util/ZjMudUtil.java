@@ -301,7 +301,7 @@ public class ZjMudUtil {
         StringBuffer sb = new StringBuffer();
         String contact = "$zj#";
 
-        Map<Integer, Living> npcs = roomObjects.getNpcs();
+        Map<Long, Living> npcs = roomObjects.getNpcs();
         if(npcs.size() > 0) {
 
             sb.append("\u001B005");
