@@ -13,6 +13,7 @@ import net.sf.json.JSONObject;
 public class StreamJsonListener implements DataListener<JSONObject> {
 
     SocketIOServer server;
+    UnityCmdResolver resolver = null;
 
     public void setServer(SocketIOServer server) {
 
@@ -25,7 +26,11 @@ public class StreamJsonListener implements DataListener<JSONObject> {
         System.out.println(data);
         System.out.println("get a message!");
 
-        UnityCmdResolver resolver = new UnityCmdResolver(socketIOClient);
+        if(resolver == null) {
+            resolver = new UnityCmdResolver(socketIOClient);
+        }
+
+        resolver.setServer(socketIOClient);
         resolver.Resolver(data);
 
     }

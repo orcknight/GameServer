@@ -2,6 +2,7 @@ package com.tian.server.bll;
 
 import com.corundumstudio.socketio.SocketIOClient;
 import com.tian.server.common.Ansi;
+import com.tian.server.common.GoodsType;
 import com.tian.server.common.TaskActionType;
 import com.tian.server.entity.PlayerFamilyEntity;
 import com.tian.server.entity.PlayerTrackEntity;
@@ -221,6 +222,8 @@ public class LookBll extends BaseBll {
 
     private JSONObject getLookGoodsStr(String id) {
 
+        Map<Integer, Living> cacheMap = UserCacheUtil.getPlayers();
+        Player player = (Player) cacheMap.get(this.userId);
         Map<Long, MudObject> allObjects = UserCacheUtil.getAllObjects();
         GoodsContainer goodsContainer = (GoodsContainer) allObjects.get(Long.valueOf(id));
         if (goodsContainer == null) {
@@ -236,13 +239,27 @@ public class LookBll extends BaseBll {
         desc.append("这是" + goodsContainer.getCount().toString() +
                 goodsContainer.getGoodsEntity().getUnit() + goodsContainer.getGoodsEntity().getName());
 
-        if(goodsContainer.getBelongsInfo() == null && goodsContainer.getGoodsEntity().getPickable()){
+        if(goodsContainer.getBelongsInfo() == null){
 
-            JSONObject buttonItemObject = new JSONObject();
-            buttonItemObject.put("cmd", "get");
-            buttonItemObject.put("displayName", "拾取");
-            buttonItemObject.put("objId", "/goods/goods#" + goodsContainer.getUuid());
-            buttonArray.add(buttonItemObject);
+            //如果是环境物品，显示拾取按钮
+            if(goodsContainer.getGoodsEntity().getPickable()) {
+
+                buttonArray.add(createButtonItem("get", "拾取", "/goods/goods#" + goodsContainer.getUuid()));
+            }
+        }else if(goodsContainer.getBelongsInfo().getPlayerId() != player.getPlayerId()){
+
+            //如果是别人的物品只能查看不做任何操作
+
+        }else if(goodsContainer.getBelongsInfo().getPlayerId() == player.getPlayerId()){
+
+            //如果是食物可以吃
+            if(goodsContainer.getGoodsEntity().getType() == GoodsType.FOOD.toInteger()){
+
+                buttonArray.add(createButtonItem("eat", "吃" + goodsContainer.getGoodsEntity().getName(),
+                        "/goods/goods#" + goodsContainer.getUuid()));
+            }
+
+
         }
 
         buttonObject.put("desc", desc.toString());
@@ -908,6 +925,15 @@ public class LookBll extends BaseBll {
             }
         }
         return "";
+    }
+
+    private JSONObject createButtonItem(String cmd, String name, String objId){
+
+        JSONObject buttonItemObject = new JSONObject();
+        buttonItemObject.put("cmd", cmd);
+        buttonItemObject.put("displayName", name);
+        buttonItemObject.put("objId", objId);
+        return buttonItemObject;
     }
 
     /*String lookEquiped(object me, object obj, String pro)

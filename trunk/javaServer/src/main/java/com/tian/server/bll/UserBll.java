@@ -413,7 +413,7 @@ public class UserBll extends BaseBll {
 
             GoodsContainer goodsContainer = goodsManager.createById(playerPackageEntity.getGoodsId(), playerPackageEntity.getGoodsUuid(),
                     playerPackageEntity.getCount(), playerPackageEntity);
-            player.setEncumbrance(player.getEncumbrance() + goodsContainer.getGoodsEntity().getWeight());
+            player.setEncumbrance(player.getEncumbrance() + goodsContainer.getGoodsEntity().getWeight() * goodsContainer.getCount());
             goodsContainers.add(goodsContainer);
         }
     }

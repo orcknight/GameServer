@@ -13,7 +13,6 @@ import java.util.Arrays;
  */
 public class UnityCmdResolver {
 
-
     private SocketIOClient server;
     private String[] userCmdArray = new String[] {"login", "createrole", "pianshu", "quit"};
     private String[] moveCmdArray = new String[] {"east", "west", "south", "north", "northeast", "northwest",
@@ -23,10 +22,19 @@ public class UnityCmdResolver {
     private String[] fightCmdArray = new String[] {"fight"};
     private String[] taskCmdArray = new String[] {"reward"};
     private String[] getCmdArray = new String[] {"get"};
+    private String[] infoCmdArray = new String[] {"bag"};
 
     public UnityCmdResolver(SocketIOClient server){
 
         this.server = server;
+        Arrays.sort(userCmdArray);
+        Arrays.sort(moveCmdArray);
+        Arrays.sort(chatCmdArray);
+        Arrays.sort(lookCmdArray);
+        Arrays.sort(fightCmdArray);
+        Arrays.sort(taskCmdArray);
+        Arrays.sort(getCmdArray);
+        Arrays.sort(infoCmdArray);
     }
 
     public String Resolver(JSONObject jsonObject) {
@@ -39,14 +47,6 @@ public class UnityCmdResolver {
        }
 
         String handlerStr = "Default";
-        Arrays.sort(userCmdArray);
-        Arrays.sort(moveCmdArray);
-        Arrays.sort(chatCmdArray);
-        Arrays.sort(lookCmdArray);
-        Arrays.sort(fightCmdArray);
-        Arrays.sort(taskCmdArray);
-        Arrays.sort(getCmdArray);
-
         if(cmd.equals("checkversion")){
 
             handlerStr = "Default";
@@ -71,6 +71,9 @@ public class UnityCmdResolver {
         }else if(Arrays.binarySearch(getCmdArray, cmd) > -1){
 
             handlerStr = "Get";
+        }else if(Arrays.binarySearch(infoCmdArray, cmd) > -1){
+
+            handlerStr = "Info";
         }
 
         try {
@@ -102,5 +105,13 @@ public class UnityCmdResolver {
         }
 
         return count;
+    }
+
+    public SocketIOClient getServer() {
+        return server;
+    }
+
+    public void setServer(SocketIOClient server) {
+        this.server = server;
     }
 }

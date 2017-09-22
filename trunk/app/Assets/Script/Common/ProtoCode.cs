@@ -19,4 +19,5 @@ public class ProtoCode {
 	public const string OBJECT_CLEAR_CODE = "906"; //清空NPC列表命令
 	public const string OBJECT_INFO_POP_CODE = "009"; //弹出查看物品的对话框
 	public const string GAME_STORY_CODE = "0010"; //弹出剧情对话窗口，进入剧情对话模式
+	public const string BAG_POP_CODE = "0011";
 }

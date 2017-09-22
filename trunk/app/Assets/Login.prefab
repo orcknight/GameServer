@@ -55,58 +55,6 @@ MonoBehaviour:
   mSprites:
   - name: 01-Clean-Minimalistic_Home
     x: 0
-    y: 1509
-    width: 2048
-    height: 1293
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: Add-User-Icon-Small
-    x: 3169
-    y: 2997
-    width: 49
-    height: 43
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 3
-    paddingRight: 3
-    paddingTop: 2
-    paddingBottom: 2
-  - name: Bag-Cell-Icon
-    x: 2664
-    y: 2683
-    width: 36
-    height: 36
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: BlueDark-Button-Outline
-    x: 901
-    y: 114
-    width: 348
-    height: 100
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: Blue-Green-Red-Background
-    x: 0
     y: 2803
     width: 2048
     height: 1293
@@ -118,9 +66,100 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: Add-User-Icon-Small
+    x: 3013
+    y: 2705
+    width: 49
+    height: 43
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 2
+    paddingBottom: 2
+  - name: Bag-Cell-Icon
+    x: 2617
+    y: 2708
+    width: 36
+    height: 36
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Blue-Button
+    x: 2617
+    y: 3143
+    width: 348
+    height: 100
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: BlueDark-Button-Outline
+    x: 3543
+    y: 2494
+    width: 348
+    height: 100
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Blue-Filled
+    x: 1802
+    y: 77
+    width: 900
+    height: 137
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Blue-Green-Red-Background
+    x: 0
+    y: 1509
+    width: 2048
+    height: 1293
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Blue-Outline
+    x: 901
+    y: 77
+    width: 900
+    height: 137
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: Blue-Rect-Outline
-    x: 1242
-    y: 23
+    x: 2958
+    y: 2749
     width: 286
     height: 90
     borderLeft: 0
@@ -132,8 +171,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Close-Icon
-    x: 3169
-    y: 3096
+    x: 3874
+    y: 2617
     width: 63
     height: 62
     borderLeft: 0
@@ -184,8 +223,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Gray-Rect-Outline
-    x: 2617
-    y: 3023
+    x: 3267
+    y: 2459
     width: 275
     height: 135
     borderLeft: 0
@@ -198,7 +237,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: Green-Button
     x: 2617
-    y: 2720
+    y: 3042
     width: 348
     height: 100
     borderLeft: 0
@@ -209,9 +248,22 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: Green-Outline
+    x: 2703
+    y: 2047
+    width: 900
+    height: 137
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: Green-Rect-Outline
-    x: 901
-    y: 19
+    x: 2617
+    y: 2745
     width: 340
     height: 94
     borderLeft: 0
@@ -236,8 +288,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Lock-Icon-Small
-    x: 394
-    y: 36
+    x: 3186
+    y: 2708
     width: 34
     height: 40
     borderLeft: 0
@@ -262,8 +314,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Mail-Icon
-    x: 2617
-    y: 2684
+    x: 3098
+    y: 2713
     width: 46
     height: 35
     borderLeft: 0
@@ -275,8 +327,8 @@ MonoBehaviour:
     paddingTop: 3
     paddingBottom: 3
   - name: Orange-Button
-    x: 2617
-    y: 2821
+    x: 3543
+    y: 2393
     width: 348
     height: 100
     borderLeft: 0
@@ -313,9 +365,22 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: Red-Button
+    x: 2617
+    y: 2840
+    width: 348
+    height: 100
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: Red-Button-Outline
     x: 2617
-    y: 2922
+    y: 2941
     width: 348
     height: 100
     borderLeft: 0
@@ -327,8 +392,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Red-Rect-Outline
-    x: 2893
-    y: 3023
+    x: 3267
+    y: 2323
     width: 275
     height: 135
     borderLeft: 0
@@ -340,8 +405,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Slot-layout
-    x: 3169
-    y: 3041
+    x: 2958
+    y: 2694
     width: 54
     height: 54
     borderLeft: 0
@@ -353,8 +418,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Smartphone-Icon
-    x: 318
-    y: 16
+    x: 3063
+    y: 2688
     width: 34
     height: 60
     borderLeft: 0
@@ -366,8 +431,8 @@ MonoBehaviour:
     paddingTop: 5
     paddingBottom: 5
   - name: Text-Background
-    x: 2617
-    y: 3159
+    x: 3267
+    y: 2595
     width: 606
     height: 84
     borderLeft: 0
@@ -392,8 +457,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: User-Icon-Small
-    x: 353
-    y: 36
+    x: 3145
+    y: 2708
     width: 40
     height: 40
     borderLeft: 0
@@ -404,6 +469,19 @@ MonoBehaviour:
     paddingRight: 5
     paddingTop: 5
     paddingBottom: 5
+  - name: Yellow-Outline
+    x: 2703
+    y: 2185
+    width: 900
+    height: 137
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   mPixelSize: 1
   mReplacement: {fileID: 0}
   mCoordinates: 0

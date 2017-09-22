@@ -14,6 +14,7 @@ public class MainMajor : MonoBehaviour {
 	private GameObject m_CreateRoleWindow = null;
 	private GameObject m_ObjectInfoPop = null;
 	private GameObject m_TaskBar = null;
+	private GameObject m_Bag = null;
 	public GameObject[] m_StatusBars;
 
 	// Use this for initialization
@@ -188,6 +189,9 @@ public class MainMajor : MonoBehaviour {
 			case ProtoCode.GAME_STORY_CODE:
 				EnterStroyMode (msg);
 				break;
+			case ProtoCode.BAG_POP_CODE:
+				OpenBag (msg);
+				break;
 			default:
 				break;
 			}
@@ -329,21 +333,31 @@ public class MainMajor : MonoBehaviour {
 
 	public void OnBottomBarClick(GameObject obj){
 
-		if (m_TaskBar == null) {
+		if (obj.name.Equals ("BtnTaskList")) {
 
-			GameObject taskBarPerfab = Resources.Load ("MainWindow/TaskBar") as GameObject; 
-			m_TaskBar = GameObject.Instantiate (taskBarPerfab) as GameObject;
-			m_TaskBar.transform.parent = this.transform;
-			m_TaskBar.SetActive (false);
-		}
+			if (m_TaskBar == null) {
 
-		if (m_TaskBar.activeSelf == false) {
+				GameObject taskBarPerfab = Resources.Load ("MainWindow/TaskBar") as GameObject; 
+				m_TaskBar = GameObject.Instantiate (taskBarPerfab) as GameObject;
+				m_TaskBar.transform.parent = this.transform;
+				m_TaskBar.SetActive (false);
+			}
 
-			m_TaskBar.transform.localScale = new Vector3 (1f, 1f, 1f);
-			m_TaskBar.GetComponent<TweenTransform> ().from = GameObject.Find ("RightCenterAnchor").transform;
-			m_TaskBar.GetComponent<TweenTransform> ().to = m_InfoWindowTrans;
-			m_TaskBar.GetComponent<TweenTransform> ().PlayForward();
-			m_TaskBar.SetActive (true);
+			if (m_TaskBar.activeSelf == false) {
+
+				m_TaskBar.transform.localScale = new Vector3 (1f, 1f, 1f);
+				m_TaskBar.GetComponent<TweenTransform> ().from = GameObject.Find ("RightCenterAnchor").transform;
+				m_TaskBar.GetComponent<TweenTransform> ().to = m_InfoWindowTrans;
+				m_TaskBar.GetComponent<TweenTransform> ().PlayForward ();
+				m_TaskBar.SetActive (true);
+			}
+		} else if (obj.name.Equals ("BtnBag")) {
+			
+			JSONObject sendData = new JSONObject ();
+			JSONObject jsonObject = new JSONObject ();
+			jsonObject.AddField ("cmd", "bag");
+			jsonObject.AddField ("data", sendData);
+			m_Socket.Emit ("unity_stream", jsonObject);
 		}
 	}
 		
@@ -784,5 +798,48 @@ public class MainMajor : MonoBehaviour {
 
         return;
 
+	}
+
+	private void OpenBag(string msg){
+
+		if (m_Bag == null) {
+
+			GameObject taskBarPerfab = Resources.Load ("MainWindow/Bag") as GameObject; 
+			m_Bag = GameObject.Instantiate (taskBarPerfab) as GameObject;
+			m_Bag.transform.parent = this.transform;
+			m_Bag.transform.localScale = new Vector3 (1f, 1f, 1f);
+			m_Bag.transform.localPosition = new Vector3 (126f, 80f, 0f);
+
+		}
+
+		JObject jObject = JObject.Parse (msg);
+		string money = jObject ["money"].ToString ();
+		string load = jObject ["load"].ToString ();
+		string ticket = jObject ["ticket"].ToString ();
+		JArray items = JArray.Parse (jObject ["items"].ToString ());
+		List<CmdButtonItem> itemList = new List<CmdButtonItem> ();
+		for (int i = 0; i < items.Count; ++i) {
+
+			CmdButtonItem cmdButton = new CmdButtonItem ();
+			JObject item = JObject.Parse (items [i].ToString ()); 
+			cmdButton.m_Cmd = item ["cmd"].ToString();
+			cmdButton.m_ObjId = item ["objId"].ToString();
+			cmdButton.m_DisplayName = item ["displayName"].ToString();
+			itemList.Add (cmdButton);
+		}
+
+		if (m_Bag.activeSelf == false) {
+
+			m_Bag.transform.localScale = new Vector3 (1f, 1f, 1f);
+			m_Bag.transform.localPosition = new Vector3 (126f, 80f, 0f);
+			m_Bag.SetActive (true);
+		}
+
+		BagManager bagManager = m_Bag.GetComponent<BagManager> ();
+		bagManager.init ();
+		bagManager.setMoneyControl(money);
+		bagManager.setLoadControl (load);
+		bagManager.setTicketControl (ticket);
+		bagManager.setBagItems (itemList);
 	}
 }

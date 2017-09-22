@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SocketIO;
 
 public class BagManager : MonoBehaviour {
 
@@ -11,6 +12,16 @@ public class BagManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		init ();
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
+
+	public void init(){
 
 		if (m_Grid == null) {
 
@@ -39,13 +50,7 @@ public class BagManager : MonoBehaviour {
 			m_Ticket = secondTrans.Find ("Ticket");
 			m_Load = secondTrans.Find ("Load");
 		}
-			
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
 	}
 		
 	public void setMoneyControl(string moneyStr){
@@ -73,6 +78,8 @@ public class BagManager : MonoBehaviour {
 			return;
 		}
 
+		m_Grid.DestroyChildren ();
+
 		GameObject objectInfoPopPerfab = Resources.Load ("Common/BagItem") as GameObject; 
 		for(int i = 0; i <cmdItems.Count; i++){
 
@@ -82,9 +89,10 @@ public class BagManager : MonoBehaviour {
 			item.transform.SetParent (m_Grid.transform);
 			item.transform.localScale = new Vector3 (1f, 1f, 1f);
 			item.transform.localPosition = Vector3.zero; 
-			item.GetComponent<CmdButtonItem> ().m_Cmd = cmdItem.m_Cmd;
-			item.GetComponent<CmdButtonItem> ().m_ObjId = cmdItem.m_ObjId;
-			item.GetComponent<CmdButtonItem> ().m_DisplayName = cmdItem.m_DisplayName;
+			CmdButtonItem itemButton = item.GetComponent<CmdButtonItem> ();
+			itemButton.m_Cmd = cmdItem.m_Cmd;
+			itemButton.m_ObjId = cmdItem.m_ObjId;
+			itemButton.m_DisplayName = cmdItem.m_DisplayName;
 			item.transform.Find ("Label").GetComponent<UILabel> ().text = cmdItem.m_DisplayName;
 			item.SetActive (true);
 
@@ -98,6 +106,22 @@ public class BagManager : MonoBehaviour {
 
 	public void OnItemClick(GameObject obj){
 
+		CmdButtonItem cmdButtonItem = obj.GetComponent<CmdButtonItem> ();
+		JSONObject sendData = new JSONObject ();
+		sendData.AddField ("target", cmdButtonItem.m_ObjId);
+		JSONObject jsonObject = new JSONObject ();
+		jsonObject.AddField ("cmd", cmdButtonItem.m_Cmd);
+		jsonObject.AddField ("data", sendData);
 
+		GameObject socketIo = GameObject.Find("SocketIO");
+		socketIo.GetComponent<SocketIOComponent>().Emit("unity_stream", jsonObject);
+
+	}
+
+	public void OnClose(){
+
+		this.transform.localScale = new Vector3 (1f, 1f, 1f);
+		this.transform.localPosition = new Vector3 (5000f, 0f, 0f);
+		this.gameObject.SetActive(false);
 	}
 }

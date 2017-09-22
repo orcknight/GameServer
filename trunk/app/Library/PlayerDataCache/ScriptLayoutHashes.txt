@@ -1,4 +1,4 @@
-WindowsStandalone
+Android
 8c8e424198240cd5381e7765a781213f Assembly-CSharp.dll:.UIButtonMessage
 15a721b98ce93cab32c7b952182d2560 Assembly-CSharp-firstpass.dll:.FingerDownDetector
 2b37efa8fc4d5e5fe116bb7609e3a2ea Assembly-CSharp-firstpass.dll:.TBHoverChangeMaterial
@@ -305,3 +305,4 @@ fcffe9bbf1b7b7e4593e31031f78987b Assembly-CSharp.dll:.UISliderColors
 d1007c2f174020f8a86860edb2c9dfd2 Assembly-CSharp-firstpass.dll:.PinchRecognizer
 368243818345a9e3d918aa855191e952 Assembly-CSharp-firstpass.dll:.TBPinchZoom
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.RealTime
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.AttrProgressBarManger

@@ -45,6 +45,9 @@ public class DefaultBll extends BaseBll {
         if(UserCacheUtil.getAllCitys().isEmpty()) {
 
             initCityCache();
+        }else{
+
+            return;
         }
 
         if(UserCacheUtil.getAllMaps().isEmpty()){
