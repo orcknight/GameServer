@@ -1,6 +1,7 @@
 package com.tian.server.util;
 
 import com.corundumstudio.socketio.SocketIOClient;
+import com.tian.server.common.LivingStatus;
 import com.tian.server.entity.*;
 import com.tian.server.model.*;
 import org.luaj.vm2.Globals;
@@ -233,6 +234,8 @@ public class UserCacheUtil {
             Long uuid = IdUtil.getUUID();
             living.setUuid(uuid);
             living.setId(npc.getId());
+            living.setStatus((byte)(LivingStatus.NORMAL.toInteger()));
+            living.setResource(npc.getResource());
 
             //缓存npc到生物列表
             getAllObjects().put(uuid, living);

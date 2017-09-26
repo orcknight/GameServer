@@ -11,17 +11,12 @@ public class CombatEventHandler implements CmdEventHandler {
 
     public void handle(SocketIOClient socketIOClient, String cmd, JSONObject data) {
 
-        String msg = data.getString("data");
-        if(msg == null){
-
-            return;
-        }
-
         CombatBll combatBll = new CombatBll(socketIOClient);
 
         if(cmd.equals("fight")){
 
-            combatBll.handleFight(msg);
+            String target = data. getString("target");
+            combatBll.handleFight(target);
         }
 
     }

@@ -19,7 +19,7 @@ public class UnityCmdResolver {
             "southeast", "southwest", "in", "out"};
     private String[] chatCmdArray = new String[] {"liaotian", "chat"};
     private String[] lookCmdArray = new String[] {"look", "open", "close"};
-    private String[] fightCmdArray = new String[] {"fight"};
+    private String[] combatCmdArray = new String[] {"fight"};
     private String[] taskCmdArray = new String[] {"reward"};
     private String[] getCmdArray = new String[] {"get"};
     private String[] infoCmdArray = new String[] {"bag"};
@@ -31,7 +31,7 @@ public class UnityCmdResolver {
         Arrays.sort(moveCmdArray);
         Arrays.sort(chatCmdArray);
         Arrays.sort(lookCmdArray);
-        Arrays.sort(fightCmdArray);
+        Arrays.sort(combatCmdArray);
         Arrays.sort(taskCmdArray);
         Arrays.sort(getCmdArray);
         Arrays.sort(infoCmdArray);
@@ -62,7 +62,7 @@ public class UnityCmdResolver {
         }else if(Arrays.binarySearch(lookCmdArray, cmd) > -1){
 
             handlerStr = "Look";
-        }else if(Arrays.binarySearch(fightCmdArray, cmd) > -1){
+        }else if(Arrays.binarySearch(combatCmdArray, cmd) > -1){
 
             handlerStr = "Combat";
         }else if(Arrays.binarySearch(taskCmdArray, cmd) > -1){

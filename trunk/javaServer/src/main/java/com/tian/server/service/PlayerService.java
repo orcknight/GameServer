@@ -27,7 +27,7 @@ public class PlayerService {
         JSONObject msgObject = new JSONObject();
         msgObject.put("cmd", "look");
         msgObject.put("displayName", player.getName());
-        msgObject.put("objId", "/user/user#" + player.getUuid());
+        msgObject.put("objId", "/user/user#" + player.getUuid().toString());
         objectsArray.add(msgObject);
         JSONObject enterObject = UnityCmdUtil.getObjectEnterRet(objectsArray);
         jsonArray.add(infoObject);
@@ -43,7 +43,7 @@ public class PlayerService {
         JSONObject msgObject = new JSONObject();
         msgObject.put("cmd", "look");
         msgObject.put("displayName", player.getName());
-        msgObject.put("objId", "/user/user#" + player.getUuid());
+        msgObject.put("objId", "/user/user#" + player.getUuid().toString());
 
         JSONObject enterObject = UnityCmdUtil.getObjectOutRet(msgObject);
         jsonArray.add(infoObject);
@@ -68,7 +68,7 @@ public class PlayerService {
             JSONObject msgObject = new JSONObject();
             msgObject.put("cmd", "look");
             msgObject.put("displayName", displayName);
-            msgObject.put("objId", "/" + livingType + "/" + livingType + "#" + living.getUuid());
+            msgObject.put("objId", "/" + livingType + "/" + livingType + "#" + living.getUuid().toString());
             livingArrays.add(msgObject);
         }
 
@@ -92,7 +92,7 @@ public class PlayerService {
             JSONObject msgObject = new JSONObject();
             msgObject.put("cmd", "look");
             msgObject.put("displayName", displayName);
-            msgObject.put("objId", "/" + livingType + "/" + livingType + "#" + living.getUuid());
+            msgObject.put("objId", "/" + livingType + "/" + livingType + "#" + living.getUuid().toString());
             livingArrays.add(msgObject);
         }
 
@@ -113,7 +113,7 @@ public class PlayerService {
                 (living.getNickname() + "\n" + living.getName()) : (living.getName());
         msgObject.put("cmd", "look");
         msgObject.put("displayName", displayName);
-        msgObject.put("objId", "/" + livingType + "/" + livingType + "#" + living.getUuid());
+        msgObject.put("objId", "/" + livingType + "/" + livingType + "#" + living.getUuid().toString());
         livingArrays.add(msgObject);
 
         JSONObject enterObject = UnityCmdUtil.getObjectEnterRet(livingArrays);
@@ -150,7 +150,7 @@ public class PlayerService {
 
             msgObject.put("cmd", "look");
             msgObject.put("displayName", goodsContainer.getGoodsEntity().getName());
-            msgObject.put("objId", "/" + goodsType + "/" + goodsType + "#" + goodsContainer.getUuid());
+            msgObject.put("objId", "/" + goodsType + "/" + goodsType + "#" + goodsContainer.getUuid().toString());
             goodsArrays.add(msgObject);
         }
 
@@ -169,7 +169,7 @@ public class PlayerService {
         JSONObject msgObject = new JSONObject();
         msgObject.put("cmd", "look");
         msgObject.put("displayName", player.getName());
-        msgObject.put("objId", "/user/user#" + player.getUuid());
+        msgObject.put("objId", "/user/user#" + player.getUuid().toString());
         objectsArray.add(msgObject);
         JSONObject enterObject = UnityCmdUtil.getObjectEnterRet(objectsArray);
         jsonArray.add(infoObject);
@@ -187,7 +187,7 @@ public class PlayerService {
         JSONObject msgObject = new JSONObject();
         msgObject.put("cmd", "look");
         msgObject.put("displayName", player.getName());
-        msgObject.put("objId", "/user/user#" + player.getUuid());
+        msgObject.put("objId", "/user/user#" + player.getUuid().toString());
 
         JSONObject enterObject = UnityCmdUtil.getObjectOutRet(msgObject);
         jsonArray.add(infoObject);

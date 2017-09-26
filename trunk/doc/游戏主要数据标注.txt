@@ -86,6 +86,9 @@ feature/Attack.c 里面的attack函数
 4. 执行攻击函数fight
 adm/deamons/Combatd.c 里面的fight函数
 
+can_speak只有race是human的才会说话
+is_character 是否是活物
+
 
 skills map 存放的是 map 技能名：等级
 learned map 存放的是玩家已经学习过的技能 技能名：等级

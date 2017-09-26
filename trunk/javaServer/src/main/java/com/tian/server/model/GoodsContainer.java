@@ -17,7 +17,7 @@ public class GoodsContainer extends MudObject {
     private Integer belongsId; //所有人ID
     private PlayerPackageEntity belongsInfo; //归属信息
     private JSONObject attr = new JSONObject();
-    protected Map<String ,String> actions = new HashMap<String, String>(); //动作
+
 
     public GoodsEntity getGoodsEntity() {
         return goodsEntity;
@@ -33,14 +33,6 @@ public class GoodsContainer extends MudObject {
 
     public void setCount(Integer count) {
         this.count = count;
-    }
-
-    public Map<String, String> getActions() {
-        return actions;
-    }
-
-    public void setActions(Map<String, String> actions) {
-        this.actions = actions;
     }
 
     public Integer getBelongsId() {

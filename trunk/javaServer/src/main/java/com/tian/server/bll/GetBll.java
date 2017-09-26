@@ -192,7 +192,7 @@ public class GetBll extends BaseBll {
         JSONObject msgObject = new JSONObject();
         msgObject.put("cmd", "look");
         msgObject.put("displayName", goodsContainer.getGoodsEntity().getName());
-        msgObject.put("objId", "/goods/goods#" + goodsContainer.getUuid());
+        msgObject.put("objId", "/goods/goods#" + goodsContainer.getUuid().toString());
 
         JSONObject outObject = UnityCmdUtil.getObjectOutRet(msgObject);
         jsonArray.add(infoObject);

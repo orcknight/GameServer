@@ -12,10 +12,12 @@ public class MudObject {
 
     protected Long uuid = 0L; //实例在系统里的唯一标识
     protected Integer id = 0; //标识号，同种物品共享一个id
-    protected Integer weight = 0; //重量
+    protected Integer weight = 0; //
+    private String resource;
 
     protected Map<String, Object> temp = new HashMap<String, Object>();
     protected Map<String, Object> apply = new HashMap<String, Object>();
+    protected Map<String ,String> cmdActions = new HashMap<String, String>(); //lua文件里定义的：命令-函数映射
 
     //属性
     public Long getUuid() {
@@ -41,6 +43,14 @@ public class MudObject {
         this.weight = weight;
     }
 
+    public String getResource() {
+        return resource;
+    }
+
+    public void setResource(String resource) {
+        this.resource = resource;
+    }
+
     public Object queryTemp(String key){
         return temp.get(key);
     }
@@ -59,5 +69,13 @@ public class MudObject {
 
     public void deleteTemp(String key){
         temp.remove(key);
+    }
+
+    public Map<String, String> getCmdActions() {
+        return cmdActions;
+    }
+
+    public void setCmdActions(Map<String, String> cmdActions) {
+        this.cmdActions = cmdActions;
     }
 }

@@ -203,19 +203,9 @@ public class DefaultBll extends BaseBll {
                                 roomContentMap.put(roomContent.getId(), goodsContainer.getUuid());
                                 allObjects.put(goodsContainer.getUuid(), goodsContainer);
                             }
-
-
                         }
-
-
                     }
-
-
                 }
-
-
-
-
 
             }
         }, 20 * 1000, 20 * 1000);

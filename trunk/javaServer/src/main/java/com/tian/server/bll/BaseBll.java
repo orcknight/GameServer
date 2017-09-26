@@ -58,6 +58,11 @@ public class BaseBll {
         client.sendEvent("stream", msg);
     }
 
+    protected void sendMsg(SocketIOClient client, JSONArray jsonArray){
+
+        client.sendEvent("stream", jsonArray);
+    }
+
     //自定义发送函数
     protected void sendMsg(String msg, List<SocketIOClient> excludeClients, Collection<SocketIOClient> clients){
 
@@ -67,14 +72,34 @@ public class BaseBll {
                 continue;
             }
 
-            List<Object> msgList = new ArrayList<Object>();
-            msgList.add(msg);
-            Packet packet = new Packet(PacketType.MESSAGE);
-            packet.setSubType(PacketType.EVENT);
-            packet.setName("stream");
-            packet.setData(msgList);
-
+            Packet packet = createPacket(msg);
             client.send(packet);
         }
+    }
+
+
+    protected void sendMsg(JSONArray jsonArray, List<SocketIOClient> excludeClients, Collection<SocketIOClient> clients){
+
+        for (SocketIOClient client : clients) {
+
+            if(excludeClients.contains(client)){
+                continue;
+            }
+
+            Packet packet = createPacket(jsonArray);
+            client.send(packet);
+        }
+    }
+
+    private Packet createPacket(Object data){
+
+        List<Object> msgList = new ArrayList<Object>();
+        msgList.add(data);
+        Packet packet = new Packet(PacketType.MESSAGE);
+        packet.setSubType(PacketType.EVENT);
+        packet.setName("stream");
+        packet.setData(msgList);
+
+        return packet;
     }
 }

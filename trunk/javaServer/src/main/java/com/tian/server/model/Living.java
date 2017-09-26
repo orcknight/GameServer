@@ -61,6 +61,7 @@ public class Living extends MudObject{
     protected Integer level = 0;
     protected Integer combatExp = 0; //实战经验
     protected Integer score = 0; //功劳点
+    protected Boolean heartBeatFlag = false; //心跳表示
 
     protected Map<String, Integer> skills = new HashMap<String, Integer>(); //存放的是 技能名：等级
     protected Map<String, Integer> learned = new HashMap<String, Integer>(); //存放的是玩家已经学习过的技能 技能名：等级
@@ -70,6 +71,8 @@ public class Living extends MudObject{
     protected Map<String, String> buttons = new HashMap<String, String>(); //功能按钮
     protected RoomEntity location = new RoomEntity();//位置
     protected List<Living> enemy = new ArrayList<Living>(); //敌人列表
+    protected List<Living> killer = new ArrayList<Living>(); //敌人列表
+    protected List<Living> wantKills = new ArrayList<Living>(); //敌人列表
     protected Map<String, Integer> apply = new HashMap<String, Integer>(); //存储附加属性
     protected Map<String, Inquiry> inquirys = new HashMap<String, Inquiry>();
     protected List<MudObject> vendorGoods = new ArrayList<MudObject>();
@@ -104,6 +107,22 @@ public class Living extends MudObject{
 
     public void setEnemy(List<Living> enemy) {
         this.enemy = enemy;
+    }
+
+    public List<Living> getKiller() {
+        return killer;
+    }
+
+    public void setKiller(List<Living> killer) {
+        this.killer = killer;
+    }
+
+    public List<Living> getWantKills() {
+        return wantKills;
+    }
+
+    public void setWantKills(List<Living> wantKills) {
+        this.wantKills = wantKills;
     }
 
     public String getSurname() {
@@ -408,6 +427,14 @@ public class Living extends MudObject{
 
     public void setScore(Integer score) {
         this.score = score;
+    }
+
+    public Boolean getHeartBeatFlag() {
+        return heartBeatFlag;
+    }
+
+    public void setHeartBeatFlag(Boolean heartBeatFlag) {
+        this.heartBeatFlag = heartBeatFlag;
     }
 
     public Map<String, Integer> getSkills() {

@@ -13,7 +13,7 @@ public class GoodsLuaAgent {
     public static void addAction(String uuid, String action, String callback){
         GoodsContainer goodsContainer  = (GoodsContainer)UserCacheUtil.getAllObjects().get(Long.valueOf(uuid));
         if(goodsContainer != null){
-            Map<String ,String> actions = goodsContainer.getActions();
+            Map<String ,String> actions = goodsContainer.getCmdActions();
             actions.put(action, callback);
         }
     }

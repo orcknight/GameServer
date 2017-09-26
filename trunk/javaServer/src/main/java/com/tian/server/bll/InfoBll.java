@@ -45,7 +45,7 @@ public class InfoBll extends BaseBll {
             JSONObject itemObject = new JSONObject();
             itemObject.put("cmd", "look");
             itemObject.put("displayName", goodsContainer.getGoodsEntity().getName());
-            itemObject.put("objId", "/goods/goods#" + goodsContainer.getUuid());
+            itemObject.put("objId", "/goods/goods#" + goodsContainer.getUuid().toString());
             itemsArray.add(itemObject);
         }
         jsonObject.put("items", itemsArray);

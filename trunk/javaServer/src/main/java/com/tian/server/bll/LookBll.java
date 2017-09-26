@@ -244,7 +244,7 @@ public class LookBll extends BaseBll {
             //如果是环境物品，显示拾取按钮
             if(goodsContainer.getGoodsEntity().getPickable()) {
 
-                buttonArray.add(createButtonItem("get", "拾取", "/goods/goods#" + goodsContainer.getUuid()));
+                buttonArray.add(createButtonItem("get", "拾取", "/goods/goods#" + goodsContainer.getUuid().toString()));
             }
         }else if(goodsContainer.getBelongsInfo().getPlayerId() != player.getPlayerId()){
 
@@ -256,7 +256,7 @@ public class LookBll extends BaseBll {
             if(goodsContainer.getGoodsEntity().getType() == GoodsType.FOOD.toInteger()){
 
                 buttonArray.add(createButtonItem("eat", "吃" + goodsContainer.getGoodsEntity().getName(),
-                        "/goods/goods#" + goodsContainer.getUuid()));
+                        "/goods/goods#" + goodsContainer.getUuid().toString()));
             }
 
 
@@ -539,7 +539,7 @@ public class LookBll extends BaseBll {
 
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("cmd", "list");
-            jsonObject.put("objId", target.getUuid());
+            jsonObject.put("objId", target.getUuid().toString());
             jsonObject.put("displayName", "购物");
             jsonArray.add(jsonObject);
             //sb.append("购物:list" + +target.getUuid() + ZjMudUtil.ZJ_SEP);
@@ -549,12 +549,12 @@ public class LookBll extends BaseBll {
 
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("cmd", "fight");
-            jsonObject.put("objId", target.getUuid());
+            jsonObject.put("objId", target.getUuid().toString());
             jsonObject.put("displayName", "切磋");
             jsonArray.add(jsonObject);
             jsonObject = new JSONObject();
             jsonObject.put("cmd", "kill");
-            jsonObject.put("objId", target.getUuid());
+            jsonObject.put("objId", target.getUuid().toString());
             jsonObject.put("displayName", "杀死");
             jsonArray.add(jsonObject);
             //sb.append("切磋:fight " + target.getUuid() + ZjMudUtil.ZJ_SEP);
@@ -563,7 +563,7 @@ public class LookBll extends BaseBll {
 
         JSONObject stealObject = new JSONObject();
         stealObject.put("cmd", "steal");
-        stealObject.put("objId", target.getUuid());
+        stealObject.put("objId", target.getUuid().toString());
         stealObject.put("displayName", "偷窃");
         jsonArray.add(stealObject);
         //sb.append("偷窃:steal " + target.getUuid() + ZjMudUtil.ZJ_SEP);
@@ -572,7 +572,7 @@ public class LookBll extends BaseBll {
 
             JSONObject giveObject = new JSONObject();
             giveObject.put("cmd", "give");
-            giveObject.put("objId", target.getUuid());
+            giveObject.put("objId", target.getUuid().toString());
             giveObject.put("displayName", "给予");
             jsonArray.add(giveObject);
             //sb.append("给予:give " + target.getUuid() + ZjMudUtil.ZJ_SEP);
@@ -580,7 +580,7 @@ public class LookBll extends BaseBll {
 
         JSONObject followObject = new JSONObject();
         followObject.put("cmd", "follow");
-        followObject.put("objId", target.getUuid());
+        followObject.put("objId", target.getUuid().toString());
         followObject.put("displayName", "跟随");
         jsonArray.add(followObject);
         //sb.append("跟随:follow " + target.getUuid());
@@ -589,7 +589,7 @@ public class LookBll extends BaseBll {
 
             JSONObject skillObject = new JSONObject();
             skillObject.put("cmd", "skills");
-            skillObject.put("objId", target.getUuid());
+            skillObject.put("objId", target.getUuid().toString());
             skillObject.put("displayName", "查看技能");
             jsonArray.add(skillObject);
             //sb.append(ZjMudUtil.ZJ_SEP + "查看技能:skills " + target.getUuid());

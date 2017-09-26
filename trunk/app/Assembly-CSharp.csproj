@@ -195,6 +195,7 @@
      <Compile Include="Assets\Script\Bag.cs" />
      <Compile Include="Assets\Script\Camera\GameCamera.cs" />
      <Compile Include="Assets\Script\Camera\KeyDetecter.cs" />
+     <Compile Include="Assets\Script\Combat\CombatManager.cs" />
      <Compile Include="Assets\Script\Combat\CombatStatusBar.cs" />
      <Compile Include="Assets\Script\Common\AttrProgressBarManger.cs" />
      <Compile Include="Assets\Script\Common\CommonUIDetail.cs" />
