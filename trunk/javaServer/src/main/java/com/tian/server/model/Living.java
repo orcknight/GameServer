@@ -23,7 +23,6 @@ public class Living extends MudObject{
     protected String familyName = ""; //门派名称
     protected String bunchName = ""; //帮派名称
     protected String cmdName = ""; //命令名、英文名
-    protected Integer age = 0; //年龄
     protected Integer mudAge = 0; //mod参数年龄
     protected Integer ageModify = 0; //年龄变化
     protected String gender = ""; //性别
@@ -164,14 +163,6 @@ public class Living extends MudObject{
 
     public void setCmdName(String cmdName) {
         this.cmdName = cmdName;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
     }
 
     public Integer getMudAge() {
@@ -627,9 +618,9 @@ public class Living extends MudObject{
         return getSkills().get(skillName) + num;
     }
 
-    protected Integer calcAge(Integer ageModify, Integer mudAge){
+    public Integer getAge(){
 
-        Integer age = ageModify + mudAge / 86400;
+        Integer age = this.ageModify + this.mudAge / 86400;
         if (age > 118) {
             age = 46 + (age - 118) / 4;
         } else if (age > 28) {

@@ -13,10 +13,6 @@ public class RankService {
     public String queryRank(Living ob)
     {
 
-        int exp = ob.getLevel();
-        String menpai=ob.getFamilyName();
-        Integer shen = ob.getShen();
-
         //Todo:暂时不处理巫师
         /*if(wizardp(ob)&&ob->query("env/own_rank"))
             return NOR"【"HIW+ob->query("env/own_rank")+NOR" 】";*/
@@ -58,231 +54,20 @@ public class RankService {
             }
         }
 
-        switch(ob.getGender()) {
-            case "女性":
-
-            default:
-                switch(wizhood(ob)) {
-                    case "(admin)":
-                        return NOR "【"HIR"天界总管"NOR"】" ;
-                    case "(wizard)":
-                        return NOR "【"HIC"护法尊者"NOR"】" ;
-                    case "(immortal)":
-                        return NOR "【"HIB"逍遥散仙"NOR"】" ;
-                    default:
-                        if( ((int)ob->query("PKS") > 50) )
-                            return "【杀人魔王】";
-                        else if (shen >= 1000000)
-                            return  "【"HIG"武林泰斗"NOR"】" ;
-			else if (shen >= 500000)
-                        return HIC "【"HIC"旷世大侠"NOR"】" ;
-			else if (shen >= 100000)
-                        return HIC "【"HIC"名满天下"NOR"】" ;
-			else if (shen >= 50000)
-                        return  "【"HIY"名动一时"NOR"】";
-			else if (shen >= 10000)
-                        return  "【"HIY"江湖豪杰"NOR"】";
-			else if (shen >= 5000)
-                        return  "【"HIG"武林新秀"NOR"】";
-			else if (shen >= 1000)
-                        return  "【"HIG"小有名声"NOR"】";
-			else if (shen >= 500)
-                        return NOR"【"CYN"小有侠义"NOR"】";
-			else if (shen <= -1000000)
-                        return "【"HIW"江湖老怪"NOR"】" ;
-			else if (shen <= -500000)
-                        return "【"HIR"旷世魔头"NOR"】";
-			else if (shen <= -100000)
-                        return "【"RED"恶霸一方"NOR"】";
-			else if (shen <= -50000)
-                        return "【"YEL"恶名远扬"NOR"】";
-			else if (shen <= -10000)
-                        return "【"YEL"小有恶名"NOR"】";
-			else if (shen <= -500)
-                        return "【"HIB"走上邪道"NOR"】";
-			else if( (int)ob->query("thief") > 10 )
-                        return NOR"【"YEL" 神  偷 "NOR"】";
-			else
-                        switch(menpai) {
-                            case "武当派":
-                                if (exp>99){
-                                    if (shen >= 0 )
-                                        return NOR "【"HIR" 天  师 "NOR"】";
-							else
-                                    return NOR "【"HIW"恶 天 师"NOR"】";
-                                }
-                                if (exp>79)
-                                    return NOR "【"HIM" 国  师 "NOR"】";
-                                if (exp>59)
-                                    return NOR "【"GRN" 真  人 "NOR"】";
-                                if (exp>49)
-                                    return NOR "【"YEL"大 法 师"NOR"】";
-                                if (exp>39)
-                                    return NOR "【"YEL" 法  师 "NOR"】";
-                                if (exp>29)
-                                    return NOR "【"CYN" 道  长 "NOR"】";
-                                if (exp>24)
-                                    return NOR "【"CYN" 道  士 "NOR"】";
-                                if (exp>19)
-                                    return NOR "【"HIB" 道  士 "NOR"】";
-                                if (exp>9)
-                                    return NOR "【"HIB"大 道 童"NOR"】";
-                                return "【 道  童 】" ;
-
-                            case "华山派":
-                                if (exp>99) {
-                                    if (shen >= 0 )
-                                        return NOR "【"HIW"惊天一剑"NOR"】";
-							else
-                                    return NOR "【"HIW"惊魔一剑"NOR"】";
-                                }
-                                if (exp>79) {
-                                    if (shen >= 0)
-                                        return NOR "【 "HIR"剑  圣"NOR" 】";
-							else
-                                    return NOR "【 "HIM"剑  魔"NOR" 】";
-                                }
-                                if (exp>59) {
-                                    if (shen >= 0)
-                                        return NOR "【 "GRN"剑  仙"NOR" 】";
-							else
-                                    return NOR "【 "GRN"邪  剑"NOR" 】";
-                                }
-                                if (exp>49)
-                                    return NOR "【 "YEL"剑  痴"NOR" 】";
-                                if (exp>39)
-                                    return NOR "【 "CYN"剑  侠"NOR" 】";
-                                if (exp>29)
-                                    return NOR "【"CYN"大 剑 客"NOR"】";
-                                if (exp>24)
-                                    return NOR "【 "RED"剑  客"NOR" 】";
-                                if (exp>19)
-                                    return NOR "【"MAG"大 剑 士"NOR"】";
-                                if (exp>9)
-                                    return NOR "【"MAG" 剑  士 "NOR"】";
-                                return "【 剑  童 】";
-
-                            case "丐帮":
-                                if (exp>99)
-                                    return NOR "【"HIR"副 帮 主"NOR"】";
-                                if (exp>79)
-                                    return NOR "【"HIW"十袋长老"NOR"】";
-                                if (exp>59)
-                                    return NOR "【"HIM"九袋长老"NOR"】";
-                                if (exp>49)
-                                    return NOR "【"YEL"传功长老"NOR"】";
-                                if (exp>39)
-                                    return NOR "【"YEL"执法长老"NOR"】";
-                                if (exp>29)
-                                    return NOR "【"RED" 神  丐 "NOR"】";
-                                if (exp>24)
-                                    return NOR "【"CYN"小 神 丐"NOR"】";
-                                if (exp>19)
-                                    return NOR"【"CYN"  乞  丐 "NOR"】";
-                                if (exp>9)
-                                    return NOR "【"HIB"小 乞 丐"NOR"】";
-                                return "【叫 化 子】"NOR ;
-
-                            case "星宿派":
-                            case "桃花岛":
-                                if (exp>99) {
-                                    if (shen >= 0)
-                                        return NOR "【"HIR"魔 见 愁"NOR"】";
-							else
-                                    return NOR "【"HIR" 狂  魔 "NOR"】";
-                                }
-                                if (exp>79)
-                                    return NOR "【"CYN"世外高人"NOR"】";
-                                if (exp>59)
-                                    return NOR "【"GRN"旷世奇侠"NOR"】";
-                                if (exp>49)
-                                    return NOR "【"YEL"大 豪 侠"NOR"】";
-                                if (exp>39)
-                                    return NOR "【"YEL" 豪  侠 "NOR"】";
-                                if (exp>29)
-                                    return NOR "【"GRN" 大  侠 "NOR"】";
-                                if (exp>24)
-                                    return NOR "【"GRN" 侠  士 "NOR"】";
-                                if (exp>19)
-                                    return NOR "【"CYN" 游  侠 "NOR"】";
-                                if (exp>9)
-                                    return NOR "【"HIC" 少  侠 "NOR"】";
-                                return "【武林人物】"NOR ;
-
-                            case "明教":
-                                if (exp>99)
-                                    return NOR "【"HIR"副 教 主"NOR"】";
-                                if (exp>79)
-                                    return NOR "【"HIM" 法  王 "NOR"】";
-                                if (exp>59)
-                                    return NOR "【"GRN"总 护 法"NOR"】";
-                                if (exp>49)
-                                    return NOR "【"YEL" 护  法 "NOR"】";
-                                if (exp>39)
-                                    return NOR "【"YEL"总 堂 主"NOR"】";
-                                if (exp>29)
-                                    return NOR "【"CYN"副 堂 主"NOR"】";
-                                if (exp>24)
-                                    return NOR "【"CYN" 旗  主 "NOR"】";
-                                if (exp>19)
-                                    return NOR "【"GRN"副 旗 主"NOR"】";
-                                if (exp>9)
-                                    return NOR "【"HIB" 教  众 "NOR"】";
-                                return "【 教  众 】" ;
-
-                            default:
-                                switch(ob->query("class")) {
-                                    case "bonze":
-                                        if (budd >= 150)
-                                            return  "【"HIY" 长  老"NOR" 】";
-					else if (budd >= 120)
-                                        return  "【"HIY" 圣  僧"NOR" 】" ;
-					else if (budd >= 90)
-                                        return  "【"HIY" 罗  汉"NOR" 】" ;
-					else if (budd >= 60)
-                                        return  "【"YEL" 尊  者"NOR" 】" ;
-					else if (budd >= 40)
-                                        return "【 "YEL"禅  师"NOR" 】" ;
-					else if (budd >= 30)
-                                        return  "【"YEL" 比  丘"NOR" 】" ;
-					else
-                                        return "【 僧  人 】";
-                                    case "yishi":
-                                        return "【江湖义士】";
-                                    case "taoist":
-                                        return "【云游道士】";
-                                    case "bandit":
-                                        return "【梁上君子】";
-                                    case "scholar":
-                                        return "【翩翩才子】";
-                                    case "officer":
-                                        return "【差    人】";
-                                    case "swordsman":
-                                        return "【多情剑客】";
-                                    case "alchemist":
-                                        return "【 方  士 】";
-                                    case "shaman":
-                                        return "【 巫  医 】";
-                                    case "beggar":
-                                        return "【穷叫花子】";
-                                    case "shiny":
-                                        return "【光明使者】";
-                                    default:
-                                        return "【布衣平民】";
-                                }
-                        }
-                }
+        if(ob.getClassStr().equals("女性")){
+            return getFemaleRank(ob);
+        }else{
+            return getMaleRank(ob);
         }
     }
-    string query_respect(object ob)
+
+    String query_respect(Living ob)
     {
-        int age;
-        string str;
+        if(ob.query("rank_info/respect") != null){
+            return ob.query("rank_info/respect").toString();
+        }
 
-        if( stringp(str = ob->query("rank_info/respect")) )
-            return str;
-
-        age = ob->query("age");
+        Integer age = ob.getAge();
         switch(ob->query("gender")) {
             case "女性":
                 switch(ob->query("class")) {
@@ -864,11 +649,16 @@ public class RankService {
         Integer shen = ob.getShen();
         Integer pks = 0;
         Integer thief = 0;
+        Integer budd = 0;
         if (ob.query("PKS") != null) {
             pks = Integer.parseInt(ob.query("PKS").toString());
         }
         if (ob.query("thief") != null) {
             thief = Integer.parseInt(ob.query("thief").toString());
+        }
+
+        if(ob.getFamilyName() != null && ob.getFamilyName().equals("少林派")){
+            budd = ob.querySkill("buddhism", 1);
         }
 
         String obHood = wizhood(ob);
@@ -997,7 +787,7 @@ public class RankService {
                         return "【" + Ansi.HIR + "副 帮 主" + Ansi.NOR + "】";
                     }
                     if (exp>79) {
-                        return "【" + Ansi.HIW "十袋长老" + Ansi.NOR + "】";
+                        return "【" + Ansi.HIW + "十袋长老" + Ansi.NOR + "】";
                     }
                     if (exp>59) {
                         return "【" + Ansi.HIM + "九袋长老" + Ansi.NOR + "】";
@@ -1087,113 +877,49 @@ public class RankService {
                     return "【 教  众 】" ;
                 }else{
 
-                    switch(ob->query("class")) {
-                        case "bonze":
-                            if (budd >= 150)
-                                return  "【"HIY" 长  老"NOR" 】";
-					else if (budd >= 120)
-                            return  "【"HIY" 圣  僧"NOR" 】" ;
-					else if (budd >= 90)
-                            return  "【"HIY" 罗  汉"NOR" 】" ;
-					else if (budd >= 60)
-                            return  "【"YEL" 尊  者"NOR" 】" ;
-					else if (budd >= 40)
-                            return "【 "YEL"禅  师"NOR" 】" ;
-					else if (budd >= 30)
-                            return  "【"YEL" 比  丘"NOR" 】" ;
-					else
+                    if(ob.getClassStr().equals("bonze")){
+
+                        if (budd >= 150) {
+                            return "【" + Ansi.HIY + " 长  老" + Ansi.NOR + " 】";
+                        }else if (budd >= 120) {
+                            return "【" + Ansi.HIY + " 圣  僧" + Ansi.NOR + " 】";
+                        }else if (budd >= 90) {
+                            return "【" + Ansi.HIY + " 罗  汉" + Ansi.NOR + " 】";
+                        }else if (budd >= 60) {
+                            return "【" + Ansi.YEL + " 尊  者" + Ansi.NOR + " 】";
+                        }else if (budd >= 40) {
+                            return "【 " + Ansi.YEL + "禅  师" + Ansi.NOR + " 】";
+                        }else if (budd >= 30) {
+                            return "【" + Ansi.YEL + " 比  丘" + Ansi.NOR + " 】";
+                        }else {
                             return "【 僧  人 】";
-                        case "yishi":
-                            return "【江湖义士】";
-                        case "taoist":
-                            return "【云游道士】";
-                        case "bandit":
-                            return "【梁上君子】";
-                        case "scholar":
-                            return "【翩翩才子】";
-                        case "officer":
-                            return "【差    人】";
-                        case "swordsman":
-                            return "【多情剑客】";
-                        case "alchemist":
-                            return "【 方  士 】";
-                        case "shaman":
-                            return "【 巫  医 】";
-                        case "beggar":
-                            return "【穷叫花子】";
-                        case "shiny":
-                            return "【光明使者】";
-                        default:
-                            return "【布衣平民】";
+                        }
+                    }else if(ob.getClassStr().equals("yishi")){
+                        return "【江湖义士】";
+                    }else if(ob.getClassStr().equals("taoist")){
+                        return "【云游道士】";
+                    }else if(ob.getClassStr().equals("bandit")){
+                        return "【梁上君子】";
+                    }else if(ob.getClassStr().equals("scholar")){
+                        return "【翩翩才子】";
+                    }else if(ob.getClassStr().equals("officer")){
+                        return "【差    人】";
+                    }else if(ob.getClassStr().equals("swordsman")){
+                        return "【多情剑客】";
+                    }else if(ob.getClassStr().equals("alchemist")){
+                        return "【 方  士 】";
+                    }else if(ob.getClassStr().equals("shaman")){
+                        return "【 巫  医 】";
+                    }else if(ob.getClassStr().equals("beggar")){
+                        return "【穷叫花子】";
+                    }else if(ob.getClassStr().equals("shiny")){
+                        return "【光明使者】";
+                    }else{
+                        return "【布衣平民】";
                     }
-
-
-
                 }
             }
-
-                switch(menpai) {
-                    case "武当派":
-
-
-                    case "华山派":
-
-
-                    case "丐帮":
-
-
-                    case "星宿派":
-                    case "桃花岛":
-
-
-                    case "明教":
-
-
-                    default:
-                        switch(ob->query("class")) {
-                            case "bonze":
-                                if (budd >= 150)
-                                    return  "【"HIY" 长  老"NOR" 】";
-					else if (budd >= 120)
-                                return  "【"HIY" 圣  僧"NOR" 】" ;
-					else if (budd >= 90)
-                                return  "【"HIY" 罗  汉"NOR" 】" ;
-					else if (budd >= 60)
-                                return  "【"YEL" 尊  者"NOR" 】" ;
-					else if (budd >= 40)
-                                return "【 "YEL"禅  师"NOR" 】" ;
-					else if (budd >= 30)
-                                return  "【"YEL" 比  丘"NOR" 】" ;
-					else
-                                return "【 僧  人 】";
-                            case "yishi":
-                                return "【江湖义士】";
-                            case "taoist":
-                                return "【云游道士】";
-                            case "bandit":
-                                return "【梁上君子】";
-                            case "scholar":
-                                return "【翩翩才子】";
-                            case "officer":
-                                return "【差    人】";
-                            case "swordsman":
-                                return "【多情剑客】";
-                            case "alchemist":
-                                return "【 方  士 】";
-                            case "shaman":
-                                return "【 巫  医 】";
-                            case "beggar":
-                                return "【穷叫花子】";
-                            case "shiny":
-                                return "【光明使者】";
-                            default:
-                                return "【布衣平民】";
-                        }
-
-            }
         }
-
-
 
     }
 
