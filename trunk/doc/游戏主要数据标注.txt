@@ -157,3 +157,6 @@ if (userp(ob) && MEMBER_D->is_valid_member(ob))
                         ob->set_max_encumbrance(80000 + ob->query("str") * 8000 + ob->query_str() * 1200);
                 else
                         ob->set_max_encumbrance(40000 + ob->query("str") * 4000 + ob->query_str() * 600);
+						
+						
+						流氓头说道：既然道长赐教，在下只好奉陪。

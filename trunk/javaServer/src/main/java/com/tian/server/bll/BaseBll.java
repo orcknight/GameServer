@@ -3,6 +3,7 @@ package com.tian.server.bll;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.protocol.Packet;
 import com.corundumstudio.socketio.protocol.PacketType;
+import com.tian.server.util.MsgUtil;
 import com.tian.server.util.SessionUtil;
 import com.tian.server.util.UserCacheUtil;
 import net.sf.json.JSONArray;
@@ -63,43 +64,8 @@ public class BaseBll {
         client.sendEvent("stream", jsonArray);
     }
 
-    //自定义发送函数
-    protected void sendMsg(String msg, List<SocketIOClient> excludeClients, Collection<SocketIOClient> clients){
-
-        for (SocketIOClient client : clients) {
-
-            if(excludeClients.contains(client)){
-                continue;
-            }
-
-            Packet packet = createPacket(msg);
-            client.send(packet);
-        }
-    }
-
-
     protected void sendMsg(JSONArray jsonArray, List<SocketIOClient> excludeClients, Collection<SocketIOClient> clients){
 
-        for (SocketIOClient client : clients) {
-
-            if(excludeClients.contains(client)){
-                continue;
-            }
-
-            Packet packet = createPacket(jsonArray);
-            client.send(packet);
-        }
-    }
-
-    private Packet createPacket(Object data){
-
-        List<Object> msgList = new ArrayList<Object>();
-        msgList.add(data);
-        Packet packet = new Packet(PacketType.MESSAGE);
-        packet.setSubType(PacketType.EVENT);
-        packet.setName("stream");
-        packet.setData(msgList);
-
-        return packet;
+        MsgUtil.sendMsg(jsonArray, excludeClients, clients);
     }
 }

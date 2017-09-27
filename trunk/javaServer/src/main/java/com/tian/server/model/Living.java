@@ -62,6 +62,7 @@ public class Living extends MudObject{
     protected Integer combatExp = 0; //实战经验
     protected Integer score = 0; //功劳点
     protected Boolean heartBeatFlag = false; //心跳表示
+    protected Boolean isGhost = false;
 
     protected Map<String, Integer> skills = new HashMap<String, Integer>(); //存放的是 技能名：等级
     protected Map<String, Integer> learned = new HashMap<String, Integer>(); //存放的是玩家已经学习过的技能 技能名：等级
@@ -437,6 +438,14 @@ public class Living extends MudObject{
         this.heartBeatFlag = heartBeatFlag;
     }
 
+    public Boolean getGhost() {
+        return isGhost;
+    }
+
+    public void setGhost(Boolean ghost) {
+        isGhost = ghost;
+    }
+
     public Map<String, Integer> getSkills() {
         return skills;
     }
@@ -577,6 +586,45 @@ public class Living extends MudObject{
     public void setApplyValue(String key, Integer value){
 
         getApply().put(key, value);
+    }
+
+    public Integer querySkill(String skillName, Integer raw){
+
+        Integer num = 0;
+        if(queryTemp("suit_skill/" + skillName) != null){
+            num = Integer.parseInt(queryTemp("suit_skill/" + skillName).toString());   //套装技能
+        }
+
+        if (raw == 0)
+        {
+            Integer s = 0;
+            if(queryTemp("apply/" + skillName) != null){
+                s = Integer.parseInt(queryTemp("apply/" + skillName).toString());
+            }
+
+            if(getSkills().get(skillName) == null){
+                return s;
+            }
+
+            s += getSkills().get(skillName);
+            if(getSkillMap().get(skillName) == null){
+                return s;
+            }
+
+            String mapSkillName = getSkillMap().get(skillName);
+            if(getSkills().get(mapSkillName) == null){
+                return s;
+            }
+
+            s += getSkills().get(mapSkillName);
+            return s;
+        }
+
+        if(getSkills().get(skillName) == null){
+            return 0;
+        }
+
+        return getSkills().get(skillName) + num;
     }
 
     protected Integer calcAge(Integer ageModify, Integer mudAge){

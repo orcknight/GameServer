@@ -1,9 +1,17 @@
 package com.tian.server.service;
 
+import com.corundumstudio.socketio.SocketIOClient;
 import com.tian.server.common.Ansi;
 import com.tian.server.model.Living;
 import com.tian.server.model.Player;
 import com.tian.server.model.Race.Human;
+import com.tian.server.util.MsgUtil;
+import com.tian.server.util.UnityCmdUtil;
+import net.sf.json.JSONArray;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by PPX on 2017/7/11.
@@ -252,15 +260,17 @@ public class CombatService {
         return source;
     }
 
-    public boolean accept_fight(Living me, Player who){
+    public Integer accept_fight(Living me, Player who){
 
         AttackService attackService = new AttackService();
         if(!(me instanceof Human)){
             attackService.kill_ob(me, who);
-            return true;
+            return 1;
         }
 
 
+        List<SocketIOClient> excludeClients = new ArrayList<SocketIOClient>();
+        Collection<SocketIOClient> clients = who.getSocketClient().getNamespace().getRoomOperations(me.getLocation().getName()).getClients();
         //Todo:守卫模式暂时不处理
         /*if( this_object()->is_guarder() )
         return this_object()->check_enemy(who, "fight");*/
@@ -268,22 +278,28 @@ public class CombatService {
         String att = me.getAttitude();
         Integer perqi = (int)me.getQi() * 100 / me.getMaxQi();
         Integer perjing = (int)me.getJing() * 100 / me.getMaxJing();
+        JSONArray jsonArray = new JSONArray();
 
-        if(  me.getEnemy().size() > 0) {
-            switch(att)
-            {
-                case "heroism":
-                    if( perqi >= 50 ) {
-                        command("say 哼！出招吧！");
-                        return 1;
-                    } else {
-                        command("say 哼！我小歇片刻再收拾你不迟。");
-                        return 0;
-                    }
-                    break;
-                default:
-                    command("say 想倚多为胜，这不是欺人太甚吗！");
+        if(me instanceof  Player){
+            excludeClients.add(((Player)me).getSocketClient());
+        }
+
+        if(me.getEnemy().size() > 0) {
+
+            if(att.equals("heroism")){
+                if(perqi >= 50) {
+                    jsonArray.add(UnityCmdUtil.getInfoWindowRet(me.getName() + "说道：哼！出招吧！"));
+                    MsgUtil.sendMsg(jsonArray, excludeClients, clients);
+                    return 1;
+                }else{
+                    jsonArray.add(UnityCmdUtil.getInfoWindowRet(me.getName() + "说道：哼！我小歇片刻再收拾你不迟。"));
+                    MsgUtil.sendMsg(jsonArray, excludeClients, clients);
                     return 0;
+                }
+            }else{
+                jsonArray.add(UnityCmdUtil.getInfoWindowRet(me.getName() + "说道：想倚多为胜，这不是欺人太甚吗！"));
+                MsgUtil.sendMsg(jsonArray, excludeClients, clients);
+                return 0;
             }
         }
 
@@ -310,6 +326,11 @@ public class CombatService {
 
         command("say 今天有些疲惫，改日再战也不迟啊。");
         return 0;
+    }
+
+    public void broadcastToRoom(){
+
+
     }
 
 }
