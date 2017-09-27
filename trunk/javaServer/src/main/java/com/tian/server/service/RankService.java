@@ -10,8 +10,7 @@ import com.tian.server.model.Player;
 public class RankService {
 
 
-    public String queryRank(Living ob)
-    {
+    public String queryRank(Living ob) {
 
         //Todo:暂时不处理巫师
         /*if(wizardp(ob)&&ob->query("env/own_rank"))
@@ -61,65 +60,78 @@ public class RankService {
         }
     }
 
-    String query_respect(Living ob)
-    {
+    public String query_respect(Living ob) {
         if(ob.query("rank_info/respect") != null){
             return ob.query("rank_info/respect").toString();
         }
 
         Integer age = ob.getAge();
-        switch(ob->query("gender")) {
-            case "女性":
-                switch(ob->query("class")) {
-                    case "bonze":
-                        if( age < 18 ) return "小师太";
-                        else return "师太";
-                        break;
-                    case "taoist":
-                        if( age < 18 ) return "小仙姑";
-                        else return "仙姑";
-                        break;
-                    default:
-                        if( age < 18 ) return "小姑娘";
-                        else if( age < 50 ) return "姑娘";
-                        else return "婆婆";
-                        break;
+        String gender = ob.getGender();
+        String classStr = ob.getClassStr();
+
+        if(gender.equals("女性")){
+
+            if(classStr.equals("bonze")){
+                if( age < 18 ) {
+                    return "小师太";
+                } else {
+                    return "师太";
                 }
-            case "男性":
-            default:
-                switch(ob->query("class")) {
-                    case "bonze":
-                        if( age < 18 ) return "小师父";
-                        else return "大师";
-                        break;
-                    case "taoist":
-                        if( age < 18 ) return "道兄";
-                        else return "道长";
-                        break;
-                    case "fighter":
-                    case "swordsman":
-                        if( age < 18 ) return "小老弟";
-                        else if( age < 50 ) return "壮士";
-                        else return "老前辈";
-                        break;
-                    default:
-                        if( age < 20 ) return "小兄弟";
-                        else if( age < 50 ) return "壮士";
-                        else return "老爷子";
-                        break;
+            }else if(classStr.equals("taoist")){
+                if( age < 18 ) {
+                    return "小仙姑";
+                } else {
+                    return "仙姑";
                 }
+            }else{
+                if( age < 18 ) {
+                    return "小姑娘";
+                } else if( age < 50 ) {
+                    return "姑娘";
+                } else {
+                    return "婆婆";
+                }
+            }
+        }else{
+            if(classStr.equals("bonze")){
+                if( age < 18 ) {
+                    return "小师父";
+                } else {
+                    return "大师";
+                }
+            }else if(classStr.equals("taoist")){
+                if( age < 18 ) {
+                    return "道兄";
+                } else {
+                    return "道长";
+                }
+            }else if(classStr.equals("fighter") || classStr.equals("swordsman")){
+                if( age < 18 ) {
+                    return "小老弟";
+                }else if( age < 50 ) {
+                    return "壮士";
+                }else {
+                    return "老前辈";
+                }
+            }else {
+                if( age < 20 ) {
+                    return "小兄弟";
+                }else if( age < 50 ) {
+                    return "壮士";
+                }else {
+                    return "老爷子";
+                }
+            }
         }
     }
 
-    string query_rude(object ob)
-    {
-        int age;
-        string str;
+    public String query_rude(Living ob) {
 
-        if( stringp(str = ob->query("rank_info/rude")) )
-            return str;
+        if(ob.query("rank_info/rude")!= null){
+            return ob.query("rank_info/rude").toString();
+        }
 
-        age = ob->query("age");
+        Integer age = ob.getAge();
         switch(ob->query("gender")) {
             case "女性":
                 switch(ob->query("class")) {
@@ -378,10 +390,10 @@ public class RankService {
         return str + icon;
     }
 
-    String getFemaleRank(Living ob){
+    private String getFemaleRank(Living ob){
 
         Integer exp = ob.getLevel();
-        String menpai=ob.getFamilyName();
+        String menpai = ob.getFamilyName() == null ? "" : ob.getFamilyName();
         Integer shen = ob.getShen();
         Integer pks = 0;
         Integer thief = 0;
@@ -642,10 +654,10 @@ public class RankService {
         }
     }
 
-    String getMaleRank(Living ob) {
+    private String getMaleRank(Living ob) {
 
         Integer exp = ob.getLevel();
-        String menpai = ob.getFamilyName();
+        String menpai = ob.getFamilyName() == null ? "" : ob.getFamilyName();
         Integer shen = ob.getShen();
         Integer pks = 0;
         Integer thief = 0;
