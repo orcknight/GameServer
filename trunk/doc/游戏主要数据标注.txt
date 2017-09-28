@@ -88,7 +88,8 @@ adm/deamons/Combatd.c 里面的fight函数
 
 can_speak只有race是human的才会说话
 is_character 是否是活物
-
+userp 是否玩家
+born 只有玩家有born
 
 skills map 存放的是 map 技能名：等级
 learned map 存放的是玩家已经学习过的技能 技能名：等级

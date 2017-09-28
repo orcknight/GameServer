@@ -5,9 +5,14 @@ import com.tian.server.common.Ansi;
 import com.tian.server.model.Living;
 import com.tian.server.model.Player;
 import com.tian.server.model.Race.Human;
+import com.tian.server.util.LuaBridge;
 import com.tian.server.util.MsgUtil;
 import com.tian.server.util.UnityCmdUtil;
 import net.sf.json.JSONArray;
+import org.luaj.vm2.Globals;
+import org.luaj.vm2.LuaValue;
+import org.luaj.vm2.lib.jse.CoerceJavaToLua;
+import org.luaj.vm2.lib.jse.JsePlatform;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -262,12 +267,29 @@ public class CombatService {
 
     public Integer accept_fight(Living me, Player who){
 
+        //如果自定义了处理函数直接调用
+        if(me.getCmdActions() != null && me.getCmdActions().get("accept_fight") != null ){
+
+            LuaBridge bridge = new LuaBridge();
+            String luaPath = this.getClass().getResource(me.getResource()).getPath();
+            Globals globals = JsePlatform.standardGlobals();
+            //加载脚本文件login.lua，并编译
+            globals.loadfile(luaPath).call();
+            //获取带参函数create
+            LuaValue createFun = globals.get(LuaValue.valueOf(me.getCmdActions().get("accept_fight")));
+            //执行方法初始化数据
+            LuaValue retValue = createFun.call(CoerceJavaToLua.coerce(bridge), LuaValue.valueOf(me.getUuid().toString()));
+
+            return retValue.toint();
+        }
+
+        //默认处理方法
         AttackService attackService = new AttackService();
+        RankService rankService = new RankService();
         if(!(me instanceof Human)){
             attackService.kill_ob(me, who);
             return 1;
         }
-
 
         List<SocketIOClient> excludeClients = new ArrayList<SocketIOClient>();
         Collection<SocketIOClient> clients = who.getSocketClient().getNamespace().getRoomOperations(me.getLocation().getName()).getClients();
@@ -304,27 +326,26 @@ public class CombatService {
         }
 
         if( perqi >= 75 && perjing >= 75 ) {
-            switch (att)
-            {
-                case "friendly":
-                    command("say " + RANK_D->query_self(this_object())
-                            + "怎么可能是" + RANK_D->query_respect(who)
-                            + "的对手？");
-                    return 0;
-                case "aggressive":
-                case "killer":
-                    command("say 哼！出招吧！");
-                    break;
-                default:
-                    command("say 既然" + RANK_D->query_respect(who)
-                            + "赐教，" + RANK_D->query_self(this_object())
-                            + "只好奉陪。");
-                    break;
+
+            if(att.equals("friendly")){
+                jsonArray.add(UnityCmdUtil.getInfoWindowRet(me.getName() + "说道：" + rankService.querySelf(me)
+                        + "怎么可能是" + rankService.queryRespect(who) + "的对手？"));
+                MsgUtil.sendMsg(jsonArray, excludeClients, clients);
+                return 0;
+            }else if(att.equals("aggressive") || att.equals("killer")){
+                jsonArray.add(UnityCmdUtil.getInfoWindowRet(me.getName() + "说道：哼！出招吧！"));
+                MsgUtil.sendMsg(jsonArray, excludeClients, clients);
+                return 1;
+            }else{
+                jsonArray.add(UnityCmdUtil.getInfoWindowRet(me.getName() + "说道：既然" + rankService.queryRespect(who)
+                        + "赐教，" + rankService.querySelf(me) + "只好奉陪。"));
+                MsgUtil.sendMsg(jsonArray, excludeClients, clients);
+                return 1;
             }
-            return 1;
         }
 
-        command("say 今天有些疲惫，改日再战也不迟啊。");
+        jsonArray.add(UnityCmdUtil.getInfoWindowRet(me.getName() + "说道：今天有些疲惫，改日再战也不迟啊。"));
+        MsgUtil.sendMsg(jsonArray, excludeClients, clients);
         return 0;
     }
 

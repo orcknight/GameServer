@@ -11,6 +11,7 @@ import com.tian.server.model.*;
 import com.tian.server.model.Race.Human;
 import com.tian.server.service.CombatService;
 import com.tian.server.util.*;
+import net.sf.json.JSON;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -292,8 +293,10 @@ public class LookBll extends BaseBll {
                 excludeClients.add(((Player)me).getSocketClient());
                 excludeClients.add(((Player)target).getSocketClient());
                 sendMsg(((Player) target).getSocketClient(), me.getName() + "正盯著你看，不知道在打什么主意。\r\n");
-                sendMsg( me.getName() + "盯着" + target.getName() +
-                                "看了一会儿，不知道在打什么主意。\r\n",
+                JSONArray jsonArray = new JSONArray();
+                jsonArray.add(me.getName() + "盯着" + target.getName() +
+                        "看了一会儿，不知道在打什么主意。\r\n");
+                sendMsg( jsonArray,
                         excludeClients, socketIOClient.getNamespace().getRoomOperations(me.getLocation().getName()).getClients());
             }
         }

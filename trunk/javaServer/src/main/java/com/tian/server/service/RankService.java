@@ -4,11 +4,12 @@ import com.tian.server.common.Ansi;
 import com.tian.server.model.Living;
 import com.tian.server.model.Player;
 
+import javax.persistence.criteria.CriteriaBuilder;
+
 /**
  * Created by PPX on 2017/9/27.
  */
 public class RankService {
-
 
     public String queryRank(Living ob) {
 
@@ -60,7 +61,7 @@ public class RankService {
         }
     }
 
-    public String query_respect(Living ob) {
+    public String queryRespect(Living ob) {
         if(ob.query("rank_info/respect") != null){
             return ob.query("rank_info/respect").toString();
         }
@@ -125,194 +126,198 @@ public class RankService {
         }
     }
 
-    public String query_rude(Living ob) {
+    public String queryRude(Living ob) {
 
         if(ob.query("rank_info/rude")!= null){
             return ob.query("rank_info/rude").toString();
         }
 
         Integer age = ob.getAge();
-        switch(ob->query("gender")) {
-            case "女性":
-                switch(ob->query("class")) {
-                    case "bonze":
-                        return "贼尼";
-                    break;
-                    case "taoist":
-                        return "妖女";
-                    break;
-                    default:
-                        if( age < 30 ) return "小贱人";
-                        else return "死老太婆";
-                        break;
+        String gender = ob.getGender();
+        String classStr = ob.getClassStr();
+
+        if(gender.equals("女性")){
+
+            if(classStr.equals("bonze")){
+                return "贼尼";
+            }else if(classStr.equals("taoist")){
+                return "妖女";
+            }else{
+                if( age < 30 ) {
+                    return "小贱人";
+                }else {
+                    return "死老太婆";
                 }
-            case "男性":
-            default:
-                switch(ob->query("class")) {
-                    case "bonze":
-                        if( age < 50 ) return "死秃驴";
-                        else return "老秃驴";
-                        break;
-                    case "taoist":
-                        return "死牛鼻子";
-                    break;
-                    default:
-                        if( age < 20 ) return "小王八蛋";
-                        if( age < 50 ) return "臭贼";
-                        else return "老匹夫";
-                        break;
+            }
+        }else{
+
+            if(classStr.equals("bonze")){
+                if( age < 50 ) {
+                    return "死秃驴";
+                }else {
+                    return "老秃驴";
                 }
+            }else if(classStr.equals("taoist")){
+                return "死牛鼻子";
+            }else{
+                if( age < 20 ) {
+                    return "小王八蛋";
+                }
+                if( age < 50 ) {
+                    return "臭贼";
+                } else {
+                    return "老匹夫";
+                }
+            }
         }
     }
 
-    string query_self(object ob)
-    {
-        int age;
-        string str;
+    public String querySelf(Living ob) {
 
-        if( stringp(str = ob->query("rank_info/self")) )
-            return str;
+        if(ob.query("rank_info/self")!= null){
+            return ob.query("rank_info/self").toString();
+        }
 
-        age = ob->query("age");
-        switch(ob->query("gender")) {
-            case "女性":
-                switch(ob->query("class")) {
-                    case "bonze":
-                        if( age < 50 ) return "贫尼";
-                        else return "老尼";
-                        break;
-                    default:
-                        if( age < 30 ) return "小女子";
-                        else return "妾身";
-                        break;
-                }
-            case "男性":
-            default:
-                switch(ob->query("class")) {
-                    case "bonze":
-                        if( age < 50 ) return "贫僧";
-                        else return "老纳";
-                        break;
-                    case "taoist":
-                        return "贫道";
-                    break;
-                    default:
-                        if( age < 50 ) return "在下";
-                        else return "老头子";
-                        break;
-                }
+        Integer age = ob.getAge();
+        String gender = ob.getGender();
+        String classStr = ob.getClassStr();
+        if(gender.equals("女性")){
+
+            if(classStr.equals("bonze")){
+                if( age < 50 ) return "贫尼";
+                else return "老尼";
+            }else{
+
+                if( age < 30 ) return "小女子";
+                else return "妾身";
+            }
+        }else{
+
+            if(classStr.equals("bonze")){
+
+                if( age < 50 ) return "贫僧";
+                else return "老纳";
+            }else if(classStr.equals("taoist")){
+
+                return "贫道";
+            }else{
+
+                if( age < 50 ) return "在下";
+                else return "老头子";
+            }
         }
     }
 
-    string query_self_rude(object ob)
-    {
-        int age;
-        string str;
+    public String querySelfRude(Living ob) {
 
-        if( stringp(str = ob->query("rank_info/self_rude")) )
-            return str;
+        if(ob.query("rank_info/self_rude")!= null){
+            return ob.query("rank_info/self_rude").toString();
+        }
 
-        age = ob->query("age");
-        switch(ob->query("gender")) {
-            case "女性":
-                switch(ob->query("class")) {
-                    case "bonze":
-                        if( age < 50 ) return "贫尼";
-                        else return "老尼";
-                        break;
-                    default:
-                        if( age < 30 ) return "本姑娘";
-                        else return "老娘";
-                        break;
-                }
-            case "男性":
-            default:
-                switch(ob->query("class")) {
-                    case "bonze":
-                        if( age < 50 ) return "大和尚我";
-                        else return "老和尚我";
-                        break;
-                    case "taoist":
-                        return "本山人";
-                    break;
-                    default:
-                        if( age < 50 ) return "大爷我";
-                        else return "老子";
-                        break;
-                }
+        Integer age = ob.getAge();
+        String gender = ob.getGender();
+        String classStr = ob.getClassStr();
+
+        if(gender.equals("女性")){
+
+            if(classStr.equals("bonze")){
+                if( age < 50 ) return "贫尼";
+                else return "老尼";
+            }else{
+                if( age < 30 ) return "本姑娘";
+                else return "老娘";
+            }
+        }else{
+
+            if(classStr.equals("bonze")){
+                if( age < 50 ) return "大和尚我";
+                else return "老和尚我";
+            }else if(classStr.equals("taoist")){
+                return "本山人";
+            }else{
+                if( age < 50 ) return "大爷我";
+                else return "老子";
+            }
         }
     }
 
-    string query_close(object ob, int age, string rgender)
-    {
-        int a1, a2;
-        string gender;
-        if (objectp(ob) )       {
-            if( !age )
-                a1 = this_player()->query("age");
-		else
-            a1 = ob->query("age");
-            if( !age)
-                a2 = ob->query("age");
-            else    a2 = age;
+    public String queryClose(Living me, Living ob, Integer age, String rgender) {
+        Integer a1 = 0;
+        Integer a2 = 0;
+        String gender;
+
+        if(ob != null){
+            if(age == null) {
+                a1 = me.getAge();
+            }else{
+                a1 = ob.getAge();
+            }
+            if(age == null) {
+                a2 = ob.getAge();
+            }else{
+                a2 = age;
+            }
         }
 
-        if( !rgender )
-            gender = ob->query("gender");
-        else    gender = rgender;
+        if( rgender == null ){
+            gender = ob.getGender();
+        }else{
+            gender = rgender;
+        }
 
-        switch ( gender ) {
-            case "女性" :
-                if (a1 > a2)
-                    return "妹妹";
-                else
-                    return "姐姐";
-                break;
-            default :
-                if (a1 > a2)
-                    return "弟弟";
-                else
-                    return "哥哥";
+        if(gender.equals("女性")){
+            if (a1 > a2)
+                return "妹妹";
+            else
+                return "姐姐";
+        }else{
+            if (a1 > a2)
+                return "弟弟";
+            else
+                return "哥哥";
+        }
+    }
+
+    public String querySelfClose(Living me, Living ob, Integer age) {
+        Integer a1 = 0;
+        Integer a2 = 0;
+        String gender;
+
+        if(ob != null){
+
+            if(age == null) {
+                a1 = me.getAge();
+            }else {
+                a1 = ob.getAge();
+            }
+
+            if(age == null) {
+                a2 = ob.getAge();
+            }else{
+                a2 = age;
+            }
+        }
+
+        if( age != null ) {
+            gender = ob.getGender();
+        }else {
+            gender = me.getGender();
+        }
+
+        if(gender.equals("女性")){
+            if (a1 > a2)
+                return "姐姐我";
+            else
+                return "小妹我";
+        }else{
+            if (a1 > a2)
+                return "愚兄我";
+            else
+                return "小弟我";
         }
     }
 
-    string query_self_close(object ob, int age)
-    {
-        int a1, a2;
-        string gender;
-        if( objectp(ob) )
-        {
-            if( !age )
-                a1 = this_player()->query("age");
-		else
-            a1 = ob->query("age");
-            if( !age)
-                a2 = ob->query("age");
-            else    a2 = age;
-        }
-
-        if( age )
-            gender = ob->query("gender");
-        else
-            gender = this_player()->query("gender");
-
-        switch (gender)
-        {
-
-            case "女性" :
-                if (a1 > a2)
-                    return "姐姐我";
-                else
-                    return "小妹我";
-                break;
-            default :
-                if (a1 > a2)
-                    return "愚兄我";
-                else
-                    return "小弟我";
-        }
-    }
-    varargs string new_short( object ob ,int withshort)
+    /*varargs string new_short( object ob ,int withshort)
     {
         mixed tmp;
         string icon="", str;
@@ -388,7 +393,7 @@ public class RankService {
             if(ob->query("armor_type")=="wrists") icon="03003";  //护腕
         }
         return str + icon;
-    }
+    }*/
 
     private String getFemaleRank(Living ob){
 

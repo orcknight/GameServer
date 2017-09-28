@@ -9,6 +9,7 @@ import com.tian.server.model.Player;
 import com.tian.server.model.Race.Human;
 import com.tian.server.model.RoomObjects;
 import com.tian.server.service.AttackService;
+import com.tian.server.service.CombatService;
 import com.tian.server.util.UnityCmdUtil;
 import com.tian.server.util.UserCacheUtil;
 import net.sf.json.JSON;
@@ -120,11 +121,11 @@ public class CombatBll extends BaseBll {
             jsonArray1.add(UnityCmdUtil.getInfoWindowRet("看起来" + ob.getName() + "并不想跟你较量。"));
             sendMsg(jsonArray1);
 
-            if(((Human)ob).accept_fight(me) == false){
+            CombatService combatService = new CombatService();
 
+            if(combatService.accept_fight(ob, me) != 1){
                 return;
             }
-
             AttackService attackService = new AttackService();
             attackService.fight_ob(me, ob);
             attackService.fight_ob(ob, me);

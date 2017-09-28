@@ -105,7 +105,7 @@ public class Player extends Human {
         setName(name);
         setMudAge(mudAge);
         setAgeModify(ageModify);
-        setAge(calcAge(ageModify, mudAge));
+        setAge(calcAge());
         setGender(gender);
         setCharacter(character);
         setLevel(level);
@@ -678,5 +678,18 @@ public class Player extends Human {
             return str + type + "！\n";
         }
 
+    }
+
+    private Integer calcAge(){
+        Integer age = this.ageModify + this.mudAge / 86400;
+        if (age > 118) {
+            age = 46 + (age - 118) / 4;
+        } else if (age > 28) {
+            age = 16 + (age - 28) / 3;
+        } else if (age > 4) {
+            age = 4  + (age - 4) / 2;
+        }
+        age += 14;
+        return age;
     }
 }
