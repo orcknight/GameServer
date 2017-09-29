@@ -4,6 +4,7 @@ import com.corundumstudio.socketio.SocketIOClient;
 import com.tian.server.entity.*;
 import com.tian.server.model.Race.Human;
 import com.tian.server.util.CombatUtil;
+import com.tian.server.util.UserCacheUtil;
 import javassist.bytecode.stackmap.TypeData;
 
 import java.util.*;
@@ -23,9 +24,6 @@ public class Player extends Human {
     private Integer water = 0;
     private Long money = 0L;
     private Integer ticket = 0;
-
-    //最大负重和最小负重
-    private Integer encumbrance = 0;
 
     //用户信息
     private UserEntity user;
@@ -142,6 +140,11 @@ public class Player extends Human {
         setBunchName(bunchName);
         setMoney(money);
         setTicket(ticket);
+
+        if(!UserCacheUtil.getAllLivings().contains(this)) {
+            UserCacheUtil.getAllLivings().add(this);
+        }
+        setHeartBeatFlag(true);
     }
 
     public void setSocketClient(SocketIOClient socketClient) {
@@ -214,14 +217,6 @@ public class Player extends Human {
 
     public void setTicket(Integer ticket) {
         this.ticket = ticket;
-    }
-
-    public Integer getEncumbrance() {
-        return encumbrance;
-    }
-
-    public void setEncumbrance(Integer encumbrance) {
-        this.encumbrance = encumbrance;
     }
 
     public void setUser(UserEntity user) {

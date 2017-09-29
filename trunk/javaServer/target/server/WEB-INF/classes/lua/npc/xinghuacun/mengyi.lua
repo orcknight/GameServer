@@ -17,6 +17,7 @@ function create(bridge, uuid)
     agent:setLongDesc(uuid, "一见梦一误终身，不见梦一终身误。我就是潇洒风流的新手导师梦一。")
     agent:setCombatExp(uuid, 1000);
     agent:setAttitude(uuid, "peaceful")
+    agent:setup(uuid)
 
     --agent:setButton('[{"关于性格":"ask %s\n + " about character", "name":"偏属"}]')
 end

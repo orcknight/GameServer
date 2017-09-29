@@ -16,6 +16,7 @@ function create(bridge, uuid)
     agent:setLongDesc(uuid, "生性淫荡，操狗被咬断，从此背负杨威之名。")
     agent:setCombatExp(uuid, 1000);
     agent:setAttitude(uuid, "peaceful")
+    agent:setup(uuid)
 
     --agent:setButton('[{"关于性格":"ask %s\n + " about character", "name":"偏属"}]')
 end

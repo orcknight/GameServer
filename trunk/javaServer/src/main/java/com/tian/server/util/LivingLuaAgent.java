@@ -175,4 +175,11 @@ public class LivingLuaAgent {
         }
     }
 
+    public static void setup(String uuid){
+        Living living  = (Living)UserCacheUtil.getAllObjects().get(Long.valueOf(uuid));
+        if(living != null){
+            living.setup();
+        }
+    }
+
 }

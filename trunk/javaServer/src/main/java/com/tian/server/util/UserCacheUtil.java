@@ -30,6 +30,7 @@ public class UserCacheUtil {
     private static Map<Integer, TaskTrack> taskTrackMap = new HashMap<Integer, TaskTrack>(); //任务列表，任务id
     private static Map<Integer, TaskReward> taskRewardMap = new HashMap<Integer, TaskReward>(); //任务奖励，奖励id
     private static Map<Integer, Long> roomContentMap = new HashMap<Integer, Long>(); //room_content id和对应的uuid的映射表
+    private static List<Living> allLivings = new ArrayList<Living>();
 
     public static Map<Long, MudObject> getAllObjects() {
         return allObjects;
@@ -113,6 +114,14 @@ public class UserCacheUtil {
 
     public static void setRoomContentMap(Map<Integer, Long> roomContentMap) {
         UserCacheUtil.roomContentMap = roomContentMap;
+    }
+
+    public static List<Living> getAllLivings() {
+        return allLivings;
+    }
+
+    public static void setAllLivings(List<Living> allLivings) {
+        UserCacheUtil.allLivings = allLivings;
     }
 
     public static void initRoomObjectsCache(List<RoomContentEntity> roomContents, List<NpcEntity> npcs){

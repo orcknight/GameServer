@@ -2,6 +2,7 @@ package com.tian.server.model;
 
 import com.tian.server.entity.RoomEntity;
 import com.tian.server.util.StringUtil;
+import com.tian.server.util.UserCacheUtil;
 import com.tian.server.util.ZjMudUtil;
 
 import java.util.ArrayList;
@@ -63,6 +64,9 @@ public class Living extends MudObject{
     protected Integer score = 0; //功劳点
     protected Boolean heartBeatFlag = false; //心跳表示
     protected Boolean isGhost = false;
+    private Integer encumbrance = 0; //最大负重和最小负重
+    private Integer maxEncumbrance = 0; //最大负重
+    private Living competitor = null;
 
     protected Map<String, Integer> skills = new HashMap<String, Integer>(); //存放的是 技能名：等级
     protected Map<String, Integer> learned = new HashMap<String, Integer>(); //存放的是玩家已经学习过的技能 技能名：等级
@@ -446,6 +450,30 @@ public class Living extends MudObject{
         isGhost = ghost;
     }
 
+    public Integer getEncumbrance() {
+        return encumbrance;
+    }
+
+    public void setEncumbrance(Integer encumbrance) {
+        this.encumbrance = encumbrance;
+    }
+
+    public Integer getMaxEncumbrance() {
+        return maxEncumbrance;
+    }
+
+    public void setMaxEncumbrance(Integer maxEncumbrance) {
+        this.maxEncumbrance = maxEncumbrance;
+    }
+
+    public Living getCompetitor() {
+        return competitor;
+    }
+
+    public void setCompetitor(Living competitor) {
+        this.competitor = competitor;
+    }
+
     public Map<String, Integer> getSkills() {
         return skills;
     }
@@ -543,7 +571,11 @@ public class Living extends MudObject{
         return "";
     }
 
-    public void heartBeat() {}
+    public void heartBeat() {
+
+
+
+    }
 
     public SkillAction queryAction() { return null; } //创建这个函数，是为了通过Living实现多态调用
 
@@ -631,5 +663,150 @@ public class Living extends MudObject{
 
         return shenType * combatExp / 10;
     }
+
+    public void setup() {
+
+        //开启心跳并且加入到心跳列表
+        if(!UserCacheUtil.getAllLivings().contains(this)) {
+            UserCacheUtil.getAllLivings().add(this);
+        }
+        setHeartBeatFlag(true);
+    }
+
+    private Integer busy = 0;
+    private Integer interrupt = 0;
+    private Integer performBusy = 0;
+
+    public Integer getBusy() {
+        return this.busy;
+    }
+
+    public void setBusy(Integer busy) {
+        this.busy = busy;
+    }
+
+    public Integer getInterrupt() {
+        return interrupt;
+    }
+
+    public void setInterrupt(Integer interrupt) {
+        this.interrupt = interrupt;
+    }
+
+    public Integer getPerformBusy() {
+        return performBusy;
+    }
+
+    public void setPerformBusy(Integer performBusy) {
+        this.performBusy = performBusy;
+    }
+
+    public Boolean isBusy(){
+
+        if(busy != 0){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isKiller(Living ob){
+
+        if(this.getKiller().contains(ob)){
+            return true;
+        }
+        return false;
+    }
+
+    public void startPerformBusy(int newBusy){
+
+        if(this.performBusy != null){
+            performBusy += newBusy;
+        }else{
+            performBusy = newBusy;
+        }
+        setHeartBeatFlag(true);
+    }
+
+    public Boolean isFighting(){
+
+        if(this.enemy.size() > 0){
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public Boolean isFighting(Living ob){
+
+        if(this.enemy.size() > 0 && this.enemy.contains(ob)){
+            return true;
+        }
+
+        return false;
+    }
+
+    public void startBusy(Integer new_busy, Integer new_interrupt) {
+
+        object me, ob;
+        int    rdc_busy, avd_busy, add_busy;
+        int    opp_flag = 0;
+
+        if (! intp(new_busy) && ! functionp(new_busy)) {
+            error("action: Invalid busy action type.\n");
+        }
+
+        if (intp(new_busy)) {
+            if (functionp(busy))
+                error("action: busy conflit.\n");
+
+            rdc_busy = 0;
+            avd_busy = 0;
+            add_busy = 0;
+
+            // 战斗状态下忙乱及化解忙乱才起作用
+            if (me->is_fighting() && previous_object() &&
+                    sscanf(base_name(previous_object()), "/kungfu/skill/%*s"))
+            {
+                avd_busy = me->query_temp("apply/avoid_busy");
+                rdc_busy = me->query_temp("apply/reduce_busy");
+
+                if (objectp(ob = me->query_temp("last_opponent")) &&
+                        me->is_fighting(ob))
+                {
+                    if( !me->query_temp("apply/avoid_busy_effect") )
+                        add_busy = ob->query_temp("apply/add_busy");
+                    if (me->query("reborn/times") > ob->query("reborn/times"))
+                        opp_flag = 1;
+                }
+            }
+
+            if (add_busy)
+                new_busy += random(add_busy + 1);
+
+            if (new_busy > 1 && random(100) < avd_busy)
+                new_busy = 1;
+
+            if (new_busy > 1 && rdc_busy > 0)
+            {
+                new_busy -= random(rdc_busy + 1);
+                if (new_busy < 1) new_busy = 1;
+            }
+
+            if (new_busy > 0 && opp_flag > 0)
+                new_busy = random(new_busy);
+
+            if (new_busy > 1 && me == this_player() &&
+                    random(10) < 6 && me->query("character") == "狡黠多变")
+                new_busy--;
+        }
+
+        busy = new_busy;
+        if (! intp(new_interrupt) && ! functionp(new_interrupt))
+            error("action: Invalid busy action interrupt handler type.\n");
+        interrupt = new_interrupt;
+        set_heart_beat(1);
+    }
+
 
 }

@@ -32,8 +32,6 @@ public class Human extends Living {
 
     public Human(){
 
-        this.weight = 40000;
-
         actions.add(new SkillAction("$N挥拳攻击$n的$l", "瘀伤"));
         actions.add(new SkillAction("$N往$n的$l一抓", "抓伤"));
         actions.add(new SkillAction("$N往$n的$l狠狠地踢了一脚", "瘀伤"));
@@ -113,8 +111,12 @@ public class Human extends Living {
         return skillAction;
     }
 
-    void setup_human(Living ob) {
-        mapping my;
+    @Override
+    public void setup() {
+
+        //先调用基类的函数
+        super.setup();
+
         int s;
         int x, y;
         int limit;
@@ -125,70 +127,66 @@ public class Human extends Living {
         int die_point;
         int r;
 
-        my = ob->query_entire_dbase();
-        ob->set_default_action(__FILE__, "query_action");
-        ob->set("default_actions", (: call_other, __FILE__, "query_action" :));
-
-        if(ob.getUnit() == null || ob.getUnit().length() < 1){
-            ob.setUnit("位");
+        if(getUnit() == null || getUnit().length() < 1){
+            setUnit("位");
         }
-        if(ob.getGender() == null || ob.getGender().length() < 1){
-            ob.setGender("男性");
+        if(getGender() == null || getGender().length() < 1){
+            setGender("男性");
         }
-        if(ob.query("can_speak") == null){
-            ob.set("can_speak", 1);
+        if(query("can_speak") == null){
+            set("can_speak", 1);
         }
-        if(ob.getAttitude() == null || ob.getAttitude().length() < 1){
-            ob.setAttitude("peaceful");
+        if(getAttitude() == null || getAttitude().length() < 1){
+            setAttitude("peaceful");
         }
 
         Random random = new Random();
-        if(ob.getAge() == null || ob.getAge() < 1){
-            ob.setAge(14);
+        if(getAge() == null || getAge() < 1){
+            setAge(14);
         }
-        if(ob.getStr() == null || ob.getStr() < 1){
-            ob.setStr(10 + random.nextInt(21));
+        if(getStr() == null || getStr() < 1){
+            setStr(10 + random.nextInt(21));
         }
-        if(ob.getCon() == null || ob.getCon() < 1){
-            ob.setCon(10 + random.nextInt(21));
+        if(getCon() == null || getCon() < 1){
+            setCon(10 + random.nextInt(21));
         }
-        if(ob.getDex() == null || ob.getDex() < 1){
-            ob.setDex(10 + random.nextInt(21));
+        if(getDex() == null || getDex() < 1){
+            setDex(10 + random.nextInt(21));
         }
-        if(ob.getWux() == null || ob.getWux() < 1){
-            ob.setWux(10 + random.nextInt(21));
+        if(getWux() == null || getWux() < 1){
+            setWux(10 + random.nextInt(21));
         }
-        if(ob.getPer() == null || ob.getPer() < 1){
-            ob.setPer(10 + random.nextInt(21));
+        if(getPer() == null || getPer() < 1){
+            setPer(10 + random.nextInt(21));
         }
-        if(ob.getKar() == null || ob.getKar() < 1){
-            ob.setKar(10 + random.nextInt(21));
-        }
-
-        if( !(ob instanceof Player) && (ob.getMaxJingLi() == null || ob.getMaxJingLi() < 1)){
-
-            limit = ob.getCombatExp()/1000;
-            ob.setMaxJingLi(limit);
-            ob.setEffJingLi(limit);
-            ob.setJingLi(limit);
+        if(getKar() == null || getKar() < 1){
+            setKar(10 + random.nextInt(21));
         }
 
-        if( (ob instanceof Player) || ob.getMaxJing() == null || ob.getMaxJing() < 1){
+        if( !(this instanceof Player) && (getMaxJingLi() == null || getMaxJingLi() < 1)){
 
-            s = ob.getWux() * 5 + ob.getCon() + ob.getDex() + ob.getStr();
-            ob.setMaxJing(100);
-            if(ob.getBornFamily() == null || ob.getBornFamily().length() < 1){
+            limit = getCombatExp()/1000;
+            setMaxJingLi(limit);
+            setEffJingLi(limit);
+            setJingLi(limit);
+        }
 
-            }else if(ob.getAge() <11){
-                ob.setMaxJing(50 + ob.getAge() * s * 2 / 3);
-            }else if(ob.getAge() < 24){
-                ob.setMaxJing(ob.getMaxJing() + (ob.getAge() - 11) * s * 2 / 3);
+        if( (this instanceof Player) || getMaxJing() == null || getMaxJing() < 1){
+
+            s = getWux() * 5 + getCon() + getDex() + getStr();
+            setMaxJing(100);
+            if(getBornFamily() == null || getBornFamily().length() < 1){
+
+            }else if(getAge() <11){
+                setMaxJing(50 + getAge() * s * 2 / 3);
+            }else if(getAge() < 24){
+                setMaxJing(getMaxJing() + (getAge() - 11) * s * 2 / 3);
             }else{
-                ob.setMaxJing(ob.getMaxJing() + (24 - 11) * s * 2 / 3);
+                setMaxJing(getMaxJing() + (24 - 11) * s * 2 / 3);
             }
 
-            if ( ob.getMaxJingLi() > 0) {
-                ob.setMaxJing(ob.getMaxJing() + ob.getMaxJingLi() / 3);
+            if ( getMaxJingLi() > 0) {
+                setMaxJing(getMaxJing() + getMaxJingLi() / 3);
             }
 
             //Todo:暂时不处理，只按年龄赋值气血
@@ -365,34 +363,32 @@ public class Human extends Living {
             if( userp(ob) && ob->query("jingmai/finish") )
                 my["max_jing"] += ZHOUTIAN_D->query_jingmai_effect("jing");*/
 
-            if( ob.queryTemp("apply/max_jing") != null ) {
-                ob.setMaxJing(ob.getMaxJing() + Integer.parseInt(ob.queryTemp("apply/max_jing").toString()));
+            if( queryTemp("apply/max_jing") != null ) {
+                setMaxJing(getMaxJing() + Integer.parseInt(queryTemp("apply/max_jing").toString()));
             }
         }
 
 
 
-        if (ob.getMaxQi() == null || ob.getMaxQi() < 1) {
-            s = ob.getCon() * 5 + ob.getStr() + ob.getCon() + ob.getDex();
-            ob.setMaxQi(100);
+        if ((this instanceof Player) || getMaxQi() == null || getMaxQi() < 1) {
+            s = getCon() * 5 + getStr() + getCon() + getDex();
+            setMaxQi(100);
 
-            if(ob.getBornFamily() == null || ob.getBornFamily().length() < 1){
+            if(getBornFamily() == null || getBornFamily().length() < 1){
 
-            }else
-            if (/*undefinedp*/!(my["born"]))
-                ; else
-            if (my["age"] < 11)
-                my["max_qi"] = 60 + my["age"] * my["con"] / 2;
-            else
-            if (my["age"] < 27)
-                my["max_qi"] += (my["age"] - 11) * s * 2 / 3;
-            else
-                my["max_qi"] += (27 - 11) * s * 2 / 3;
+            }else if(getAge() < 11){
+                setMaxQi(60 + getAge() * getCon() / 2);
+            }else if(getAge() < 27){
+                setMaxQi(getMaxQi() + (getAge() - 11) * s * 2 / 3);
+            }else{
+                setMaxQi(getMaxQi() + (27 - 11) * s * 2 / 3);
+            }
 
-            if ((int)my["max_neili"] > 0)
-                my["max_qi"] += (int)my["max_neili"] / 4;
+            if(getMaxNeili() > 0){
+                setMaxQi(getMaxQi() + getMaxNeili() / 4);
+            }
 
-            // 武当太极加气
+            /*// 武当太极加气
             if (userp(ob) && mapp(my["family"]) && my["family"]["family_name"] == "武当派" &&
                     (x = (int)ob->query_skill("taoism", 1)) > 39 &&
                     (y = (int)ob->query_skill("taiji-shengong", 1)) > 39)
@@ -532,15 +528,50 @@ public class Human extends Living {
 
             // 服用super药品
             if( userp(ob) && ob->query("drug_addqi") )
-                my["max_qi"] += ob->query("drug_addqi");
+                my["max_qi"] += ob->query("drug_addqi");*/
 
-            if( ob->query_temp("apply/max_qi") )
-                my["max_qi"]+=ob->query_temp("apply/max_qi");
+            if(queryTemp("apply/max_qi") != null) {
+                setMaxQi(getMaxQi() + Integer.parseInt(queryTemp("apply/max_qi").toString()));
+            }
         }
 
-        if (! ob->query_weight())
-            ob->set_weight((BASE_WEIGHT + (my["str"] - 10) * 2000) * 7 / 10);
+        if(getWeight() == null || getWeight() < 1){
+            setWeight((40000 + (getStr() - 10) * 2000) * 7 / 10);
+        }
 
+        if(getJing() == null || getJing() < 1){
+            setJing(getMaxJing());
+        }
+        if(getQi() == null || getQi() < 1){
+            setQi(getMaxQi());
+        }
+        if(getEffJing() == null || getEffJing() < 1 || getEffJing() > getMaxJing()){
+            setEffJing(getMaxJing());
+        }
+        if(getEffQi() == null || getEffQi() < 1 || getEffQi() > getMaxQi()){
+            setEffQi(getMaxQi());
+        }
+        if(getShenType() == null){
+            setShenType((byte) 0);
+        }
+
+        if(getShen() == null ||  getShen() < 1){
+
+            if (this instanceof Player) {
+                setShen(0);
+            }else {
+                setShen(getShenType() * getCombatExp() / 10);
+            }
+        }
+
+        if (getMaxEncumbrance() == null || getMaxEncumbrance() < 1) {
+
+            //Todo:判断是否是会员，这里暂时不不判断　
+        }
+
+        //Todo:
+        //ob->reset_action();
+        //ob->update_killer();
 
     }
 }

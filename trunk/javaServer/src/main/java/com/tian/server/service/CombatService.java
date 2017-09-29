@@ -283,70 +283,77 @@ public class CombatService {
             return retValue.toint();
         }
 
-        //默认处理方法
-        AttackService attackService = new AttackService();
-        RankService rankService = new RankService();
-        if(!(me instanceof Human)){
-            attackService.kill_ob(me, who);
+        if(me instanceof  Player) {
+            //玩家有自己的处理方法
             return 1;
-        }
+        }else{
 
-        List<SocketIOClient> excludeClients = new ArrayList<SocketIOClient>();
-        Collection<SocketIOClient> clients = who.getSocketClient().getNamespace().getRoomOperations(me.getLocation().getName()).getClients();
-        //Todo:守卫模式暂时不处理
+            //npc的默认方法
+            AttackService attackService = new AttackService();
+            RankService rankService = new RankService();
+            if(!(me instanceof Human)){
+                attackService.kill_ob(me, who);
+                return 1;
+            }
+
+            List<SocketIOClient> excludeClients = new ArrayList<SocketIOClient>();
+            Collection<SocketIOClient> clients = who.getSocketClient().getNamespace().getRoomOperations(me.getLocation().getName()).getClients();
+            //Todo:守卫模式暂时不处理
         /*if( this_object()->is_guarder() )
         return this_object()->check_enemy(who, "fight");*/
 
-        String att = me.getAttitude();
-        Integer perqi = (int)me.getQi() * 100 / me.getMaxQi();
-        Integer perjing = (int)me.getJing() * 100 / me.getMaxJing();
-        JSONArray jsonArray = new JSONArray();
+            String att = me.getAttitude();
+            Integer perqi = (int)me.getQi() * 100 / me.getMaxQi();
+            Integer perjing = (int)me.getJing() * 100 / me.getMaxJing();
+            JSONArray jsonArray = new JSONArray();
 
-        if(me instanceof  Player){
-            excludeClients.add(((Player)me).getSocketClient());
-        }
+            if(me instanceof  Player){
+                excludeClients.add(((Player)me).getSocketClient());
+            }
 
-        if(me.getEnemy().size() > 0) {
+            if(me.getEnemy().size() > 0) {
 
-            if(att.equals("heroism")){
-                if(perqi >= 50) {
+                if(att.equals("heroism")){
+                    if(perqi >= 50) {
+                        jsonArray.add(UnityCmdUtil.getInfoWindowRet(me.getName() + "说道：哼！出招吧！"));
+                        MsgUtil.sendMsg(jsonArray, excludeClients, clients);
+                        return 1;
+                    }else{
+                        jsonArray.add(UnityCmdUtil.getInfoWindowRet(me.getName() + "说道：哼！我小歇片刻再收拾你不迟。"));
+                        MsgUtil.sendMsg(jsonArray, excludeClients, clients);
+                        return 0;
+                    }
+                }else{
+                    jsonArray.add(UnityCmdUtil.getInfoWindowRet(me.getName() + "说道：想倚多为胜，这不是欺人太甚吗！"));
+                    MsgUtil.sendMsg(jsonArray, excludeClients, clients);
+                    return 0;
+                }
+            }
+
+            if( perqi >= 75 && perjing >= 75 ) {
+
+                if(att.equals("friendly")){
+                    jsonArray.add(UnityCmdUtil.getInfoWindowRet(me.getName() + "说道：" + rankService.querySelf(me)
+                            + "怎么可能是" + rankService.queryRespect(who) + "的对手？"));
+                    MsgUtil.sendMsg(jsonArray, excludeClients, clients);
+                    return 0;
+                }else if(att.equals("aggressive") || att.equals("killer")){
                     jsonArray.add(UnityCmdUtil.getInfoWindowRet(me.getName() + "说道：哼！出招吧！"));
                     MsgUtil.sendMsg(jsonArray, excludeClients, clients);
                     return 1;
                 }else{
-                    jsonArray.add(UnityCmdUtil.getInfoWindowRet(me.getName() + "说道：哼！我小歇片刻再收拾你不迟。"));
+                    jsonArray.add(UnityCmdUtil.getInfoWindowRet(me.getName() + "说道：既然" + rankService.queryRespect(who)
+                            + "赐教，" + rankService.querySelf(me) + "只好奉陪。"));
                     MsgUtil.sendMsg(jsonArray, excludeClients, clients);
-                    return 0;
+                    return 1;
                 }
-            }else{
-                jsonArray.add(UnityCmdUtil.getInfoWindowRet(me.getName() + "说道：想倚多为胜，这不是欺人太甚吗！"));
-                MsgUtil.sendMsg(jsonArray, excludeClients, clients);
-                return 0;
             }
+
+            jsonArray.add(UnityCmdUtil.getInfoWindowRet(me.getName() + "说道：今天有些疲惫，改日再战也不迟啊。"));
+            MsgUtil.sendMsg(jsonArray, excludeClients, clients);
+            return 0;
         }
 
-        if( perqi >= 75 && perjing >= 75 ) {
-
-            if(att.equals("friendly")){
-                jsonArray.add(UnityCmdUtil.getInfoWindowRet(me.getName() + "说道：" + rankService.querySelf(me)
-                        + "怎么可能是" + rankService.queryRespect(who) + "的对手？"));
-                MsgUtil.sendMsg(jsonArray, excludeClients, clients);
-                return 0;
-            }else if(att.equals("aggressive") || att.equals("killer")){
-                jsonArray.add(UnityCmdUtil.getInfoWindowRet(me.getName() + "说道：哼！出招吧！"));
-                MsgUtil.sendMsg(jsonArray, excludeClients, clients);
-                return 1;
-            }else{
-                jsonArray.add(UnityCmdUtil.getInfoWindowRet(me.getName() + "说道：既然" + rankService.queryRespect(who)
-                        + "赐教，" + rankService.querySelf(me) + "只好奉陪。"));
-                MsgUtil.sendMsg(jsonArray, excludeClients, clients);
-                return 1;
-            }
-        }
-
-        jsonArray.add(UnityCmdUtil.getInfoWindowRet(me.getName() + "说道：今天有些疲惫，改日再战也不迟啊。"));
-        MsgUtil.sendMsg(jsonArray, excludeClients, clients);
-        return 0;
     }
 
     public void broadcastToRoom(){
