@@ -5,10 +5,7 @@ import com.tian.server.util.StringUtil;
 import com.tian.server.util.UserCacheUtil;
 import com.tian.server.util.ZjMudUtil;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by PPX on 2017/7/19.
@@ -748,64 +745,96 @@ public class Living extends MudObject{
 
     public void startBusy(Integer new_busy, Integer new_interrupt) {
 
-        object me, ob;
         int    rdc_busy, avd_busy, add_busy;
         int    opp_flag = 0;
 
-        if (! intp(new_busy) && ! functionp(new_busy)) {
-            error("action: Invalid busy action type.\n");
-        }
-
-        if (intp(new_busy)) {
-            if (functionp(busy))
-                error("action: busy conflit.\n");
+        if (new_busy != 0) {
 
             rdc_busy = 0;
             avd_busy = 0;
             add_busy = 0;
+            Random r = new Random();
 
             // 战斗状态下忙乱及化解忙乱才起作用
-            if (me->is_fighting() && previous_object() &&
-                    sscanf(base_name(previous_object()), "/kungfu/skill/%*s"))
-            {
-                avd_busy = me->query_temp("apply/avoid_busy");
-                rdc_busy = me->query_temp("apply/reduce_busy");
+            if (isFighting()) {
 
-                if (objectp(ob = me->query_temp("last_opponent")) &&
-                        me->is_fighting(ob))
-                {
-                    if( !me->query_temp("apply/avoid_busy_effect") )
-                        add_busy = ob->query_temp("apply/add_busy");
-                    if (me->query("reborn/times") > ob->query("reborn/times"))
+                avd_busy = Integer.parseInt(queryTemp("apply/avoid_busy").toString());
+                rdc_busy = Integer.parseInt(queryTemp("apply/reduce_busy").toString());
+
+                Living ob = (Living) queryTemp("last_opponent");
+                if (ob != null && isFighting(ob)) {
+                    if(queryTemp("apply/avoid_busy_effect") == null) {
+                        add_busy = Integer.parseInt(queryTemp("apply/add_busy").toString());
+                    }
+                    Integer meRebornTimes = Integer.parseInt(this.query("reborn/times") == null ? "0" : this.query("reborn/times").toString());
+                    Integer obRebornTimes = Integer.parseInt(ob.query("reborn/times") == null ? "0" : ob.query("reborn/times").toString());
+                    if (meRebornTimes > obRebornTimes) {
                         opp_flag = 1;
+                    }
                 }
             }
 
-            if (add_busy)
-                new_busy += random(add_busy + 1);
+            if (add_busy > 0)
+                new_busy += r.nextInt(add_busy + 1);
 
-            if (new_busy > 1 && random(100) < avd_busy)
+            if (new_busy > 1 && r.nextInt(100) < avd_busy)
                 new_busy = 1;
 
             if (new_busy > 1 && rdc_busy > 0)
             {
-                new_busy -= random(rdc_busy + 1);
+                new_busy -= r.nextInt(rdc_busy + 1);
                 if (new_busy < 1) new_busy = 1;
             }
 
             if (new_busy > 0 && opp_flag > 0)
-                new_busy = random(new_busy);
+                new_busy = r.nextInt(new_busy);
 
-            if (new_busy > 1 && me == this_player() &&
+            //Todo:天赋暂时不处理
+            /*if (new_busy > 1 && me == this_player() &&
                     random(10) < 6 && me->query("character") == "狡黠多变")
-                new_busy--;
+                new_busy--;*/
         }
 
-        busy = new_busy;
-        if (! intp(new_interrupt) && ! functionp(new_interrupt))
-            error("action: Invalid busy action interrupt handler type.\n");
-        interrupt = new_interrupt;
-        set_heart_beat(1);
+        setBusy(new_busy);
+
+        if(new_interrupt != 0){
+            setInterrupt(new_interrupt);
+        }
+        setHeartBeatFlag(true);
+    }
+
+    public void interruptMe(Living who, Integer how) {
+
+        Integer bak = this.busy;
+        this.busy = 0;
+
+        if (bak == 0) {
+            return;
+        }
+
+        if (bak < this.interrupt || who.getUuid() != this.getUuid()) {
+            return;
+        }
+
+        if (how > 0) {
+            // reduce busy
+            bak -= how;
+            if (bak < 0) {
+                return;
+            }
+        }
+        this.busy = bak;
+    }
+
+    public void interruptMe() {
+
+        Integer bak = this.busy;
+        if (bak == 0) {
+            return;
+        }
+
+        this.interrupt = 0;
+        this.busy = bak;
     }
 
 

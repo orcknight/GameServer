@@ -437,9 +437,6 @@ public class Player extends Human {
                 sb.append(skillAction.getAction());
             }
 
-
-
-
             //计算ap
 
             int level = 3; //unarmed等级

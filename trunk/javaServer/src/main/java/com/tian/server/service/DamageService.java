@@ -39,8 +39,10 @@ public class DamageService {
             lost(me);
         }
 
-        if(me.getBusy())
-        if( me->is_busy() ) me->interrupt_me();
+        if(me.isBusy()){
+            me.interruptMe();
+        }
+
         if( run_override("unconcious") ) return;
         if( is_ghost() ) return;
         if( playerp(me) && env && function_exists("user_cant_die", env) ) {
