@@ -2,6 +2,15 @@ package com.tian.server.service;
 
 import com.tian.server.model.Living;
 import com.tian.server.model.MudObject;
+import com.tian.server.util.LuaBridge;
+import org.luaj.vm2.Globals;
+import org.luaj.vm2.LuaValue;
+import org.luaj.vm2.lib.jse.CoerceJavaToLua;
+import org.luaj.vm2.lib.jse.JsePlatform;
+
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.Random;
 
 /**
  * Created by PPX on 2017/9/29.
@@ -11,7 +20,6 @@ public class DamageService {
     void unconcious(Living me)
     {
         int n;
-        int i;
         int avoid;
 
         //if (! living(me)) return;
@@ -43,16 +51,51 @@ public class DamageService {
             me.interruptMe();
         }
 
-        if( run_override("unconcious") ) return;
-        if( is_ghost() ) return;
-        if( playerp(me) && env && function_exists("user_cant_die", env) ) {
-            if( environment()->user_cant_die(me) )
+        //调用类自己的重载函数
+        Method m[] = me.getClass().getDeclaredMethods(); // 取得全部的方法
+        for (int i = 0; i < m.length; i++) {
+            String mod = Modifier.toString(m[i].getModifiers()); // 取得访问权限
+            String metName = m[i].getName(); // 取得方法名称
+
+            if (!metName.equals("unconcious") || !mod.equals("public")){
+                continue;
+            }
+            try {
+                m[i].invoke(null);
+            } catch (Exception e) {
+            }
             return;
         }
-        avoid = (int)query_temp("apply/avoid_die");
+
+        if(me.getCmdActions().get("unconcious") != null){
+
+            LuaBridge bridge = new LuaBridge();
+            String luaPath = this.getClass().getResource(me.getResource()).getPath();
+            Globals globals = JsePlatform.standardGlobals();
+            //加载脚本文件login.lua，并编译
+            globals.loadfile(luaPath).call();
+            String funName = me.getCmdActions().get("unconcious");
+            //获取带参函数create
+            LuaValue createFun = globals.get(LuaValue.valueOf(me.getCmdActions().get(funName)));
+            //执行方法初始化数据
+            LuaValue retValue = createFun.call(CoerceJavaToLua.coerce(bridge), LuaValue.valueOf(me.getUuid().toString()));
+            return;
+        }
+
+        if( me.getGhost() ) {
+            return;
+        }
+
+        //Todo:暂时没用到，注释掉
+        /*if( playerp(me) && env && function_exists("user_cant_die", env) ) {
+            if( environment()->user_cant_die(me) )
+            return;
+        }*/
+        Random r = new Random();
+
+        /*avoid = Integer.parseInt(me.queryTemp("apply/avoid_die").toString());
         if( avoid > 90 ) avoid = 90;
-        if( query_temp("special_skill/immortal") ||
-                random(100) < avoid ) {
+        if( me.queryTemp("special_skill/immortal") != null || r.nextInt(100) < avoid ) {
             set("eff_qi",query("max_qi"));
             set("qi",query("max_qi"));
             set("eff_jing",query("max_jing"));
@@ -60,15 +103,14 @@ public class DamageService {
             message_vision(HIY "\n突然间，$N全身散发出一阵金光，如同浴血重生一般。\n" NOR, me);
             COMBAT_D->report_status(this_object());
             return;
-        }
+        }*/
 
 
         // I am lost if in competition with others
-        if (objectp(ob = me->query_competitor()) &&
-                ! ob->is_killing(me->query("id")))
-        {
-            ob->win();
-            me->lost();
+        ob = me.getCompetitor();
+        if( ob != null && !ob.isKiller(me)) {
+            win(ob);
+            lost(me);
         }
 
         if (me->is_busy()) me->interrupt_me();
