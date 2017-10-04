@@ -64,6 +64,12 @@ public class Living extends MudObject{
     private Integer encumbrance = 0; //最大负重和最小负重
     private Integer maxEncumbrance = 0; //最大负重
     private Living competitor = null;
+    private Living lastDamageFrom = null;
+    private Living lastDamageName = null;
+    private Living defeatedBy = null;
+    private Living defeatedByWho = null;
+    private Living lastApplyerName = null;
+    private Living lastApplyerId = null;
 
     protected Map<String, Integer> skills = new HashMap<String, Integer>(); //存放的是 技能名：等级
     protected Map<String, Integer> learned = new HashMap<String, Integer>(); //存放的是玩家已经学习过的技能 技能名：等级
@@ -471,6 +477,54 @@ public class Living extends MudObject{
         this.competitor = competitor;
     }
 
+    public Living getLastDamageFrom() {
+        return lastDamageFrom;
+    }
+
+    public void setLastDamageFrom(Living lastDamageFrom) {
+        this.lastDamageFrom = lastDamageFrom;
+    }
+
+    public Living getLastDamageName() {
+        return lastDamageName;
+    }
+
+    public void setLastDamageName(Living lastDamageName) {
+        this.lastDamageName = lastDamageName;
+    }
+
+    public Living getDefeatedBy() {
+        return defeatedBy;
+    }
+
+    public void setDefeatedBy(Living defeatedBy) {
+        this.defeatedBy = defeatedBy;
+    }
+
+    public Living getDefeatedByWho() {
+        return defeatedByWho;
+    }
+
+    public void setDefeatedByWho(Living defeatedByWho) {
+        this.defeatedByWho = defeatedByWho;
+    }
+
+    public Living getLastApplyerName() {
+        return lastApplyerName;
+    }
+
+    public void setLastApplyerName(Living lastApplyerName) {
+        this.lastApplyerName = lastApplyerName;
+    }
+
+    public Living getLastApplyerId() {
+        return lastApplyerId;
+    }
+
+    public void setLastApplyerId(Living lastApplyerId) {
+        this.lastApplyerId = lastApplyerId;
+    }
+
     public Map<String, Integer> getSkills() {
         return skills;
     }
@@ -837,5 +891,10 @@ public class Living extends MudObject{
         this.busy = bak;
     }
 
+    // check the character is good or bad
+    public Boolean isNotGood() { return this.getShen() < 500; }
+    public Boolean isNotBad()  { return this.getShen() > -500; }
+    public Boolean isGood()     { return this.getShen() > 500; }
+    public Boolean isBad()      { return this.getShen() < -500; }
 
 }

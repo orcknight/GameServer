@@ -116,8 +116,7 @@ public class CombatService {
     private static String foo_before_hit = "";
     private static String foo_after_hit = "";
 
-    void set_bhinfo(String msg)
-    {
+    void set_bhinfo(String msg) {
         if (foo_before_hit.length() < 1)
         {
             foo_before_hit = msg;
@@ -127,8 +126,7 @@ public class CombatService {
         foo_before_hit += msg;
     }
 
-    void set_ahinfo(String msg)
-    {
+    void set_ahinfo(String msg) {
         if (foo_after_hit.length() < 1)
         {
             foo_after_hit = msg;
@@ -146,8 +144,7 @@ public class CombatService {
 
     void clear_ahinfo() { foo_after_hit = ""; }
 
-    public String getDamageMsg(int damage, String type)
-    {
+    public String getDamageMsg(int damage, String type) {
         String str;
         if (damage == 0)
             return "结果没有造成任何伤害。\n";
@@ -361,4 +358,81 @@ public class CombatService {
 
     }
 
+    // called when winner hit the victim to unconcious
+    void winner_reward(Living winner, Living victim) {
+        Living owner;
+        int temp;
+        int td;
+        //mapping today;
+
+        owner = (Living)winner.queryTemp("owner");
+        if (owner != null) {
+            winner = owner;
+        }
+
+        //Todo:不知道干什么的，后续处理
+        //winner->defeated_enemy(victim);
+
+        if( !(winner instanceof  Player)){
+            return;
+        }
+
+        if(!winner.getWantKills().contains(victim)){
+            return;
+        }
+
+        winner->add("combat/DPS", 1);
+        if (victim->is_not_bad())  winner->add("combat/DPS_NOTBAD", 1);
+        if (victim->is_not_good()) winner->add("combat/DPS_NOTGOOD", 1);
+        if (victim->is_bad())      winner->add("combat/DPS_BAD", 1);
+        if (victim->is_good())     winner->add("combat/DPS_GOOD", 1);
+
+        if (victim->query_condition("killer"))
+            return;
+
+        if (victim->query("combat_exp") < 150)
+            return;
+
+        log_file("static/killrecord",
+                sprintf("%s %s defeat %s\n",
+                        log_time(), log_id(winner), log_id(victim)));
+
+        td = time() / 86400;
+        today = winner->query("combat/today");
+        if (! mapp(today) || today["which_day"] != td)
+        {
+            today = ([ "which_day" : td,
+                "total_count" : 1,
+                victim->query("id") : 1, ]);
+        } else
+        {
+            // count how many times that winner hit the victim to unconcious
+            temp = ++today[victim->query("id")];
+            if (temp == query("pk_perman"))
+            {
+                // reach limit
+                tell_object(winner, BLINK HIR "\n今天你已经打晕" +
+                                victim->name() + chinese_number(temp) +
+                                        "次了，手下留"
+                        "情吧，否则麻烦可要找上门了。"NOR"\n");
+            } else
+            if (temp > query("pk_perman"))
+                // too many times
+                winner->set("combat/need_punish", "这厮逼人太甚，真是岂有此理！");
+
+            // count how many users that winner hit to unconcious
+            temp = ++today["total_count"];
+            if (temp == query("pk_perday"))
+            {
+                // reach limit
+                tell_object(winner, BLINK HIR "\n今天你已经打晕" +
+                                chinese_number(temp) + "次玩家了，手下留"
+                        "情吧，否则麻烦可要找上门了。"NOR"\n");
+            } else
+            if (temp > query("pk_perday"))
+                // too many users
+                winner->set("combat/need_punish", "丧尽天良，大肆屠戮，罪无可恕！");
+        }
+        winner->set("combat/today", today);
+    }
 }

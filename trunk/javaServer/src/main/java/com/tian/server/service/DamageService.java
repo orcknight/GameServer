@@ -105,7 +105,6 @@ public class DamageService {
             return;
         }*/
 
-
         // I am lost if in competition with others
         ob = me.getCompetitor();
         if( ob != null && !ob.isKiller(me)) {
@@ -113,29 +112,62 @@ public class DamageService {
             lost(me);
         }
 
-        if (me->is_busy()) me->interrupt_me();
-
-        if (run_override("unconcious")) return;
-
-        if (! last_damage_from && (applyer = query_last_applyer_id()))
-        {
-            last_damage_from = UPDATE_D->global_find_player(applyer);
-            last_damage_name = query_last_applyer_name();
+        if(me.isBusy()){
+            me.interruptMe();
         }
 
-        defeated_by_who = last_damage_name;
-        if (defeated_by = last_damage_from)
-        {
+        //调用类自己的重载函数
+        m = me.getClass().getDeclaredMethods(); // 取得全部的方法
+        for (int i = 0; i < m.length; i++) {
+            String mod = Modifier.toString(m[i].getModifiers()); // 取得访问权限
+            String metName = m[i].getName(); // 取得方法名称
+
+            if (!metName.equals("unconcious") || !mod.equals("public")){
+                continue;
+            }
+            try {
+                m[i].invoke(null);
+            } catch (Exception e) {
+            }
+            return;
+        }
+
+        if(me.getCmdActions().get("unconcious") != null){
+
+            LuaBridge bridge = new LuaBridge();
+            String luaPath = this.getClass().getResource(me.getResource()).getPath();
+            Globals globals = JsePlatform.standardGlobals();
+            //加载脚本文件login.lua，并编译
+            globals.loadfile(luaPath).call();
+            String funName = me.getCmdActions().get("unconcious");
+            //获取带参函数create
+            LuaValue createFun = globals.get(LuaValue.valueOf(me.getCmdActions().get(funName)));
+            //执行方法初始化数据
+            LuaValue retValue = createFun.call(CoerceJavaToLua.coerce(bridge), LuaValue.valueOf(me.getUuid().toString()));
+            return;
+        }
+
+        //
+        Living applyer = me.getLastApplyerId();
+        if(me.getLastDamageFrom() == null && applyer != null){
+
+            me.setLastDamageFrom(applyer);
+            me.setLastDamageName(me.getLastApplyerName());
+        }
+
+        me.setDefeatedByWho(me.getLastDamageName());
+
+        if (me.getLastDamageFrom() != null) {
+            me.setDefeatedBy(me.getLastDamageFrom());
             object *dp;
 
+            Living owner = (Living)me.getDefeatedBy().queryTemp("owner");
+
             // 如果此人有主，则算主人打晕的
-            if (objectp(defeated_by->query_temp("owner")))
-            {
-                defeated_by = defeated_by->query_temp("owner");
-                defeated_by_who = defeated_by->name(1);
-            } else
-            if (stringp(owner_id = defeated_by->query_temp("owner_id")))
-            {
+            if (owner != null) {
+                me.setDefeatedBy(owner);
+                me.setDefeatedByWho(owner);
+            } else if (stringp(owner_id = defeated_by->query_temp("owner_id"))) {
                 defeated_by = UPDATE_D->global_find_player(owner_id);
                 if (objectp(defeated_by))
                     defeated_by_who = defeated_by->name(1);
