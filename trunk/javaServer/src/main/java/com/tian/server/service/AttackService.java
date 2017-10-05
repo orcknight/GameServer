@@ -200,4 +200,21 @@ public class AttackService {
         me.getKiller().add(ob);
     }
 
+
+    // This is called in heart_beat() to perform attack action.
+    int attack(Living me) {
+        object opponent;
+
+        clean_up_enemy();
+
+        opponent = select_opponent();
+        if (objectp(opponent))
+        {
+            set_temp("last_opponent", opponent);
+            COMBAT_D->fight(this_object(), opponent);
+            return 1;
+        } else
+            return 0;
+    }
+
 }

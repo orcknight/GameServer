@@ -68,8 +68,10 @@ public class Living extends MudObject{
     private Living lastDamageName = null;
     private Living defeatedBy = null;
     private Living defeatedByWho = null;
-    private Living lastApplyerName = null;
-    private Living lastApplyerId = null;
+    private String myDefeaterId;           // 上一次打晕你的人ID
+    private String myKillerId;             // 上一次杀你的人的ID
+    private Integer craze = 0;            // 愤怒
+    private Boolean isLiving = true;
 
     protected Map<String, Integer> skills = new HashMap<String, Integer>(); //存放的是 技能名：等级
     protected Map<String, Integer> learned = new HashMap<String, Integer>(); //存放的是玩家已经学习过的技能 技能名：等级
@@ -509,20 +511,36 @@ public class Living extends MudObject{
         this.defeatedByWho = defeatedByWho;
     }
 
-    public Living getLastApplyerName() {
-        return lastApplyerName;
+    public String getMyDefeaterId() {
+        return myDefeaterId;
     }
 
-    public void setLastApplyerName(Living lastApplyerName) {
-        this.lastApplyerName = lastApplyerName;
+    public void setMyDefeaterId(String myDefeaterId) {
+        this.myDefeaterId = myDefeaterId;
     }
 
-    public Living getLastApplyerId() {
-        return lastApplyerId;
+    public String getMyKillerId() {
+        return myKillerId;
     }
 
-    public void setLastApplyerId(Living lastApplyerId) {
-        this.lastApplyerId = lastApplyerId;
+    public void setMyKillerId(String myKillerId) {
+        this.myKillerId = myKillerId;
+    }
+
+    public Integer getCraze() {
+        return craze;
+    }
+
+    public void setCraze(Integer craze) {
+        this.craze = craze;
+    }
+
+    public Boolean getLiving() {
+        return isLiving;
+    }
+
+    public void setLiving(Boolean living) {
+        isLiving = living;
     }
 
     public Map<String, Integer> getSkills() {
@@ -896,5 +914,28 @@ public class Living extends MudObject{
     public Boolean isNotBad()  { return this.getShen() > -500; }
     public Boolean isGood()     { return this.getShen() > 500; }
     public Boolean isBad()      { return this.getShen() < -500; }
+
+    public void applyCondition(String cnd, Object info) {
+
+        this.conditions.put(cnd, info);
+        this.condApplyer.put(cnd, new String[] {this.getUuid().toString(), this.getName()});
+    }
+
+    public void continueAction() {
+
+        if (this.performBusy < 0) {
+            performBusy = 0;
+        } else if (performBusy > 0) {
+            performBusy--;
+        }
+
+        if (busy > 0) {
+            busy--;
+            return;
+        } else {
+            busy = 0;
+            interrupt = 0;
+        }
+    }
 
 }

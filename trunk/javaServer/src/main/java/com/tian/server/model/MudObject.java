@@ -18,6 +18,10 @@ public class MudObject {
 
     protected Map<String, Object> temp = new HashMap<String, Object>();
     protected Map<String, Object> apply = new HashMap<String, Object>();
+    protected Map<String, Object> condApplyer = new HashMap<String, Object>();
+    protected Map<String, Object> conditions = new HashMap<String, Object>();
+    private Living lastApplyerName = null;
+    private Living lastApplyerId = null;
     protected Map<String ,String> cmdActions = new HashMap<String, String>(); //lua文件里定义的：命令-函数映射
 
     //属性
@@ -87,24 +91,23 @@ public class MudObject {
     }
 
     public void add(String prop, Object data) {
-        mixed old;
+        Object old = null;
 
         if( prop.equals("combat_exp") || prop.equals("potential") ) {
-            if(this.queryTemp("last_eat/exp") != null && query_temp("last_eat/exp") > 1)
-            {
-                data = data * 4;
-            }else
-            {
-                data = data * 3;
+            if(this.queryTemp("last_eat/exp") != null && Integer.parseInt(this.queryTemp("last_eat/exp").toString()) > 1) {
+                data = (Integer)data * 4;
+            }else{
+                data = (Integer)data * 3;
             }
         }
-        if( !mapp(dbase) || !(old = query(prop, 1)) )
-            return set(prop, data);
 
-        if( functionp(old) )
-            error("dbase: add() - called on a function type property.\n");
+        old = this.query(prop);
+        if( old == null ) {
+            set(prop, data);
+            return;
+        }
 
-        return set(prop, old + data);
+        set(prop, (Integer)old + (Integer)data);
     }
 
     public Object queryTemp(String prop){
@@ -138,6 +141,63 @@ public class MudObject {
         } else {
             this.temp.remove(prop);
         }
+    }
+
+    public void addTemp(String prop, Object data) {
+
+        Object old = this.queryTemp(prop);
+        if( old == null ) {
+            setTemp(prop, data);
+            return;
+        }
+
+        setTemp(prop, (Integer)old + (Integer)data);
+    }
+
+    public Object queryCondition(String cnd) {
+
+        if (cnd == null || cnd.length() < 1) {
+            return null;
+        }
+
+        return conditions.get(cnd);
+    }
+
+    public void clearCondition(String cnd) {
+
+        if(cnd == null || cnd.length() < 1){
+
+            this.conditions.clear();
+            this.condApplyer = null;
+            this.lastApplyerName = null;
+            this.lastApplyerId = null;
+            return;
+        }
+
+        if(conditions.containsKey(cnd)) {
+            this.conditions.remove(cnd);
+            if (this.condApplyer != null) {
+                this.condApplyer.remove(cnd);
+            }
+        }
+    }
+
+
+
+    public Living getLastApplyerName() {
+        return lastApplyerName;
+    }
+
+    public void setLastApplyerName(Living lastApplyerName) {
+        this.lastApplyerName = lastApplyerName;
+    }
+
+    public Living getLastApplyerId() {
+        return lastApplyerId;
+    }
+
+    public void setLastApplyerId(Living lastApplyerId) {
+        this.lastApplyerId = lastApplyerId;
     }
 
     public Map<String, String> getCmdActions() {
