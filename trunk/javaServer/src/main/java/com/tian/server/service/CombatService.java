@@ -2,10 +2,8 @@ package com.tian.server.service;
 
 import com.corundumstudio.socketio.SocketIOClient;
 import com.tian.server.common.Ansi;
-import com.tian.server.model.Living;
-import com.tian.server.model.Player;
+import com.tian.server.model.*;
 import com.tian.server.model.Race.Human;
-import com.tian.server.model.RoomObjects;
 import com.tian.server.util.LuaBridge;
 import com.tian.server.util.MsgUtil;
 import com.tian.server.util.UnityCmdUtil;
@@ -23,6 +21,8 @@ import java.util.*;
  * Created by PPX on 2017/7/11.
  */
 public class CombatService {
+
+    private AttackService attackService = new AttackService();
 
     // 关于玩家数据(/combat/)的说明
     // PKS：杀害的玩家数目
@@ -634,5 +634,95 @@ public class CombatService {
                         "，你要想离岛不妨和我说一声(ask long about 离岛)。"NOR"\n");*/
 
         return 1;
+    }
+
+    //      fight()
+    //
+    //      This is called in the attack() defined in F_ATTACK, which handles fighting
+    //      in the heart_beat() of all livings. Be sure to optimize it carefully.
+    //
+    public void fight(Living me, Living victim)
+    {
+        Living ob;
+        GoodsContainer weapon;
+        String askill = "";
+        Boolean doubleAttack = false;
+        Map<String, String> prepare;
+        String result;
+        Map<String ,Object> myTemp = null;
+
+        //人物如果不存活禁止战斗
+        if(!me.getLiving()){
+            return;
+        }
+
+        myTemp = me.queryEntireTemp();
+
+        prepare = me.getSkillPrepare();
+        weapon = (GoodsContainer)myTemp.get("weapon");
+        if(weapon != null){
+            askill = weapon.getAttr().getString("skill_type");
+        } else if (prepare.size() == 0) {
+            askill = "unarmed";
+        } else if (prepare.size() > 0) {
+            askill = prepare.keySet().toArray()[0].toString();
+        }
+
+        if (askill == "pin") askill = "sword";
+
+        askill = me.getSkillMap().get(askill);
+        Random random = new Random();
+        if(askill != null && random.nextInt(me.getDex()) >= 8){
+            doubleAttack = (prepare.size() >= 2 && weapon == null);
+        }
+        //Todo:
+        /*if (askill && random(me->query_dex()) >= 8)
+            double_attack = (sizeof(prepare) >= 2 && ! weapon) ||
+                    SKILL_D(askill)->double_attack();*/
+
+        // If victim is busy or unconcious, always take the chance to make an attack.
+        if(victim.isBusy() || !victim.getLiving()){
+
+            me.setTemp("guarding", 0);
+
+            if(!victim.isFighting(me)){
+                attackService.fight_ob(victim, me);
+            }
+
+            do_attack(me, victim, my_temp["weapon"], TYPE_QUICK);
+
+            if(me.isFighting(victim) && victim.isFighting(me) && doubleAttack){
+
+                me.setTemp("action_flag",1);
+                do_attack(me, victim, my_temp["weapon"], TYPE_QUICK);
+                me.setTemp("action_flag",0);
+
+            }
+
+        } else {// Else, see if we are brave enough to make an aggressive action.
+
+            if(me.getStr() > random.nextInt(victim.getStr() * 3 / 4)) {
+
+                me.setTemp("guarding", 0);
+                if(!victim.isFighting(me)){
+                    attackService.fight_ob(victim, me);
+                }
+
+                do_attack(me, victim, my_temp["weapon"], TYPE_REGULAR);
+
+                if(me.isFighting(victim) && victim.isFighting(me) && doubleAttack){
+                    me.setTemp("action_flag", 1);
+                    do_attack(me, victim, my_temp["weapon"], TYPE_REGULAR);
+                    me.setTemp("action_flag", 0);
+                }
+                // Else, we just start guarding.
+            } else if (me.queryTemp("guarding") == null) {
+                me.setTemp("guarding", 1);
+                message_combatd(guard_msg[random(sizeof(guard_msg))], me, victim, "", 0, "");
+                return;
+            } else {
+                return;
+            }
+        }
     }
 }

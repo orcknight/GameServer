@@ -154,6 +154,10 @@ public class MudObject {
         setTemp(prop, (Integer)old + (Integer)data);
     }
 
+    public Map<String ,Object> queryEntireTemp(){
+        return this.temp;
+    }
+
     public Object queryCondition(String cnd) {
 
         if (cnd == null || cnd.length() < 1) {

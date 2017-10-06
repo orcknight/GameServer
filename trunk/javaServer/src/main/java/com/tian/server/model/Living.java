@@ -938,4 +938,21 @@ public class Living extends MudObject{
         }
     }
 
+    public void cleanUpEnemy() {
+
+        if(enemy.size() < 1){
+            return;
+        }
+
+        Iterator<Living> it = this.enemy.iterator();
+        while(it.hasNext()){
+
+            Living curItem = it.next();
+            if(!curItem.getLocation().getName().equals(this.getLocation().getName()) || (!curItem.getLiving() &&
+                    !this.isKiller(curItem))){
+                it.remove();
+            }
+        }
+    }
+
 }

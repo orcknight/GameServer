@@ -9,13 +9,12 @@ import com.tian.server.util.UnityCmdUtil;
 import net.sf.json.JSONArray;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by PPX on 2017/9/24.
  */
 public class AttackService {
-
-
 
     //This function starts fight between this_object() and ob
     public void fight_ob(Living me, Living ob) {
@@ -200,21 +199,34 @@ public class AttackService {
         me.getKiller().add(ob);
     }
 
-
     // This is called in heart_beat() to perform attack action.
     int attack(Living me) {
-        object opponent;
 
-        clean_up_enemy();
+        me.cleanUpEnemy();
+        Living opponent = selectOpponent(me);
 
-        opponent = select_opponent();
-        if (objectp(opponent))
-        {
-            set_temp("last_opponent", opponent);
-            COMBAT_D->fight(this_object(), opponent);
-            return 1;
-        } else
+        if(opponent == null){
             return 0;
+        }
+
+        me.setTemp("last_opponent", opponent);
+        CombatService combatService = new CombatService();
+        combatService
+        COMBAT_D->fight(this_object(), opponent);
+        return 1;
+    }
+
+    // This function checks if the current opponent is available or
+    // select a new one.
+    Living selectOpponent(Living me) {
+
+        if(me.getEnemy().size() < 1){
+            return null;
+        }
+        Random random = new Random();
+        int which = random.nextInt(me.getEnemy().size());
+
+        return me.getEnemy().get(which);
     }
 
 }
