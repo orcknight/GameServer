@@ -1,5 +1,8 @@
 package com.tian.server.util;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by PPX on 2017/8/11.
  */
@@ -10,9 +13,16 @@ public class ChineseUtil {
     private static String[] c_num = {"零","一","二","三","四","五","六","七","八","九","十"};
     private static String[] sym_tian = { "甲","乙","丙","丁","戊","己","庚","辛","壬","癸" };
     private static String[] sym_di = { "子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥" };
+    private static Map<String, String> dict = new HashMap<String, String>();
 
-    public static String chinese_number(Integer i)
-    {
+    public static String toChinese(String str) {
+        if (dict.get(str) != null)
+            return dict.get(str);
+        else
+            return str;
+    }
+
+    public static String chinese_number(Integer i) {
         if (i < 0){
             return "负" + chinese_number(-i);
         }

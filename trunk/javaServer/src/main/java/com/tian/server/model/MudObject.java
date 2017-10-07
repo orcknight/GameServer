@@ -110,6 +110,10 @@ public class MudObject {
         set(prop, (Integer)old + (Integer)data);
     }
 
+    public Map<String, Object> queryEntire(){
+        return this.apply;
+    }
+
     public Object queryTemp(String prop){
 
         Object data;
