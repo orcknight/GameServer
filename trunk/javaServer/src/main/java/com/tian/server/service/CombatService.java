@@ -63,6 +63,9 @@ public class CombatService {
     private static final int REMOTE_ATTACK = 2;
     private static final int SPECIAL_ATTACK = 3;
 
+    private static final int PVP_DAMAGE_SCALE = 70;  // 玩家对玩家时伤害（当前值）下降为 70%
+    private static final int PVP_WOUND_SCALE  = 60;  // 玩家对玩家时伤害（最大值）下降为 60%
+
     // 经验底线(random(my_exp) > EXP_LIMIT，则不加经验)
     private static final int EXP_LIMIT = 20000000;
 
@@ -751,7 +754,7 @@ public class CombatService {
         String limb = null, *limbs;
         String attack_skill, force_skill, martial_skill, dodge_skill, parry_skill;
         String parry_msg;
-        mixed foo;
+        int foo;
 
         int delta;
         int ap, dp, pp;
@@ -759,7 +762,7 @@ public class CombatService {
         int wounded;
         boolean has_weapon = false;
 
-        MudObject weapon2;	// weapon of victim
+        GoodsContainer weapon2;	// weapon of victim
         MudObject cloth;   // armor of victim
 
         String result;
@@ -923,21 +926,24 @@ public class CombatService {
 
                         JSONArray jsonArray = new JSONArray();
                         jsonArray.add(UnityCmdUtil.getInfoWindowRet(info));
-                        MsgUtil.sendMsg(victim.getp);
-                        tell_object(victim, ("你在" + Ansi.HIC + "躲避" + Ansi.NOR + me.getName()->query("name")+"时对"HIG"【"+to_chinese(dodge_skill)+"】"NOR"顿有所悟: "YEL"武功熟练度 "HIY"↑"NOR","YEL"实战经验 "HIY"↑ " NOR));
-                        your["combat_exp"]++;
-                        victim->improve_skill(dodge_skill, 1);
+
+                        if(victim instanceof  Player){
+                            MsgUtil.sendMsg(((Player) victim).getSocketClient(), jsonArray);
+                        }
+
+                        victim.setCombatExp(victim.getCombatExp() + 1);
+                        //Todo:技能这块暂时不处理
+                        //victim->improve_skill(dodge_skill, 1);
 
                     }
                 }
             }
-        }
-        else      //如果躲闪不成功，就判断是否增加攻击的奖励
-        {
+        } else {     //如果躲闪不成功，就判断是否增加攻击的奖励
             //
             //      (4) Check if the victim can parry this attack.
             // 都是可以互动的
-            if (userp(me) || userp(victim))
+            //Todo:
+            /*if (userp(me) || userp(victim))
             {
                 //计算是否给予攻击奖励。
                 //如果攻击小于躲闪 并且 随机悟性大于14 ，并且潜能是否超出
@@ -957,53 +963,53 @@ public class CombatService {
                         }
                     }
                 }
-            }
+            }*/
             delta = 0;
             //取出装备主手的兵器对象
-            if (weapon2 = your_temp["weapon"])
-            {
-                if (! weapon) delta = 10;  //如果没有兵器，delta=10
-            }
-            else
-            {
-                if (weapon) delta = -10;   //有装备兵器，delta=-10
+            weapon2 = (GoodsContainer)yourTemp.get("weapon");
+            if (weapon2 != null ) {
+                if (weapon == null) delta = 10;  //如果没有兵器，delta=10
+            } else {
+                if (weapon != null) delta = -10;   //有装备兵器，delta=-10
             }
             //计算被攻击者 招架技能 的值
-            pp = skill_power(victim, "parry", SKILL_USAGE_DEFENSE, delta);
+            pp = skillPower(victim, "parry", SKILL_USAGE_DEFENSE, delta);
             //如果被攻击者 繁忙，招架值减少3倍
-            if (victim->is_busy()) pp /= 3;
+            if (victim.isBusy()) pp /= 3;
             if (pp < 1) pp = 1;
             //计算特殊招架技能给予的招架值加乘。
-            if (stringp(parry_skill = victim->query_skill_mapped("parry")))
-                pp += pp / 200 * SKILL_D(parry_skill)->query_effect_parry(me, victim);
+            //Todo:
+            /*if (stringp(parry_skill = victim->query_skill_mapped("parry")))
+                pp += pp / 200 * SKILL_D(parry_skill)->query_effect_parry(me, victim);*/
             //如果随机（攻击值+招架值）小于招架值 则判断 招架成功，除非气血为0
-            if (random(ap + pp) < pp && victim->query("qi")!=0)
-            {
+            if (random.nextInt(ap + pp) < pp && victim.getQi() != 0) {
 
-#if INSTALL_COMBAT_TEST
+/*#if INSTALL_COMBAT_TEST
                 if (wizardp(me) && me->query("env/combat_test"))
                     tell_object(me, HIY "【测试精灵】：己方 AP：" + ap +
                             "，PP：" + pp + "。"NOR"\n");
                 if (wizardp(victim) && victim->query("env/combat_test"))
                     tell_object(victim, HIC "【测试精灵】：对方 AP：" + ap +
                             "，PP：" + pp + "。"NOR"\n");
-#endif
+#endif*/
                 //如果没有特殊招架，则给予 [基本招架]
-                if (! parry_skill) parry_skill = "parry";
+                if ( parry_skill == null || parry_skill.length() < 1) parry_skill = "parry";
                 // change to SKILL_D(parry_skill) after added parry msg to those
                 // martial arts that can parry.
                 //取出有带兵器的[特殊招架]信息
-                parry_msg = SKILL_D(parry_skill)->query_parry_msg(weapon2);
+                //parry_msg = SKILL_D(parry_skill)->query_parry_msg(weapon2);
                 //如果没有[特殊招架]兵器的招架信息
-                if (! stringp(parry_msg))
+                if (parry_msg == null || parry_msg.length() < 1) {
                     //就取出[基本招架]兵器信息
-                    parry_msg = SKILL_D("parry")->query_parry_msg(weapon2);
+                    parry_msg = "结果被$p挡开了。"; //SKILL_D("parry")->query_parry_msg(weapon2);
+                }
                 //如果有招架信息，则赋予result+招架信息
-                if (stringp(parry_msg))
+                if (parry_msg != null) {
                     result += parry_msg;
+                }
                 //判断是否给予招架奖励
                 //如果招架值小于攻击，而招架成功，并且计算 xx>30
-                if (userp(me) || userp(victim))
+                /*if (userp(me) || userp(victim))
                 {
                     if (random(ap + pp) < pp && random(my["int"]) > 14)
                     {
@@ -1019,7 +1025,7 @@ public class CombatService {
                             tell_object(victim,PTEXT(WHT+"【你的对手太弱了，无法取得任何经验！！！】"NOR));
                         }
                     }
-                }
+                }*/
             }
             else
             {
@@ -1027,39 +1033,42 @@ public class CombatService {
                 //      (5) We hit the victim and the victim failed to parry
                 //
                 //如果有兵器，则取出兵器的攻击力，否则取出空手攻击力
-                if (weapon)
-                    damage = me->query_temp("apply/damage");
-                else
-                    damage = me->query_temp("apply/unarmed_damage");
-                //将攻击力变成在一定的随机范围波动。
-                damage = (damage + random(damage)) / 2;
-                if (action["damage"])
-                    damage += action["damage"] * damage / 100;
-                //攻击者力量取出
-                damage_bonus = me->query_str();
-                //判断是否是 愤怒状态
-                if (my["jianu"])
-                {
-                    // does angry bnous
-                    damage_bonus += me->cost_craze(my["jianu"]);
-                    //是否为狂化状态，计算狂化状态信息
-                    if (me->query_craze() > 1000 &&
-                            random(my["jianu"] + 200) > 200)
-                    {
-                        damage_info += random(2) ? HIR "$N" HIR "大喝一声，双目圆睁，一股凌厉的杀气油然而起！"NOR"\n"
-                                                                 : HIR "$N" HIR "奋不顾身的扑上前来，招招紧逼$n" HIR "，毫不容情。"NOR"\n";
-                        //消耗怒气值
-                        me->cost_craze(200 + random(300));
-                        damage_bonus += my["jianu"] * 2;
-                    }
+                if (weapon != null) {
+                    damage = MapGetUtil.queryTempInteger(me,"apply/damage");
+                }else {
+                    damage = MapGetUtil.queryTempInteger(me, "apply/unarmed_damage");
                 }
+                //将攻击力变成在一定的随机范围波动。
+                damage = (damage + random.nextInt(damage)) / 2;
+                if (action.getDamage() != null){
+                    damage += action.getDamage() * damage / 100;
+                }
+                //攻击者力量取出
+                damage_bonus = me.getStr();
+                //判断是否是 愤怒状态
+                //Todo:
+//                if (my.get("jianu") != null) {
+//                    // does angry bnous
+//                    damage_bonus += me->cost_craze(my["jianu"]);
+//                    //是否为狂化状态，计算狂化状态信息
+//                    if (me->query_craze() > 1000 &&
+//                            random(my["jianu"] + 200) > 200)
+//                    {
+//                        damage_info += random(2) ? HIR "$N" HIR "大喝一声，双目圆睁，一股凌厉的杀气油然而起！"NOR"\n"
+//                                                                 : HIR "$N" HIR "奋不顾身的扑上前来，招招紧逼$n" HIR "，毫不容情。"NOR"\n";
+//                        //消耗怒气值
+//                        me->cost_craze(200 + random(300));
+//                        damage_bonus += my["jianu"] * 2;
+//                    }
+//                }
 
                 // Clear the special message info after damage info
-                foo_before_hit = 0;
-                foo_after_hit = 0;
+                foo_before_hit = null;
+                foo_after_hit = null;
 
                 // Let force skill take effect.
-                if (my["jiali"] && (my["neili"] > my["jiali"]))
+                //Todo:
+                /*if (my["jiali"] && (my["neili"] > my["jiali"]))
                 {
                     if (force_skill = me->query_skill_mapped("force"))
                     {
@@ -1084,41 +1093,44 @@ public class CombatService {
                                 "，伤害效果：" + damage +
                                 "，额外伤害效果：" + damage_bonus + "。"NOR"\n");
 #endif
-                }
+                }*/
 
-                if (action["force"])
-                    damage_bonus += action["force"] * damage_bonus / 100;
+                if (action.getForce() != null) {
+                    damage_bonus += action.getForce() * damage_bonus / 100;
+                }
 
                 // calculate the damage
                 if (damage_bonus > 0)
-                    damage += (damage_bonus + random(damage_bonus)) / 3;
+                    damage += (damage_bonus + random.nextInt(damage_bonus)) / 3;
 
                 // Let's attack & parry skill, weapon & armor do effect
-                while (damage > 0)
-                {
-                    if (my["not_living"] || your["not_living"])
+                while (damage > 0) {
+
+                    if (!me.getLiving() || !victim.getLiving()) {
                         // Only two living do this
                         break;
+                    }
 
                     if (damage < 1) break;
 
                     // Let parry skill take its special effort.
-                    if (stringp(dodge_skill = victim->query_skill_mapped("dodge")))
-                    {
-                        victim->set_temp("dodge_valid_damage", 1);
-                        foo = SKILL_D(dodge_skill)->valid_damage(me, victim, damage, weapon);
-                        victim->delete_temp("dodge_valid_damage");
-                        if (stringp(foo)) damage_info += foo; else
+                    dodge_skill = victim.getSkillMap().get("dodge");
+                    if (dodge_skill != null && dodge_skill.length() > 0) {
+                        victim.setTemp("dodge_valid_damage", 1);
+                        foo = 0;//SKILL_D(dodge_skill)->valid_damage(me, victim, damage, weapon);
+                        victim.deleteTemp("dodge_valid_damage");
+                        //Todo:
+                        /*if (stringp(foo)) damage_info += foo; else
                         if (intp(foo)) damage += foo; else
                         if (mapp(foo))
                         {
                             damage_info += foo["msg"];
                             damage += foo["damage"];
-                        }
+                        }*/
                         if (damage < 1) break;
                     }
 
-                    if (stringp(parry_skill = victim->query_skill_mapped("parry")))
+                    /*if (stringp(parry_skill = victim->query_skill_mapped("parry")))
                     {
                         foo = SKILL_D(parry_skill)->valid_damage(me, victim, damage, weapon);
                         if (stringp(foo)) damage_info += foo; else
@@ -1164,13 +1176,12 @@ public class CombatService {
                                 damage_info += foo["msg"];
                                 damage += foo["damage"];
                             }
-                        }
+                        }*/
 
                     if (damage < 1) break;
 
                     // Let attack skill take its special effort.
-                    if (martial_skill = me->query_skill_mapped(attack_skill))
-                    {
+                    /*if (martial_skill = me->query_skill_mapped(attack_skill)) {
                         foo = SKILL_D(martial_skill)->hit_ob(me, victim, damage);
                         if (stringp(foo)) damage_info += foo; else
                         if (intp(foo)) damage += foo; else
@@ -1180,29 +1191,29 @@ public class CombatService {
                             damage += foo["damage"];
                         }
                         if (damage < 1) break;
-                    }
+                    }*/
 
                     // Let weapon or living have their special damage.
-                    if (weapon)
+                    if (weapon != null)
                     {
-                        foo = weapon->hit_ob(me, victim, damage);
+                        /*foo = weapon->hit_ob(me, victim, damage);
                         if (stringp(foo)) damage_info += foo; else
                         if (intp(foo)) damage += foo; else
                         if (mapp(foo))
                         {
                             damage_info += foo["msg"];
                             damage += foo["damage"];
-                        }
+                        }*/
                     } else
                     {
-                        foo = me->hit_ob(me, victim, damage);
+                        /*foo = me->hit_ob(me, victim, damage);
                         if (stringp(foo)) damage_info += foo; else
                         if (intp(foo)) damage += foo; else
                         if (mapp(foo))
                         {
                             damage_info += foo["msg"];
                             damage += foo["damage"];
-                        }
+                        }*/
                     }
 
                     // finish
@@ -1212,15 +1223,15 @@ public class CombatService {
                 //
                 //      (6) Inflict the damage.
                 //
-                if (damage > 0)
-                {
-                    if (my["character"] == "心狠手辣")
-                        damage += damage * 20 / 100;
+                if (damage > 0) {
+
+                    /*if (my["character"] == "心狠手辣")
+                        damage += damage * 20 / 100;*/
 
                     // calculate wounded
                     wounded = damage;
-                    if (mapp(your_temp["apply"]) && your_temp["apply"]["armor"] > 0)
-                        wounded -= random(your_temp["apply"]["armor"]);
+                    /*if (mapp(your_temp["apply"]) && your_temp["apply"]["armor"] > 0)
+                        wounded -= random(your_temp["apply"]["armor"]);*/
 
                     if (wounded > 400)
                         wounded = (wounded - 400) / 4 + 300;
@@ -1238,19 +1249,19 @@ public class CombatService {
                     if (damage > 200)
                         damage = (damage - 200) / 2 + 200;
 
-                    if (your["character"] == "光明磊落")
-                        wounded -= wounded * 20 / 100;
+                    /*if (your["character"] == "光明磊落")
+                        wounded -= wounded * 20 / 100;*/
 
-                    damage = COMBAT_D->calc_damage(me, victim, damage);
-                    damage = victim->receive_damage("qi", damage, me);
+                    damage = calc_damage(me, victim, damage);
+                    damage = victim.receiveDamage("qi", damage, me);
                     if (wounded > 0 &&
-                            (has_weapon || random(3) == 1))
+                            (has_weapon || random.nextInt(3) == 1))
                     {
                         // We are sure that damage is greater than victim's armor here.
-                        wounded = COMBAT_D->calc_wound(me, victim, wounded);
-                        victim->receive_wound("qi", wounded, me);
+                        wounded = calc_wound(me, victim, wounded);
+                        victim.receiveWound("qi", wounded, me);
                     }
-#if INSTALL_COMBAT_TEST
+/*#if INSTALL_COMBAT_TEST
                     if (wizardp(me) && me->query("env/combat_test"))
                         tell_object(me, HIY "【测试精灵】：你对" +
                                 victim->query("name") + "造成" +
@@ -1260,45 +1271,46 @@ public class CombatService {
                         tell_object(victim, HIG "【测试精灵】：你受到" +
                                 me->query("name") + damage + "点伤害，" +
                                         wounded + "点创伤。"NOR"\n");
-#endif
+#endif*/
 
                     // add message before hit in victim
-                    if (foo_before_hit)
+                    if (foo_before_hit != null)
                         result += foo_before_hit;
 
-                    result += damage_msg(damage, action["damage_type"]);
-                    damage_info += "( $n" + eff_status_msg(victim->query("qi") * 100 / victim->query("max_qi")) + ")\n";
+                    result += getDamageMsg(damage, action.getDamageType());
+                    damage_info += "( $n" + getEffStatusMsg(victim.getQi() * 100 / victim.getMaxQi()) + ")\n";
                 }
 
-                if (foo_after_hit)
+                if (foo_after_hit != null)
                     damage_info += foo_after_hit;
             }
         }
 
-        result = replace_string(result, "$l", limb);
-        if (objectp(weapon))
-            result = replace_string(result, "$w", weapon->name());
-        else if (stringp(action["weapon"]))
-            result = replace_string(result, "$w", action["weapon"]);
-        else if (attack_skill == "finger" || attack_skill == "hand")
-            result = replace_string(result, "$w", "手指" );
-        else if (attack_skill == "strike" || attack_skill == "claw")
-            result = replace_string(result, "$w", "手掌" );
-        else    result = replace_string(result, "$w", "拳头" );
+        result = result.replace("$l", limb);
+        if (weapon != null) {
+            result = result.replace("$w", weapon.getGoodsEntity().getName());
+        } else if (action.getWeapon() != null) {
+            result = result.replace("$w", action.getWeapon());
+        } else if (attack_skill.equals("finger") || attack_skill.equals("hand")) {
+            result = result.replace("$w", "手指");
+        } else if (attack_skill.equals("strike") || attack_skill.equals("claw")) {
+            result = result.replace("$w", "手掌");
+        } else {
+            result = result.replace("$w", "拳头" );
+        }
 
-        message_combatd(result, me, victim, damage_info,damage,action["damage_type"]);
+        messageService.messageCombatd(result, me, victim, damage_info, damage, action.getDamageType());
 
-        if (damage > 0)
-        {
-            if (victim->is_busy())
-                victim->interrupt_me(victim, 3 + random(3));
-            if ((! me->is_killing(your["id"])) &&
-                    (! victim->is_killing(my["id"])) &&
-                    ! victim->query("not_living") &&
-                            your["qi"] * 3 <= your["max_qi"])
-            {
-                me->remove_enemy(victim);
-                victim->remove_enemy(me);
+        if (damage > 0) {
+            if (victim.isBusy()) {
+                victim.interruptMe(victim, 3 + random.nextInt(3));
+            }
+
+            if ( ! me.isKiller(victim) && !victim.isKiller(me) && !victim.getLiving() &&
+                    victim.getQi() * 3 <= victim.getMaxQi()) {
+
+                me.getEnemy().remove(victim);
+                victim.getEnemy().remove(me);
                 if (me->query("can_speak") && victim->query("can_speak"))
                     message_vision(winner_msg[random(sizeof(winner_msg))],
                             me, victim);
@@ -1411,4 +1423,23 @@ public class CombatService {
         combat_exp -= 1000000;
         return 2000 + (1000 / 10) + (combat_exp / 2000);
     }
+
+
+    int calc_damage(Living attacker, Living victim, int damage) {
+
+
+        if (attacker != null && victim != null && (attacker instanceof  Player) && (victim instanceof  Player)) {
+            damage = damage * PVP_DAMAGE_SCALE / 100;
+        }
+        return damage;
+    }
+
+    int calc_wound(Living attacker, Living victim, int wound)
+    {
+        if (attacker != null && victim != null && (attacker instanceof  Player) && (victim instanceof  Player)) {
+            wound = wound * PVP_WOUND_SCALE / 100;
+        }
+        return wound;
+    }
+
 }

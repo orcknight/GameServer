@@ -1,5 +1,7 @@
 package com.tian.server.util;
 
+import com.tian.server.model.MudObject;
+
 import java.util.Map;
 
 /**
@@ -30,6 +32,32 @@ public class MapGetUtil {
             }
         }else{
             return "";
+        }
+    }
+
+    public static Integer queryInteger(MudObject ob, String key){
+
+        if(ob.query(key) != null){
+            if(ob.query(key) instanceof Integer){
+                return (Integer)ob.query(key);
+            }else{
+                return 0;
+            }
+        }else{
+            return 0;
+        }
+    }
+
+    public static Integer queryTempInteger(MudObject ob, String key){
+
+        if(ob.queryTemp(key) != null){
+            if(ob.queryTemp(key) instanceof Integer){
+                return (Integer)ob.queryTemp(key);
+            }else{
+                return 0;
+            }
+        }else{
+            return 0;
         }
     }
 }

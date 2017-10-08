@@ -9,6 +9,7 @@ public class SkillAction {
     private String postAction;
     private String skillName;
     private String damageType;
+    private String weapon;
 
     private Integer level;
     private Integer force;
@@ -16,6 +17,7 @@ public class SkillAction {
     private Integer parry;
     private Integer damage;
     private Integer dodge;
+
 
     public SkillAction(){
 
@@ -64,6 +66,14 @@ public class SkillAction {
 
     public void setDamageType(String damageType){
         this.damageType = damageType;
+    }
+
+    public String getWeapon() {
+        return weapon;
+    }
+
+    public void setWeapon(String weapon) {
+        this.weapon = weapon;
     }
 
     public Integer getLevel(){

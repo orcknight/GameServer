@@ -1,6 +1,7 @@
 package com.tian.server.model;
 
 import com.tian.server.entity.RoomEntity;
+import com.tian.server.util.MapGetUtil;
 import com.tian.server.util.StringUtil;
 import com.tian.server.util.UserCacheUtil;
 import com.tian.server.util.ZjMudUtil;
@@ -953,6 +954,97 @@ public class Living extends MudObject{
                 it.remove();
             }
         }
+    }
+
+    public int receiveDamage(String type, int damage, Living who) {
+        int val;
+
+        /*if (damage < 0) error("F_DAMAGE: 伤害值为负值。\n");
+        if (type != "jing" && type != "qi")
+            error("F_DAMAGE: 伤害种类错误( 只能是 jing, qi 其中之一 )。\n");*/
+
+        if (this.getLastDamageFrom() != null && who.getUuid() != this.getLastDamageFrom().getUuid()) {
+
+            this.setLastDamageFrom(who);
+            /*last_damage_name = (who ? who->name(1) : 0);
+            last_damage_from = who;*/
+        }
+
+        /*if (who != null && damage > 150)
+            this_object()->improve_craze(damage / 5);*/
+
+        //关闭pvp伤害衰减
+        /*if (playerp(this_object()) && playerp(who) && this_object()->is_fighting(who))
+        damage *= PVP_DAMAGE_SCALE / 100;*/
+
+        if(type.equals("qi")){
+            val = this.getQi() - damage;
+            if(val >= 0){
+                this.setQi(val);
+            }else {
+                this.setQi(-1);
+            }
+
+        }else{
+            val = this.getJing() -damage;
+            if(val >= 0){
+                this.setJing(val);
+            }else {
+                this.setJing(-1);
+            }
+        }
+
+        this.setHeartBeatFlag(true);
+        return damage;
+    }
+
+    public int receiveWound(String type, int damage, Living who) {
+
+        int val;
+        /*if (damage < 0) error("F_DAMAGE: 伤害值为负值。\n");
+        if (type != "jing" && type != "qi")
+            error("F_DAMAGE: 伤害种类错误( 只能是 jing, qi 其中之一 )。\n");*/
+
+        if (this.getLastDamageFrom() != null && who.getUuid() != this.getLastDamageFrom().getUuid()) {
+            this.setLastDamageFrom(who);
+        }
+
+       /* if (who != null && damage > 150)
+            this_object()->improve_craze(damage / 3);*/
+
+/*#if 0
+        if (playerp(this_object()) && playerp(who) && this_object()->is_fighting(who))
+        damage *= PVP_WOUND_SCALE / 100;
+#endif*/
+
+        val = MapGetUtil.queryInteger(this, "eff_" + type) - damage;
+        if(type.equals("qi")){
+            val = this.getEffQi() - damage;
+            if(val >= 0){
+                this.setEffQi(val);
+            }else{
+                this.setEffQi(-1);
+                val = -1;
+            }
+            if(this.getQi() > val){
+                this.setQi(val);
+            }
+
+        }else{
+            val = this.getEffJing() - damage;
+            if(val >= 0){
+                this.setEffJing(val);
+            }else{
+                this.setEffJing(-1);
+                val = -1;
+            }
+            if(this.getJing() > val){
+                this.setJing(val);
+            }
+        }
+
+        this.setHeartBeatFlag(true);
+        return damage;
     }
 
 }
