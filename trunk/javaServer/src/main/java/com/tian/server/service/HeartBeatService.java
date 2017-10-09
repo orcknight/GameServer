@@ -3,6 +3,7 @@ package com.tian.server.service;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.tian.server.model.Living;
 import com.tian.server.model.Player;
+import com.tian.server.util.MsgUtil;
 import com.tian.server.util.UnityCmdUtil;
 import com.tian.server.util.UserCacheUtil;
 import net.sf.json.JSONArray;
@@ -15,44 +16,20 @@ import java.util.Map;
  */
 public class HeartBeatService {
 
+    private AttackService attackService = new AttackService();
+    private MessageService messageService = new MessageService();
+    private DamageService damageService = new DamageService();
+
     public void heartBeat() {
 
         //获取living列表
         List<Living> allLivings = UserCacheUtil.getAllLivings();
         for (Living living : allLivings) {
-
             if (!living.getHeartBeatFlag()) {
                 continue;
             }
-
             heartProcess(living);
         }
-
-        for (Map.Entry<SocketIOClient, Integer> entry : socketCache.entrySet()) {
-
-
-            Integer userId = entry.getValue();
-            SocketIOClient client = entry.getKey();
-
-            //获取玩家信息并提取信息
-            Player player = (Player) playerCacheMap.get(userId);
-            if (player == null) {
-
-                continue;
-            }
-
-            if (player)
-                    /*if(player.getMaxQi() == null || player.getMaxQi() < 1){
-
-                        continue;
-                    }*/
-
-                player.heartBeat();
-            //准备状态字符串，然后发送消息
-            JSONArray jArray = UnityCmdUtil.getPlayerStatus(player);
-            //client.sendEvent("status",  jArray);
-        }
-
 
     }
 
@@ -68,7 +45,7 @@ public class HeartBeatService {
             if (!(ob instanceof Living)) {
                 die(ob);
             } else {
-                unconcious(ob);
+                damageService.unconcious(ob);
             }
 
             if (!ob.getLiving()) {
@@ -76,15 +53,12 @@ public class HeartBeatService {
             }
         }
 
-
-        //更新血量
-        "/cmds/usr/hp1"->main(me);
-
-
         if (ob.isBusy()) {
 
-            if (ob.isFighting()) {
-                tell_object(me, "\n--->>你上一个动作没有完成，失去一次进攻机会。\n");
+            if (ob.isFighting() && (ob instanceof  Player)) {
+                JSONArray jsonArray = new JSONArray();
+                jsonArray.add(UnityCmdUtil.getInfoWindowRet("\n--->>你上一个动作没有完成，失去一次进攻机会。\n"));
+                MsgUtil.sendMsg(((Player) ob).getSocketClient(), jsonArray);
             }
 
             ob.continueAction();
@@ -107,10 +81,20 @@ public class HeartBeatService {
                     GO_CMD -> do_flee(this_object());
             }*/
 
-            attack();
+            attackService.attack(ob);
         }
 
-        if (my["doing"] == "scheme")
+        //更新血量
+        if(ob instanceof  Player) {
+
+            //准备状态字符串，然后发送消息
+            JSONArray jArray = UnityCmdUtil.getPlayerStatus((Player)ob);
+            ((Player) ob).getSocketClient().sendEvent("status", jArray);
+        }
+
+        return;
+
+        /*if (my["doing"] == "scheme")
             SCHEME_CMD -> execute_schedule(me);
 
         if (!me) return;
@@ -184,7 +168,7 @@ public class HeartBeatService {
                 me -> user_dump(DUMP_IDLE);
             else
                 receive(NOR);
-        }
+        }*/
 
     }
 

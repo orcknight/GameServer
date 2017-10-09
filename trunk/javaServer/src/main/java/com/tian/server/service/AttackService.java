@@ -211,8 +211,7 @@ public class AttackService {
 
         me.setTemp("last_opponent", opponent);
         CombatService combatService = new CombatService();
-        combatService
-        COMBAT_D->fight(this_object(), opponent);
+        combatService.fight(me, opponent);
         return 1;
     }
 

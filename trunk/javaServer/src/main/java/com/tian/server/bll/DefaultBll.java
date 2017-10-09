@@ -5,6 +5,7 @@ import com.tian.server.dao.*;
 import com.tian.server.entity.*;
 import com.tian.server.model.*;
 import com.tian.server.resolver.UnityCmdResolver;
+import com.tian.server.service.HeartBeatService;
 import com.tian.server.service.RoomService;
 import com.tian.server.util.GoodsManager;
 import com.tian.server.util.UnityCmdUtil;
@@ -118,7 +119,11 @@ public class DefaultBll extends BaseBll {
         timer.schedule(new TimerTask() {
             public void run() {
 
-                //获取player列表
+                HeartBeatService heartBeatService = new HeartBeatService();
+                heartBeatService.heartBeat();
+                return;
+
+                /*//获取player列表
                 Map<Integer, Living> playerCacheMap = UserCacheUtil.getPlayers();
                 Map<SocketIOClient, Integer> socketCache = UserCacheUtil.getUserSockets();
                 if(socketCache.isEmpty()){
@@ -137,16 +142,16 @@ public class DefaultBll extends BaseBll {
 
                         continue;
                     }
-                    /*if(player.getMaxQi() == null || player.getMaxQi() < 1){
+                    *//*if(player.getMaxQi() == null || player.getMaxQi() < 1){
 
                         continue;
-                    }*/
+                    }*//*
 
                     player.heartBeat();
                     //准备状态字符串，然后发送消息
                     JSONArray jArray = UnityCmdUtil.getPlayerStatus(player);
                     //client.sendEvent("status",  jArray);
-                }
+                }*/
 
             }
         }, 2 * 1000, 2 * 1000);

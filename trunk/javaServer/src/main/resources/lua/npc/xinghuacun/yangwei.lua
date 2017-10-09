@@ -14,7 +14,7 @@ function create(bridge, uuid)
     agent:setCmdName(uuid, "yangwei")
     agent:setAge(uuid, 30);
     agent:setLongDesc(uuid, "生性淫荡，操狗被咬断，从此背负杨威之名。")
-    agent:setCombatExp(uuid, 1000);
+    agent:setCombatExp(uuid, 5000);
     agent:setAttitude(uuid, "peaceful")
     agent:setup(uuid)
 

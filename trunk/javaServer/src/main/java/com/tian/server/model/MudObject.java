@@ -71,12 +71,11 @@ public class MudObject {
     public void set(String prop, Object data){
 
         if( prop.indexOf('/') != -1 ) {
-
             String[] props = prop.split("/");
             _set( this.apply, props, data );
+        }else{
+            this.apply.put(prop, data);
         }
-
-        this.apply.put(prop, data);
     }
 
     public void delete(String prop){
@@ -131,9 +130,9 @@ public class MudObject {
         if( prop.indexOf('/') != -1 ) {
             String[] props = prop.split("/");
             _set( this.temp, props, data );
+        }else{
+            this.temp.put(prop, data);
         }
-
-        this.temp.put(prop, data);
     }
 
     public void deleteTemp(String prop){

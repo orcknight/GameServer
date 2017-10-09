@@ -5,10 +5,7 @@ import com.tian.server.common.Ansi;
 import com.tian.server.model.Living;
 import com.tian.server.model.Player;
 import com.tian.server.model.RoomObjects;
-import com.tian.server.util.GenderUtil;
-import com.tian.server.util.MsgUtil;
-import com.tian.server.util.UnityCmdUtil;
-import com.tian.server.util.UserCacheUtil;
+import com.tian.server.util.*;
 import net.sf.json.JSONArray;
 
 import java.util.ArrayList;
@@ -131,7 +128,7 @@ public class MessageService {
             if(brief <= 0){
                 myFlag = SHOW_ALL;
             }else{
-                myFlag = Integer.parseInt(me.query("env/combatd").toString());
+                myFlag = MapGetUtil.queryInteger(me, "env/combatd");
                 if (me.query("env/combatd") != null && me.query("env/combatd").toString().equals("YES")) {
                     myFlag = SHOW_BRIEF_DAMAGE;
                 }

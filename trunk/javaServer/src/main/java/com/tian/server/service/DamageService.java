@@ -212,12 +212,16 @@ public class DamageService {
         // notice the write_prompt function: do not show prompt
         //me->clear_written();
 
-        JSONArray jsonArray = new JSONArray();
-        jsonArray.add(UnityCmdUtil.getInfoWindowRet(Ansi.HIR + "\n你的眼前一黑，接著什么也不知道了...." + Ansi.NOR + "\n"));
-        MsgUtil.sendMsg(((Player)me).getSocketClient(), jsonArray);
+
+        if(me instanceof  Player) {
+            JSONArray jsonArray = new JSONArray();
+            jsonArray.add(UnityCmdUtil.getInfoWindowRet(Ansi.HIR + "\n你的眼前一黑，接著什么也不知道了...." + Ansi.NOR + "\n"));
+            MsgUtil.sendMsg(((Player) me).getSocketClient(), jsonArray);
+        }
 
         //Todo;
         //me->disable_player(" <昏迷不醒>");
+        me.setLiving(false);
         me.deleteTemp("sleeped");
 
         Living riding = (Living)me.queryTemp("is_riding");

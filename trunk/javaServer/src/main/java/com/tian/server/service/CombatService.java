@@ -6,6 +6,7 @@ import com.tian.server.model.*;
 import com.tian.server.model.Race.Human;
 import com.tian.server.util.*;
 import net.sf.json.JSONArray;
+import org.apache.commons.collections.map.HashedMap;
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.lib.jse.CoerceJavaToLua;
@@ -751,9 +752,9 @@ public class CombatService {
         Map<String ,Object> myTemp, yourTemp;
         Map<String ,String> prepare;
         SkillAction action = null;
-        String limb = null, *limbs;
-        String attack_skill, force_skill, martial_skill, dodge_skill, parry_skill;
-        String parry_msg;
+        String limb = null;
+        String attack_skill = "", force_skill = "", martial_skill = "", dodge_skill = "", parry_skill = "";
+        String parry_msg = "";
         int foo;
 
         int delta;
@@ -767,10 +768,7 @@ public class CombatService {
 
         String result;
         String damage_info;
-        Map<String, Object> fight;
-
-        object env_me;
-        object env_v;
+        Map<String, Object> fight = new HashMap<String, Object>();
 
         if(me.getLocation().getNoFight() == 1){
             messageService.message_vision("$N和$n各自退了一步，收住了招。\n",me, victim);
@@ -799,7 +797,7 @@ public class CombatService {
             attack_skill = weapon.getAttr().getString("skill_type");
         } else {
 
-            int actionFlag = Integer.parseInt(me.queryTemp("action_flag").toString());
+            int actionFlag = MapGetUtil.queryTempInteger(me, "action_flag");
             switch (prepare.size()) {
                 case 0: attack_skill = "unarmed"; break;
                 case 1: attack_skill = prepare.keySet().toArray()[0].toString(); break;
@@ -807,7 +805,7 @@ public class CombatService {
             }
         }
 
-        if (attack_skill == "pin")
+        if (attack_skill.equals("pin"))
             attack_skill = "sword";
 
         // (1) Find out what action the offenser will take.
@@ -898,7 +896,8 @@ public class CombatService {
 
         Random random = new Random();
         //如果随机（攻击值+被攻击者的躲闪值）小于躲闪值，认为躲闪成功
-        if (random.nextInt(ap + dp) < dp && victim.getQi() != 0) {  // Does the victim dodge this hit?
+        int tempApDp = random.nextInt(ap + dp);
+        if ( tempApDp < dp && victim.getQi() != 0) {  // Does the victim dodge this hit?
 /*#if INSTALL_COMBAT_TEST
             if (wizardp(me) && me->query("env/combat_test"))
                 tell_object(me, HIY "【测试精灵】：己方 AP：" + ap +
@@ -1039,7 +1038,9 @@ public class CombatService {
                     damage = MapGetUtil.queryTempInteger(me, "apply/unarmed_damage");
                 }
                 //将攻击力变成在一定的随机范围波动。
-                damage = (damage + random.nextInt(damage)) / 2;
+                if(damage > 0) {
+                    damage = (damage + random.nextInt(damage)) / 2;
+                }
                 if (action.getDamage() != null){
                     damage += action.getDamage() * damage / 100;
                 }
@@ -1311,37 +1312,38 @@ public class CombatService {
 
                 me.getEnemy().remove(victim);
                 victim.getEnemy().remove(me);
-                if (me->query("can_speak") && victim->query("can_speak"))
-                    message_vision(winner_msg[random(sizeof(winner_msg))],
-                            me, victim);
-                if (me == victim->query_competitor())
-                {
-                    me->win();
-                    victim->lost();
+
+                if((me instanceof  Human) && (victim instanceof  Human)){
+                    messageService.message_vision(WINNER_MSG[random.nextInt(WINNER_MSG.length)], me, victim);
+                }
+
+                if(victim.getCompetitor() != null && me.getUuid() == victim.getCompetitor().getUuid()) {
+                    /*me->win();
+                    victim->lost();*/
                 }
             }
         }
 
-        if (functionp(action["post_action"]))
-            evaluate(action["post_action"], me, victim, weapon, damage);
+        /*if (functionp(action["post_action"]))
+            evaluate(action["post_action"], me, victim, weapon, damage);*/
 
         // See if the victim can make a riposte.
 
 
-        if (attack_type == TYPE_REGULAR && damage < 1 && your_temp["guarding"])
-        {
+        if (attack_type == TYPE_REGULAR && damage < 1 && yourTemp.get("guarding") != null) {
 
             // your_temp["guarding"];
-            if (random(my["dex"]) < 8)
+            if (random.nextInt(me.getDex()) < 8)
             {
-                message_combatd("$N一击不中，露出了破绽！\n",me,victim,"",damage,"");
-                do_attack(victim, me, your_temp["weapon"],TYPE_QUICK);
-            } else
-            {
-                message_combatd("$N见$n攻击失误，趁机发动攻击！\n",me,victim,"",damage,"");
-                do_attack(victim, me, your_temp["weapon"],TYPE_RIPOSTE);
+                messageService.messageCombatd("$N一击不中，露出了破绽！\n",me,victim,"",damage,"");
+                do_attack(victim, me, (GoodsContainer)yourTemp.get("weapon"), TYPE_QUICK);
+            } else {
+                messageService.messageCombatd("$N见$n攻击失误，趁机发动攻击！\n",me,victim,"",damage,"");
+                do_attack(victim, me, (GoodsContainer)yourTemp.get("weapon"), TYPE_RIPOSTE);
             }
         }
+
+        return 1;
     }
 
     private int skillPower(Living ob, String skill, int usage, int delta) {
