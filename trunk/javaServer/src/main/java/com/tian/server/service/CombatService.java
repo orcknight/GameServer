@@ -375,6 +375,62 @@ public class CombatService {
 
     }
 
+    public Integer acceptKill(Living me, Player who){
+
+        //如果自定义了处理函数直接调用
+        if(me.getCmdActions() != null && me.getCmdActions().get("accept_kill") != null ){
+
+            LuaBridge bridge = new LuaBridge();
+            String luaPath = this.getClass().getResource(me.getResource()).getPath();
+            Globals globals = JsePlatform.standardGlobals();
+            //加载脚本文件login.lua，并编译
+            globals.loadfile(luaPath).call();
+            //获取带参函数create
+            LuaValue createFun = globals.get(LuaValue.valueOf(me.getCmdActions().get("accept_kill")));
+            //执行方法初始化数据
+            LuaValue retValue = createFun.call(CoerceJavaToLua.coerce(bridge), LuaValue.valueOf(me.getUuid().toString()));
+
+            return retValue.toint();
+        }
+
+        if(me instanceof  Player) {
+            //玩家有自己的处理方法
+            return 1;
+        }else {
+
+            if(!me.getLiving()){
+                return 1;
+            }
+
+            if(me.query("can_speak") == null){
+                attackService.kill_ob(me, who);
+                return 1;
+            }
+
+            //Todo:守卫模式暂时不处理
+            /*if( this_object()->is_guarder())
+            return this_object()->check_enemy(who, "kill");*/
+
+            String att = me.getAttitude();
+            Integer perqi = (int)me.getQi() * 100 / me.getMaxQi();
+            Integer perjing = (int)me.getJing() * 100 / me.getMaxJing();
+            JSONArray jsonArray = new JSONArray();
+
+            RankService rankService = new RankService();
+            if(att.equals("friendly") || att.equals("peaceful")){
+                messageService.message( me.getName() + "说道：既然" + rankService.queryRespect(who)
+                                + "如此逼迫，莫怪在下不留情！", me, null);
+            }else if(att.equals("aggressive") || att.equals("killer")){
+                messageService.message( me.getName() + "说道：" + rankService.queryRude(who)
+                        + "！明年的今天，就是你的忌日！", me, null);
+            }else{
+                messageService.message( me.getName() + "说道： 好！" + rankService.queryRude(who)
+                        + "，咱们就一决生死！", me, null);
+            }
+            return 1;
+        }
+    }
+
     public void broadcastToRoom(){
 
 
@@ -486,19 +542,22 @@ public class CombatService {
 
         JSONArray jsonArray = new JSONArray();
         if(event.equals("dead")){
-            jsonArray.add(UnityCmdUtil.getInfoWindowRet("\n$N扑在地上挣扎了几下，腿一伸，口中喷出几口" +
+            /*jsonArray.add(UnityCmdUtil.getInfoWindowRet("\n$N扑在地上挣扎了几下，腿一伸，口中喷出几口" +
                     Ansi.HIR + "鲜血" + Ansi.NOR + "，死了！" + "\n"));
-            MsgUtil.sendMsg(jsonArray, excludeClients, clients);
+            MsgUtil.sendMsg(jsonArray, excludeClients, clients);*/
+            messageService.message_vision("\n$N扑在地上挣扎了几下，腿一伸，口中喷出几口" +
+                    Ansi.HIR + "鲜血" + Ansi.NOR + "，死了！" + "\n", ob, null);
             return;
         }else if(event.equals("unconcious")){
-            jsonArray.add(UnityCmdUtil.getInfoWindowRet("\n$N脚下一个不稳，跌在地上一动也不动了。\n\n"));
-            MsgUtil.sendMsg(jsonArray, excludeClients, clients);
+            /*jsonArray.add(UnityCmdUtil.getInfoWindowRet("\n$N脚下一个不稳，跌在地上一动也不动了。\n\n"));
+            MsgUtil.sendMsg(jsonArray, excludeClients, clients);*/
+            messageService.message_vision("\n$N脚下一个不稳，跌在地上一动也不动了。\n\n", ob, null);
             player_escape(null, ob);
             return;
         }else if(event.equals("revive")){
-
-            jsonArray.add(UnityCmdUtil.getInfoWindowRet("\n$N慢慢睁开眼睛，清醒了过来。\n\n"));
-            MsgUtil.sendMsg(jsonArray, excludeClients, clients);
+            messageService.message_vision("\n$N慢慢睁开眼睛，清醒了过来。\n\n", ob, null);
+            /*jsonArray.add(UnityCmdUtil.getInfoWindowRet("\n$N慢慢睁开眼睛，清醒了过来。\n\n"));
+            MsgUtil.sendMsg(jsonArray, excludeClients, clients);*/
             return;
         }
     }
@@ -1307,7 +1366,7 @@ public class CombatService {
                 victim.interruptMe(victim, 3 + random.nextInt(3));
             }
 
-            if ( ! me.isKiller(victim) && !victim.isKiller(me) && !victim.getLiving() &&
+            if ( ! me.isKiller(victim) && !victim.isKiller(me) && victim.getLiving() &&
                     victim.getQi() * 3 <= victim.getMaxQi()) {
 
                 me.getEnemy().remove(victim);
@@ -1318,8 +1377,8 @@ public class CombatService {
                 }
 
                 if(victim.getCompetitor() != null && me.getUuid() == victim.getCompetitor().getUuid()) {
-                    /*me->win();
-                    victim->lost();*/
+                    attackService.win(me);
+                    attackService.lost(victim);
                 }
             }
         }
@@ -1344,6 +1403,11 @@ public class CombatService {
         }
 
         return 1;
+    }
+
+    public void killerReward(Living killer, Living victim){
+
+
     }
 
     private int skillPower(Living ob, String skill, int usage, int delta) {
@@ -1443,5 +1507,7 @@ public class CombatService {
         }
         return wound;
     }
+
+
 
 }

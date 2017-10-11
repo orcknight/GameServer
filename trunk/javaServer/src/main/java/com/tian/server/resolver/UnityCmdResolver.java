@@ -19,7 +19,7 @@ public class UnityCmdResolver {
             "southeast", "southwest", "in", "out"};
     private String[] chatCmdArray = new String[] {"liaotian", "chat"};
     private String[] lookCmdArray = new String[] {"look", "open", "close"};
-    private String[] combatCmdArray = new String[] {"fight"};
+    private String[] combatCmdArray = new String[] {"fight", "kill", "touxi"};
     private String[] taskCmdArray = new String[] {"reward"};
     private String[] getCmdArray = new String[] {"get"};
     private String[] infoCmdArray = new String[] {"bag"};

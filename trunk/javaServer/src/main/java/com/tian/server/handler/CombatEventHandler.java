@@ -17,6 +17,10 @@ public class CombatEventHandler implements CmdEventHandler {
 
             String target = data. getString("target");
             combatBll.handleFight(target);
+        }else if(cmd.equals("kill")){
+
+            String target = data. getString("target");
+            combatBll.handleKill(target);
         }
 
     }

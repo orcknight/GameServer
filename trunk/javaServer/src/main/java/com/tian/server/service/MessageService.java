@@ -6,6 +6,7 @@ import com.tian.server.model.Living;
 import com.tian.server.model.Player;
 import com.tian.server.model.RoomObjects;
 import com.tian.server.util.*;
+import net.sf.json.JSON;
 import net.sf.json.JSONArray;
 
 import java.util.ArrayList;
@@ -23,6 +24,27 @@ public class MessageService {
     public static final Integer SHOW_BRIEF_SELF_DAMAGE = 3;
     public static final Integer SHOW_NONE = 4;
 
+    public void message(String msg, Living me, Living you){
+
+        Map<String, RoomObjects> roomObjects = UserCacheUtil.getRoomObjectsCache();
+        List<Player> roomPlayers = roomObjects.get(me.getLocation().getName()).getPlayers();
+        List<SocketIOClient> clients = new ArrayList<SocketIOClient>();
+        List<SocketIOClient> excludeClients = new ArrayList<SocketIOClient>();
+        for(Player player : roomPlayers){
+            clients.add(player.getSocketClient());
+        }
+        if(me instanceof  Player){
+            excludeClients.add(((Player) me).getSocketClient());
+        }
+        if(you != null && you instanceof  Player){
+            excludeClients.add(((Player) you).getSocketClient());
+        }
+
+        JSONArray jsonArray = new JSONArray();
+        jsonArray.add(msg);
+        MsgUtil.sendMsg(jsonArray, excludeClients, clients);
+    }
+
     // message.c
     public void message_vision(String msg, Living me, Living you) {
 
@@ -36,8 +58,8 @@ public class MessageService {
         if(me instanceof  Player){
             excludeClients.add(((Player) me).getSocketClient());
         }
-        if(you instanceof  Player){
-            excludeClients.add(((Player) me).getSocketClient());
+        if(you != null && you instanceof  Player){
+            excludeClients.add(((Player) you).getSocketClient());
         }
 
         String yourGender,  yourName;

@@ -1047,4 +1047,21 @@ public class Living extends MudObject{
         return damage;
     }
 
+    public void removeAllKiller(){
+
+        removeAllWant();
+
+        for (int i = 0; i < enemy.size(); i++) {
+            enemy.get(i).getKiller().remove(this);
+        }
+
+        enemy.clear();
+        killer.clear();
+    }
+
+    public void removeAllWant() {
+
+        wantKills.clear();
+    }
+
 }

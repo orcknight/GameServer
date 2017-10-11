@@ -42,8 +42,8 @@ public class HeartBeatService {
 
         if (ob.getQi() < 0 || ob.getJing() < 0) {
 
-            if (!(ob instanceof Living)) {
-                die(ob);
+            if (!ob.getLiving()) {
+                damageService.die(ob, ob.getLastDamageFrom());
             } else {
                 damageService.unconcious(ob);
             }

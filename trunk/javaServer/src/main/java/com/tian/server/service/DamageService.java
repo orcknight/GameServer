@@ -1,10 +1,13 @@
 package com.tian.server.service;
 
 import com.tian.server.common.Ansi;
+import com.tian.server.entity.RoomEntity;
 import com.tian.server.model.Living;
 import com.tian.server.model.MudObject;
 import com.tian.server.model.Player;
+import com.tian.server.model.RoomObjects;
 import com.tian.server.util.LuaBridge;
+import com.tian.server.util.MapGetUtil;
 import com.tian.server.util.MsgUtil;
 import com.tian.server.util.UnityCmdUtil;
 import net.sf.json.JSONArray;
@@ -15,20 +18,23 @@ import org.luaj.vm2.lib.jse.JsePlatform;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by PPX on 2017/9/29.
  */
 public class DamageService {
 
+    private CombatService combatService = new CombatService();
+    private MessageService messageService = new MessageService();
+
     void unconcious(Living me) {
         int n;
         int avoid;
 
-        //if (! living(me)) return;
+        if (!me.getLiving()) { //如果死亡直接返回
+            return;
+        }
         //if (wizardp(me) && query("env/immortal")) return;
 
         //Todo:暂时先不处理天赋
@@ -241,12 +247,10 @@ public class DamageService {
 
 //	call_out("revive", 1);
 
-        /*Timer timer=new Timer();//实例化Timer类
-        timer.schedule(new TimerTask(){
-            public void run(){
-                System.out.println("退出");
-                this.cancel();}},500);//五百毫秒
-        call_out("revive", random(100 - query("con")) + 30);*/
+        int randomSeconds = (r.nextInt(100 - me.getCon()) + 30) * 1000;
+        Timer timer=new Timer();//实例化Timer类
+        timer.schedule(new ReviveTask(me), randomSeconds);//五百毫秒
+        //call_out("revive", random(100 - query("con")) + 30);
 
         CombatService combatService = new CombatService();
         combatService.announce(me, "unconcious");
@@ -282,4 +286,284 @@ public class DamageService {
 
         me.setTemp("defeat_player", dp);
     }
+
+    public void revive(Living me, int quiet) {
+        int i;
+
+        RoomEntity env = me.getLocation();
+
+        me.delete("disable_type");
+        me.setTemp("block_msg/all", 0);
+        //me.enable_player();
+
+        // write the prompt
+        //me->write_prompt();
+
+        /*if (objectp(defeated_by))
+            defeated_by->remove_dp(me);*/
+
+        if (quiet == 0) {
+
+            me.setDefeatedBy(null);
+            me.setDefeatedByWho(null);
+            combatService.announce(me, "revive");
+            if(me instanceof  Player){
+
+                JSONArray jsonArray = new JSONArray();
+                jsonArray.add(UnityCmdUtil.getInfoWindowRet(Ansi.HIY + "\n慢慢地你终于又有了知觉...." + Ansi.NOR + "\n"));
+                MsgUtil.sendMsg(((Player) me).getSocketClient(), jsonArray);
+            }
+        }
+
+        me.setLastDamageFrom(null);
+        me.setLastDamageName(null);
+    }
+
+
+    public void die(Living me, Living killer) {
+
+        RoomEntity env;
+        Living dob;
+        Living ob;
+        String dob_name = "";
+        String killer_name = "";
+        String applyer = "";
+        int direct_die;
+        int avoid;
+        int i;
+        int duration;
+        String follow_msg = "";
+
+        env = me.getLocation();
+        me.deleteTemp("sleeped");
+        me.delete("last_sleep");
+
+        // 朱雀重生效果 50%几率 瞬间爆发恢复气血精力到60%
+        // 如超过60%则不恢复
+        /*if( me->query("special_skill/zhuque") && random(10) < 5)
+        {
+            if( me->query("qi") < me->query("max_qi") * 3 / 5)
+            {
+                me->set("qi", me->query("max_qi") * 3 / 5);
+                me->set("eff_qi", me->query("max_qi") * 3 / 5);
+            }
+            if( me->query("jingli") < me->query("max_jingli") * 3 / 5)
+                me->set("jingli", me->query("max_jingli") * 3 / 5);
+
+            message_vision(HIR "\n突然间，$N身后红光爆现，犹如传说中的凤凰般美妙！\n" NOR, me);
+            return;
+        }*/
+
+        ob = me.getCompetitor();
+        // I am lost if in competition with others
+        if (ob != null) {
+            win(me);
+            lost(me);
+        }
+        /*if( wizardp(me) && query("env/immortal") ) {
+            delete_temp("die_reason");
+            return;
+        }*/
+
+        if (me.isBusy()) {
+            me.interruptMe();
+        }
+
+        //if( run_override("die") ) return;
+        //if( is_ghost() ) return;
+//        if( playerp(me) && env && function_exists("user_cant_die", env) ) {
+//            if( environment()->user_cant_die(me) )
+//            return;
+//        }
+        Random random = new Random();
+        avoid = MapGetUtil.queryTempInteger(me, "apply/avoid_die");
+        if (avoid > 90) avoid = 90;
+        /*if( me.queryTemp("special_skill/immortal") != null ||
+                random.nextInt(100) < avoid ) {
+            set("eff_qi",query("max_qi"));
+            set("qi",query("max_qi"));
+            set("eff_jing",query("max_jing"));
+            set("jing",query("max_jing"));
+            message_vision(HIY "\n突然间，$N全身散发出一阵金光，如同浴血重生一般。\n" NOR, me);
+            COMBAT_D->report_status(this_object());
+            return;
+        }*/
+
+        /*if( playerp(me) && env && env->query("no_death") ) {
+            remove_call_out("revive");
+            unconcious();
+            return;
+        }*/
+
+        if (ob != null) {
+            win(me);
+            lost(me);
+        }
+
+        /*if (wizardp(me) && query("env/immortal"))
+        {
+            delete_temp("die_reason");
+            return;
+        }*/
+
+        if (me.isBusy()) {
+            me.interruptMe();
+        }
+
+        //if (run_override("die")) return;
+
+        me.getLastDamageFrom();
+        /*if (! last_damage_from && (applyer = query_last_applyer_id()))
+        {
+            tmp_load = UPDATE_D->global_find_player(applyer);
+            last_damage_from = tmp_load;
+            last_damage_name = query_last_applyer_name();
+        }*/
+
+        if (killer == null) {
+            killer = me.getLastDamageFrom();
+        }
+        // record defeater first, because revive will clear it
+
+        if (!me.getLiving()) {
+
+            direct_die = 0;
+
+            if (me instanceof Player) {
+                revive(me, 1);
+            } else {
+                me.delete("disable_type");
+            }
+        } else {
+            direct_die = 1;
+        }
+
+        if (direct_die == 1 && killer != null) {
+            // direct to die ? call winner_reward
+            combatService.winnerReward(killer, me);
+        }
+
+        /*if (objectp(riding = me->query_temp("is_riding")))
+        {
+            message_vision("$N一头从$n上面栽了下来！\n",
+                    me, riding);
+            me->delete_temp("is_riding");
+            riding->delete_temp("is_rided_by");
+            riding->move(environment(me));
+        }*/
+
+        // Check how am I to die
+        dob = me.getDefeatedBy();
+
+        if (me.queryTemp("die_reason") == null) {
+            if (me instanceof Player && dob != killer) {
+
+                if (dob != null && (dob instanceof Player) && dob.getWantKills().contains(me)) {
+                    if (dob.queryCondition("killer") == null) {
+                        follow_msg = "听说官府发下海捕文书，缉拿杀人肇事凶手" +
+                                dob.getName() + "。";
+                        dob.applyCondition("killer", 500);
+                    } else {
+                        follow_msg = "听说官府加紧捉拿累犯重案的肇事暴徒" +
+                                dob.getName() + "。";
+                        dob.applyCondition("killer", 800 +
+                                Integer.parseInt(dob.queryCondition("killer").toString()));
+                    }
+
+                    Integer timeStamp = (int) (System.currentTimeMillis() / 1000);
+                    dob.set("combat/pktime", timeStamp);
+                }
+                // set the die reason
+                me.setTemp("die_reason", "被" +
+                        dob_name + "打晕以后，被" +
+                        (dob_name == killer_name ? "另一个" : "") +
+                        killer_name + "趁机杀掉了");
+            } else if ((me instanceof Player) && killer != null) {
+                me.setTemp("die_reason", "被" + killer.getName() +
+                        Ansi.HIM + "杀害了");
+            }
+        }
+
+        if (combatService.player_escape(killer, me) != 0) {
+
+            //UPDATE_D->global_destruct_player(tmp_load, 1);
+            return;
+        }
+
+        combatService.announce(me, "dead");
+        if (killer != null) {
+            me.setTemp("my_killer", killer);
+        }
+        combatService.killerReward(killer, me);
+
+        // remove the user if loaded by updated
+        //Todo:
+        //UPDATE_D->global_destruct_player(tmp_load, 1);
+
+        me.add("combat/dietimes", 1);
+
+        //Todo:产生尸体
+        /*if (objectp(corpse = CHAR_D->make_corpse(me, killer)))
+            corpse->move(environment());
+*/
+        me.setDefeatedBy(null);
+        me.setDefeatedByWho(null);
+        me.removeAllKiller();
+        //all_inventory(environment())->remove_killer(me);
+
+        //me->dismiss_team();
+
+        if (me instanceof Player) {
+
+            if (me.isBusy()) {
+                me.interruptMe();
+            }
+
+            me.setJing(1);
+            me.setEffJing(1);
+            me.setQi(1);
+            me.setEffQi(1);
+            me.setGhost(true);
+
+            /*me->move(DEATH_ROOM);
+            DEATH_ROOM->start_death(me);
+            me->delete_temp("die_reason");
+            me->craze_of_die(killer ? killer->query("id") : 0);
+
+            // add by chenzzz，死亡保护
+            me->set("die_protect/last_dead", time());
+            duration = (int)me->query("die_protect/duration", 1);
+
+            if (me->query("combat_exp") > 1000000 && duration > 0)
+            {
+                duration = duration * 2;
+            }
+            else
+            {
+                duration = 2 * 60 * 60;
+            }
+
+            if (duration > 3 * 86400)
+                duration = 3 * 86400;
+
+            me->set("die_protect/duration", duration);*/
+        } else {
+            //destruct(me);
+        }
+    }
+
+    class ReviveTask extends TimerTask {
+        private Living me;
+
+        public ReviveTask(Living me) {
+            this.me = me;
+        }
+
+        @Override
+        public void run() {
+            revive(this.me, 0);
+        }
+
+    }
+
 }

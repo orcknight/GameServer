@@ -57,7 +57,7 @@ public class AttackService {
     }
 
     // This function starts killing between this_object() and ob
-    void kill_ob(Living me, Living ob) {
+    public void kill_ob(Living me, Living ob) {
         //不能为空
         if(me == null || ob == null){
             return;
@@ -226,6 +226,17 @@ public class AttackService {
         int which = random.nextInt(me.getEnemy().size());
 
         return me.getEnemy().get(which);
+    }
+
+    public void win(Living me) {
+        //run_override("win");
+        me.setCompetitor(null);
+    }
+
+    // lost a competition
+    public void lost(Living me) {
+        //run_override("lost");
+        me.setCompetitor(null);
     }
 
 
