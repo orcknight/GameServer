@@ -48,6 +48,8 @@ public class AttackService {
         me.getEnemy().add(ob);
 
         //Todo:如果是要击杀的对手，击杀对手
+        if(me.getGuarder() && me.isKiller(ob)){
+        }
         /*if (this_object()->is_guarder() &&
             is_killing(ob->query("id")))
         {

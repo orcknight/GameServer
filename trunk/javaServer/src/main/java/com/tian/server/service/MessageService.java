@@ -279,4 +279,19 @@ public class MessageService {
             }
         }
     }
+
+    public void tellRoom(String roomName, JSONArray data){
+
+        RoomObjects roomObjects = UserCacheUtil.getRoomObjectsCache().get(roomName);
+        if(roomObjects == null){
+            return;
+        }
+
+        List<SocketIOClient> clients = new ArrayList<SocketIOClient>();
+        for (Player player : roomObjects.getPlayers()){
+            clients.add(player.getSocketClient());
+        }
+
+        MsgUtil.sendMsg(data, new ArrayList<SocketIOClient>(), clients);
+    }
 }

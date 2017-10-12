@@ -1,5 +1,6 @@
 package com.tian.server.model;
 
+import com.tian.server.entity.RoomEntity;
 import org.apache.commons.collections.map.HashedMap;
 
 import java.util.Arrays;
@@ -15,6 +16,7 @@ public class MudObject {
     protected Integer id = 0; //标识号，同种物品共享一个id
     protected Integer weight = 0; //
     private String resource;
+    protected RoomEntity location = new RoomEntity();//物品所处的位置，在玩家身上时为null
 
     protected Map<String, Object> temp = new HashMap<String, Object>();
     protected Map<String, Object> apply = new HashMap<String, Object>();
@@ -54,6 +56,14 @@ public class MudObject {
 
     public void setResource(String resource) {
         this.resource = resource;
+    }
+
+    public RoomEntity getLocation() {
+        return location;
+    }
+
+    public void setLocation(RoomEntity location) {
+        this.location = location;
     }
 
     public Object query(String prop){

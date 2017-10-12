@@ -257,6 +257,9 @@ public class DamageService {
 
         // remove the user if loaded by updated
         //UPDATE_D->global_destruct_player(defeated_by, 1);
+
+        ObjectService objectService = new ObjectService();
+        objectService.destruct(me.getDefeatedBy());
         me.setLiving(false);
     }
 

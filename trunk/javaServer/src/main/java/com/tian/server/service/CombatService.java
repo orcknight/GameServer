@@ -746,8 +746,7 @@ public class CombatService {
         } else if (prepare.size() > 0) {
             askill = prepare.keySet().toArray()[0].toString();
         }
-
-        if (askill == "pin") askill = "sword";
+        if (askill.equals("pin")) askill = "sword";
 
         askill = me.getSkillMap().get(askill);
         Random random = new Random();
@@ -763,13 +762,11 @@ public class CombatService {
         if(victim.isBusy() || !victim.getLiving()){
 
             me.setTemp("guarding", 0);
-
             if(!victim.isFighting(me)){
                 attackService.fight_ob(victim, me);
             }
 
             do_attack(me, victim, (GoodsContainer)myTemp.get("weapon"), TYPE_QUICK);
-
             if(me.isFighting(victim) && victim.isFighting(me) && doubleAttack){
 
                 me.setTemp("action_flag",1);

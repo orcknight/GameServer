@@ -18,6 +18,7 @@ import com.tian.server.util.UserCacheUtil;
 import net.sf.json.JSON;
 import net.sf.json.JSONArray;
 import org.apache.commons.lang.ObjectUtils;
+import sun.plugin2.message.Message;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,19 +98,15 @@ public class CombatBll extends BaseBll {
                 excludeClients.add(((Player) ob).getSocketClient());
             }
 
-            //Todo:
-            /*sendMsg( me.getName() + "盯着" + target.getName() +
-                            "看了一会儿，不知道在打什么主意。\r\n",
-                    excludeClients, socketIOClient.getNamespace().getRoomOperations(me.getLocation().getName()).getClients());
-
-            message_vision("\n$N对著$n说道："
-                    + RANK_D->query_self(me)
-                    + me->name() + "，领教"
-                    + RANK_D->query_respect(obj) + "的高招！\n\n", me, obj);*/
+            MessageService messageService = new MessageService();
+            RankService rankService = new RankService();
+            messageService.message_vision("\n$N对著$n说道："
+                    + rankService.querySelf(me)
+                    + me.getName() + "，领教"
+                    + rankService.queryRespect(ob) + "的高招！\n\n", me, ob);
 
             Object oldTarget = me.queryTemp("pending/fight");
             if (oldTarget != null && oldTarget instanceof Living) {
-
 
                 if (oldTarget instanceof Player) {
                     JSONArray tellArray = new JSONArray();
@@ -133,7 +130,13 @@ public class CombatBll extends BaseBll {
             attackService.fight_ob(me, ob);
             attackService.fight_ob(ob, me);
         } else {
-            //message_vision("\n$N大喝一声，开始对$n发动攻击！\n\n", me, obj);
+
+            MessageService messageService = new MessageService();
+            RankService rankService = new RankService();
+            messageService.message_vision("\\n$N大喝一声，开始对$n发动攻击！\\n\\n", me, ob);
+            AttackService attackService = new AttackService();
+            attackService.fight_ob(me, ob);
+            attackService.kill_ob(ob, me);
             //me->fight_ob(obj);
             // obj->kill_ob(me);
         }

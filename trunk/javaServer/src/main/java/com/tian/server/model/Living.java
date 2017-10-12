@@ -73,6 +73,7 @@ public class Living extends MudObject{
     private String myKillerId;             // 上一次杀你的人的ID
     private Integer craze = 0;            // 愤怒
     private Boolean isLiving = true;
+    private Boolean isGuarder = false;
 
     protected Map<String, Integer> skills = new HashMap<String, Integer>(); //存放的是 技能名：等级
     protected Map<String, Integer> learned = new HashMap<String, Integer>(); //存放的是玩家已经学习过的技能 技能名：等级
@@ -80,7 +81,6 @@ public class Living extends MudObject{
     protected Map<String, String> skillPrepare = new HashMap<String, String>(); //为基本武功设置激发武功 基本技能名字：技能名 如： prepare_skill("strike", "dragon-strike");
 
     protected Map<String, String> buttons = new HashMap<String, String>(); //功能按钮
-    protected RoomEntity location = new RoomEntity();//位置
     protected List<Living> enemy = new ArrayList<Living>(); //敌人列表
     protected List<Living> killer = new ArrayList<Living>(); //敌人列表
     protected List<Living> wantKills = new ArrayList<Living>(); //敌人列表
@@ -544,6 +544,14 @@ public class Living extends MudObject{
         isLiving = living;
     }
 
+    public Boolean getGuarder() {
+        return isGuarder;
+    }
+
+    public void setGuarder(Boolean guarder) {
+        isGuarder = guarder;
+    }
+
     public Map<String, Integer> getSkills() {
         return skills;
     }
@@ -582,14 +590,6 @@ public class Living extends MudObject{
 
     public void setButtons(Map<String, String> buttons) {
         this.buttons = buttons;
-    }
-
-    public RoomEntity getLocation() {
-        return location;
-    }
-
-    public void setLocation(RoomEntity location) {
-        this.location = location;
     }
 
     public Map<String, Integer> getApply() {
