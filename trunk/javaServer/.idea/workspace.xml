@@ -50,11 +50,46 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CombatService.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CombatService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/service/CombatService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4">
-              <caret line="681" column="38" lean-forward="true" selection-start-line="681" selection-start-column="38" selection-end-line="681" selection-end-column="38" />
+            <state relative-caret-position="278">
+              <caret line="1312" column="43" lean-forward="false" selection-start-line="1312" selection-start-column="43" selection-end-line="1312" selection-end-column="43" />
+              <folding>
+                <element signature="e#13595#13611#0" expanded="true" />
+                <element signature="e#21838#21854#0" expanded="true" />
+                <element signature="e#21917#21933#0" expanded="true" />
+                <element signature="e#32149#32165#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BaseBll.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/bll/BaseBll.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SkillAction.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/model/SkillAction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="8" column="29" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DamageService.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/service/DamageService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="50">
+              <caret line="327" column="32" lean-forward="false" selection-start-line="327" selection-start-column="32" selection-end-line="327" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -63,7 +98,7 @@
       <file leaf-file-name="ObjectService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/service/ObjectService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
+            <state relative-caret-position="259">
               <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -72,31 +107,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DamageService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/service/DamageService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="162" column="38" lean-forward="false" selection-start-line="162" selection-start-column="38" selection-end-line="162" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="HeartBeatService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/service/HeartBeatService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="115" column="33" lean-forward="true" selection-start-line="115" selection-start-column="33" selection-end-line="115" selection-end-column="33" />
+            <state relative-caret-position="278">
+              <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/model/Player.java">
+      <file leaf-file-name="DefaultBll.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/bll/DefaultBll.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="468" column="51" lean-forward="false" selection-start-line="468" selection-start-column="44" selection-end-line="468" selection-end-column="51" />
+            <state relative-caret-position="1180">
+              <caret line="122" column="0" lean-forward="false" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -106,63 +131,94 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/model/Living.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="145">
-              <caret line="918" column="30" lean-forward="false" selection-start-line="918" selection-start-column="30" selection-end-line="918" selection-end-column="30" />
+              <caret line="483" column="0" lean-forward="false" selection-start-line="483" selection-start-column="0" selection-end-line="483" selection-end-column="0" />
               <folding>
                 <element signature="e#4844#4845#0" expanded="true" />
                 <element signature="e#4888#4889#0" expanded="true" />
-                <element signature="e#11758#11759#0" expanded="true" />
-                <element signature="e#11806#11807#0" expanded="true" />
-                <element signature="e#13352#13353#0" expanded="true" />
-                <element signature="e#13380#13381#0" expanded="true" />
+                <element signature="e#10976#10977#0" expanded="true" />
+                <element signature="e#12144#12145#0" expanded="true" />
+                <element signature="e#12175#12176#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MudObject.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/model/MudObject.java">
+      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/model/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="219" column="46" lean-forward="true" selection-start-line="219" selection-start-column="46" selection-end-line="219" selection-end-column="46" />
+            <state relative-caret-position="7847">
+              <caret line="468" column="30" lean-forward="false" selection-start-line="468" selection-start-column="29" selection-end-line="468" selection-end-column="30" />
               <folding>
-                <element signature="e#5150#5151#0" expanded="true" />
-                <element signature="e#5186#5187#0" expanded="true" />
-                <element signature="e#5344#5345#0" expanded="true" />
-                <element signature="e#5377#5378#0" expanded="true" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#873#885#0" expanded="false" />
+                <element signature="e#5779#5780#0" expanded="false" />
+                <element signature="e#5827#5828#0" expanded="false" />
+                <element signature="e#5874#5875#0" expanded="false" />
+                <element signature="e#5914#5915#0" expanded="false" />
+                <element signature="e#5950#5951#0" expanded="false" />
+                <element signature="e#5981#5982#0" expanded="false" />
+                <element signature="e#6030#6031#0" expanded="false" />
+                <element signature="e#6070#6071#0" expanded="false" />
+                <element signature="e#6106#6107#0" expanded="false" />
+                <element signature="e#6138#6139#0" expanded="false" />
+                <element signature="e#6188#6189#0" expanded="false" />
+                <element signature="e#6230#6231#0" expanded="false" />
+                <element signature="e#6265#6266#0" expanded="false" />
+                <element signature="e#6295#6296#0" expanded="false" />
+                <element signature="e#6342#6343#0" expanded="false" />
+                <element signature="e#6380#6381#0" expanded="false" />
+                <element signature="e#6412#6413#0" expanded="false" />
+                <element signature="e#6439#6440#0" expanded="false" />
+                <element signature="e#6480#6481#0" expanded="false" />
+                <element signature="e#6512#6513#0" expanded="false" />
+                <element signature="e#6548#6549#0" expanded="false" />
+                <element signature="e#6579#6580#0" expanded="false" />
+                <element signature="e#6628#6629#0" expanded="false" />
+                <element signature="e#6668#6669#0" expanded="false" />
+                <element signature="e#6701#6702#0" expanded="false" />
+                <element signature="e#6729#6730#0" expanded="false" />
+                <element signature="e#6772#6773#0" expanded="false" />
+                <element signature="e#6806#6807#0" expanded="false" />
+                <element signature="e#6836#6837#0" expanded="false" />
+                <element signature="e#6864#6865#0" expanded="false" />
+                <element signature="e#6904#6905#0" expanded="false" />
+                <element signature="e#6938#6939#0" expanded="false" />
+                <element signature="e#6972#6973#0" expanded="false" />
+                <element signature="e#7001#7002#0" expanded="false" />
+                <element signature="e#7046#7047#0" expanded="false" />
+                <element signature="e#7082#7083#0" expanded="false" />
+                <element signature="e#8714#8715#0" expanded="false" />
+                <element signature="e#8745#8746#0" expanded="false" />
+                <element signature="e#8803#8804#0" expanded="false" />
+                <element signature="e#8843#8844#0" expanded="false" />
+                <element signature="e#8884#8885#0" expanded="false" />
+                <element signature="e#8920#8921#0" expanded="false" />
+                <element signature="e#8979#8980#0" expanded="false" />
+                <element signature="e#9029#9030#0" expanded="false" />
+                <element signature="e#9070#9071#0" expanded="false" />
+                <element signature="e#9106#9107#0" expanded="false" />
+                <element signature="e#9165#9166#0" expanded="false" />
+                <element signature="e#9215#9216#0" expanded="false" />
+                <element signature="e#14390#14391#0" expanded="false" />
+                <element signature="e#14432#14433#0" expanded="false" />
+                <element signature="e#14491#14492#0" expanded="false" />
+                <element signature="e#14533#14534#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UnityCmdUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/util/UnityCmdUtil.java">
+      <file leaf-file-name="CombatBll.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/bll/CombatBll.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="78" column="39" lean-forward="true" selection-start-line="78" selection-start-column="29" selection-end-line="78" selection-end-column="44" />
+            <state relative-caret-position="4294">
+              <caret line="251" column="9" lean-forward="false" selection-start-line="249" selection-start-column="13" selection-end-line="251" selection-end-column="9" />
               <folding>
-                <element signature="e#2571#2572#0" expanded="true" />
-                <element signature="e#2631#2632#0" expanded="true" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#1035#1036#0" expanded="false" />
+                <element signature="e#1072#1073#0" expanded="false" />
+                <element signature="e#3010#3026#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RoomService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/service/RoomService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-610">
-              <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AttackService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/service/AttackService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="316">
-              <caret line="53" column="32" lean-forward="false" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="32" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -185,11 +241,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Race</find>
-      <find>face</find>
-      <find>replace</find>
-      <find>SkillAction</find>
-      <find>001</find>
       <find>openOrCloseGate</find>
       <find>openGate</find>
       <find>34m</find>
@@ -215,6 +266,11 @@
       <find>location</find>
       <find>loca</find>
       <find>applyCondition</find>
+      <find>guarding</find>
+      <find>紧跟着</find>
+      <find>action_flag</find>
+      <find>victim</find>
+      <find>fight_ob</find>
     </findStrings>
     <dirStrings>
       <dir>F:\jiecheng\GameServer\trunk\javaServer\src\main\resources\task\story</dir>
@@ -265,20 +321,20 @@
         <option value="$PROJECT_DIR$/src/main/java/com/tian/server/model/SkillAction.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tian/server/bll/DefaultBll.java" />
         <option value="$PROJECT_DIR$/src/main/resources/lua/npc/xinghuacun/yangwei.lua" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tian/server/service/HeartBeatService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tian/server/resolver/UnityCmdResolver.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tian/server/util/MsgUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tian/server/handler/CombatEventHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tian/server/model/Cutable.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tian/server/service/AttackService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tian/server/bll/CombatBll.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tian/server/service/CombatService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tian/server/model/GoodsContainer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tian/server/model/MudObject.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tian/server/service/MessageService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tian/server/service/ObjectService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tian/server/service/DamageService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tian/server/model/MudObject.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tian/server/service/CombatService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tian/server/service/AttackService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tian/server/service/HeartBeatService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tian/server/model/Living.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tian/server/service/DamageService.java" />
       </list>
     </option>
   </component>
@@ -362,8 +418,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -578,7 +634,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1300,6 +1356,11 @@
       <workItem from="1507725992160" duration="444000" />
       <workItem from="1507726641623" duration="1208000" />
       <workItem from="1507768636882" duration="27514000" />
+      <workItem from="1507869491658" duration="3835000" />
+      <workItem from="1508058984384" duration="4871000" />
+      <workItem from="1508131636983" duration="11278000" />
+      <workItem from="1508199898787" duration="14108000" />
+      <workItem from="1508240693805" duration="5442000" />
     </task>
     <servers />
   </component>
@@ -1336,7 +1397,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1593344000" />
+    <option name="totallyTimeSpent" value="1632878000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1353,7 +1414,7 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30800542" sideWeight="0.55150217" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33514246" sideWeight="0.55007154" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32971507" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1364,7 +1425,7 @@
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16309012" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" x="787" y="104" width="359" height="760" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18454936" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33514246" sideWeight="0.45565093" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33514246" sideWeight="0.44992846" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30800542" sideWeight="0.44849786" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1375,9 +1436,8 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="true" internal_type="SLIDING" type="FLOATING" visible="false" show_stripe_button="true" weight="0.24963397" sideWeight="0.50800914" order="8" side_tool="true" content_ui="tabs" x="810" y="39" width="341" height="652" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20529328" sideWeight="0.4833006" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21959943" sideWeight="0.4833006" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20958512" sideWeight="0.5169607" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25608012" sideWeight="0.51669943" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1387,6 +1447,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1502,8 +1563,14 @@
           <properties />
           <option name="timeStamp" value="244" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/tian/server/service/HeartBeatService.java</url>
+          <line>45</line>
+          <properties />
+          <option name="timeStamp" value="263" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="258" />
+      <option name="time" value="265" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
@@ -1516,13 +1583,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/util/GoodsManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/model/GoodsPrice.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
@@ -1603,53 +1663,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/model/SkillAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="988">
-          <caret line="66" column="40" lean-forward="false" selection-start-line="66" selection-start-column="40" selection-end-line="66" selection-end-column="40" />
-          <folding>
-            <element signature="e#701#702#0" expanded="false" />
-            <element signature="e#735#736#0" expanded="false" />
-            <element signature="e#778#779#0" expanded="false" />
-            <element signature="e#814#815#0" expanded="false" />
-            <element signature="e#851#852#0" expanded="false" />
-            <element signature="e#884#885#0" expanded="false" />
-            <element signature="e#936#937#0" expanded="false" />
-            <element signature="e#980#981#0" expanded="false" />
-            <element signature="e#1015#1016#0" expanded="false" />
-            <element signature="e#1052#1053#0" expanded="false" />
-            <element signature="e#1101#1102#0" expanded="false" />
-            <element signature="e#1143#1144#0" expanded="false" />
-            <element signature="e#1179#1180#0" expanded="false" />
-            <element signature="e#1217#1218#0" expanded="false" />
-            <element signature="e#1268#1269#0" expanded="false" />
-            <element signature="e#1312#1313#0" expanded="false" />
-            <element signature="e#1486#1487#0" expanded="false" />
-            <element signature="e#1519#1520#0" expanded="false" />
-            <element signature="e#1561#1562#0" expanded="false" />
-            <element signature="e#1595#1596#0" expanded="false" />
-            <element signature="e#1627#1628#0" expanded="false" />
-            <element signature="e#1660#1661#0" expanded="false" />
-            <element signature="e#1702#1703#0" expanded="false" />
-            <element signature="e#1736#1737#0" expanded="false" />
-            <element signature="e#1769#1770#0" expanded="false" />
-            <element signature="e#1803#1804#0" expanded="false" />
-            <element signature="e#1847#1848#0" expanded="false" />
-            <element signature="e#1883#1884#0" expanded="false" />
-            <element signature="e#1915#1916#0" expanded="false" />
-            <element signature="e#1948#1949#0" expanded="false" />
-            <element signature="e#1990#1991#0" expanded="false" />
-            <element signature="e#2024#2025#0" expanded="false" />
-            <element signature="e#2135#2136#0" expanded="false" />
-            <element signature="e#2171#2172#0" expanded="false" />
-            <element signature="e#2204#2205#0" expanded="false" />
-            <element signature="e#2232#2233#0" expanded="false" />
-            <element signature="e#2275#2276#0" expanded="false" />
-            <element signature="e#2309#2310#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_25/src.zip!/java/util/Random.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="145">
@@ -1713,7 +1726,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
           <caret line="16" column="33" lean-forward="false" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1743,9 +1755,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="13" column="27" lean-forward="false" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1771,15 +1780,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="21" column="75" lean-forward="false" selection-start-line="21" selection-start-column="75" selection-end-line="21" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/bll/CombatBll.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="130" column="34" lean-forward="false" selection-start-line="130" selection-start-column="26" selection-end-line="130" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1787,7 +1787,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1795,7 +1794,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1822,14 +1820,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="236">
           <caret line="53" column="37" lean-forward="false" selection-start-line="53" selection-start-column="37" selection-end-line="53" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/bll/DefaultBll.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="205" column="69" lean-forward="false" selection-start-line="205" selection-start-column="62" selection-end-line="205" selection-end-column="69" />
           <folding />
         </state>
       </provider>
@@ -1865,8 +1855,8 @@
         <state relative-caret-position="615">
           <caret line="60" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
           <folding>
-            <element signature="e#1221#1222#0" expanded="true" />
-            <element signature="e#1248#1249#0" expanded="true" />
+            <element signature="e#1221#1222#0" expanded="false" />
+            <element signature="e#1248#1249#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1887,36 +1877,194 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/service/AttackService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/util/UnityCmdUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="53" column="32" lean-forward="false" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="32" />
-          <folding />
+        <state relative-caret-position="969">
+          <caret line="78" column="39" lean-forward="false" selection-start-line="78" selection-start-column="29" selection-end-line="78" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1265#1266#0" expanded="false" />
+            <element signature="e#1326#1327#0" expanded="false" />
+            <element signature="e#1388#1389#0" expanded="false" />
+            <element signature="e#1447#1448#0" expanded="false" />
+            <element signature="e#1492#1493#0" expanded="false" />
+            <element signature="e#1544#1545#0" expanded="false" />
+            <element signature="e#1618#1619#0" expanded="false" />
+            <element signature="e#1677#1678#0" expanded="false" />
+            <element signature="e#1736#1737#0" expanded="false" />
+            <element signature="e#1794#1795#0" expanded="false" />
+            <element signature="e#1855#1856#0" expanded="false" />
+            <element signature="e#1915#1916#0" expanded="false" />
+            <element signature="e#1976#1977#0" expanded="false" />
+            <element signature="e#2035#2036#0" expanded="false" />
+            <element signature="e#2094#2095#0" expanded="false" />
+            <element signature="e#2152#2153#0" expanded="false" />
+            <element signature="e#2210#2211#0" expanded="false" />
+            <element signature="e#2267#2268#0" expanded="false" />
+            <element signature="e#2325#2326#0" expanded="false" />
+            <element signature="e#2382#2383#0" expanded="false" />
+            <element signature="e#2447#2448#0" expanded="false" />
+            <element signature="e#2507#2508#0" expanded="false" />
+            <element signature="e#2571#2572#0" expanded="false" />
+            <element signature="e#2631#2632#0" expanded="false" />
+            <element signature="e#2696#2697#0" expanded="false" />
+            <element signature="e#2756#2757#0" expanded="false" />
+            <element signature="e#2823#2824#0" expanded="false" />
+            <element signature="e#2886#2887#0" expanded="false" />
+            <element signature="e#2950#2951#0" expanded="false" />
+            <element signature="e#3008#3009#0" expanded="false" />
+            <element signature="e#3069#3070#0" expanded="false" />
+            <element signature="e#3124#3125#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/util/UnityCmdUtil.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/service/AttackService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="78" column="39" lean-forward="true" selection-start-line="78" selection-start-column="29" selection-end-line="78" selection-end-column="44" />
-          <folding>
-            <element signature="e#2571#2572#0" expanded="true" />
-            <element signature="e#2631#2632#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-2818">
+          <caret line="19" column="16" lean-forward="false" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/service/RoomService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-610">
+        <state relative-caret-position="133">
           <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/model/MudObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4294">
+          <caret line="255" column="7" lean-forward="false" selection-start-line="201" selection-start-column="4" selection-end-line="255" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#552#568#0" expanded="false" />
+            <element signature="e#625#641#0" expanded="false" />
+            <element signature="e#704#720#0" expanded="false" />
+            <element signature="e#1020#1021#0" expanded="false" />
+            <element signature="e#1052#1053#0" expanded="false" />
+            <element signature="e#1089#1090#0" expanded="false" />
+            <element signature="e#1121#1122#0" expanded="false" />
+            <element signature="e#1151#1152#0" expanded="false" />
+            <element signature="e#1176#1177#0" expanded="false" />
+            <element signature="e#1213#1214#0" expanded="false" />
+            <element signature="e#1241#1242#0" expanded="false" />
+            <element signature="e#1275#1276#0" expanded="false" />
+            <element signature="e#1304#1305#0" expanded="false" />
+            <element signature="e#1349#1350#0" expanded="false" />
+            <element signature="e#1385#1386#0" expanded="false" />
+            <element signature="e#1420#1421#0" expanded="false" />
+            <element signature="e#1451#1452#0" expanded="false" />
+            <element signature="e#1499#1500#0" expanded="false" />
+            <element signature="e#1539#1540#0" expanded="false" />
+            <element signature="e#1578#1579#0" expanded="false" />
+            <element signature="e#1609#1610#0" expanded="false" />
+            <element signature="e#1661#1662#0" expanded="false" />
+            <element signature="e#1701#1702#0" expanded="false" />
+            <element signature="e#3105#3106#0" expanded="false" />
+            <element signature="e#3138#3139#0" expanded="false" />
+            <element signature="e#4225#4226#0" expanded="false" />
+            <element signature="e#4257#4258#0" expanded="false" />
+            <element signature="e#6835#6836#0" expanded="false" />
+            <element signature="e#6873#6874#0" expanded="false" />
+            <element signature="e#6935#6936#0" expanded="false" />
+            <element signature="e#6989#6990#0" expanded="false" />
+            <element signature="e#7029#7030#0" expanded="false" />
+            <element signature="e#7065#7066#0" expanded="false" />
+            <element signature="e#7123#7124#0" expanded="false" />
+            <element signature="e#7173#7174#0" expanded="false" />
+            <element signature="e#7223#7224#0" expanded="false" />
+            <element signature="e#7256#7257#0" expanded="false" />
+            <element signature="e#7321#7322#0" expanded="false" />
+            <element signature="e#7365#7366#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/model/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7847">
+          <caret line="468" column="30" lean-forward="false" selection-start-line="468" selection-start-column="29" selection-end-line="468" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#873#885#0" expanded="false" />
+            <element signature="e#5779#5780#0" expanded="false" />
+            <element signature="e#5827#5828#0" expanded="false" />
+            <element signature="e#5874#5875#0" expanded="false" />
+            <element signature="e#5914#5915#0" expanded="false" />
+            <element signature="e#5950#5951#0" expanded="false" />
+            <element signature="e#5981#5982#0" expanded="false" />
+            <element signature="e#6030#6031#0" expanded="false" />
+            <element signature="e#6070#6071#0" expanded="false" />
+            <element signature="e#6106#6107#0" expanded="false" />
+            <element signature="e#6138#6139#0" expanded="false" />
+            <element signature="e#6188#6189#0" expanded="false" />
+            <element signature="e#6230#6231#0" expanded="false" />
+            <element signature="e#6265#6266#0" expanded="false" />
+            <element signature="e#6295#6296#0" expanded="false" />
+            <element signature="e#6342#6343#0" expanded="false" />
+            <element signature="e#6380#6381#0" expanded="false" />
+            <element signature="e#6412#6413#0" expanded="false" />
+            <element signature="e#6439#6440#0" expanded="false" />
+            <element signature="e#6480#6481#0" expanded="false" />
+            <element signature="e#6512#6513#0" expanded="false" />
+            <element signature="e#6548#6549#0" expanded="false" />
+            <element signature="e#6579#6580#0" expanded="false" />
+            <element signature="e#6628#6629#0" expanded="false" />
+            <element signature="e#6668#6669#0" expanded="false" />
+            <element signature="e#6701#6702#0" expanded="false" />
+            <element signature="e#6729#6730#0" expanded="false" />
+            <element signature="e#6772#6773#0" expanded="false" />
+            <element signature="e#6806#6807#0" expanded="false" />
+            <element signature="e#6836#6837#0" expanded="false" />
+            <element signature="e#6864#6865#0" expanded="false" />
+            <element signature="e#6904#6905#0" expanded="false" />
+            <element signature="e#6938#6939#0" expanded="false" />
+            <element signature="e#6972#6973#0" expanded="false" />
+            <element signature="e#7001#7002#0" expanded="false" />
+            <element signature="e#7046#7047#0" expanded="false" />
+            <element signature="e#7082#7083#0" expanded="false" />
+            <element signature="e#8714#8715#0" expanded="false" />
+            <element signature="e#8745#8746#0" expanded="false" />
+            <element signature="e#8803#8804#0" expanded="false" />
+            <element signature="e#8843#8844#0" expanded="false" />
+            <element signature="e#8884#8885#0" expanded="false" />
+            <element signature="e#8920#8921#0" expanded="false" />
+            <element signature="e#8979#8980#0" expanded="false" />
+            <element signature="e#9029#9030#0" expanded="false" />
+            <element signature="e#9070#9071#0" expanded="false" />
+            <element signature="e#9106#9107#0" expanded="false" />
+            <element signature="e#9165#9166#0" expanded="false" />
+            <element signature="e#9215#9216#0" expanded="false" />
+            <element signature="e#14390#14391#0" expanded="false" />
+            <element signature="e#14432#14433#0" expanded="false" />
+            <element signature="e#14491#14492#0" expanded="false" />
+            <element signature="e#14533#14534#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/bll/CombatBll.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4294">
+          <caret line="251" column="9" lean-forward="false" selection-start-line="249" selection-start-column="13" selection-end-line="251" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1035#1036#0" expanded="false" />
+            <element signature="e#1072#1073#0" expanded="false" />
+            <element signature="e#3010#3026#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/service/ObjectService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
+        <state relative-caret-position="259">
           <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1924,39 +2072,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/service/DamageService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/service/CombatService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="162" column="38" lean-forward="false" selection-start-line="162" selection-start-column="38" selection-end-line="162" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/model/MudObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="219" column="46" lean-forward="true" selection-start-line="219" selection-start-column="46" selection-end-line="219" selection-end-column="46" />
+        <state relative-caret-position="278">
+          <caret line="1312" column="43" lean-forward="false" selection-start-line="1312" selection-start-column="43" selection-end-line="1312" selection-end-column="43" />
           <folding>
-            <element signature="e#5150#5151#0" expanded="true" />
-            <element signature="e#5186#5187#0" expanded="true" />
-            <element signature="e#5344#5345#0" expanded="true" />
-            <element signature="e#5377#5378#0" expanded="true" />
+            <element signature="e#13595#13611#0" expanded="true" />
+            <element signature="e#21838#21854#0" expanded="true" />
+            <element signature="e#21917#21933#0" expanded="true" />
+            <element signature="e#32149#32165#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/service/HeartBeatService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/model/SkillAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="115" column="33" lean-forward="true" selection-start-line="115" selection-start-column="33" selection-end-line="115" selection-end-column="33" />
+        <state relative-caret-position="152">
+          <caret line="8" column="29" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/model/Player.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/bll/BaseBll.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="468" column="51" lean-forward="false" selection-start-line="468" selection-start-column="44" selection-end-line="468" selection-end-column="51" />
+        <state relative-caret-position="133">
+          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/bll/DefaultBll.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1180">
+          <caret line="122" column="0" lean-forward="false" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1964,22 +2112,29 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/model/Living.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="145">
-          <caret line="918" column="30" lean-forward="false" selection-start-line="918" selection-start-column="30" selection-end-line="918" selection-end-column="30" />
+          <caret line="483" column="0" lean-forward="false" selection-start-line="483" selection-start-column="0" selection-end-line="483" selection-end-column="0" />
           <folding>
             <element signature="e#4844#4845#0" expanded="true" />
             <element signature="e#4888#4889#0" expanded="true" />
-            <element signature="e#11758#11759#0" expanded="true" />
-            <element signature="e#11806#11807#0" expanded="true" />
-            <element signature="e#13352#13353#0" expanded="true" />
-            <element signature="e#13380#13381#0" expanded="true" />
+            <element signature="e#10976#10977#0" expanded="true" />
+            <element signature="e#12144#12145#0" expanded="true" />
+            <element signature="e#12175#12176#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/service/CombatService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/service/HeartBeatService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4">
-          <caret line="681" column="38" lean-forward="true" selection-start-line="681" selection-start-column="38" selection-end-line="681" selection-end-column="38" />
+        <state relative-caret-position="278">
+          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tian/server/service/DamageService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="327" column="32" lean-forward="false" selection-start-line="327" selection-start-column="32" selection-end-line="327" selection-end-column="32" />
           <folding />
         </state>
       </provider>

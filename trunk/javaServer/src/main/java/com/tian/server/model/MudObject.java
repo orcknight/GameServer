@@ -199,6 +199,62 @@ public class MudObject {
         }
     }
 
+    /*public Integer updateCondition() {
+        String[] cnd;
+        String[] last_applyer;
+        int i, flag, update_flag;
+        Object cnd_d;
+
+        cnd = (String[])conditions.keySet().toArray();
+        update_flag = 0;
+        while (i--)
+        {
+
+            // In order to not casue player lost heart beat occasionally while
+            // calling external condition daemons, we take careful calling
+            // convention here.
+
+            cnd_d = get_cnd_object(cnd[i]);
+            if (! cnd_d)
+            {
+                if (cnd[i]) clear_condition(cnd[i]);
+                continue;
+            }
+
+            // We assume since the condition daemon is loaded successfully, the
+            // calling on its update_condition() should success as well. Because
+            // catch() is somewhat costly, so we don't attempt to catch possible
+            // error from the call_other. It is condition daemon's reponsibility
+            // that don't cause error in users's heart beat.
+            // If condition daemon returns 0 (or update_condition() not defined),
+            // we can just assume the condition expired and remove it.
+
+            if (cond_applyer && (last_applyer = cond_applyer[cnd[i]]))
+            {
+                last_applyer_id = last_applyer[0];
+                last_applyer_name = last_applyer[1];
+            } else
+            {
+                last_applyer_id = 0;
+                last_applyer_name = 0;
+            }
+
+            flag = call_other(cnd_d, "update_condition", this_object(), conditions[cnd[i]]);
+            if (! conditions)
+            {
+                update_flag |= flag;
+                break;
+            }
+            if (! (flag & CND_CONTINUE))
+            {
+                clear_condition(cnd[i]);
+            }
+            update_flag |= flag;
+        }
+
+        return update_flag;
+    }*/
+
 
 
     public Living getLastApplyerName() {

@@ -167,7 +167,7 @@ public class DamageService {
             me.setLastDamageName(me.getLastApplyerName());
         }
 
-        me.setDefeatedByWho(me.getLastDamageName());
+        me.setDefeatedByWho(me.getLastDamageFrom());
 
         if (me.getLastDamageFrom() != null) {
             me.setDefeatedBy(me.getLastDamageFrom());
@@ -258,8 +258,10 @@ public class DamageService {
         // remove the user if loaded by updated
         //UPDATE_D->global_destruct_player(defeated_by, 1);
 
-        ObjectService objectService = new ObjectService();
-        objectService.destruct(me.getDefeatedBy());
+        /*if(me.getDefeatedBy() != null) {
+            ObjectService objectService = new ObjectService();
+            objectService.destruct(me.getDefeatedBy());
+        }*/
         me.setLiving(false);
     }
 
@@ -416,6 +418,7 @@ public class DamageService {
         //if (run_override("die")) return;
 
         me.getLastDamageFrom();
+        //Todo:如果遭受攻击为0，就从condition里找寻最后伤害的来源
         /*if (! last_damage_from && (applyer = query_last_applyer_id()))
         {
             tmp_load = UPDATE_D->global_find_player(applyer);

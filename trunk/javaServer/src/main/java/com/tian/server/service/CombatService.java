@@ -792,7 +792,7 @@ public class CombatService {
                     me.setTemp("action_flag", 0);
                 }
                 // Else, we just start guarding.
-            } else if (me.queryTemp("guarding") == null) {
+            } else if (me.queryTemp("guarding") == null || MapGetUtil.queryTempInteger(me, "guarding") == 0) {
                 me.setTemp("guarding", 1);
                 messageService.messageCombatd(GUARD_MSG[random.nextInt(GUARD_MSG.length)], me, victim, "", 0, "");
                 return;
@@ -889,7 +889,7 @@ public class CombatService {
                 return 0;
             }*/
         }
-        if(me.queryTemp("action_flag") != null && Integer.parseInt(me.queryTemp("action_flag").toString()) == 0){
+        if(me.queryTemp("action_flag") == null || Integer.parseInt(me.queryTemp("action_flag").toString()) == 0){
             result = "\n" + action.getAction() + "！\n";
         } else {
             result = "\n紧跟着" + action.getAction() + "！\n";
@@ -1380,17 +1380,17 @@ public class CombatService {
             }
         }
 
+        //Todo:调用skill的post＿action定义在lua函数中
         /*if (functionp(action["post_action"]))
             evaluate(action["post_action"], me, victim, weapon, damage);*/
 
         // See if the victim can make a riposte.
 
 
-        if (attack_type == TYPE_REGULAR && damage < 1 && yourTemp.get("guarding") != null) {
+        if (attack_type == TYPE_REGULAR && damage < 1 && MapGetUtil.queryTempInteger(victim, "guarding") > 0) {
 
             // your_temp["guarding"];
-            if (random.nextInt(me.getDex()) < 8)
-            {
+            if (random.nextInt(me.getDex()) < 8) {
                 messageService.messageCombatd("$N一击不中，露出了破绽！\n",me,victim,"",damage,"");
                 do_attack(victim, me, (GoodsContainer)yourTemp.get("weapon"), TYPE_QUICK);
             } else {

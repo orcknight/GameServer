@@ -963,7 +963,7 @@ public class Living extends MudObject{
         if (type != "jing" && type != "qi")
             error("F_DAMAGE: 伤害种类错误( 只能是 jing, qi 其中之一 )。\n");*/
 
-        if (this.getLastDamageFrom() != null && who.getUuid() != this.getLastDamageFrom().getUuid()) {
+        if (this.getLastDamageFrom() == null || who.getUuid() != this.getLastDamageFrom().getUuid()) {
 
             this.setLastDamageFrom(who);
             /*last_damage_name = (who ? who->name(1) : 0);

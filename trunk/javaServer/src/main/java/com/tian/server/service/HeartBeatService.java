@@ -40,7 +40,7 @@ public class HeartBeatService {
         int wimpy_ratio, cnd_flag;
         int is_player;
 
-        if (ob.getQi() < 0 || ob.getJing() < 0) {
+        if (ob.getQi() <= 0 || ob.getJing() < 0) {
 
             if (!ob.getLiving()) {
                 damageService.die(ob, ob.getLastDamageFrom());

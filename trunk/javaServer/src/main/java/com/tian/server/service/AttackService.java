@@ -74,7 +74,6 @@ public class AttackService {
         if(guarded != null) {
 
             if (guarded.contains(me)) {
-
                 if(!(ob instanceof  Player)){
                     return;
                 }
@@ -179,8 +178,8 @@ public class AttackService {
         }
          */
 
-
         fight_ob(me, ob);
+        fight_ob(ob, me);
     }
 
 
@@ -206,7 +205,6 @@ public class AttackService {
 
         me.cleanUpEnemy();
         Living opponent = selectOpponent(me);
-
         if(opponent == null){
             return 0;
         }
