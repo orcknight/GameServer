@@ -4,7 +4,9 @@ import com.tian.server.entity.GoodsEntity;
 import com.tian.server.entity.PlayerPackageEntity;
 import net.sf.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,7 +19,9 @@ public class GoodsContainer extends MudObject {
     private Integer belongsId; //所有人ID
     private PlayerPackageEntity belongsInfo; //归属信息
     private JSONObject attr = new JSONObject();
-
+    private Map<String ,BodyPart> parts = new HashMap<String, BodyPart>();
+    private Boolean cuttable = false;
+    private List<Integer> types = new ArrayList<Integer>();
 
     public GoodsEntity getGoodsEntity() {
         return goodsEntity;
@@ -57,5 +61,29 @@ public class GoodsContainer extends MudObject {
 
     public void setAttr(JSONObject attr) {
         this.attr = attr;
+    }
+
+    public Map<String, BodyPart> getParts() {
+        return parts;
+    }
+
+    public void setParts(Map<String, BodyPart> parts) {
+        this.parts = parts;
+    }
+
+    public Boolean getCuttable() {
+        return cuttable;
+    }
+
+    public void setCuttable(Boolean cuttable) {
+        this.cuttable = cuttable;
+    }
+
+    public List<Integer> getTypes() {
+        return types;
+    }
+
+    public void setTypes(List<Integer> types) {
+        this.types = types;
     }
 }
