@@ -87,6 +87,7 @@ public class GoodsManager {
         goodsContainer.setCount(count);
         goodsContainer.setBelongsInfo(belongsInfo);
         goodsContainer.setGoodsEntity(goodsEntity);
+        goodsContainer.setResource(goodsEntity.getResource());
         //放到物品缓存中
         UserCacheUtil.getAllObjects().put(goodsContainer.getUuid(), goodsContainer);
 
@@ -102,6 +103,5 @@ public class GoodsManager {
 
         return goodsContainer;
     }
-
 
 }

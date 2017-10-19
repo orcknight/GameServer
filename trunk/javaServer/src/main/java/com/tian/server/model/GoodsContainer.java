@@ -22,6 +22,7 @@ public class GoodsContainer extends MudObject {
     private Map<String ,BodyPart> parts = new HashMap<String, BodyPart>();
     private Boolean cuttable = false;
     private List<Integer> types = new ArrayList<Integer>();
+    private String defaultClone;
 
     public GoodsEntity getGoodsEntity() {
         return goodsEntity;
@@ -85,5 +86,13 @@ public class GoodsContainer extends MudObject {
 
     public void setTypes(List<Integer> types) {
         this.types = types;
+    }
+
+    public String getDefaultClone() {
+        return defaultClone;
+    }
+
+    public void setDefaultClone(String defaultClone) {
+        this.defaultClone = defaultClone;
     }
 }

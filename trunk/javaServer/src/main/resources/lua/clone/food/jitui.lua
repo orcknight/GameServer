@@ -10,6 +10,7 @@ function create(bridge, uuid)
     local agent = bridge:getClass("com.tian.server.util.GoodsLuaAgent");
 
     --调用对象方法
+    agent:addTypes(uuid, "food");
     agent:addAttr(uuid, "food_remaining", 4);
     agent:addAttr(uuid, "food_supply", 40);
 

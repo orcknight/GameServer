@@ -9,5 +9,6 @@ function create(bridge, uuid)
 
     local agent = bridge:getClass("com.tian.server.util.GoodsLuaAgent");
 
+    agent:addTypes(uuid, "money");
     --agent:setButton('[{"关于性格":"ask %s\n + " about character", "name":"偏属"}]')
 end

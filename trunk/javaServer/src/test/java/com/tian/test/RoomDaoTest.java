@@ -27,6 +27,9 @@ public class RoomDaoTest extends TestCase {
     @Test
     public void testGetList() throws Exception {
 
+        String msg = "{\"level\":0,\"unit\":\"颗\",\"name\":\"头\",\"leftName\":\"人头\",\"leftId\":\"head\",\"components\":{\"left eye\":\"left eye\",\"right eye\":\"right eye\",\"nose\":\"nose\",\"left ear\":\"left ear\",\"right ear\":\"right ear\",\"hair\":\"hair\",\"tongue\": \"tongue\" },\"verbOfPart\":\"砍下\",\"cloneObject\":\"/clone/misc/head\" }";;
+        JSONObject jsonObject = JSONObject.fromObject(msg);
+        System.out.println("xx");
          /*try {
 
            String luaPath = this.getClass().getResource("/lua/npc/xinghuacun/mengyi.lua").getPath();
@@ -57,7 +60,7 @@ public class RoomDaoTest extends TestCase {
         //System.out.println(EquipType.HEAD.toInteger());
         //System.out.println(EquipType.RIGHTHAND.toInteger());
 
-        XmlUtil.loadRewardFromXml("1001");
+        /*XmlUtil.loadRewardFromXml("1001");
 
         JSONArray jlist = new JSONArray();
         JSONArray jArray = new JSONArray();
@@ -77,7 +80,7 @@ public class RoomDaoTest extends TestCase {
         jArray.add(j3);
         jArray.addAll(JSONArray.toCollection(jlist));
 
-        System.out.println("");
+        System.out.println("");*/
         //System.out.println(IdUtil.getUUID());
 
         /*Beast beast = new Beast();

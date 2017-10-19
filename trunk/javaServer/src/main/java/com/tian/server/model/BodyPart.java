@@ -11,8 +11,9 @@ public class BodyPart {
     private Integer level;
     private String unit;
     private String name;
-    private String partId;
-    private Map<String, String> leftIdMap = new HashMap<String, String>();
+    private String leftName;
+    private String leftId;
+    private Map<String, String> componentsMap = new HashMap<String, String>();
     private String verbOfPart;
     private String cloneObject;
 
@@ -40,20 +41,28 @@ public class BodyPart {
         this.name = name;
     }
 
-    public String getPartId() {
-        return partId;
+    public String getLeftName() {
+        return leftName;
     }
 
-    public void setPartId(String partId) {
-        this.partId = partId;
+    public void setLeftName(String leftName) {
+        this.leftName = leftName;
     }
 
-    public Map<String, String> getLeftIdMap() {
-        return leftIdMap;
+    public String getLeftId() {
+        return leftId;
     }
 
-    public void setLeftIdMap(Map<String, String> leftIdMap) {
-        this.leftIdMap = leftIdMap;
+    public void setLeftId(String leftId) {
+        this.leftId = leftId;
+    }
+
+    public Map<String, String> getComponentsMap() {
+        return componentsMap;
+    }
+
+    public void setComponentsMap(Map<String, String> componentsMap) {
+        this.componentsMap = componentsMap;
     }
 
     public String getVerbOfPart() {

@@ -2,10 +2,7 @@ package com.tian.server.service;
 
 import com.tian.server.common.Ansi;
 import com.tian.server.entity.RoomEntity;
-import com.tian.server.model.Living;
-import com.tian.server.model.MudObject;
-import com.tian.server.model.Player;
-import com.tian.server.model.RoomObjects;
+import com.tian.server.model.*;
 import com.tian.server.util.LuaBridge;
 import com.tian.server.util.MapGetUtil;
 import com.tian.server.util.MsgUtil;
@@ -332,7 +329,7 @@ public class DamageService {
         Living ob;
         String dob_name = "";
         String killer_name = "";
-        String applyer = "";
+        Living applyer;
         int direct_die;
         int avoid;
         int i;
@@ -362,7 +359,7 @@ public class DamageService {
         ob = me.getCompetitor();
         // I am lost if in competition with others
         if (ob != null) {
-            win(me);
+            win(ob);
             lost(me);
         }
         /*if( wizardp(me) && query("env/immortal") ) {
@@ -375,7 +372,10 @@ public class DamageService {
         }
 
         //if( run_override("die") ) return;
-        //if( is_ghost() ) return;
+
+        if(me.getGhost()){
+            return;
+        }
 //        if( playerp(me) && env && function_exists("user_cant_die", env) ) {
 //            if( environment()->user_cant_die(me) )
 //            return;
@@ -401,7 +401,7 @@ public class DamageService {
         }*/
 
         if (ob != null) {
-            win(me);
+            win(ob);
             lost(me);
         }
 
@@ -415,22 +415,20 @@ public class DamageService {
             me.interruptMe();
         }
 
+        //Todo:
         //if (run_override("die")) return;
 
-        me.getLastDamageFrom();
+        applyer = me.getLastApplyerId();
         //Todo:如果遭受攻击为0，就从condition里找寻最后伤害的来源
-        /*if (! last_damage_from && (applyer = query_last_applyer_id()))
-        {
-            tmp_load = UPDATE_D->global_find_player(applyer);
-            last_damage_from = tmp_load;
-            last_damage_name = query_last_applyer_name();
-        }*/
+        if (me.getLastDamageFrom() == null && applyer != null) {
+            me.setLastDamageFrom(applyer);
+        }
 
         if (killer == null) {
             killer = me.getLastDamageFrom();
         }
-        // record defeater first, because revive will clear it
 
+        // record defeater first, because revive will clear it
         if (!me.getLiving()) {
 
             direct_die = 0;
@@ -460,7 +458,6 @@ public class DamageService {
 
         // Check how am I to die
         dob = me.getDefeatedBy();
-
         if (me.queryTemp("die_reason") == null) {
             if (me instanceof Player && dob != killer) {
 
@@ -509,6 +506,14 @@ public class DamageService {
         me.add("combat/dietimes", 1);
 
         //Todo:产生尸体
+        CharService charService = new CharService();
+        GoodsContainer corpse = charService.makeCorpse(me, killer);
+        if(corpse != null){
+            EnvironmentService environmentService = new EnvironmentService();
+            environmentService.move(corpse, me.getLocation().getName());
+        }
+
+        //把物品放到房间中，并广播物品进入的消息
         /*if (objectp(corpse = CHAR_D->make_corpse(me, killer)))
             corpse->move(environment());
 */

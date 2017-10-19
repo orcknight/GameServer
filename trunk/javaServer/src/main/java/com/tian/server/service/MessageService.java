@@ -220,7 +220,7 @@ public class MessageService {
         }
 
         Map<String, RoomObjects> roomObjects = UserCacheUtil.getRoomObjectsCache();
-        List<Player> roomPlayers = roomObjects.get(me.getLocation().getName()).getPlayers();
+        List<Player> roomPlayers = new ArrayList<Player>(roomObjects.get(me.getLocation().getName()).getPlayers());
         if(me instanceof  Player){
             roomPlayers.remove(me);
         }
