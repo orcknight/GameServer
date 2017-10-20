@@ -3,6 +3,7 @@ package com.tian.server.util;
 import com.tian.server.common.GoodsType;
 import com.tian.server.model.BodyPart;
 import com.tian.server.model.GoodsContainer;
+import com.tian.server.service.ObjectService;
 import net.sf.json.JSONObject;
 
 import java.util.Iterator;
@@ -69,6 +70,28 @@ public class GoodsLuaAgent {
         }
     }
 
+    public static void set(String uuid, String key, Object data){
+        GoodsContainer goodsContainer  = (GoodsContainer)UserCacheUtil.getAllObjects().get(Long.valueOf(uuid));
+        if(goodsContainer != null){
+            goodsContainer.set(key, data);
+        }
+    }
+
+    public static String queryString(String uuid, String key){
+        GoodsContainer goodsContainer  = (GoodsContainer)UserCacheUtil.getAllObjects().get(Long.valueOf(uuid));
+        if(goodsContainer == null){
+            return "";
+        }
+        return MapGetUtil.queryString(goodsContainer, key);
+    }
+
+    public static void delete(String uuid, String key){
+        GoodsContainer goodsContainer  = (GoodsContainer)UserCacheUtil.getAllObjects().get(Long.valueOf(uuid));
+        if(goodsContainer != null){
+            goodsContainer.delete(key);
+        }
+    }
+
     public static void setUnit(String uuid, String unit){
         GoodsContainer goodsContainer  = (GoodsContainer)UserCacheUtil.getAllObjects().get(Long.valueOf(uuid));
         if(goodsContainer != null){
@@ -113,7 +136,45 @@ public class GoodsLuaAgent {
 
             goodsContainer.getParts().put(key, part);
         }
+    }
 
+    public static void setWeight(String uuid, Integer weight) {
+        GoodsContainer goodsContainer  = (GoodsContainer)UserCacheUtil.getAllObjects().get(Long.valueOf(uuid));
+        if(goodsContainer != null) {
+            goodsContainer.setWeight(weight);
+        }
+    }
+
+    public static void createDecayTask(String uuid, Integer seconds, Integer phase){
+        GoodsContainer goodsContainer  = (GoodsContainer)UserCacheUtil.getAllObjects().get(Long.valueOf(uuid));
+        if(goodsContainer != null) {
+            goodsContainer.createDecayTask(seconds, phase);
+        }
+    }
+
+    public static String getLocationName(String uuid){
+        GoodsContainer goodsContainer  = (GoodsContainer)UserCacheUtil.getAllObjects().get(Long.valueOf(uuid));
+        if(goodsContainer == null) {
+            return "";
+        }
+        return goodsContainer.getLocation().getName();
+    }
+
+    public static String getName(String uuid){
+        GoodsContainer goodsContainer  = (GoodsContainer)UserCacheUtil.getAllObjects().get(Long.valueOf(uuid));
+        if(goodsContainer == null) {
+            return "";
+        }
+        return goodsContainer.getGoodsEntity().getName();
+    }
+
+    public static void destructGoods(String uuid){
+        GoodsContainer goodsContainer  = (GoodsContainer)UserCacheUtil.getAllObjects().get(Long.valueOf(uuid));
+        if(goodsContainer == null) {
+            return ;
+        }
+        ObjectService objectService = new ObjectService();
+        objectService.destruct(goodsContainer);
     }
 
 }

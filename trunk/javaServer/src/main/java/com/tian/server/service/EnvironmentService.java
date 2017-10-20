@@ -48,11 +48,12 @@ public class EnvironmentService {
         }
 
         //1.把物品加入到dest指定的新房间中
-
         RoomObjects destRoomObjects = UserCacheUtil.getRoomObjectsCache().get(dest);
         if(destRoomObjects == null){
             return 0;
         }
+        //设置物品的location
+        me.setLocation(UserCacheUtil.getAllMaps().get(dest));
 
         String typeStr = "goods";
         String nameStr = "未知";

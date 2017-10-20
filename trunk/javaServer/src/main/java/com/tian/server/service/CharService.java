@@ -25,7 +25,6 @@ public class CharService {
 
         GoodsManager goodsManager = new GoodsManager();
         corpse = goodsManager.createByPathName("/lua/clone/misc/corpse", 1, null);
-
         if(corpse.getCmdActions().containsKey("make_corpse")){
 
             String funName = corpse.getCmdActions().get("make_corpse").toString();
@@ -46,7 +45,6 @@ public class CharService {
         }
 
         //把物品放到当前环境
-
         return corpse;
     }
 }

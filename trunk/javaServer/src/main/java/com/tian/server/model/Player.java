@@ -503,6 +503,12 @@ public class Player extends Human {
 
     }
 
+    // 因为被击毙而震怒
+    public void crazeOfDie(String killerId) {
+        this.setMyKillerId(killerId);
+        //craze = query_max_craze();
+    }
+
     //获取食物的最大值
     private Integer getMaxFoodCapacity() {
         return getStr() * 10 + 100;

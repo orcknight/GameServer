@@ -2,12 +2,14 @@ package com.tian.server.model;
 
 import com.tian.server.entity.GoodsEntity;
 import com.tian.server.entity.PlayerPackageEntity;
+import com.tian.server.util.LuaBridge;
 import net.sf.json.JSONObject;
+import org.luaj.vm2.Globals;
+import org.luaj.vm2.LuaValue;
+import org.luaj.vm2.lib.jse.CoerceJavaToLua;
+import org.luaj.vm2.lib.jse.JsePlatform;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by PPX on 2017/9/19.
@@ -95,4 +97,37 @@ public class GoodsContainer extends MudObject {
     public void setDefaultClone(String defaultClone) {
         this.defaultClone = defaultClone;
     }
+
+    public void createDecayTask(Integer seconds, Integer phase){
+        Timer timer=new Timer();//实例化Timer类
+        timer.schedule(new DecayTask(this, phase), seconds * 1000);//五百毫秒
+    }
+
+    class DecayTask extends TimerTask {
+        private GoodsContainer goods;
+        private Integer phase;
+
+        public DecayTask(GoodsContainer goods, Integer phase) {
+            this.goods = goods;
+            this.phase = phase;
+        }
+
+        @Override
+        public void run() {
+            LuaBridge bridge = new LuaBridge();
+            String luaPath = this.getClass().getResource(goods.getResource()).getPath();
+            Globals globals = JsePlatform.standardGlobals();
+            //加载脚本文件login.lua，并编译
+            globals.loadfile(luaPath).call();
+            String funName = goods.getCmdActions().get("decay");
+            //获取带参函数create
+            LuaValue createFun = globals.get(LuaValue.valueOf(goods.getCmdActions().get(funName)));
+            //执行方法初始化数据
+            LuaValue retValue = createFun.call(CoerceJavaToLua.coerce(bridge), LuaValue.valueOf(goods.getUuid().toString()),
+                    LuaValue.valueOf(phase));
+            return;
+        }
+
+    }
+
 }

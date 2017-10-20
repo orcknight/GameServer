@@ -536,30 +536,27 @@ public class DamageService {
             me.setEffQi(1);
             me.setGhost(true);
 
-            /*me->move(DEATH_ROOM);
-            DEATH_ROOM->start_death(me);
-            me->delete_temp("die_reason");
-            me->craze_of_die(killer ? killer->query("id") : 0);
+            EnvironmentService environmentService = new EnvironmentService();
+            environmentService.move(me, "death/gate");
+            me.deleteTemp("die_reason");
 
-            // add by chenzzz，死亡保护
-            me->set("die_protect/last_dead", time());
-            duration = (int)me->query("die_protect/duration", 1);
+            // add by tian，死亡保护
+            me.set("die_protect/last_dead", System.currentTimeMillis() );
+            duration = MapGetUtil.queryInteger(me, "die_protect/duration");
 
-            if (me->query("combat_exp") > 1000000 && duration > 0)
-            {
-                duration = duration * 2;
-            }
-            else
-            {
-                duration = 2 * 60 * 60;
+            if(me.getCombatExp() > 1000000 && duration > 0){
+                duration = duration * 2 * 1000;
+            }else{
+                duration = 2 * 60 * 60 * 1000;
             }
 
-            if (duration > 3 * 86400)
-                duration = 3 * 86400;
-
-            me->set("die_protect/duration", duration);*/
+            if(duration > 3 * 86400){
+                duration = 3 * 86400 * 1000;
+            }
+            me.set("die_protect/duration", duration);
         } else {
-            //destruct(me);
+            ObjectService objectService = new ObjectService();
+            objectService.destruct(me);
         }
     }
 

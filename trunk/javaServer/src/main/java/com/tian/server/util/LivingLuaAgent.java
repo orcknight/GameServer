@@ -175,11 +175,59 @@ public class LivingLuaAgent {
         }
     }
 
+    public static void setClassStr(String uuid, String classStr){
+        Living living  = (Living)UserCacheUtil.getAllObjects().get(Long.valueOf(uuid));
+        if(living != null){
+            living.setClassStr(classStr);
+        }
+    }
+
     public static void setup(String uuid){
         Living living  = (Living)UserCacheUtil.getAllObjects().get(Long.valueOf(uuid));
         if(living != null){
             living.setup();
         }
+    }
+
+    public static String getName(String uuid){
+        Living living  = (Living)UserCacheUtil.getAllObjects().get(Long.valueOf(uuid));
+        if(living == null){
+            return "";
+        }
+        return living.getName();
+    }
+
+    public static String getCmdName(String uuid){
+        Living living  = (Living)UserCacheUtil.getAllObjects().get(Long.valueOf(uuid));
+        if(living == null){
+            return "";
+        }
+        return living.getCmdName();
+    }
+
+    public static String getClassStr(String uuid){
+        Living living  = (Living)UserCacheUtil.getAllObjects().get(Long.valueOf(uuid));
+        if(living == null){
+            return "";
+        }
+        return living.getClassStr();
+    }
+
+    public static String getLongDesc(String uuid){
+        Living living  = (Living)UserCacheUtil.getAllObjects().get(Long.valueOf(uuid));
+        if(living == null){
+            return "";
+        }
+        return living.getLongDesc();
+    }
+
+    public static Integer getWeight(String uuid){
+        Living living  = (Living)UserCacheUtil.getAllObjects().get(Long.valueOf(uuid));
+        if(living == null){
+            return 0;
+        }
+        return living.getWeight();
+
     }
 
 }

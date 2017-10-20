@@ -8,6 +8,7 @@ import com.tian.server.util.UnityCmdUtil;
 import com.tian.server.util.UserCacheUtil;
 import net.sf.json.JSONArray;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -23,14 +24,15 @@ public class HeartBeatService {
     public void heartBeat() {
 
         //获取living列表
-        List<Living> allLivings = UserCacheUtil.getAllLivings();
+        List<Living> allLivings = new ArrayList<Living>(UserCacheUtil.getAllLivings());
         for (Living living : allLivings) {
             if (!living.getHeartBeatFlag()) {
                 continue;
             }
             heartProcess(living);
         }
-
+        allLivings.clear();
+        allLivings = null;
     }
 
     public void heartProcess(Living ob) {

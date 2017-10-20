@@ -35,6 +35,19 @@ public class MapGetUtil {
         }
     }
 
+    public static String queryString(MudObject ob, String key){
+
+        if(ob.query(key) != null){
+            if(ob.query(key) instanceof String){
+                return ob.query(key).toString();
+            }else{
+                return "";
+            }
+        }else{
+            return "";
+        }
+    }
+
     public static Integer queryInteger(MudObject ob, String key){
 
         if(ob.query(key) != null){
