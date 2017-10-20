@@ -38,12 +38,12 @@ function create(bridge, uuid)
 
     init_actions(agent, uuid);
     --agent:setButton('[{"关于性格":"ask %s\n + " about character", "name":"偏属"}]')
-    agent:createDecayTask("decay", 120, 1);
+    agent:createDecayTask(uuid, 120, 1);
 end
 
 function init_actions(agent, uuid)
     agent:addAction(uuid, "make_corpse", "make_corpse");
-    agent:addAction(uuid, "")
+    agent:addAction(uuid, "decay", "decay");
 end
 
 function make_corpse(bridge, uuid, params)
@@ -87,14 +87,14 @@ function decay(bridge, uuid, phase)
             goodsAgent:setCmdName(uuid, "corpse");
         end
         goodsAgent:setLongDesc(uuid, "这具尸体显然已经躺在这里有一段时间了，正散发著一股腐尸的味道。\n");
-        goodsAgent:createDecayTask("decay", 120, phase + 1);
+        goodsAgent:createDecayTask(uuid, 120, phase + 1);
     elseif(phase == 2) then
-        goodsAgent:delete("parts");
+        goodsAgent:delete(uuid, "parts");
         msg = goodsAgent:getName(uuid) .. "被风吹乾了，变成一具骸骨。\n";
         goodsAgent:setName(uuid, "枯乾的骸骨");
         goodsAgent:setCmdName(uuid, "skeleton");
-        goodsAgent:setLongDesc("long", "这副骸骨已经躺在这里很久了。\n");
-        goodsAgent:createDecayTask("decay", 60, phase + 1);
+        goodsAgent:setLongDesc(uuid, "这副骸骨已经躺在这里很久了。\n");
+        goodsAgent:createDecayTask(uuid, 60, phase + 1);
     elseif(phase == 3) then
         msg = "一阵风吹过，把" .. goodsAgent:getName(uuid) .. "化成骨灰吹散了。\n";
         goodsAgent:destructGoods(uuid);

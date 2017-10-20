@@ -17,7 +17,7 @@ public class ObjectService {
 
     public void destruct(MudObject ob) {
 
-        if(UserCacheUtil.getAllObjects().containsValue(ob)){
+        if(UserCacheUtil.getAllObjects().containsKey(ob.getUuid())){
             UserCacheUtil.getAllObjects().remove(ob.getUuid());
         }
 
@@ -55,7 +55,9 @@ public class ObjectService {
         msgObject.put("displayName", ob.getUuid().toString());
         msgObject.put("objId", "/" + type + "/" + type + "#" + ob.getUuid().toString());
         jsonArray.add(UnityCmdUtil.getObjectOutRet(msgObject));
-        messageService.tellRoom(ob.getLocation().getName(), jsonArray);
+        if(ob.getLocation() != null) {
+            messageService.tellRoom(ob.getLocation().getName(), jsonArray);
+        }
 
         ob = null;
     }

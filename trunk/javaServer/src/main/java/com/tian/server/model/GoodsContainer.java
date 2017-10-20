@@ -2,7 +2,9 @@ package com.tian.server.model;
 
 import com.tian.server.entity.GoodsEntity;
 import com.tian.server.entity.PlayerPackageEntity;
+import com.tian.server.entity.RoomEntity;
 import com.tian.server.util.LuaBridge;
+import com.tian.server.util.UserCacheUtil;
 import net.sf.json.JSONObject;
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaValue;
@@ -101,6 +103,26 @@ public class GoodsContainer extends MudObject {
     public void createDecayTask(Integer seconds, Integer phase){
         Timer timer=new Timer();//实例化Timer类
         timer.schedule(new DecayTask(this, phase), seconds * 1000);//五百毫秒
+    }
+
+    @Override
+    public RoomEntity getLocation() {
+
+        if(this.location != null){
+            return location;
+        }
+        if(this.belongsId != null && this.belongsId > 0){
+
+            Living player = UserCacheUtil.getPlayers().get(this.belongsId);
+            return player.getLocation();
+        }
+
+        if(this.belongsInfo != null && this.belongsInfo.getPlayerId() != null && this.belongsInfo.getPlayerId() > 0){
+            Living player = UserCacheUtil.getPlayers().get(this.belongsInfo.getPlayerId());
+            return player.getLocation();
+        }
+
+        return null;
     }
 
     class DecayTask extends TimerTask {
