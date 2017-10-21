@@ -266,4 +266,20 @@ public class UserCacheUtil {
         }
     }
 
+    public static Player getPlayerById(Integer playerId){
+
+        if(players.size() < 1){
+            return null;
+        }
+
+        for(Living living : players.values()){
+            Player player = (Player)living;
+            if(player.getPlayerId() == playerId){
+                return player;
+            }
+        }
+
+        return null;
+    }
+
 }

@@ -102,7 +102,8 @@ public class GoodsContainer extends MudObject {
 
     public void createDecayTask(Integer seconds, Integer phase){
         Timer timer=new Timer();//实例化Timer类
-        timer.schedule(new DecayTask(this, phase), seconds * 1000);//五百毫秒
+        //Todo:为了测试暂时*100，后续改成*1000
+        timer.schedule(new DecayTask(this, phase), seconds * 100);//五百毫秒
     }
 
     @Override
@@ -113,13 +114,17 @@ public class GoodsContainer extends MudObject {
         }
         if(this.belongsId != null && this.belongsId > 0){
 
-            Living player = UserCacheUtil.getPlayers().get(this.belongsId);
-            return player.getLocation();
+            Player player = UserCacheUtil.getPlayerById(this.belongsId);
+            if(player != null) {
+                return UserCacheUtil.getAllMaps().get(player.getPlayerInfo().getRoomName());
+            }
         }
 
         if(this.belongsInfo != null && this.belongsInfo.getPlayerId() != null && this.belongsInfo.getPlayerId() > 0){
-            Living player = UserCacheUtil.getPlayers().get(this.belongsInfo.getPlayerId());
-            return player.getLocation();
+            Player player = UserCacheUtil.getPlayerById(this.belongsInfo.getPlayerId());
+            if(player != null) {
+                return UserCacheUtil.getAllMaps().get(player.getPlayerInfo().getRoomName());
+            }
         }
 
         return null;

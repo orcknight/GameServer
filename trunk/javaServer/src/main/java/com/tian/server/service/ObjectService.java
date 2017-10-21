@@ -1,9 +1,6 @@
 package com.tian.server.service;
 
-import com.tian.server.model.Living;
-import com.tian.server.model.MudObject;
-import com.tian.server.model.Player;
-import com.tian.server.model.RoomObjects;
+import com.tian.server.model.*;
 import com.tian.server.util.UnityCmdUtil;
 import com.tian.server.util.UserCacheUtil;
 import net.sf.json.JSONArray;
@@ -48,6 +45,16 @@ public class ObjectService {
             type = "npc";
         } else {
             type = "goods";
+
+            //Todo:数据库中删除
+            //如果是物品，并且属于某个人，执行删除命令
+            GoodsContainer goodsContainer = (GoodsContainer)ob;
+            if(goodsContainer.getBelongsId() != null && goodsContainer.getBelongsId() > 0){
+                Player player = new Player();
+                if(player.getPackageList().contains(goodsContainer)){
+                    player.getPackageList().remove(goodsContainer);
+                }
+            }
         }
 
         JSONObject msgObject = new JSONObject();

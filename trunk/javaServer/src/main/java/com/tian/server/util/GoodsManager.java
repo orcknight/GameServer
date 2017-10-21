@@ -88,6 +88,9 @@ public class GoodsManager {
         goodsContainer.setBelongsInfo(belongsInfo);
         goodsContainer.setGoodsEntity(goodsEntity);
         goodsContainer.setResource(goodsEntity.getResource());
+        if(belongsInfo != null){
+            goodsContainer.setBelongsId(belongsInfo.getPlayerId());
+        }
         //放到物品缓存中
         UserCacheUtil.getAllObjects().put(goodsContainer.getUuid(), goodsContainer);
 
