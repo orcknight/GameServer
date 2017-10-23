@@ -29,4 +29,9 @@ public class PlayerPackageDao extends BaseDao {
         getSession().update(playerPackageEntity);
     }
 
+    public void delete(PlayerPackageEntity playerPackageEntity){
+
+        getSession().delete(playerPackageEntity);
+    }
+
 }

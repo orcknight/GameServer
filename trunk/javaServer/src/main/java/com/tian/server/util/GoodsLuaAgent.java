@@ -1,10 +1,12 @@
 package com.tian.server.util;
 
 import com.tian.server.common.GoodsType;
+import com.tian.server.entity.PlayerPackageEntity;
 import com.tian.server.model.BodyPart;
 import com.tian.server.model.GoodsContainer;
 import com.tian.server.service.ObjectService;
 import net.sf.json.JSONObject;
+import org.hibernate.Transaction;
 
 import java.util.Iterator;
 import java.util.List;
@@ -173,8 +175,16 @@ public class GoodsLuaAgent {
         if(goodsContainer == null) {
             return ;
         }
+
         ObjectService objectService = new ObjectService();
-        objectService.destruct(goodsContainer);
+        Transaction transaction = SessionUtil.getDataSession().getTransaction();
+        try{
+            transaction.begin();
+            objectService.destruct(goodsContainer);
+            transaction.commit();
+        }catch(Exception e){
+            transaction.rollback();
+        }
     }
 
 }

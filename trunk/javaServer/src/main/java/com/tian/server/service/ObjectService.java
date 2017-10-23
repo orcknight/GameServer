@@ -1,5 +1,6 @@
 package com.tian.server.service;
 
+import com.tian.server.dao.PlayerPackageDao;
 import com.tian.server.model.*;
 import com.tian.server.util.UnityCmdUtil;
 import com.tian.server.util.UserCacheUtil;
@@ -11,6 +12,7 @@ import net.sf.json.JSONObject;
  */
 public class ObjectService {
 
+    PlayerPackageDao playerPackageDao = new PlayerPackageDao();
 
     public void destruct(MudObject ob) {
 
@@ -50,9 +52,12 @@ public class ObjectService {
             //如果是物品，并且属于某个人，执行删除命令
             GoodsContainer goodsContainer = (GoodsContainer)ob;
             if(goodsContainer.getBelongsId() != null && goodsContainer.getBelongsId() > 0){
-                Player player = new Player();
-                if(player.getPackageList().contains(goodsContainer)){
-                    player.getPackageList().remove(goodsContainer);
+                Player player = UserCacheUtil.getPlayerById(goodsContainer.getBelongsId());
+                if(player != null) {
+                    if (player.getPackageList().contains(goodsContainer)) {
+                        playerPackageDao.delete(goodsContainer.getBelongsInfo());
+                        player.getPackageList().remove(goodsContainer);
+                    }
                 }
             }
         }

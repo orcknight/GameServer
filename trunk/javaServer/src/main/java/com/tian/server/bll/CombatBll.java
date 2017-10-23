@@ -213,11 +213,12 @@ public class CombatBll extends BaseBll {
             return;
         }
 
-        if (!me.isFighting(ob) && me.getQi() <= (me.getMaxQi() * 3 / 10)) {
+        //Todo:暂时注释，测试用到
+        /*if (!me.isFighting(ob) && me.getQi() <= (me.getMaxQi() * 3 / 10)) {
             jsonArray.add(UnityCmdUtil.getInfoWindowRet("你现在没有力气战斗了。"));
             sendMsg(jsonArray);
             return;
-        }
+        }*/
 
         RankService rankService = new RankService();
         MessageService messageService = new MessageService();

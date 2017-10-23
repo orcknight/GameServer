@@ -49,6 +49,13 @@ public class LivingLuaAgent {
         }
     }
 
+    public static void setTitle(String uuid, String title){
+        Living living  = (Living)UserCacheUtil.getAllObjects().get(Long.valueOf(uuid));
+        if(living != null){
+            living.setTitle(title);
+        }
+    }
+
     public static void setCmdName(String uuid, String cmdName){
         Living living  = (Living)UserCacheUtil.getAllObjects().get(Long.valueOf(uuid));
         if(living != null) {
@@ -182,6 +189,13 @@ public class LivingLuaAgent {
         }
     }
 
+    public static void set(String uuid, String key, Object data){
+        Living living  = (Living)UserCacheUtil.getAllObjects().get(Long.valueOf(uuid));
+        if(living != null){
+            living.set(key, data);
+        }
+    }
+
     public static void setup(String uuid){
         Living living  = (Living)UserCacheUtil.getAllObjects().get(Long.valueOf(uuid));
         if(living != null){
@@ -227,7 +241,17 @@ public class LivingLuaAgent {
             return 0;
         }
         return living.getWeight();
+    }
 
+    public static Integer getGhost(String uuid){
+        Living living  = (Living)UserCacheUtil.getAllObjects().get(Long.valueOf(uuid));
+        if(living == null){
+            return 0;
+        }
+        if(living.getGhost() == true){
+            return 1;
+        }
+        return 0;
     }
 
 }

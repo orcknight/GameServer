@@ -311,7 +311,7 @@ public class LookBll extends BaseBll {
         if(target instanceof  Human){
 
             // 是人物角色
-            if (age >= 25) { // && obj->query("special_skill/youth"))
+            if (age >= 25 && target.query("special_skill/youth") != null) { // && obj->query("special_skill/youth"))
                 sb.append(pro + "看不出年纪的大小，好像只有二十多岁。" + ZjMudUtil.ZJ_JBR);
             } else {
                 if (age >= 200){
