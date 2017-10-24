@@ -1,10 +1,11 @@
 package com.tian.server.model;
 
 import com.tian.server.entity.RoomEntity;
-import com.tian.server.util.MapGetUtil;
-import com.tian.server.util.StringUtil;
-import com.tian.server.util.UserCacheUtil;
-import com.tian.server.util.ZjMudUtil;
+import com.tian.server.util.*;
+import org.luaj.vm2.Globals;
+import org.luaj.vm2.LuaValue;
+import org.luaj.vm2.lib.jse.CoerceJavaToLua;
+import org.luaj.vm2.lib.jse.JsePlatform;
 
 import java.util.*;
 
@@ -1062,6 +1063,48 @@ public class Living extends MudObject{
     public void removeAllWant() {
 
         wantKills.clear();
+    }
+
+    public void createScheduleTask(Integer seconds, String funName, Object[] params){
+        Timer timer=new Timer();//实例化Timer类
+        //Todo:为了测试暂时*100，后续改成*1000
+        timer.schedule(new ScheduleTask(this, funName, params), seconds * 100);//五百毫秒
+    }
+
+    class ScheduleTask extends TimerTask {
+        private Living ob;
+        private String funName;
+        private Object[] params;
+
+        public ScheduleTask(Living ob, String funName, Object[] params) {
+            this.ob = ob;
+            this.funName = funName;
+            this.params = params;
+        }
+
+        @Override
+        public void run() {
+            LuaBridge bridge = new LuaBridge();
+            String luaPath = this.getClass().getResource(ob.getResource()).getPath();
+            Globals globals = JsePlatform.standardGlobals();
+            //加载脚本文件login.lua，并编译
+            globals.loadfile(luaPath).call();
+            if(funName == null){
+                funName = "";
+            }
+            LuaValue[] luaParams = new LuaValue[params.length];
+            for(int i = 0; i < luaParams.length; i++){
+                luaParams[i] = LuaValue.valueOf(params[i].toString());
+            }
+            String funMapName = ob.getCmdActions().get(funName);
+            //获取带参函数create
+            LuaValue createFun = globals.get(LuaValue.valueOf(funMapName));
+            //执行方法初始化数据
+            LuaValue retValue = createFun.call(CoerceJavaToLua.coerce(bridge), LuaValue.valueOf(ob.getUuid().toString()),
+                    LuaValue.listOf(luaParams));
+            return;
+        }
+
     }
 
 }

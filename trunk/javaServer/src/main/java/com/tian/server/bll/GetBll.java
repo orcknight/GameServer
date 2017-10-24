@@ -147,9 +147,7 @@ public class GetBll extends BaseBll {
                     } catch (Exception e) {
                         transaction.rollback();
                     }
-
                 }
-
             }else{
 
                 Transaction transaction = getSession().getTransaction();
@@ -169,13 +167,9 @@ public class GetBll extends BaseBll {
                     List<GoodsContainer> goodsContainerList = player.getPackageList();
                     goodsContainerList.add(goodsContainer);
                 }catch(Exception e){
-
                     transaction.rollback();
                 }
-
-
             }
-
         }
 
         //把物品从房间移除

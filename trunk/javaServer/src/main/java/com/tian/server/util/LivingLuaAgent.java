@@ -1,10 +1,13 @@
 package com.tian.server.util;
 
 import com.tian.server.model.Living;
+import com.tian.server.model.Player;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Created by PPX on 2017/7/4.
@@ -194,6 +197,37 @@ public class LivingLuaAgent {
         if(living != null){
             living.set(key, data);
         }
+    }
+
+    public static void createScheduleTask(String uuid, String funName, Object[] params){
+        Living living  = (Living)UserCacheUtil.getAllObjects().get(Long.valueOf(uuid));
+        Integer seconds = Integer.parseInt(params[0].toString());
+        Object[] newParams = new Object[params.length - 1];
+        System.arraycopy(params, 1, newParams,0, params.length - 1);
+        if(living != null){
+            living.createScheduleTask(seconds, funName, newParams);
+        }
+    }
+
+    public static void addAction(String uuid, String action, String callback){
+        Living living  = (Living)UserCacheUtil.getAllObjects().get(Long.valueOf(uuid));
+        if(living != null){
+            Map<String ,String> actions = living.getCmdActions();
+            actions.put(action, callback);
+        }
+    }
+
+    public static void tellObject(String uuid, String msg){
+        Living living  = (Living)UserCacheUtil.getAllObjects().get(Long.valueOf(uuid));
+        if(living == null) {
+            return;
+        }
+        if(!(living instanceof Player)) {
+            return;
+        }
+        JSONArray jsonArray = new JSONArray();
+        jsonArray.add(UnityCmdUtil.getInfoWindowRet(msg));
+        MsgUtil.sendMsg(((Player) living).getSocketClient(), jsonArray);
     }
 
     public static void setup(String uuid){

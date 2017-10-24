@@ -4,6 +4,7 @@ import com.corundumstudio.socketio.SocketIOClient;
 import com.tian.server.entity.RoomEntity;
 import com.tian.server.entity.RoomGateEntity;
 import com.tian.server.model.*;
+import com.tian.server.service.EnvironmentService;
 import com.tian.server.service.PlayerService;
 import com.tian.server.service.RoomService;
 import com.tian.server.util.UnityCmdUtil;
@@ -123,19 +124,11 @@ public class MoveBll extends BaseBll {
                 return;
             }
 
-            //发送信息，清除当前NPCBar列表
-            JSONObject jsonObject = new JSONObject();
-            jsonArray.add(UnityCmdUtil.getObjectClearRet(jsonObject));
 
-            RoomService roomService = new RoomService();
-            //获取地图字符串
-            JSONArray roomJsonArray = roomService.getRoomDesc(getLocation(destRoomName));
-            jsonArray.addAll(JSONArray.toCollection(roomJsonArray));
-
-            sendMsg(jsonArray);
+            EnvironmentService environmentService = new EnvironmentService();
+            environmentService.move(player, destRoomName);
 
             //切换room并广播信息
-            socketIOClient.leaveRoom(room.getName());
             String destName = getDirectionCnName(direction);
 
             PlayerService playerService = new PlayerService();
@@ -148,16 +141,16 @@ public class MoveBll extends BaseBll {
             //广播玩家进入房间的信息
             JSONArray enterObject = playerService.getEnterRoomLine("金丝甲", player);
             socketIOClient.getNamespace().getRoomOperations(destRoomName)
-                    .sendEvent("stream", enterObject);
+                    .sendEvent("stream", this.socketIOClient, enterObject);
 
-            socketIOClient.joinRoom(destRoomName);
+           //socketIOClient.joinRoom(destRoomName);
 
             //更新房间内玩家信息
-            UserCacheUtil.movePlayerToOtherRoom(room.getName(), destRoomName, player);
-            loadItemsToRoom(destRoomName, player);
+            //UserCacheUtil.movePlayerToOtherRoom(room.getName(), destRoomName, player);
+            //loadItemsToRoom(destRoomName, player);
 
             //缓存玩家信息
-            player.setLocation(roomMap.get(destRoomName));
+            //player.setLocation(roomMap.get(destRoomName));
         }
 
     }

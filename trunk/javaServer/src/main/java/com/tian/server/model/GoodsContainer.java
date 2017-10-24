@@ -148,7 +148,7 @@ public class GoodsContainer extends MudObject {
             globals.loadfile(luaPath).call();
             String funName = goods.getCmdActions().get("decay");
             //获取带参函数create
-            LuaValue createFun = globals.get(LuaValue.valueOf(goods.getCmdActions().get(funName)));
+            LuaValue createFun = globals.get(LuaValue.valueOf(funName));
             //执行方法初始化数据
             LuaValue retValue = createFun.call(CoerceJavaToLua.coerce(bridge), LuaValue.valueOf(goods.getUuid().toString()),
                     LuaValue.valueOf(phase));

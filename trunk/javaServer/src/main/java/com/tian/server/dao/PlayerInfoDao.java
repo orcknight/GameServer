@@ -23,7 +23,6 @@ public class PlayerInfoDao extends BaseDao {
         String queryStr = "SELECT * FROM player_info WHERE playerId = " + playerId;
         Query q = getSession().createNativeQuery(queryStr).addEntity(PlayerInfoEntity.class);
         List<PlayerInfoEntity> retList = q.getResultList();
-
         PlayerInfoEntity playerInfo;
         if(retList.isEmpty()){
 
@@ -36,5 +35,8 @@ public class PlayerInfoDao extends BaseDao {
         return playerInfo;
     }
 
+    public void update(PlayerInfoEntity playerInfoEntity){
+        getSession().update(playerInfoEntity);
+    }
 
 }

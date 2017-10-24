@@ -1,5 +1,8 @@
 package com.tian.server.service;
 
+import com.corundumstudio.socketio.SocketIOClient;
+import com.tian.server.util.SessionUtil;
+import com.tian.server.util.UserCacheUtil;
 import org.hibernate.Session;
 
 /**
@@ -11,8 +14,12 @@ public class BaseService {
 
     public BaseService(){}
 
-    public BaseService(Session session){
+    protected Session getSession(){
 
-        this.session = session;
+        if(session == null){
+
+            session = SessionUtil.getDataSession();
+        }
+        return session;
     }
 }

@@ -173,7 +173,7 @@ public class PlayerService {
         objectsArray.add(msgObject);
         JSONObject enterObject = UnityCmdUtil.getObjectEnterRet(objectsArray);
         jsonArray.add(infoObject);
-        jsonArray.add(enterObject);
+        //jsonArray.add(enterObject);
 
         return jsonArray;
     }
@@ -191,7 +191,7 @@ public class PlayerService {
 
         JSONObject enterObject = UnityCmdUtil.getObjectOutRet(msgObject);
         jsonArray.add(infoObject);
-        jsonArray.add(enterObject);
+        //jsonArray.add(enterObject);
 
         return jsonArray;
     }

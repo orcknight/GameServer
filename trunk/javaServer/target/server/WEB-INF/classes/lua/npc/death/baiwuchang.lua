@@ -5,7 +5,7 @@
 -- Time: 16:45
 -- To change this template use File | Settings | File Templates.
 --
-function get_death_msg()
+function get_death_msg(bridge)
 
     local ansiAgent = bridge:getClass("com.tian.server.util.AnsiLuaAgent");
     local death_msg = {
@@ -18,7 +18,6 @@ function get_death_msg()
     return death_msg;
 
 end
-
 
 function create(bridge, uuid)
 
@@ -49,6 +48,8 @@ function create(bridge, uuid)
     agent:setEffNeili(uuid, 9999);
     agent:setMaxNeili(uuid, 9999);
     agent:set(uuid, "jiali", 250);
+
+    init_actions(agent, uuid);
 
     agent:setup(uuid);
 
@@ -91,5 +92,40 @@ function create(bridge, uuid)
     --agent:setButton('[{"关于性格":"ask %s\n + " about character", "name":"偏属"}]')
 end
 
-function init(bridge, uuid)
+function init_actions(agent, uuid)
+    agent:addAction(uuid, "init", "init");
+    agent:addAction(uuid, "death_stage", "death_stage");
+end
+
+function init(bridge, uuid, params)
+    local agent = bridge:getClass("com.tian.server.util.LivingLuaAgent");
+    local ob = params[1];
+    print("call init");
+    print(ob);
+    if (agent:getGhost(ob) == 0) then
+        return;
+    end
+    --[[call_out("death_stage", 5, previous_object(), 0);]]
+    agent:createScheduleTask(uuid, "death_stage", {5, ob, 0});
+    print("call init");
+end
+
+function death_stage(bridge, uuid, params)
+
+    local agent = bridge:getClass("com.tian.server.util.LivingLuaAgent");
+    local death_msg = get_death_msg(bridge);
+    local ob = params[1];
+    local stage = params[2];
+    agent:tellObject(ob, death_msg[stage+1]);
+    local number = #death_msg;
+    print("number:" .. number);
+    print("stage: " .. stage);
+
+    if(stage + 1 < number) then
+        agent:createScheduleTask(uuid, "death_stage", {5, ob, stage + 1});
+        --[[call_out( "death_stage", 5, ob, stage );]]
+        return;
+    else
+        --[[ob->reincarnate();]]
+    end
 end

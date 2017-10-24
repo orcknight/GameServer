@@ -1,19 +1,32 @@
 package com.tian.server.service;
 
+import com.tian.server.dao.PlayerInfoDao;
+import com.tian.server.entity.PlayerInfoEntity;
 import com.tian.server.entity.RoomEntity;
+import com.tian.server.entity.RoomGateEntity;
 import com.tian.server.model.*;
+import com.tian.server.model.Race.Human;
+import com.tian.server.util.LuaBridge;
 import com.tian.server.util.MsgUtil;
 import com.tian.server.util.UnityCmdUtil;
 import com.tian.server.util.UserCacheUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import org.hibernate.Transaction;
+import org.luaj.vm2.Globals;
+import org.luaj.vm2.LuaValue;
+import org.luaj.vm2.lib.jse.CoerceJavaToLua;
+import org.luaj.vm2.lib.jse.JsePlatform;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by PPX on 2017/10/19.
  */
-public class EnvironmentService {
+public class EnvironmentService extends  BaseService{
 
     public Integer move(MudObject me, String dest){
 
@@ -61,7 +74,24 @@ public class EnvironmentService {
         }
 
         //设置物品的location
-        me.setLocation(UserCacheUtil.getAllMaps().get(dest));
+        RoomEntity roomEntity = UserCacheUtil.getAllMaps().get(dest);
+        me.setLocation(roomEntity);
+        if(me instanceof  Player){
+
+            //更新用户的位置
+            Transaction transaction = getSession().getTransaction();
+            try{
+                transaction.begin();
+                PlayerInfoDao playerInfoDao = new PlayerInfoDao();
+                PlayerInfoEntity playerInfoEntity = ((Player) me).getPlayerInfo();
+                playerInfoEntity.setRoomName(dest);
+                playerInfoEntity.setCityName(roomEntity.getPname());
+                playerInfoDao.update(playerInfoEntity);
+                transaction.commit();
+            }catch (Exception e){
+                transaction.rollback();
+            }
+        }
 
         String typeStr = "goods";
         String nameStr = "未知";
@@ -104,8 +134,93 @@ public class EnvironmentService {
             //加入新房间
             destRoomObjects.getPlayers().add((Player)me);
             ((Player) me).getSocketClient().joinRoom(dest);
+            loadItemsToRoom(dest, ((Player) me));
         }
+
+        //执行所有npc的init函数
+        Collection<Living> npcs = destRoomObjects.getNpcs().values();
+        for(Living npc : npcs){
+
+            if(npc.getResource() == null || npc.getResource().length() < 1){
+                continue;
+            }
+
+            if(npc.getCmdActions().containsKey("init") && me instanceof Living){
+
+                LuaBridge bridge = new LuaBridge();
+                String luaPath = this.getClass().getResource(npc.getResource()).getPath();
+                Globals globals = JsePlatform.standardGlobals();
+                //加载脚本文件login.lua，并编译
+                globals.loadfile(luaPath).call();
+                String funName = npc.getCmdActions().get("init");
+
+                LuaValue[] luaParams = new LuaValue[1];
+                luaParams[0] = LuaValue.valueOf(me.getUuid().toString());
+                //获取带参函数create
+                LuaValue initFun = globals.get(LuaValue.valueOf(funName));
+                //执行方法初始化数据
+                initFun.call(CoerceJavaToLua.coerce(bridge), LuaValue.valueOf(npc.getUuid().toString()), LuaValue.listOf(luaParams));
+            }
+        }
+
         return 1;
+    }
+
+    private void loadItemsToRoom(String roomNames, Player me){
+
+        //载入房间内的玩家和物品
+        Map<String, RoomObjects> roomObjectsMap = UserCacheUtil.getRoomObjectsCache();
+        //获取当前房间的物品
+        RoomObjects roomObjects = roomObjectsMap.get(roomNames);
+
+        JSONArray jsonArray = new JSONArray();
+        PlayerService playerService = new PlayerService();
+        Map<Long, Living> npcs = roomObjects.getNpcs();
+        if(npcs.size() > 0){
+
+            JSONObject npcObject = playerService.getLookLivingProto(npcs, "npc");
+            jsonArray.add(npcObject);
+        }
+
+        List<Player> players = roomObjects.getPlayers();
+        if(players.size() > 1){
+
+            List<Living> excludeMe = new ArrayList<Living>();
+            for(Player player : players){
+                if(player.getUuid() == me.getUuid()){
+                    continue;
+                }
+                excludeMe.add(player);
+            }
+
+            JSONObject userObject = playerService.getLookLivingProto(excludeMe, "user");
+            jsonArray.add(userObject);
+        }
+
+        Map<Long, GoodsContainer> goodsContainers = roomObjects.getGoods();
+        if(goodsContainers.size() > 0){
+
+            JSONObject goodsObject = playerService.getLookGoodsProto(goodsContainers);
+            jsonArray.add(goodsObject);
+        }
+
+        Map<String, RoomGateEntity> roomGates = roomObjects.getGates();
+        if(roomGates.size() > 0){
+
+            JSONObject userObject = playerService.getLookGateProto(roomGates, "gates");
+            jsonArray.add(userObject);
+        }
+
+        //获取房间物品等信息
+        //Map<String, RoomObjects> roomObjectsMap = UserCacheUtil.getRoomObjectsCache();
+        //获取当前房间的物品
+        //RoomObjects roomObjects = roomObjectsMap.get(roomNames);
+        //if(roomObjects == null){
+        //return;
+        //}
+
+        //String msg = ZjMudUtil.getObjectsLine(roomObjects, player);
+        MsgUtil.sendMsg(me.getSocketClient(), jsonArray);
     }
 
     private PlayerLocation getLocation(String roomName){
