@@ -560,12 +560,6 @@ public class DamageService {
         }
     }
 
-    private void reincarnate(Living ob) {
-        ob.setGhost(false);
-        ob.setEffJing(ob.getMaxJing());
-        ob.setEffQi(ob.getMaxQi());
-    }
-
     class ReviveTask extends TimerTask {
         private Living me;
 

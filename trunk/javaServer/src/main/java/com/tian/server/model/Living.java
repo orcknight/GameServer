@@ -1071,6 +1071,12 @@ public class Living extends MudObject{
         timer.schedule(new ScheduleTask(this, funName, params), seconds * 100);//五百毫秒
     }
 
+    public void reincarnate() {
+        this.setGhost(false);
+        this.setEffJing(this.getMaxJing());
+        this.setEffQi(this.getMaxQi());
+    }
+
     class ScheduleTask extends TimerTask {
         private Living ob;
         private String funName;

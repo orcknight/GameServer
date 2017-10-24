@@ -2,6 +2,7 @@ package com.tian.server.util;
 
 import com.tian.server.model.Living;
 import com.tian.server.model.Player;
+import com.tian.server.service.EnvironmentService;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -286,6 +287,23 @@ public class LivingLuaAgent {
             return 1;
         }
         return 0;
+    }
+
+    public static void reincarnate(String uuid){
+        Living living  = (Living)UserCacheUtil.getAllObjects().get(Long.valueOf(uuid));
+        if(living == null){
+            return;
+        }
+        living.reincarnate();
+    }
+
+    public static void move(String uuid, String source, String dest){
+        Living living  = (Living)UserCacheUtil.getAllObjects().get(Long.valueOf(uuid));
+        if(living == null){
+            return;
+        }
+        EnvironmentService environmentService = new EnvironmentService();
+        environmentService.move(living, dest);
     }
 
 }
