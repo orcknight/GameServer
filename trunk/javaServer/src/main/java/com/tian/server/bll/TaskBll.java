@@ -9,6 +9,7 @@ import com.tian.server.entity.PlayerTrackActionEntity;
 import com.tian.server.entity.PlayerTrackEntity;
 import com.tian.server.model.*;
 import com.tian.server.service.TaskService;
+import com.tian.server.util.UnityCmdUtil;
 import com.tian.server.util.UserCacheUtil;
 import com.tian.server.util.XmlUtil;
 import net.sf.json.JSONArray;
@@ -39,7 +40,9 @@ public class TaskBll extends BaseBll {
         for(int i = 0; i < taskList.size(); i++) {
             retArray.add(taskService.transPlayerTask(taskList.get(i)));
         }
-
+        JSONArray jsonArray = new JSONArray();
+        jsonArray.add(UnityCmdUtil.getTaskListRet(retArray));
+        sendMsg(jsonArray);
     }
 
     /* 发放奖励 */

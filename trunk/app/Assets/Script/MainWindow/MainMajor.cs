@@ -192,6 +192,9 @@ public class MainMajor : MonoBehaviour {
 			case ProtoCode.BAG_POP_CODE:
 				OpenBag (msg);
 				break;
+			case ProtoCode.TASK_LIST_CODE:
+				LoadTaskList (msg);
+				break;
 			default:
 				break;
 			}
@@ -848,5 +851,30 @@ public class MainMajor : MonoBehaviour {
 		bagManager.setLoadControl (load);
 		bagManager.setTicketControl (ticket);
 		bagManager.setBagItems (itemList);
+	}
+
+	private void LoadTaskList(string msg){
+
+		JArray tracks = JArray.Parse (msg);
+		List<Track> trackList = new List<Track> ();
+		for (int i = 0; i < tracks.Count; ++i) {
+
+			Track track = new Track ();
+			JObject item = JObject.Parse (tracks [i].ToString ()); 
+			track.Id = int.Parse( item ["id"].ToString());
+			track.Desc = item ["desc"].ToString();
+
+			TrackAction trackAction = new TrackAction ();
+
+			JObject actionObject = JObject.Parse (item ["action"].ToString ());
+			trackAction.Desc = actionObject ["desc"].ToString ();
+			trackAction.Id = int.Parse (actionObject ["id"].ToString ());
+			track.Action = trackAction;
+
+			trackList.Add (track);
+		}
+
+		m_TaskBar.GetComponent<TaskBar> ().InitTaskData (trackList);
+
 	}
 }

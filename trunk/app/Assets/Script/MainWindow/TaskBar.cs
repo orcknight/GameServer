@@ -26,7 +26,7 @@ public class TaskBar : MonoBehaviour {
 		//get task data
 	}
 
-	void InitTaskData(List<Track> tracks){
+	public void InitTaskData(List<Track> tracks){
 
 		GameObject taskItemPerfab = Resources.Load ("MainWindow/TaskItem") as GameObject; 
 		for (int i = 0; i < tracks.Count; i++) {

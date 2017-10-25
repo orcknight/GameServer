@@ -97,7 +97,7 @@ public class UnityCmdUtil {
         return getCodeMsgRet(BAG_POP_CODE, msg);
     }
 
-    public static JSONObject getTaskListRet(JSONObject msg) {
+    public static JSONObject getTaskListRet(JSONArray msg) {
         return getCodeMsgRet(TASK_LIST_CODE, msg);
     }
 

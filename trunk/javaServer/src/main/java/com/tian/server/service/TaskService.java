@@ -21,7 +21,7 @@ public class TaskService {
         TaskTrackAction trackAction = taskTrack.getTrackActions().get(playerTask.getAction().getActionId());
         JSONObject actionObject = new JSONObject();
         actionObject.put("id", trackAction.getId());
-        actionObject.put("Desc", trackAction.getDesc());
+        actionObject.put("desc", trackAction.getDesc());
         taskObject.put("action", actionObject);
 
         return taskObject;
