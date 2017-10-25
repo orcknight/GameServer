@@ -335,6 +335,13 @@ public class MainMajor : MonoBehaviour {
 
 		if (obj.name.Equals ("BtnTaskList")) {
 
+			//发送tasklist消息
+			JSONObject sendData = new JSONObject ();
+			JSONObject jsonObject = new JSONObject ();
+			jsonObject.AddField ("cmd", "tasklist");
+			jsonObject.AddField ("data", sendData);
+			m_Socket.Emit ("unity_stream", jsonObject);
+
 			if (m_TaskBar == null) {
 
 				GameObject taskBarPerfab = Resources.Load ("MainWindow/TaskBar") as GameObject; 

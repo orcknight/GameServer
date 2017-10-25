@@ -7,6 +7,8 @@ public class TaskBar : MonoBehaviour {
 
 	private Transform m_TableTrans = null;
 	private GameObject m_Selected = null;
+	private Transform m_TaskListGrid = null;
+	private Transform m_TaskDetail = null;
 
     public delegate void taskButtonClickCallback(string cmd, string target);
 
@@ -17,21 +19,29 @@ public class TaskBar : MonoBehaviour {
 
 		m_TableTrans = this.transform.Find ("Table");
 		m_TableTrans.localPosition = new Vector3(-403f, 494f,0f);
-
-
-
-		GameObject[] objs = GameObject.FindGameObjectsWithTag ("TaskItemButton");
-
-		foreach(GameObject obj in objs){
-
-			UIEventListener.Get(obj).onClick = OnTaskButtonClick;  
-		}
+		Transform taskListTrans = m_TableTrans.Find ("TaskList");
+		m_TaskListGrid = taskListTrans.Find ("Grid");
+		m_TaskDetail = m_TableTrans.Find ("TaskDetail");
 
 		//get task data
 	}
 
-	void InitTaskData(){
+	void InitTaskData(List<Track> tracks){
 
+		GameObject taskItemPerfab = Resources.Load ("MainWindow/TaskItem") as GameObject; 
+		for (int i = 0; i < tracks.Count; i++) {
+
+			GameObject item = GameObject.Instantiate (taskItemPerfab) as GameObject;
+			item.transform.parent = m_TaskListGrid;
+			item.SetActive (true);
+			item.transform.localScale = new Vector3 (1f, 1f, 1f);
+			item.transform.localPosition = new Vector3 (1f, 1f, 1f);
+
+			//绑定单击事件
+			UIEventListener.Get(item).onClick = OnTaskButtonClick;  
+		}
+
+		m_TaskListGrid.GetComponent<UIGrid> ().repositionNow = true;
 	}
 	
 	// Update is called once per frame

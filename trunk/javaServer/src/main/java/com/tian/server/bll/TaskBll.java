@@ -8,8 +8,10 @@ import com.tian.server.entity.PlayerEntity;
 import com.tian.server.entity.PlayerTrackActionEntity;
 import com.tian.server.entity.PlayerTrackEntity;
 import com.tian.server.model.*;
+import com.tian.server.service.TaskService;
 import com.tian.server.util.UserCacheUtil;
 import com.tian.server.util.XmlUtil;
+import net.sf.json.JSONArray;
 import org.hibernate.Transaction;
 
 import java.sql.Timestamp;
@@ -32,6 +34,12 @@ public class TaskBll extends BaseBll {
 
         Player me = (Player)UserCacheUtil.getPlayers().get(this.userId);
         List<PlayerTask> taskList = me.getTaskList();
+        TaskService taskService = new TaskService();
+        JSONArray retArray = new JSONArray();
+        for(int i = 0; i < taskList.size(); i++) {
+            retArray.add(taskService.transPlayerTask(taskList.get(i)));
+        }
+
     }
 
     /* 发放奖励 */

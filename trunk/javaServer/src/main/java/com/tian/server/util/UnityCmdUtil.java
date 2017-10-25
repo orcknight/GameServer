@@ -29,6 +29,7 @@ public class UnityCmdUtil {
     public static final String OBJECT_INFO_POP_CODE = "009";
     public static final String GAME_STORY_CODE = "0010";
     public static final String BAG_POP_CODE = "0011";
+    public static final String TASK_LIST_CODE = "0012";
 
     public static JSONObject getCheckVersionRet(String msg) {
         return getCodeMsgRet(CHECK_VERSION_CODE, msg);
@@ -94,6 +95,10 @@ public class UnityCmdUtil {
 
     public static JSONObject getBagPopRet(JSONObject msg) {
         return getCodeMsgRet(BAG_POP_CODE, msg);
+    }
+
+    public static JSONObject getTaskListRet(JSONObject msg) {
+        return getCodeMsgRet(TASK_LIST_CODE, msg);
     }
 
     public static JSONObject getCodeMsgRet(String code, Object msg) {
