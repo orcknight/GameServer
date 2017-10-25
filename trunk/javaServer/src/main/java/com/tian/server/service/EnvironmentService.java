@@ -166,6 +166,19 @@ public class EnvironmentService extends  BaseService{
         return 1;
     }
 
+    public Boolean isChatRoom(Living me){
+
+        if(me.getLocation() == null){
+            return false;
+        }
+
+        if(me.getLocation().getIsChatRoom() == 0){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
     private void loadItemsToRoom(String roomNames, Player me){
 
         //载入房间内的玩家和物品

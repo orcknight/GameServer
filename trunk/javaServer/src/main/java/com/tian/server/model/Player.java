@@ -18,10 +18,6 @@ public class Player extends Human {
     private SocketIOClient socketClient;
     private Integer playerId = 0;
     private String character = "";
-    private Integer maxFood = 0;
-    private Integer food = 0;
-    private Integer maxWater = 0;
-    private Integer water = 0;
     private Long money = 0L;
     private Integer ticket = 0;
 
@@ -169,38 +165,6 @@ public class Player extends Human {
 
     public void setCharacter(String character) {
         this.character = character;
-    }
-
-    public Integer getMaxFood() {
-        return maxFood;
-    }
-
-    public void setMaxFood(Integer maxFood) {
-        this.maxFood = maxFood;
-    }
-
-    public Integer getFood() {
-        return food;
-    }
-
-    public void setFood(Integer food) {
-        this.food = food;
-    }
-
-    public Integer getMaxWater() {
-        return maxWater;
-    }
-
-    public void setMaxWater(Integer maxWater) {
-        this.maxWater = maxWater;
-    }
-
-    public Integer getWater() {
-        return water;
-    }
-
-    public void setWater(Integer water) {
-        this.water = water;
     }
 
     public Long getMoney() {

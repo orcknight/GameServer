@@ -19,12 +19,19 @@ public class TaskBar : MonoBehaviour {
 		m_TableTrans.localPosition = new Vector3(-403f, 494f,0f);
 
 
+
 		GameObject[] objs = GameObject.FindGameObjectsWithTag ("TaskItemButton");
 
 		foreach(GameObject obj in objs){
 
 			UIEventListener.Get(obj).onClick = OnTaskButtonClick;  
 		}
+
+		//get task data
+	}
+
+	void InitTaskData(){
+
 	}
 	
 	// Update is called once per frame

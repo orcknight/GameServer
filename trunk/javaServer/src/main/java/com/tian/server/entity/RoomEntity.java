@@ -17,6 +17,7 @@ public class RoomEntity {
     private Integer noMagic;
     private String outdoors;
     private Byte isStartRoom;
+    private Byte isChatRoom;
     private String east;
     private String west;
     private String south;
@@ -118,6 +119,16 @@ public class RoomEntity {
 
     public void setIsStartRoom(Byte isStartRoom) {
         this.isStartRoom = isStartRoom;
+    }
+
+    @Basic
+    @Column(name = "isChatRoom", nullable = true)
+    public Byte getIsChatRoom() {
+        return isChatRoom;
+    }
+
+    public void setIsChatRoom(Byte isChatRoom) {
+        this.isChatRoom = isChatRoom;
     }
 
     @Basic
@@ -256,6 +267,7 @@ public class RoomEntity {
         if (noMagic != null ? !noMagic.equals(that.noMagic) : that.noMagic != null) return false;
         if (outdoors != null ? !outdoors.equals(that.outdoors) : that.outdoors != null) return false;
         if (isStartRoom != null ? !isStartRoom.equals(that.isStartRoom) : that.isStartRoom != null) return false;
+        if (isChatRoom != null ? !isChatRoom.equals(that.isChatRoom) : that.isChatRoom != null) return false;
         if (east != null ? !east.equals(that.east) : that.east != null) return false;
         if (west != null ? !west.equals(that.west) : that.west != null) return false;
         if (south != null ? !south.equals(that.south) : that.south != null) return false;
@@ -283,6 +295,7 @@ public class RoomEntity {
         result = 31 * result + (noMagic != null ? noMagic.hashCode() : 0);
         result = 31 * result + (outdoors != null ? outdoors.hashCode() : 0);
         result = 31 * result + (isStartRoom != null ? isStartRoom.hashCode() : 0);
+        result = 31 * result + (isChatRoom != null ? isChatRoom.hashCode() : 0);
         result = 31 * result + (east != null ? east.hashCode() : 0);
         result = 31 * result + (west != null ? west.hashCode() : 0);
         result = 31 * result + (south != null ? south.hashCode() : 0);

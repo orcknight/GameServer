@@ -1,5 +1,6 @@
 package com.tian.test;
 
+import com.tian.server.model.Living;
 import com.tian.server.service.TaskService;
 import com.tian.server.util.IdUtil;
 import com.tian.server.util.LivingLuaAgent;
@@ -8,6 +9,7 @@ import junit.framework.TestCase;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 /**
  * Created by PPX on 2017/6/22.
@@ -30,6 +32,12 @@ public class RoomDaoTest extends TestCase {
         String msg = "{\"level\":0,\"unit\":\"颗\",\"name\":\"头\",\"leftName\":\"人头\",\"leftId\":\"head\",\"components\":{\"left eye\":\"left eye\",\"right eye\":\"right eye\",\"nose\":\"nose\",\"left ear\":\"left ear\",\"right ear\":\"right ear\",\"hair\":\"hair\",\"tongue\": \"tongue\" },\"verbOfPart\":\"砍下\",\"cloneObject\":\"/clone/misc/head\" }";;
         JSONObject jsonObject = JSONObject.fromObject(msg);
         System.out.println("xx");
+
+        Living ser = new Living();
+        ser.applyCondition("kill", 1);
+        Object x = ser.getCndObject("kill");
+        int flag = ser.updateCondition();
+        System.out.print("xxx");
          /*try {
 
            String luaPath = this.getClass().getResource("/lua/npc/xinghuacun/mengyi.lua").getPath();

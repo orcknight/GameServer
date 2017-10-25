@@ -13,6 +13,7 @@ import com.tian.server.util.XmlUtil;
 import org.hibernate.Transaction;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,6 +26,12 @@ public class TaskBll extends BaseBll {
 
     public TaskBll(SocketIOClient socketIOClient) {
         super(socketIOClient);
+    }
+
+    public void getTaskList(){
+
+        Player me = (Player)UserCacheUtil.getPlayers().get(this.userId);
+        List<PlayerTask> taskList = me.getTaskList();
     }
 
     /* 发放奖励 */

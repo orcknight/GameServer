@@ -20,7 +20,7 @@ public class UnityCmdResolver {
     private String[] chatCmdArray = new String[] {"liaotian", "chat"};
     private String[] lookCmdArray = new String[] {"look", "open", "close"};
     private String[] combatCmdArray = new String[] {"fight", "kill", "touxi"};
-    private String[] taskCmdArray = new String[] {"reward"};
+    private String[] taskCmdArray = new String[] {"reward", "tasklist"};
     private String[] getCmdArray = new String[] {"get"};
     private String[] infoCmdArray = new String[] {"bag"};
 

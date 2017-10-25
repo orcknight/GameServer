@@ -101,7 +101,6 @@ function init(bridge, uuid, params)
     local agent = bridge:getClass("com.tian.server.util.LivingLuaAgent");
     local ob = params[1];
     print("call init");
-    print(ob);
     if (agent:getGhost(ob) == 0) then
         return;
     end
@@ -115,17 +114,16 @@ function death_stage(bridge, uuid, params)
     local agent = bridge:getClass("com.tian.server.util.LivingLuaAgent");
     local death_msg = get_death_msg(bridge);
     local ob = params[1];
-    local stage = params[2];
-    agent:tellObject(ob, death_msg[stage+1]);
+    local stage = tonumber(params[2]);
     local number = #death_msg;
-    print("number:" .. number);
-    print("stage: " .. stage);
+    agent:tellObject(ob, death_msg[stage + 1]);
 
     if(stage + 1 < number) then
         agent:createScheduleTask(uuid, "death_stage", {5, ob, stage + 1});
-        --[[call_out( "death_stage", 5, ob, stage );]]
         return;
     else
-        --[[ob->reincarnate();]]
+        agent:reincarnate(ob);
     end
+
+    agent:move(ob, "death/gate", "xinghuacun/guangchang");
 end

@@ -1,6 +1,7 @@
 package com.tian.server.service;
 
 import com.corundumstudio.socketio.SocketIOClient;
+import com.tian.server.common.ConditionConst;
 import com.tian.server.model.Living;
 import com.tian.server.model.Player;
 import com.tian.server.util.MsgUtil;
@@ -11,6 +12,7 @@ import net.sf.json.JSONArray;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * Created by PPX on 2017/9/29.
@@ -39,8 +41,7 @@ public class HeartBeatService {
 
         int t;
         int period;
-        int wimpy_ratio, cnd_flag;
-        int is_player;
+        int wimpy_ratio, cnd_flag = 0;
 
         if (ob.getQi() <= 0 || ob.getJing() < 0) {
 
@@ -94,33 +95,41 @@ public class HeartBeatService {
             ((Player) ob).getSocketClient().sendEvent("status", jArray);
         }
 
-        return;
-
         /*if (my["doing"] == "scheme")
             SCHEME_CMD -> execute_schedule(me);
 
-        if (!me) return;
+        if (!me) return;*/
 
-        if (!(is_player = playerp(me))) {
-            me -> scan();
+        boolean isPlayer = (ob instanceof  Player);
+
+
+
+        if (!isPlayer) {
+            /*me -> scan();
             // scan() may do anything -- include destruct(this_object())
-            if (!me) return;
+            if (!me) return;*/
         }
 
-        if ((t = time()) < next_beat) return;
-        else next_beat = t + 5 + random(10);
+        ob.setT(System.currentTimeMillis());
+        if ( ob.getT() < ob.getNextBeat()) {
+            return;
+        } else {
+            Random random = new Random();
+            ob.setNextBeat(ob.getT()  + 5 * 1000 + random.nextInt(10) * 1000);
+        }
 
-        if (!my["not_living"])
-            cnd_flag = update_condition();
-        if (!me) return;
+        if (ob.query("not_living") == null)
+            cnd_flag = ob.updateCondition();
+        //if (!me) return;
 
-        if (!(cnd_flag & CND_NO_HEAL_UP))
-            cnd_flag = heal_up();
+        if ((cnd_flag & ConditionConst.CND_NO_HEAL_UP) == 0) {
+            cnd_flag = damageService.heal_up(ob);
+        }
 
         // If we are compeletely in peace, turn off heart beat.
         // heal_up() must be called prior to other two to make sure it is called
         // because the && operator is lazy :P
-        if (!cnd_flag &&
+        /*if (!cnd_flag &&
                 !is_player &&
                 !keep_beat_flag &&
                 !is_fighting() &&

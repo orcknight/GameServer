@@ -20,6 +20,8 @@ public class TaskEventHandler implements CmdEventHandler{
             Integer rewardId = Integer.parseInt(data.getString("rewardId"));
 
             taskBll.doReward(trackId, trackActionId, rewardId);
+        }else if(cmd.equals("tasklist")){
+            taskBll.getTaskList();
         }
 
     }

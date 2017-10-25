@@ -1,8 +1,15 @@
 package com.tian.server.model;
 
+import com.tian.server.common.ConditionConst;
 import com.tian.server.entity.RoomEntity;
+import com.tian.server.util.LuaBridge;
 import org.apache.commons.collections.map.HashedMap;
+import org.luaj.vm2.Globals;
+import org.luaj.vm2.LuaValue;
+import org.luaj.vm2.lib.jse.CoerceJavaToLua;
+import org.luaj.vm2.lib.jse.JsePlatform;
 
+import java.net.URI;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,6 +31,8 @@ public class MudObject {
     protected Map<String, Object> conditions = new HashMap<String, Object>();
     private Living lastApplyerName = null;
     private Living lastApplyerId = null;
+    private Long t = 0L;
+    private Long nextBeat = 0L;
     protected Map<String ,String> cmdActions = new HashMap<String, String>(); //lua文件里定义的：命令-函数映射
 
     //属性
@@ -199,25 +208,31 @@ public class MudObject {
         }
     }
 
-    /*public Integer updateCondition() {
-        String[] cnd;
-        String[] last_applyer;
+    public Integer updateCondition() {
+        Object[] cnd;
+        Living last_applyer;
         int i, flag, update_flag;
-        Object cnd_d;
+        String cnd_d;
 
-        cnd = (String[])conditions.keySet().toArray();
+        if(conditions.size() < 1){
+            return 0;
+        }
+
+        cnd = conditions.keySet().toArray();
         update_flag = 0;
-        while (i--)
-        {
+        i = conditions.size();
+        while (i > 0) {
+            i--;
 
             // In order to not casue player lost heart beat occasionally while
             // calling external condition daemons, we take careful calling
             // convention here.
 
-            cnd_d = get_cnd_object(cnd[i]);
-            if (! cnd_d)
-            {
-                if (cnd[i]) clear_condition(cnd[i]);
+            cnd_d = getCndObject(cnd[i].toString());
+            if (cnd_d == null) {
+                if (cnd[i] != null) {
+                    clearCondition(cnd[i].toString());
+                }
                 continue;
             }
 
@@ -228,34 +243,53 @@ public class MudObject {
             // that don't cause error in users's heart beat.
             // If condition daemon returns 0 (or update_condition() not defined),
             // we can just assume the condition expired and remove it.
-
-            if (cond_applyer && (last_applyer = cond_applyer[cnd[i]]))
-            {
-                last_applyer_id = last_applyer[0];
-                last_applyer_name = last_applyer[1];
-            } else
-            {
-                last_applyer_id = 0;
-                last_applyer_name = 0;
+            last_applyer = (Living)this.condApplyer.get(cnd[i].toString());
+            if (last_applyer != null) {
+                lastApplyerId = last_applyer;
+                lastApplyerName = last_applyer;
+            } else {
+                lastApplyerId = null;
+                lastApplyerId = null;
             }
 
-            flag = call_other(cnd_d, "update_condition", this_object(), conditions[cnd[i]]);
-            if (! conditions)
-            {
+            LuaBridge bridge = new LuaBridge();
+            Globals globals = JsePlatform.standardGlobals();
+            //加载脚本文件login.lua，并编译
+            globals.loadfile(cnd_d).call();
+            //LuaValue[] luaParams = new LuaValue[1];
+            //luaParams[0] = LuaValue.valueOf(me.getUuid().toString());
+            //获取函数
+            LuaValue initFun = globals.get(LuaValue.valueOf("update_condition"));
+            if(!initFun.toboolean()){
+                continue;
+            }
+
+            LuaValue retValue = initFun.call(CoerceJavaToLua.coerce(bridge), LuaValue.valueOf(this.getUuid().toString()),
+                    LuaValue.valueOf(conditions.get(cnd[i].toString()).toString()));
+
+            flag = retValue.toint();
+            if (conditions.size() < 1) {
                 update_flag |= flag;
                 break;
             }
-            if (! (flag & CND_CONTINUE))
-            {
-                clear_condition(cnd[i]);
+            if ( (flag & ConditionConst.CND_CONTINUE ) > 0) {
+                clearCondition(cnd[i].toString());
             }
             update_flag |= flag;
         }
 
         return update_flag;
-    }*/
+    }
 
-
+    public String getCndObject(String cnd) {
+        String conditionPath = "/lua/condition/";
+        java.net.URL cndUri = this.getClass().getResource(conditionPath + cnd + ".lua");
+        if(cndUri == null){
+            return null;
+        }
+        String luaPath = cndUri.getPath();
+        return luaPath;
+    }
 
     public Living getLastApplyerName() {
         return lastApplyerName;
@@ -279,6 +313,22 @@ public class MudObject {
 
     public void setCmdActions(Map<String, String> cmdActions) {
         this.cmdActions = cmdActions;
+    }
+
+    public Long getT() {
+        return t;
+    }
+
+    public void setT(Long t) {
+        this.t = t;
+    }
+
+    public Long getNextBeat() {
+        return nextBeat;
+    }
+
+    public void setNextBeat(Long nextBeat) {
+        this.nextBeat = nextBeat;
     }
 
     private void _set( Map<String, Object> map, String[] parts, Object value ) {

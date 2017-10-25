@@ -560,6 +560,126 @@ public class DamageService {
         }
     }
 
+    public int heal_up(Living me) {
+        int update_flag, i;
+        int scale;
+
+        // Update the affect of nopoison
+        if (me.queryTemp("nopoison") != null) {
+            me.deleteTemp("nopoison");
+        }
+
+        // Am I in prison ?
+        //Todo:监狱暂时不处理
+        /*if (me->is_in_prison())
+        {
+            me->update_in_prison();
+            return 1;
+        }*/
+
+        boolean isUser = (me instanceof Player);
+        scale = me.getLiving() ? 1 : (isUser ? 4 : 8);
+        update_flag = 0;
+        Map<String ,Object> my = me.queryEntire();
+        EnvironmentService environmentService = new EnvironmentService();
+
+        if (!isUser || ( !environmentService.isChatRoom(me)
+                        && (my.get("doing") == null || my.get("doing").toString().equals("scheme")))) {
+
+            if(me.getWater() > 0){
+                me.setWater(me.getWater() - 1);
+                update_flag++;
+            }
+
+            if(me.getFood() > 0){
+                me.setFood(me.getFood() - 1);
+                update_flag++;
+            }
+
+            if (me.getWater() < 1 && isUser) {
+                return update_flag;
+            }
+
+            //Todo:守卫模式暂时不处理
+            /*if ((guard = me->query_temp("guardfor")) &&
+                    (! objectp(guard) || ! guard->is_character()))
+            {
+                if (my["jing"] * 100 / my["max_jing"] < 50)
+                {
+                    tell_object(me, "你觉得太累了，需要放松放松了。\n");
+                    command("guard cancel");
+                    return update_flag;
+                }
+
+                my["jing"] -= 30 + random(20);
+                switch (random(8))
+                {
+                    case 0: message_vision("$N紧张的盯着四周来往的行人。\n", me);
+                        break;
+
+                    case 1: message_vision("$N打了个哈欠，随即振作精神继续观察附近情况。\n", me);
+                        break;
+
+                    case 2: message_vision("$N左瞅瞅，右看看，不放过一个可疑的人物。\n", me);
+                        break;
+
+                    case 3: message_vision("$N打起精神细细的观察周围。\n", me);
+                        break;
+                }
+                update_flag++;
+                return update_flag;
+            }*/
+
+            me.setJing( me.getJing() + (me.getCon() + me.getMaxJingLi() / 10) / scale);
+            if(me.getJing() >= me.getEffJing()){
+                me.setJing(me.getEffJing());
+                if (me.getEffJing() < me.getMaxJing()) {
+                    me.setEffJing(me.getEffJing() + 1);
+                    update_flag++;
+                }
+            }else{
+                update_flag++;
+            }
+
+            if(!me.isBusy()){
+                me.setQi(me.getQi() + (me.getCon() * 2 + me.getMaxNeili() / 20) / scale);
+            }
+            if(me.getQi() >= me.getEffQi()){
+                me.setQi(me.getEffQi());
+                if (me.getEffQi() < me.getMaxQi()) {
+                    me.setEffQi(me.getEffQi() + 1);
+                    update_flag++;
+                }
+            }else{
+                update_flag++;
+            }
+
+            if (me.getFood() < 1 && isUser) {
+                return update_flag;
+            }
+
+            if (me.getMaxJingLi() > 0 && me.getJingLi() < me.getMaxJingLi()) {
+
+                Integer forceAdd = 0; //(int)me->query_skill("force") / 6
+                me.setJingLi(me.getJingLi() + me.getCon() + forceAdd);
+                if(me.getJingLi() > me.getMaxJingLi()){
+                    me.setJingLi(me.getMaxJingLi());
+                }
+                update_flag++;
+            }
+
+            if(me.getMaxNeili() > 0 && me.getNeili() < me.getMaxNeili()) {
+                Integer forceAdd = 0; //(int)me->query_skill("force") / 3;
+                me.setNeili(me.getNeili() + me.getCon() * 2 + forceAdd);
+                if (me.getNeili() > me.getMaxNeili()) {
+                    me.setNeili(me.getMaxNeili());
+                }
+                update_flag++;
+            }
+        }
+        return update_flag;
+    }
+
     class ReviveTask extends TimerTask {
         private Living me;
 

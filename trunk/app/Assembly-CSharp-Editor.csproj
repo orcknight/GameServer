@@ -58,6 +58,7 @@
      <Compile Include="Assets\NGUI\Scripts\Editor\ComponentSelector.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\EventDelegateDrawer.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\EventDelegateEditor.cs" />
+     <Compile Include="Assets\NGUI\Scripts\Editor\FindReference.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\FreeType.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\MinMaxRangeAttributeDrawer.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\NGUIContextMenu.cs" />
@@ -73,6 +74,7 @@
      <Compile Include="Assets\NGUI\Scripts\Editor\NGUITransformInspector.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\PropertyBindingEditor.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\PropertyReferenceDrawer.cs" />
+     <Compile Include="Assets\NGUI\Scripts\Editor\ResourceEdit.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\SpriteSelector.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\TweenAlphaEditor.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\TweenColorEditor.cs" />
@@ -113,6 +115,7 @@
      <Compile Include="Assets\NGUI\Scripts\Editor\UIKeyNavigationEditor.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\UILabelInspector.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\UILocalizeEditor.cs" />
+     <Compile Include="Assets\NGUI\Scripts\Editor\UIOnKeyRelation.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\UIPanelInspector.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\UIPanelTool.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\UIPlayAnimationEditor.cs" />

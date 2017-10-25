@@ -45,6 +45,12 @@ public class Living extends MudObject{
     protected Integer kar = 0; //福缘
     protected Integer per = 0; //容貌
 
+    //食物信息
+    protected Integer maxFood = 0;
+    protected Integer food = 0;
+    protected Integer maxWater = 0;
+    protected Integer water = 0;
+
     //气血等信息
     protected Integer maxQi = 0;
     protected Integer effQi = 0;
@@ -89,6 +95,38 @@ public class Living extends MudObject{
     protected Map<String, Inquiry> inquirys = new HashMap<String, Inquiry>();
     protected List<MudObject> vendorGoods = new ArrayList<MudObject>();
     protected List<GoodsContainer> packageList = new ArrayList<GoodsContainer>();
+
+    public Integer getMaxFood() {
+        return maxFood;
+    }
+
+    public void setMaxFood(Integer maxFood) {
+        this.maxFood = maxFood;
+    }
+
+    public Integer getFood() {
+        return food;
+    }
+
+    public void setFood(Integer food) {
+        this.food = food;
+    }
+
+    public Integer getMaxWater() {
+        return maxWater;
+    }
+
+    public void setMaxWater(Integer maxWater) {
+        this.maxWater = maxWater;
+    }
+
+    public Integer getWater() {
+        return water;
+    }
+
+    public void setWater(Integer water) {
+        this.water = water;
+    }
 
     public String getName() {
         return this.name;
@@ -920,7 +958,7 @@ public class Living extends MudObject{
     public void applyCondition(String cnd, Object info) {
 
         this.conditions.put(cnd, info);
-        this.condApplyer.put(cnd, new String[] {this.getUuid().toString(), this.getName()});
+        this.condApplyer.put(cnd, this);
     }
 
     public void continueAction() {
@@ -1072,6 +1110,7 @@ public class Living extends MudObject{
     }
 
     public void reincarnate() {
+        this.setLiving(true);
         this.setGhost(false);
         this.setEffJing(this.getMaxJing());
         this.setEffQi(this.getMaxQi());

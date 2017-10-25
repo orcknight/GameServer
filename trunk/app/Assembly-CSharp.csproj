@@ -215,11 +215,14 @@
      <Compile Include="Assets\Script\MainWindow\NpcTaskWindow.cs" />
      <Compile Include="Assets\Script\MainWindow\ObjectInfoPopManger.cs" />
      <Compile Include="Assets\Script\MainWindow\TaskBar.cs" />
+     <Compile Include="Assets\Script\MainWindow\TaskItem.cs" />
      <Compile Include="Assets\Script\Major.cs" />
      <Compile Include="Assets\Script\Model\CmdButtonItem.cs" />
      <Compile Include="Assets\Script\Model\ServerItem.cs" />
      <Compile Include="Assets\Script\Model\StateItem.cs" />
      <Compile Include="Assets\Script\Model\Story.cs" />
+     <Compile Include="Assets\Script\Model\Track.cs" />
+     <Compile Include="Assets\Script\Model\TrackAction.cs" />
      <Compile Include="Assets\Script\ServerList.cs" />
      <Compile Include="Assets\SocketIO\JSONObject\JSONObject.cs" />
      <Compile Include="Assets\SocketIO\JSONObject\JSONTemplates.cs" />
