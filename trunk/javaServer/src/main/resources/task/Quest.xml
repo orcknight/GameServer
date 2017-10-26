@@ -5,9 +5,9 @@
             <action act="talk" mapName="xinghuacun/guangchang"  npcId="1" storyId="1001" desc="去杏花村-广场找[新手引导员]，了解属性的相关信息" reward="1001"/>
             <action act="talk" mapName="xinghuacun/guangchang"  npcId="2" storyId="1001" desc="去杏花村-广场找新手指导员，了解属性的相关信息" reward="1001"/>
         </track>
-        <track id ="102" needLv="1" desc = "了解人物属性">
-            <action act="talk" mapName="xinghuacun/guangchang"  npcId="1" storyId="1001" desc="去杏花村-广场找新手指导员，了解属性的相关信息" reward="1001"/>
-            <action act="talk" mapName="xinghuacun/guangchang"  npcId="2" storyId="1001" desc="去杏花村-广场找新手指导员，了解属性的相关信息" reward="1001"/>
+        <track id ="102" needLv="1" desc = "门派-屠村">
+            <action act="talk" mapName="xinghuacun/guangchang"  npcId="1" storyId="1001" desc="[杭州]－[马家村]反抗朝廷，杨大人让你去送他们归西，要做的干净，不留活口。" reward="1001"/>
+            <action act="talk" mapName="xinghuacun/guangchang"  npcId="2" storyId="1001" desc="[杭州]－[马家村]反抗朝廷，杨大人让你去送他们归西，要做的干净，不留活口。" reward="1001"/>
         </track>
     </line>
 </Quest>

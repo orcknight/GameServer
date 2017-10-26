@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class TaskBar : MonoBehaviour {
 
-	private Transform m_TableTrans = null;
 	private GameObject m_Selected = null;
 	private Transform m_TaskListGrid = null;
 	private Transform m_TaskDetail = null;
@@ -17,25 +16,42 @@ public class TaskBar : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-		m_TableTrans = this.transform.Find ("Table");
-		m_TableTrans.localPosition = new Vector3(-403f, 494f,0f);
-		Transform taskListTrans = m_TableTrans.Find ("TaskList");
-		m_TaskListGrid = taskListTrans.Find ("Grid");
-		m_TaskDetail = m_TableTrans.Find ("TaskDetail");
+		init ();
 
 		//get task data
 	}
 
+	public void init(){
+
+		Transform taskListContainer = this.transform.Find ("TaskListContainer");
+		Transform taskListTrans = taskListContainer.Find ("TaskList");
+		m_TaskListGrid = taskListTrans.Find ("Grid");
+		Transform taskDetailContainer = this.transform.Find ("TaskDetailContainer");
+		m_TaskDetail = taskDetailContainer.Find ("TaskDetail");
+	}
+
 	public void InitTaskData(List<Track> tracks){
 
-		GameObject taskItemPerfab = Resources.Load ("MainWindow/TaskItem") as GameObject; 
+		if (m_TaskListGrid == null) {
+			init ();
+		}
+			
+		ClearTaskList ();
+
+		GameObject taskItemPerfab = Resources.Load ("MainWindow/TaskItemButton") as GameObject; 
 		for (int i = 0; i < tracks.Count; i++) {
 
 			GameObject item = GameObject.Instantiate (taskItemPerfab) as GameObject;
 			item.transform.parent = m_TaskListGrid;
-			item.SetActive (true);
 			item.transform.localScale = new Vector3 (1f, 1f, 1f);
 			item.transform.localPosition = new Vector3 (1f, 1f, 1f);
+			item.transform.Find ("Label").GetComponent<UILabel> ().text = (i+1) + ":" + tracks [i].Desc;
+			item.transform.GetComponent<TaskItem> ().Track = tracks [i];
+			item.SetActive (true);
+
+			if (i == 0) {
+				OnTaskButtonClick (item);
+			}
 
 			//绑定单击事件
 			UIEventListener.Get(item).onClick = OnTaskButtonClick;  
@@ -66,7 +82,11 @@ public class TaskBar : MonoBehaviour {
 		}
 		m_Selected = obj;
 		obj.GetComponent<UISprite> ().spriteName = "Orange-Button";
-		Debug.Log("我是按钮2被点击了");
+
+		//更新任务详情
+		string msg = obj.GetComponent<TaskItem>().Track.Action.Desc;
+		m_TaskDetail.transform.Find("Desc").GetComponent<UILabel>().text = msg;
+
 	}
 
     public void UpdateTaskDetail(string msg){
@@ -74,4 +94,19 @@ public class TaskBar : MonoBehaviour {
         JArray jlist = JArray.Parse(msg);
 
     }
+
+	private void ClearTaskList(){
+
+		UIGrid uiGrid = m_TaskListGrid.GetComponent<UIGrid> ();
+		if (uiGrid == null) {
+
+			return;
+		}
+
+		for(int k = 0;k<uiGrid.transform.childCount;k++)
+		{
+			GameObject go = uiGrid.transform.GetChild(k).gameObject;
+			Destroy(go);
+		}
+	}
 }

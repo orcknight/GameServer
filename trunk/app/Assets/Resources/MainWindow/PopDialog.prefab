@@ -305,7 +305,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 760, y: 36, z: 0}
+  m_Size: {x: 760, y: 42, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114023129262008324
 MonoBehaviour:
@@ -339,7 +339,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 790
   mHeight: 700
-  mDepth: 20
+  mDepth: 8
   mMat: {fileID: 0}
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
@@ -407,13 +407,13 @@ MonoBehaviour:
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
   mWidth: 760
-  mHeight: 36
-  mDepth: 29
+  mHeight: 42
+  mDepth: 9
   mMat: {fileID: 0}
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 21.11111
+  aspectRatio: 18.095238
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   mFont: {fileID: 0}
@@ -487,7 +487,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 770
   mHeight: 60
-  mDepth: 22
+  mDepth: 9
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -520,7 +520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f02842fa4878db54f9587ff4de7d9f2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollView: {fileID: 0}
+  scrollView: {fileID: 114842522247623954}
   draggablePanel: {fileID: 0}
 --- !u!114 &114588807943460418
 MonoBehaviour:
@@ -575,7 +575,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 770
   mHeight: 60
-  mDepth: 21
+  mDepth: 8
   mMat: {fileID: 0}
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
@@ -613,7 +613,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 790
   mHeight: 700
-  mDepth: 18
+  mDepth: 7
   mMat: {fileID: 0}
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
@@ -667,7 +667,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 770
   mHeight: 60
-  mDepth: 23
+  mDepth: 10
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -747,7 +747,7 @@ MonoBehaviour:
   mClipping: 3
   mClipRange: {x: 0, y: 30, z: 790, w: 640}
   mClipSoftness: {x: 4, y: 4}
-  mDepth: 21
+  mDepth: 8
   mSortingOrder: 0
   mSortingLayerName: 
   mClipOffset: {x: 0, y: 0}

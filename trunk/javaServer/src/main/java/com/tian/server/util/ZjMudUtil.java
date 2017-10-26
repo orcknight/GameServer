@@ -358,7 +358,7 @@ public class ZjMudUtil {
                     sb.append(contact);
                 }
                 sb.append(gate.getName());
-                sb.append(":look /gate/gate#" + gate.getName());
+                sb.append(":look /gates/gates#" + gate.getName());
                 temp++;
             }
 

@@ -1,6 +1,11 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\MainWindow\PopWindowManager.cs">
+    <Files>
+      <File FileName="Assets\Script\MainWindow\PopWindowManager.cs" Line="101" Column="4" />
+      <File FileName="Assets\Script\MainWindow\MainMajor.cs" Line="27" Column="59" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="F:\jiecheng\GameServer\trunk\app\Assets\Script\CommonUIDetail.cs" line="22" column="1" />
@@ -10,8 +15,10 @@
       <Breakpoint file="F:\jiecheng\GameServer\trunk\app\Assets\SocketIO\WebsocketSharp\WebSocket.cs" line="1405" column="20" />
       <Breakpoint file="F:\jiecheng\GameServer\trunk\app\Assets\SocketIO\WebsocketSharp\WebSocket.cs" line="1410" column="18" />
       <Breakpoint file="F:\jiecheng\GameServer\trunk\app\Assets\SocketIO\WebsocketSharp\WebSocket.cs" line="1424" column="22" />
-      <Breakpoint file="F:\jiecheng\GameServer\trunk\app\Assets\Script\MainWindow\MainMajor.cs" line="780" column="10" />
+      <Breakpoint file="F:\jiecheng\GameServer\trunk\app\Assets\Script\MainWindow\MainMajor.cs" line="787" column="10" />
       <Breakpoint file="F:\jiecheng\GameServer\trunk\app\Assets\Script\Test\FindReference.cs" line="70" column="24" />
+      <Breakpoint file="F:\jiecheng\GameServer\trunk\app\Assets\Script\MainWindow\TaskBar.cs" line="76" column="1" />
+      <Breakpoint file="F:\jiecheng\GameServer\trunk\app\Assets\Script\MainWindow\MainMajor.cs" line="686" column="22" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

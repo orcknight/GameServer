@@ -494,7 +494,7 @@ public class UserBll extends BaseBll {
         Map<String, RoomGateEntity> roomGates = roomObjects.getGates();
         if(roomGates.size() > 0){
 
-            JSONObject userObject = playerService.getLookGateProto(roomGates, "gate");
+            JSONObject userObject = playerService.getLookGateProto(roomGates, "gates");
             jsonArray.add(userObject);
         }
 

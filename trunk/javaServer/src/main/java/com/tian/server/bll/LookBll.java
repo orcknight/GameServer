@@ -130,7 +130,7 @@ public class LookBll extends BaseBll {
                 jsonArray.addOrUpdate(UnityCmdUtil.getObjectInfoPopRet(jsonObject));
                 sendMsg(jsonArray);
             }*/
-        } else if (type.equals("gate")) {
+        } else if (type.equals("gates")) {
 
             JSONObject retMsg = getLookGateStr(id);
             JSONArray retArray = new JSONArray();

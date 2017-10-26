@@ -214,6 +214,7 @@
      <Compile Include="Assets\Script\MainWindow\NpcBar.cs" />
      <Compile Include="Assets\Script\MainWindow\NpcTaskWindow.cs" />
      <Compile Include="Assets\Script\MainWindow\ObjectInfoPopManger.cs" />
+     <Compile Include="Assets\Script\MainWindow\PopWindowManager.cs" />
      <Compile Include="Assets\Script\MainWindow\TaskBar.cs" />
      <Compile Include="Assets\Script\MainWindow\TaskItem.cs" />
      <Compile Include="Assets\Script\Major.cs" />

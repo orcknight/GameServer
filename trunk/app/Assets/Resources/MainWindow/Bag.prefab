@@ -522,7 +522,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 800
   mHeight: 730
-  mDepth: 41
+  mDepth: 9
   mMat: {fileID: 0}
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
@@ -587,7 +587,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 760
   mHeight: 60
-  mDepth: 29
+  mDepth: 9
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -641,7 +641,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 80
   mHeight: 80
-  mDepth: 35
+  mDepth: 8
   mMat: {fileID: 0}
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
@@ -695,7 +695,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 280
   mHeight: 60
-  mDepth: 32
+  mDepth: 10
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -770,7 +770,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 600
   mHeight: 120
-  mDepth: 27
+  mDepth: 8
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -838,7 +838,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 800
   mHeight: 150
-  mDepth: 28
+  mDepth: 8
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -892,7 +892,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 800
   mHeight: 1200
-  mDepth: 26
+  mDepth: 7
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -946,7 +946,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 460
   mHeight: 60
-  mDepth: 31
+  mDepth: 10
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -1028,7 +1028,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 760
   mHeight: 60
-  mDepth: 30
+  mDepth: 10
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -1129,7 +1129,7 @@ MonoBehaviour:
   mClipping: 3
   mClipRange: {x: 0, y: 15, z: 800, w: 930}
   mClipSoftness: {x: 4, y: 4}
-  mDepth: 21
+  mDepth: 8
   mSortingOrder: 0
   mSortingLayerName: 
   mClipOffset: {x: 0, y: 0}
@@ -1166,7 +1166,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 460
   mHeight: 60
-  mDepth: 33
+  mDepth: 11
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -1234,7 +1234,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 760
   mHeight: 60
-  mDepth: 29
+  mDepth: 9
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -1317,7 +1317,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 275
   mHeight: 60
-  mDepth: 34
+  mDepth: 11
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0

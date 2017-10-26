@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Id: 0
-  m_Name: 
+  m_ServerName: 
   m_Value: 
   m_Url: 
   m_IsHot: 0
@@ -144,7 +144,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 500
   mHeight: 150
-  mDepth: 12
+  mDepth: 3
   mMat: {fileID: 0}
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
@@ -198,7 +198,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 500
   mHeight: 150
-  mDepth: 13
+  mDepth: 4
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
