@@ -126,6 +126,15 @@ public class CombatBll extends BaseBll {
             if (combatService.accept_fight(ob, me) != 1) {
                 return;
             }
+
+            //接受战斗，发送进入战斗界面的代码
+            JSONArray combatEnterArray = new JSONArray();
+
+            combatEnterArray.add(UnityCmdUtil.getCombatEnterRet(""));
+            messageService.tellObject(me, combatEnterArray);
+            messageService.tellObject(ob, combatEnterArray);
+
+            //互相加入到战斗参数中
             AttackService attackService = new AttackService();
             attackService.fight_ob(me, ob);
             attackService.fight_ob(ob, me);

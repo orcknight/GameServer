@@ -294,4 +294,14 @@ public class MessageService {
 
         MsgUtil.sendMsg(data, new ArrayList<SocketIOClient>(), clients);
     }
+
+    public void tellObject(Living ob, JSONArray data){
+
+        if(!(ob instanceof  Player)){
+            return;
+        }
+
+        Player player = (Player)ob;
+        MsgUtil.sendMsg(player.getSocketClient(), data);
+    }
 }

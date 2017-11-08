@@ -13,6 +13,10 @@ public class AttrProgressBarManger : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void setScrollView(int cur, int max) {
+
+    }
 		
 	public void setThumbText(string text){
 

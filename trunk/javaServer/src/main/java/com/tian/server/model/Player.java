@@ -90,6 +90,7 @@ public class Player extends Human {
         String bunchName = player.getBunchName() == null ? "" : player.getBunchName();
         Long money = player.getMoney() == null ? 0L : player.getMoney();
         Integer ticket = player.getTicket() == null ? 0 : player.getTicket();
+        Integer potential = player.getPotential() == null ? 0 : player.getPotential();
 
         setPlayerId(playerId);
         setCmdName(cmdName);
@@ -136,6 +137,7 @@ public class Player extends Human {
         setBunchName(bunchName);
         setMoney(money);
         setTicket(ticket);
+        setPotential(potential);
 
         if(!UserCacheUtil.getAllLivings().contains(this)) {
             UserCacheUtil.getAllLivings().add(this);

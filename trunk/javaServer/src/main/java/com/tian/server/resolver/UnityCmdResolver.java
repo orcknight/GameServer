@@ -14,7 +14,7 @@ import java.util.Arrays;
 public class UnityCmdResolver {
 
     private SocketIOClient server;
-    private String[] userCmdArray = new String[] {"login", "createrole", "pianshu", "quit"};
+    private String[] userCmdArray = new String[] {"login", "createrole", "pianshu", "quit", "hp"};
     private String[] moveCmdArray = new String[] {"east", "west", "south", "north", "northeast", "northwest",
             "southeast", "southwest", "in", "out"};
     private String[] chatCmdArray = new String[] {"liaotian", "chat"};

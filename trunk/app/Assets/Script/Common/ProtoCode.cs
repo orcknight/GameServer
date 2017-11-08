@@ -21,4 +21,7 @@ public class ProtoCode {
 	public const string GAME_STORY_CODE = "0010"; //弹出剧情对话窗口，进入剧情对话模式
 	public const string BAG_POP_CODE = "0011";
 	public const string TASK_LIST_CODE = "0012";
+    public const string COMBAT_ENTER_CODE = "0013"; //进入战斗命令
+    public const string COMBAT_INFO_CODE = "0014"; //战斗相关信息
+    public const string COMBAT_LEAVE_CODE = "0015"; //离开战斗命令
 }

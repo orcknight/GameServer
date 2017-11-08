@@ -11,6 +11,7 @@ import com.tian.server.model.*;
 import com.tian.server.service.PlayerService;
 import com.tian.server.service.RoomService;
 import com.tian.server.service.TaskService;
+import com.tian.server.service.UserService;
 import com.tian.server.util.*;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -265,6 +266,17 @@ public class UserBll extends BaseBll {
 
         //关闭连接
         socketIOClient.disconnect();
+    }
+
+    public void getPlayerAttr(String uuid){
+
+        //如果已经登陆了，发送下线消息然后
+        Map<Integer, Living> playerCacheMap = UserCacheUtil.getPlayers();
+        Player player = (Player)playerCacheMap.get(this.userId);
+
+        UserService userService = new UserService();
+        JSONArray jsonArray = userService.getPlayerAttribute(player);
+        sendMsg(jsonArray);
     }
 
     private void sendKickOffMsg(SocketIOClient socketIOClient){

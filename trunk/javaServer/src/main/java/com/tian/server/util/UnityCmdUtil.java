@@ -30,6 +30,9 @@ public class UnityCmdUtil {
     public static final String GAME_STORY_CODE = "0010";
     public static final String BAG_POP_CODE = "0011";
     public static final String TASK_LIST_CODE = "0012";
+    public static final String COMBAT_ENTER_CODE = "0013";
+    public static final String COMBAT_INFO_CODE = "0014";
+    public static final String COMBAT_LEAVE_CODE = "0015";
 
     public static JSONObject getCheckVersionRet(String msg) {
         return getCodeMsgRet(CHECK_VERSION_CODE, msg);
@@ -99,6 +102,18 @@ public class UnityCmdUtil {
 
     public static JSONObject getTaskListRet(JSONArray msg) {
         return getCodeMsgRet(TASK_LIST_CODE, msg);
+    }
+
+    public static JSONObject getCombatEnterRet(String msg){
+        return getCodeMsgRet(COMBAT_ENTER_CODE, msg);
+    }
+
+    public static JSONObject getCombatInfoRet(String msg) {
+        return getCodeMsgRet(COMBAT_INFO_CODE, msg);
+    }
+
+    public static JSONObject getCombatLeaveRet(String msg){
+        return getCodeMsgRet(COMBAT_LEAVE_CODE, msg);
     }
 
     public static JSONObject getCodeMsgRet(String code, Object msg) {

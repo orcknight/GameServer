@@ -26,7 +26,11 @@ public class UserEventHandler implements CmdEventHandler {
         }else if(cmd.equals("quit")){ //退出游戏
 
             userBll.logout();
-        }else{
+        }else if(cmd.equals("hp")){
+
+            String uuid = data.getString("uuid");
+            userBll.getPlayerAttr(uuid);
+        } else{
 
         }
     }

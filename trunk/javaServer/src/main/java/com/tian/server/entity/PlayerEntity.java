@@ -51,6 +51,7 @@ public class PlayerEntity {
     private String cmdName;
     private Byte shenType;
     private Long coupleId;
+    private Integer potential;
     private Long money;
     private Integer ticket;
 
@@ -455,6 +456,16 @@ public class PlayerEntity {
     }
 
     @Basic
+    @Column(name = "potential", nullable = true)
+    public Integer getPotential() {
+        return potential;
+    }
+
+    public void setPotential(Integer potential) {
+        this.potential = potential;
+    }
+
+    @Basic
     @Column(name = "money", nullable = true)
     public Long getMoney() {
         return money;
@@ -519,6 +530,7 @@ public class PlayerEntity {
         if (bunchName != null ? !bunchName.equals(that.bunchName) : that.bunchName != null) return false;
         if (cmdName != null ? !cmdName.equals(that.cmdName) : that.cmdName != null) return false;
         if (coupleId != null ? !coupleId.equals(that.coupleId) : that.coupleId != null) return false;
+        if (potential != null ? !potential.equals(that.potential) : that.potential != null) return false;
         if (money != null ? !money.equals(that.money) : that.money != null) return false;
         if (ticket != null ? !ticket.equals(that.ticket) : that.ticket != null) return false;
 
@@ -565,6 +577,7 @@ public class PlayerEntity {
         result = 31 * result + (bunchName != null ? bunchName.hashCode() : 0);
         result = 31 * result + (cmdName != null ? cmdName.hashCode() : 0);
         result = 31 * result + (coupleId != null ? coupleId.hashCode() : 0);
+        result = 31 * result + (potential != null ? potential.hashCode() : 0);
         result = 31 * result + (money != null ? money.hashCode() : 0);
         result = 31 * result + (ticket != null ? ticket.hashCode() : 0);
         return result;

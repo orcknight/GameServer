@@ -12,6 +12,8 @@ public class PopWindowManager : MonoBehaviour {
 	private Transform m_InfoWindowTrans = null;
 	private GameObject m_SocketIo = null;
 	private SocketIOComponent m_Socket = null;
+	private GameObject m_Combat = null;
+	private string m_LastDialogName = null;
 
 	// Use this for initialization
 	void Start () {
@@ -27,7 +29,13 @@ public class PopWindowManager : MonoBehaviour {
 		
 	}
 
-	public void OpenByName(string name, string param = ""){
+	public GameObject OpenByName(string name, string param = ""){
+
+		//如果有打开的窗口先关闭
+		if (!string.IsNullOrEmpty (m_LastDialogName)) {
+			closeByName (m_LastDialogName);
+		}
+		m_LastDialogName = name;
 
 		if (name.Equals ("taskbar")) {
 
@@ -48,8 +56,10 @@ public class PopWindowManager : MonoBehaviour {
 				m_TaskBar.SetActive (true);
 			}
 
-		} else if (name.Equals ("bag")) {
+			return m_TaskBar;
 
+		} else if (name.Equals ("bag")) {
+			
 			if (m_Bag == null) {
 
 				GameObject taskBarPerfab = Resources.Load ("MainWindow/Bag") as GameObject; 
@@ -89,6 +99,8 @@ public class PopWindowManager : MonoBehaviour {
 			bagManager.setLoadControl (load);
 			bagManager.setTicketControl (ticket);
 			bagManager.setBagItems (itemList);
+			return m_Bag;
+
 		} else if (name.Equals ("popdialog")) {
 
 			if (m_PopDialog == null) {
@@ -101,9 +113,9 @@ public class PopWindowManager : MonoBehaviour {
 
 
 			JObject jsonObject = JObject.Parse (param);
-			string descs = jsonObject ["desc"].ToString();
+			string descs = jsonObject ["desc"].ToString ();
 			descs = descs.Replace ("\\n", "\n");
-			string buttons = jsonObject ["buttons"].ToString();
+			string buttons = jsonObject ["buttons"].ToString ();
 			JArray jArray = JArray.Parse (buttons);
 
 			//获取PopScrollView
@@ -111,12 +123,12 @@ public class PopWindowManager : MonoBehaviour {
 			Transform labelTrans = popScrollView.Find ("Label");
 			Transform gridTrans = popScrollView.Find ("Grid");
 			ClearGridChilds (gridTrans);
-			GameObject popCmdButtonPerfab = Resources.Load("Common/PopCmdButton") as GameObject; 
+			GameObject popCmdButtonPerfab = Resources.Load ("Common/PopCmdButton") as GameObject; 
 
 			//获取下面的label赋值
 			labelTrans.GetComponent<UILabel> ().text = descs;
 			float labelHeight = labelTrans.GetComponent<UIWidget> ().localSize.y;
-			float gridHeight = 80f * Mathf.Ceil(((float)jArray.Count) / 4f);
+			float gridHeight = 80f * Mathf.Ceil (((float)jArray.Count) / 4f);
 
 			//计算弹出窗口的高度
 			int popHeight = (int)(labelHeight + gridHeight + 100f);
@@ -131,37 +143,106 @@ public class PopWindowManager : MonoBehaviour {
 			m_PopDialog.transform.localScale = new Vector3 (1f, 1f, 1f);
 			m_PopDialog.SetActive (true);
 
-			float labelY = ((float)popHeight/2f - (float)labelHeight / 2f - 20f);
+			float labelY = ((float)popHeight / 2f - (float)labelHeight / 2f - 20f);
 			labelTrans.localPosition = new Vector3 (0f, labelY, 0f);
 
-			float gridY = ((float)popHeight/2f - (float)labelHeight - 40f - gridHeight/2f);
+			float gridY = ((float)popHeight / 2f - (float)labelHeight - 40f - gridHeight / 2f);
 
 			//获取grid列表添加按钮
 			for (int i = 0; i < jArray.Count; ++i) {
 
 				JObject item = JObject.Parse (jArray [i].ToString ()); 
-				GameObject popCmdButton = GameObject.Instantiate(popCmdButtonPerfab) as GameObject;
+				GameObject popCmdButton = GameObject.Instantiate (popCmdButtonPerfab) as GameObject;
 
-				popCmdButton.GetComponent<CmdButtonItem> ().m_Cmd = item["cmd"].ToString();
-				popCmdButton.GetComponent<CmdButtonItem> ().m_ObjId = item["objId"].ToString();
-				popCmdButton.GetComponent<CmdButtonItem> ().m_DisplayName = item["displayName"].ToString();
+				popCmdButton.GetComponent<CmdButtonItem> ().m_Cmd = item ["cmd"].ToString ();
+				popCmdButton.GetComponent<CmdButtonItem> ().m_ObjId = item ["objId"].ToString ();
+				popCmdButton.GetComponent<CmdButtonItem> ().m_DisplayName = item ["displayName"].ToString ();
 				popCmdButton.transform.Find ("Label").GetComponent<UILabel> ().text = item ["displayName"].ToString ();
 				popCmdButton.transform.parent = gridTrans;
 				popCmdButton.transform.localScale = new Vector3 (1f, 1f, 1f);
 				popCmdButton.transform.localPosition = Vector3.zero; 
 				popCmdButton.SetActive (true);
 
-				UIEventListener.Get(popCmdButton).onClick = OnPopCmdButtonClick;  
+				UIEventListener.Get (popCmdButton).onClick = OnPopCmdButtonClick;  
 			}
 
 			gridTrans.GetComponent<UIGrid> ().repositionNow = true;
 			gridTrans.GetComponent<UIGrid> ().Reposition ();
 			gridTrans.transform.localPosition = new Vector3 (gridTrans.transform.localPosition.x, gridY, 0f);
 			gridTrans.gameObject.SetActive (true);
+			return m_PopDialog;
+		} else if (name.Equals ("combat")) {
+
+			if (m_Combat == null) {
+
+				GameObject combatPerfab = Resources.Load ("MainWindow/Combat") as GameObject; 
+				m_Combat = GameObject.Instantiate (combatPerfab) as GameObject;
+				m_Combat.transform.parent = this.transform;
+				m_Combat.transform.localScale = new Vector3 (1f, 1f, 1f);
+				m_Combat.transform.localPosition = new Vector3 (0f, 0f, 0f);
+				m_Combat.SetActive (false);
+			}
+
+			if (m_Combat.activeSelf == false) {
+
+				m_Combat.transform.localScale = new Vector3 (1f, 1f, 1f);
+				m_Bag.transform.localPosition = new Vector3 (0f, 0f, 0f);
+				m_Combat.SetActive (true);
+			}
+
+			return m_Combat;
 		}
 
+        return null;
 
+	}
 
+	public void closeByName(string name){
+		if (name.Equals ("taskbar")) {
+
+			if (m_TaskBar == null) {
+
+				GameObject taskBarPerfab = Resources.Load ("MainWindow/TaskBar") as GameObject; 
+				m_TaskBar = GameObject.Instantiate (taskBarPerfab) as GameObject;
+				m_TaskBar.transform.parent = this.transform;
+			}
+
+			if (m_TaskBar.activeSelf == true) {
+
+				m_TaskBar.transform.localScale = new Vector3 (1f, 1f, 1f);
+				m_TaskBar.transform.localPosition = new Vector3 (5000f, 0f, 0f);
+				m_TaskBar.SetActive (false);
+			}
+			
+		} else if (name.Equals ("bag")) {
+
+			if (m_Bag == null) {
+				return;
+			}
+			if (m_Bag.activeSelf == true) {
+
+				m_Bag.transform.localScale = new Vector3 (1f, 1f, 1f);
+				m_Bag.transform.localPosition = new Vector3 (5000f, 0f, 0f);
+				m_Bag.gameObject.SetActive (false);
+			}
+		} else if (name.Equals ("popdialog")) {
+			OnObjectInfoPopQuitEventHandler ();
+		} else if (name.Equals ("combat")) {
+
+			if (m_Combat == null) {
+
+				GameObject combatPerfab = Resources.Load ("MainWindow/Combat") as GameObject; 
+				m_Combat = GameObject.Instantiate (combatPerfab) as GameObject;
+				m_Combat.transform.parent = this.transform;
+			}
+
+			if (m_Combat.activeSelf == true) {
+
+				m_Combat.transform.localScale = new Vector3 (1f, 1f, 1f);
+				m_Combat.transform.localPosition = new Vector3 (5000f, 0f, 0f);
+				m_Combat.SetActive (false);
+			}
+		}
 	}
 
 	//处理物品信息对话框的关闭事件

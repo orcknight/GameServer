@@ -66,6 +66,7 @@ public class Living extends MudObject{
     protected Integer jingLi = 0;
     protected Integer level = 0;
     protected Integer combatExp = 0; //实战经验
+    protected Integer potential = 0; //潜能
     protected Integer score = 0; //功劳点
     protected Boolean heartBeatFlag = false; //心跳表示
     protected Boolean isGhost = false;
@@ -469,6 +470,14 @@ public class Living extends MudObject{
 
     public void setCombatExp(Integer combatExp) {
         this.combatExp = combatExp;
+    }
+
+    public Integer getPotential() {
+        return potential;
+    }
+
+    public void setPotential(Integer potential) {
+        this.potential = potential;
     }
 
     public Integer getScore() {
@@ -1101,6 +1110,22 @@ public class Living extends MudObject{
     public void removeAllWant() {
 
         wantKills.clear();
+    }
+
+    //悟性提高可以增加潜能极限
+    public int queryPotentialLimit() {
+        int p = 0;
+
+        /*if( this.query("jingmai/finish") != null )
+            p += ZHOUTIAN_D->query_jingmai_effect("pot");*/
+
+        //如果是大宗师//Todo:暂时不处理
+        /*if (ultrap(this_object()))
+            p = 20000;
+        else*/
+        p = this.getWux() * 300;
+        p *=10;
+        return (int)MapGetUtil.queryInteger(this, "learned_points") + p;
     }
 
     public void createScheduleTask(Integer seconds, String funName, Object[] params){

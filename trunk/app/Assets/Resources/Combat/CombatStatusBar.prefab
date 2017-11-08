@@ -115,6 +115,8 @@ GameObject:
   - component: {fileID: 4046326993817592}
   - component: {fileID: 114989616923385692}
   - component: {fileID: 114518986856393174}
+  - component: {fileID: 65220904505509566}
+  - component: {fileID: 114458823918199148}
   m_Layer: 8
   m_Name: CombatStatusBar
   m_TagString: Untagged
@@ -210,9 +212,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1365977384979406}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -393, y: 327, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalScale: {x: 1.0016026, y: 1.0016026, z: 1.0016026}
   m_Children:
   - {fileID: 4283042832151522}
   - {fileID: 4867332817994944}
@@ -371,6 +373,18 @@ Transform:
   m_Father: {fileID: 4046326993817592}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &65220904505509566
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1365977384979406}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 270, y: 160, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114185292746097666
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -403,7 +417,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 270
   mHeight: 40
-  mDepth: 6
+  mDepth: 17
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -412,7 +426,7 @@ MonoBehaviour:
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   mFont: {fileID: 0}
-  mText: 40/100
+  mText: 220/1500
   mFontSize: 40
   mFontStyle: 0
   mAlignment: 0
@@ -493,7 +507,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 262
   mHeight: 32
-  mDepth: 5
+  mDepth: 12
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -569,7 +583,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 270
   mHeight: 40
-  mDepth: 4
+  mDepth: 11
   mMat: {fileID: 0}
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
@@ -591,6 +605,19 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 62adb30369acbf943a67cee0f69267a3, type: 2}
   mSpriteName: Button
   mFillCenter: 1
+--- !u!114 &114458823918199148
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1365977384979406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f02842fa4878db54f9587ff4de7d9f2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollView: {fileID: 0}
+  draggablePanel: {fileID: 0}
 --- !u!114 &114474479168813286
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -656,7 +683,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 270
   mHeight: 40
-  mDepth: 4
+  mDepth: 11
   mMat: {fileID: 0}
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
@@ -710,7 +737,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 270
   mHeight: 40
-  mDepth: 6
+  mDepth: 17
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -719,7 +746,7 @@ MonoBehaviour:
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   mFont: {fileID: 0}
-  mText: 100/200
+  mText: 2300/5000
   mFontSize: 40
   mFontStyle: 0
   mAlignment: 0
@@ -778,7 +805,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 80
   mHeight: 40
-  mDepth: 7
+  mDepth: 11
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -846,7 +873,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 262
   mHeight: 32
-  mDepth: 5
+  mDepth: 12
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -900,13 +927,13 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 270
   mHeight: 160
-  mDepth: 3
+  mDepth: 10
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 1.6875
-  mType: 0
+  mType: 1
   mFillDirection: 4
   mFillAmount: 1
   mInvert: 0

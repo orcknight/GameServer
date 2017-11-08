@@ -160,6 +160,7 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.VR.WSA.Spa
 b8d77fde4e3f0d1a945a12eba0c61003 Assembly-CSharp-firstpass.dll:.FingerDebug
 877a57745159ed5125e6bc4bb667bc9f Assembly-CSharp.dll:.TweenPosition
 e7ced6492e9c57ea2d06cc2694771449 Assembly-CSharp.dll:.LoadLevelOnClick
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.CombatManager
 4b8a25749126516ab57c01b82641b0ed Assembly-CSharp.dll:.ExampleDragDropSurface
 feea9fa519f717332c191791acaf5381 Assembly-CSharp.dll:.UISnapshotPoint
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.UISoundVolume
@@ -188,6 +189,7 @@ e260464741984401792c21e9f1b18f52 Assembly-CSharp.dll:.UIToggle
 5e4eefd09b031ce9902f32ec9cb1fe0e Assembly-CSharp.dll:.UIStorageSlot
 ac4b8da881863d2cabf10e05b6e01c0a Assembly-CSharp.dll:.UIEventTrigger
 15a721b98ce93cab32c7b952182d2560 Assembly-CSharp-firstpass.dll:.FingerUpDetector
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.TaskItem
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.UIDrawCall
 12bc5799a48e88313e25e6302ec35720 Assembly-CSharp.dll:.UICamera
 56e8379e2e8475f8af18ab6e3ad56c22 Assembly-CSharp.dll:SocketIO.SocketIOComponent
@@ -205,6 +207,8 @@ e03037f8187bf8168019f511f7e1618f Assembly-CSharp.dll:.CmdButtonItem
 3de465526050d8c52418b7a22cbcc972 Assembly-CSharp.dll:.Spin
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.BagManager
 d32dd1e592cd63449e0027069541b421 Assembly-CSharp.dll:.UIPlaySound
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.AttrProgressBarManger
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.CombatStatusBar
 5b2c65ef312c6abb84dac7593de0e02d Assembly-CSharp-firstpass.dll:.TBPinchToScale
 d78403ea814ebb39fb992bd3488f0709 Assembly-CSharp.dll:.TweenTransform
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
@@ -279,6 +283,7 @@ bf0efa3a2b50052bc4430312d3cc0dad Assembly-CSharp.dll:.LagPosition
 f9ab08734ff0441703a923df780d4c90 Assembly-CSharp.dll:.UITextList
 d62f60ad5ecff73b76da2ea09c712ada Assembly-CSharp.dll:.UIItemStorage
 37d65bf29af9dd2fac1cab17987f9faa Assembly-CSharp.dll:.AnimatedAlpha
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.PopWindowManager
 8416e9da8fd7dbae60d969efdb2242bd Assembly-CSharp.dll:.UIStretch
 0e42314c6df696cd91fcc759d6437386 Assembly-CSharp-firstpass.dll:.FGTouchInputProvider
 f55492bcd9d3c95b5981d8fd2428b885 Assembly-CSharp.dll:.UIDragDropItem
@@ -305,4 +310,3 @@ fcffe9bbf1b7b7e4593e31031f78987b Assembly-CSharp.dll:.UISliderColors
 d1007c2f174020f8a86860edb2c9dfd2 Assembly-CSharp-firstpass.dll:.PinchRecognizer
 368243818345a9e3d918aa855191e952 Assembly-CSharp-firstpass.dll:.TBPinchZoom
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.RealTime
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.AttrProgressBarManger
