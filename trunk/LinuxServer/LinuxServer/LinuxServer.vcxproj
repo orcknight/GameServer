@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM64">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM64">
+      <Configuration>Release</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x86">
+      <Configuration>Debug</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x86">
+      <Configuration>Release</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{2b151141-b5ff-4fc4-af7d-5f232c1a722e}</ProjectGuid>
+    <Keyword>Linux</Keyword>
+    <RootNamespace>LinuxServer</RootNamespace>
+    <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
+    <ApplicationType>Linux</ApplicationType>
+    <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
+    <TargetLinuxPlatform>Generic</TargetLinuxPlatform>
+    <LinuxProjectType>{D51BCBC9-82E9-4017-911E-C93873C4EA2B}</LinuxProjectType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ProjectPublicIncludePath>./../3rd;</ProjectPublicIncludePath>
+    <RemoteProjectDir>$(RemoteRootDir)/$(ProjectName)</RemoteProjectDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <ClCompile Include="GameServer.cpp" />
+    <ClCompile Include="IniFileHelper.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="ProtobufModel.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\3rd\spdlog\async.h" />
+    <ClInclude Include="..\3rd\spdlog\async_logger-inl.h" />
+    <ClInclude Include="..\3rd\spdlog\async_logger.h" />
+    <ClInclude Include="..\3rd\spdlog\cfg\argv.h" />
+    <ClInclude Include="..\3rd\spdlog\cfg\env.h" />
+    <ClInclude Include="..\3rd\spdlog\cfg\helpers-inl.h" />
+    <ClInclude Include="..\3rd\spdlog\cfg\helpers.h" />
+    <ClInclude Include="..\3rd\spdlog\cfg\log_levels.h" />
+    <ClInclude Include="..\3rd\spdlog\common-inl.h" />
+    <ClInclude Include="..\3rd\spdlog\common.h" />
+    <ClInclude Include="..\3rd\spdlog\details\backtracer-inl.h" />
+    <ClInclude Include="..\3rd\spdlog\details\backtracer.h" />
+    <ClInclude Include="..\3rd\spdlog\details\circular_q.h" />
+    <ClInclude Include="..\3rd\spdlog\details\console_globals.h" />
+    <ClInclude Include="..\3rd\spdlog\details\file_helper-inl.h" />
+    <ClInclude Include="..\3rd\spdlog\details\file_helper.h" />
+    <ClInclude Include="..\3rd\spdlog\details\fmt_helper.h" />
+    <ClInclude Include="..\3rd\spdlog\details\log_msg-inl.h" />
+    <ClInclude Include="..\3rd\spdlog\details\log_msg.h" />
+    <ClInclude Include="..\3rd\spdlog\details\log_msg_buffer-inl.h" />
+    <ClInclude Include="..\3rd\spdlog\details\log_msg_buffer.h" />
+    <ClInclude Include="..\3rd\spdlog\details\mpmc_blocking_q.h" />
+    <ClInclude Include="..\3rd\spdlog\details\null_mutex.h" />
+    <ClInclude Include="..\3rd\spdlog\details\os-inl.h" />
+    <ClInclude Include="..\3rd\spdlog\details\os.h" />
+    <ClInclude Include="..\3rd\spdlog\details\periodic_worker-inl.h" />
+    <ClInclude Include="..\3rd\spdlog\details\periodic_worker.h" />
+    <ClInclude Include="..\3rd\spdlog\details\registry-inl.h" />
+    <ClInclude Include="..\3rd\spdlog\details\registry.h" />
+    <ClInclude Include="..\3rd\spdlog\details\synchronous_factory.h" />
+    <ClInclude Include="..\3rd\spdlog\details\tcp_client-windows.h" />
+    <ClInclude Include="..\3rd\spdlog\details\tcp_client.h" />
+    <ClInclude Include="..\3rd\spdlog\details\thread_pool-inl.h" />
+    <ClInclude Include="..\3rd\spdlog\details\thread_pool.h" />
+    <ClInclude Include="..\3rd\spdlog\details\windows_include.h" />
+    <ClInclude Include="..\3rd\spdlog\fmt\bin_to_hex.h" />
+    <ClInclude Include="..\3rd\spdlog\fmt\bundled\chrono.h" />
+    <ClInclude Include="..\3rd\spdlog\fmt\bundled\color.h" />
+    <ClInclude Include="..\3rd\spdlog\fmt\bundled\compile.h" />
+    <ClInclude Include="..\3rd\spdlog\fmt\bundled\core.h" />
+    <ClInclude Include="..\3rd\spdlog\fmt\bundled\format-inl.h" />
+    <ClInclude Include="..\3rd\spdlog\fmt\bundled\format.h" />
+    <ClInclude Include="..\3rd\spdlog\fmt\bundled\locale.h" />
+    <ClInclude Include="..\3rd\spdlog\fmt\bundled\ostream.h" />
+    <ClInclude Include="..\3rd\spdlog\fmt\bundled\posix.h" />
+    <ClInclude Include="..\3rd\spdlog\fmt\bundled\printf.h" />
+    <ClInclude Include="..\3rd\spdlog\fmt\bundled\ranges.h" />
+    <ClInclude Include="..\3rd\spdlog\fmt\fmt.h" />
+    <ClInclude Include="..\3rd\spdlog\fmt\ostr.h" />
+    <ClInclude Include="..\3rd\spdlog\formatter.h" />
+    <ClInclude Include="..\3rd\spdlog\fwd.h" />
+    <ClInclude Include="..\3rd\spdlog\logger-inl.h" />
+    <ClInclude Include="..\3rd\spdlog\logger.h" />
+    <ClInclude Include="..\3rd\spdlog\pattern_formatter-inl.h" />
+    <ClInclude Include="..\3rd\spdlog\pattern_formatter.h" />
+    <ClInclude Include="..\3rd\spdlog\sinks\android_sink.h" />
+    <ClInclude Include="..\3rd\spdlog\sinks\ansicolor_sink-inl.h" />
+    <ClInclude Include="..\3rd\spdlog\sinks\ansicolor_sink.h" />
+    <ClInclude Include="..\3rd\spdlog\sinks\base_sink-inl.h" />
+    <ClInclude Include="..\3rd\spdlog\sinks\base_sink.h" />
+    <ClInclude Include="..\3rd\spdlog\sinks\basic_file_sink-inl.h" />
+    <ClInclude Include="..\3rd\spdlog\sinks\basic_file_sink.h" />
+    <ClInclude Include="..\3rd\spdlog\sinks\daily_file_sink.h" />
+    <ClInclude Include="..\3rd\spdlog\sinks\dist_sink.h" />
+    <ClInclude Include="..\3rd\spdlog\sinks\dup_filter_sink.h" />
+    <ClInclude Include="..\3rd\spdlog\sinks\msvc_sink.h" />
+    <ClInclude Include="..\3rd\spdlog\sinks\null_sink.h" />
+    <ClInclude Include="..\3rd\spdlog\sinks\ostream_sink.h" />
+    <ClInclude Include="..\3rd\spdlog\sinks\ringbuffer_sink.h" />
+    <ClInclude Include="..\3rd\spdlog\sinks\rotating_file_sink-inl.h" />
+    <ClInclude Include="..\3rd\spdlog\sinks\rotating_file_sink.h" />
+    <ClInclude Include="..\3rd\spdlog\sinks\sink-inl.h" />
+    <ClInclude Include="..\3rd\spdlog\sinks\sink.h" />
+    <ClInclude Include="..\3rd\spdlog\sinks\stdout_color_sinks-inl.h" />
+    <ClInclude Include="..\3rd\spdlog\sinks\stdout_color_sinks.h" />
+    <ClInclude Include="..\3rd\spdlog\sinks\stdout_sinks-inl.h" />
+    <ClInclude Include="..\3rd\spdlog\sinks\stdout_sinks.h" />
+    <ClInclude Include="..\3rd\spdlog\sinks\syslog_sink.h" />
+    <ClInclude Include="..\3rd\spdlog\sinks\systemd_sink.h" />
+    <ClInclude Include="..\3rd\spdlog\sinks\tcp_sink.h" />
+    <ClInclude Include="..\3rd\spdlog\sinks\wincolor_sink-inl.h" />
+    <ClInclude Include="..\3rd\spdlog\sinks\wincolor_sink.h" />
+    <ClInclude Include="..\3rd\spdlog\sinks\win_eventlog_sink.h" />
+    <ClInclude Include="..\3rd\spdlog\spdlog-inl.h" />
+    <ClInclude Include="..\3rd\spdlog\spdlog.h" />
+    <ClInclude Include="..\3rd\spdlog\tweakme.h" />
+    <ClInclude Include="..\3rd\spdlog\version.h" />
+    <ClInclude Include="GameServer.h" />
+    <ClInclude Include="IniFileHelper.h" />
+    <ClInclude Include="ProtobufModel.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\3rd\spdlog\fmt\bundled\LICENSE.rst" />
+  </ItemGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Link>
+      <LibraryDependencies>hiredis</LibraryDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>
